@@ -3,17 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的第一個 Vercel 網站</title>
+    <title>URMET - ONYX Video Door Phone</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f0f2f5; }
-        .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; }
-        h1 { color: #0070f3; }
+        /* --- 全域設定 --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0c0a18; /* 深紫色/黑色底 */
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden; /* 防止橫向捲動 */
+        }
+
+        /* --- 頁首導覽列 (模仿 Urmet 官網) --- */
+        header {
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: rgba(12, 10, 24, 0.9); /* 半透明背景，滾動時透視 */
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .login-btn {
+            background: white;
+            color: #0c0a18;
+            padding: 8px 18px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* --- 主要內容區塊 --- */
+        main {
+            padding: 150px 50px 50px; /* 預留頁首空間 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr; /* 左右比例如 1.2:1 */
+            gap: 80px;
+            align-items: center;
+        }
+
+        /* --- 左側文字區塊 --- */
+        .text-section {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .sub-title {
+            color: #0070f3; /* 藍色 */
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .main-title {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .learn-more-btn {
+            background-color: #3b82f6; /* 藍色 */
+            color: white;
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.3s;
+            max-width: 160px;
+        }
+
+        .learn-more-btn:hover {
+            background-color: #2563eb;
+        }
+
+        /* --- 右側圖片區塊 --- */
+        .image-section {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0)); /* 圖片背後的發光感 */
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .product-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            /* box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* 增加陰影使其立體 */
+        }
+
+        /* --- 響應式設定 (手機版適配) --- */
+        @media (max-width: 900px) {
+            header, nav ul, main {
+                padding: 20px;
+            }
+            nav ul {
+                display: none; /* 簡單隱藏菜單，實際版面可能需要漢堡選單 */
+            }
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                text-align: center;
+            }
+            .text-section {
+                align-items: center;
+            }
+            .main-title {
+                font-size: 40px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>你好！這是我的網站</h1>
-        <p>這段代碼是從 GitHub 透過 Vercel 部署的。</p>
-    </div>
+
+    <header>
+        <a href="#" class="logo">urmet</a>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Use cases</a></li>
+                <li><a href="#">Tools</a></li>
+                <li><a href="#">Services</a></li>
+            </ul>
+        </nav>
+        <div class="action-btns">
+            <span>Product Search</span>
+            <a href="#" class="login-btn">Login</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero-container">
+            
+            <div class="text-section">
+                <p class="sub-title">VIDEO DOOR PHONE</p>
+                <h1 class="main-title">ONYX. Design and technology total black.</h1>
+                <p class="description">
+                    The new ONYX entry panel combines minimalist aesthetics with advanced IP technology. 
+                    Designed to enhance access protection, it redefines security standards by expanding access control 
+                    modes with advanced features. With its clean lines, total black finish and high reliability, 
+                    ONYX rewrites the rules of elegance and protection.
+                </p>
+                <a href="#" class="learn-more-btn">Learn more →</a>
+            </div>
+
+            <div class="image-section">
+                <img src="reader.jpg" alt="Urmet ONYX Reader" class="product-image">
+            </div>
+
+        </div>
+    </main>
+
 </body>
 </html>
