@@ -17,14 +17,13 @@
         }
 
         body {
+            /* 修改後的背景：更藍、更淺一點的漸變色 */
             background: linear-gradient(135deg, #0a1931 0%, #001f4d 50%, #003366 100%);
-            background-attachment: fixed;
+            background-attachment: fixed; /* 讓背景固定，滾動時更有質感 */
             color: white;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
 
         /* --- 頁首導覽列 --- */
@@ -37,8 +36,8 @@
             position: fixed;
             top: 0;
             left: 0;
-            background: rgba(10, 25, 49, 0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(10, 25, 49, 0.8); /* 配合背景色的半透明 */
+            backdrop-filter: blur(10px); /* 磨砂玻璃效果 */
             z-index: 1000;
         }
 
@@ -61,15 +60,39 @@
             transition: color 0.3s;
         }
 
-        nav a:hover { color: #60a5fa; }
+        nav a:hover {
+            color: #60a5fa; /* 懸停時變淺藍 */
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .login-btn {
+            background: white;
+            color: #0a1931;
+            padding: 8px 18px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .login-btn:hover {
+            transform: scale(1.05);
+        }
 
         /* --- 主要內容區塊 --- */
         main {
-            padding: 150px 50px 100px;
-            flex: 1; /* 讓內容撐開，確保 footer 在底部 */
+            padding: 150px 50px 50px;
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
         }
 
         .hero-container {
@@ -81,7 +104,35 @@
             align-items: center;
         }
 
-        .main-title { font-size: 56px; font-weight: 700; line-height: 1.1; margin-bottom: 10px; }
+        /* --- 左側文字區塊 --- */
+        .text-section {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .sub-title {
+            color: #60a5fa; /* 淺藍色 */
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        .main-title {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
 
         .learn-more-btn {
             background-color: #3b82f6;
@@ -95,6 +146,22 @@
             gap: 10px;
             transition: all 0.3s;
             max-width: 180px;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .learn-more-btn:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+        }
+
+        /* --- 右側圖片區塊 --- */
+        .image-section {
+            /* 圖片後方的藍色發光感 */
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
         }
 
         .product-image {
@@ -104,10 +171,60 @@
             filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));
         }
 
-        /* --- 頁腳 Footer (參考附圖設計) --- */
-        footer {
-            background: rgba(0, 0, 0, 0.3); /* 深色透明感 */
-            padding: 60px 50px 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 50px;
+        /* --- 響應式設定 --- */
+        @media (max-width: 900px) {
+            header { padding: 20px; }
+            nav ul { display: none; }
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                text-align: center;
+            }
+            .text-section { align-items: center; }
+            .main-title { font-size: 40px; }
+            main { padding-top: 120px; }
         }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">
+            <img src="logo.png" alt="Urmet Logo">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Use cases</a></li>
+                <li><a href="#">Tools</a></li>
+                <li><a href="#">Services</a></li>
+            </ul>
+        </nav>
+        <div class="action-btns">
+            <span>Product Search</span>
+            <a href="#" class="login-btn">Login</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero-container">
+            
+            <div class="text-section">
+                <p class="sub-title">Multi-reader</p>
+                <h1 class="main-title">輕鬆之子</h1>
+                <p class="description">
+                    體驗全新世代的門禁科技，ONYX 以極簡設計融合先進 IP 技術，為您的建築增添優雅與安全。
+                </p>
+                <a href="#" class="learn-more-btn">Learn more →</a>
+            </div>
+
+            <div class="image-section">
+                <img src="reader.png" alt="Urmet ONYX Reader" class="product-image">
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>
