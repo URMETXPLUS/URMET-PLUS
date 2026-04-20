@@ -5,90 +5,167 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - URMET PLUS</title>
     <style>
+        /* --- 1. Font Integration --- */
         @font-face {
             font-family: 'Bariol Bold';
             src: url('fonts/Bariol-Bold.woff2') format('woff2');
             font-weight: normal;
         }
 
+        /* --- 2. Global Reset --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            background: radial-gradient(circle at 50% 0%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
-            color: white;
+            background: #ffffff; /* White background as requested */
+            color: #0a1931;
             font-family: 'Bariol Bold', sans-serif;
             line-height: 1.8;
-            margin: 0;
-            padding: 80px 10%;
-            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .container { max-width: 900px; margin: 0 auto; }
-        
-        .back-home {
-            display: inline-block;
-            margin-bottom: 50px;
-            color: #60a5fa;
-            text-decoration: none;
-            font-size: 14px;
-            letter-spacing: 1px;
-            border: 1px solid #60a5fa;
-            padding: 8px 20px;
-            border-radius: 20px;
-            transition: 0.3s;
+        /* --- 3. Navigation (Matches Home Page) --- */
+        header {
+            width: 100%; padding: 15px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            position: fixed; top: 0; left: 0;
+            background: rgba(10, 25, 49, 0.98); /* Dark header like Home */
+            backdrop-filter: blur(15px);
+            z-index: 1000;
         }
-        .back-home:hover { background: rgba(96, 165, 250, 0.1); }
 
-        h1 { color: #60a5fa; font-size: 48px; margin-bottom: 10px; }
-        .subtitle { opacity: 0.6; margin-bottom: 60px; font-size: 14px; text-transform: uppercase; }
-        
-        section { margin-bottom: 40px; background: rgba(255, 255, 255, 0.03); padding: 30px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); }
-        h2 { color: #60a5fa; margin-top: 0; font-size: 22px; margin-bottom: 15px; }
-        p { color: rgba(255, 255, 255, 0.8); font-size: 16px; margin: 0; }
-        
-        footer {
-            margin-top: 100px;
+        header::after {
+            content: ""; position: absolute; height: 1px; bottom: 12px; left: 5%; right: 5%; 
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .logo img { height: 35px; width: auto; filter: brightness(0) invert(1); }
+        nav ul { list-style: none; display: flex; gap: 25px; }
+        nav a { text-decoration: none; color: white; font-size: 14px; text-transform: uppercase; }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px;
+            cursor: pointer; font-family: 'Bariol Bold', sans-serif;
+        }
+
+        /* --- 4. Content Container --- */
+        .page-header {
+            padding: 180px 10% 60px 10%;
+            background: #f8fafc;
             text-align: center;
-            font-size: 12px;
-            color: rgba(255,255,255,0.3);
-            letter-spacing: 1px;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 60px 10%; }
+        
+        h1 { color: #0a1931; font-size: 48px; margin-bottom: 10px; }
+        .subtitle { opacity: 0.5; margin-bottom: 40px; font-size: 14px; text-transform: uppercase; color: #0a1931; }
+        
+        /* --- 5. PDF Buttons --- */
+        .download-box {
+            display: flex; gap: 20px; margin-bottom: 60px; justify-content: center; flex-wrap: wrap;
+        }
+        .pdf-btn {
+            display: flex; align-items: center; gap: 10px;
+            padding: 15px 25px; background: #007aff; color: white;
+            text-decoration: none; border-radius: 12px; transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.2);
+        }
+        .pdf-btn:hover { background: #0056b3; transform: translateY(-2px); }
+
+        section { margin-bottom: 50px; }
+        h2 { color: #007aff; font-size: 24px; margin-bottom: 15px; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; }
+        p { color: #444; font-size: 17px; }
+
+        /* --- 6. Footer (Matches Home Page) --- */
+        footer { 
+            background: linear-gradient(180deg, #0a1931 0%, #071224 40%, #02050a 100%); 
+            padding: 80px 5% 40px 5%; 
+            color: white;
+        }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 60px; }
+        .footer-section h4 { color: #60a5fa; margin-bottom: 25px; font-size: 20px; }
+        .footer-section p, .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin-bottom: 12px; font-size: 15px; }
+        .copyright { text-align: center; padding-top: 80px; color: rgba(255,255,255,0.2); font-size: 12px; letter-spacing: 1px; }
+
+        @media (max-width: 768px) {
+            header nav { display: none; }
+            .container { padding: 40px 5%; }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <a href="index.html" class="back-home">← BACK TO HOME / 返回主頁</a>
-    
-    <h1>Privacy Policy</h1>
-    <p class="subtitle">私隱政策 • LAST UPDATED: APRIL 2026</p>
+    <header>
+        <div class="logo"><img src="logo.png" alt="Urmet Logo"></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="index.html#products">PRODUCTS</a></li>
+                <li><a href="index.html#contact">ABOUT US</a></li>
+            </ul>
+        </nav>
+        <div class="lang-container">
+            <button class="lang-btn">LANGUAGE ▾</button>
+        </div>
+    </header>
 
-    <section>
-        <h2>1. Data Collection / 數據收集</h2>
-        <p>We collect information necessary to provide access control services, including your name, contact details, and encrypted QR credential data used for building entry.<br>
-        我們收集提供門禁服務所需的必要信息，包括您的姓名、聯繫方式以及用於進入大廈的加密 QR Code 憑證數據。</p>
-    </section>
+    <div class="page-header">
+        <h1>Privacy Policy</h1>
+        <p class="subtitle">私隱政策 • LAST UPDATED: APRIL 2026</p>
+        
+        <div class="download-box">
+            <a href="privacy-en.pdf" class="pdf-btn" download>
+                <span>Download English PDF</span>
+            </a>
+            <a href="privacy-zh.pdf" class="pdf-btn" download>
+                <span>下載中文版 PDF</span>
+            </a>
+        </div>
+    </div>
 
-    <section>
-        <h2>2. Data Usage / 數據用途</h2>
-        <p>Your data is used solely for identity verification, facility booking, and ensuring building security. We do not sell your personal information.<br>
-        您的數據僅用於身份驗證、設施預約及確保大廈安全。我們不會出售您的個人資料。</p>
-    </section>
+    <div class="container">
+        <section>
+            <h2>1. Data Collection / 數據收集</h2>
+            <p>We collect information necessary to provide access control services, including your name, contact details, and encrypted QR credential data used for building entry.<br>
+            我們收集提供門禁服務所需的必要信息，包括您的姓名、聯繫方式以及用於進入大廈的加密 QR Code 憑證數據。</p>
+        </section>
 
-    <section>
-        <h2>3. Data Security / 數據安全</h2>
-        <p>URMET PLUS uses high-level encryption to protect your digital credentials. Access logs are stored securely and only accessible by authorized administrators.<br>
-        URMET PLUS 使用高強度加密技術保護您的數碼憑證。通行日誌安全存儲，僅限授權管理人員查看。</p>
-    </section>
+        <section>
+            <h2>2. Data Usage / 數據用途</h2>
+            <p>Your data is used solely for identity verification, facility booking, and ensuring building security. We do not sell your personal information.<br>
+            您的數據僅用於身份驗證、設施預約及確保大廈安全。我們不會出售您的個人資料。</p>
+        </section>
 
-    <section>
-        <h2>4. Contact Us / 聯絡我們</h2>
-        <p>If you have questions regarding your privacy, please contact our Chai Wan office.<br>
-        如果您對私隱有任何疑問，請聯絡我們位於柴灣的辦公室。</p>
-    </section>
+        <section>
+            <h2>3. Data Security / 數據安全</h2>
+            <p>URMET PLUS uses high-level encryption to protect your digital credentials. Access logs are stored securely and only accessible by authorized administrators.<br>
+            URMET PLUS 使用高強度加密技術保護您的數碼憑證。通行日誌安全存儲，僅限授權管理人員查看。</p>
+        </section>
+
+        <section>
+            <h2>4. Contact Us / 聯絡我們</h2>
+            <p>If you have questions regarding your privacy, please contact our Chai Wan office.<br>
+            如果您對私隱有任何疑問，請聯絡我們位於柴灣的辦公室。</p>
+        </section>
+    </div>
 
     <footer>
-        © 2026 URMET JES LIMITED - ALL RIGHTS RESERVED
+        <div class="footer-content">
+            <div class="footer-section">
+                <img src="logo.png" alt="Logo" style="height: 40px; margin-bottom: 25px; filter: brightness(0) invert(1);">
+                <p>香港柴灣永泰道60號<br>柴灣工業城一期7期11-14室</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <a href="#">Help Desk</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2026 URMET JES LIMITED - ALL RIGHTS RESERVED</p>
+        </div>
     </footer>
-</div>
 
 </body>
 </html>
