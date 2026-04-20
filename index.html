@@ -17,18 +17,76 @@
         }
 
         body {
-            /* 主背景漸變 */
-            background: linear-gradient(135deg, #0a1931 0%, #001f4d 50%, #003366 100%);
-            background-attachment: fixed;
+            /* 深藍色水底色調 */
+            background: #0a1931;
             color: white;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
-        /* --- 頁首導覽列 --- */
+        /* --- 動態流動背景效果 --- */
+        .water-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a1931 0%, #001f4d 50%, #003366 100%);
+            z-index: -2;
+        }
+
+        /* 波浪容器 */
+        .waves-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30vh;
+            z-index: -1;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C57.21,111.45,115.54,120,173.55,110.16A518.2,518.2,0,0,0,321.39,56.44Z" fill="white"/></svg>');
+            background-size: 50% 100%;
+            animation: move-wave 15s linear infinite;
+            transform-origin: center bottom;
+        }
+
+        .wave1 { opacity: 0.1; height: 100%; animation-duration: 20s; }
+        .wave2 { opacity: 0.2; height: 80%; animation-duration: 13s; animation-delay: -2s; }
+        .wave3 { opacity: 0.15; height: 60%; animation-duration: 8s; animation-delay: -5s; }
+
+        @keyframes move-wave {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* 光影折射感 (Caustics effect) */
+        .water-bg::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(96, 165, 250, 0.1) 0%, transparent 80%);
+            animation: pulse-glow 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            from { opacity: 0.3; }
+            to { opacity: 0.7; }
+        }
+
+        /* --- 原有樣式 (稍作透明度微調) --- */
         header {
             width: 100%;
             padding: 20px 50px;
@@ -38,40 +96,24 @@
             position: fixed;
             top: 0;
             left: 0;
-            background: rgba(10, 25, 49, 0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(10, 25, 49, 0.6);
+            backdrop-filter: blur(15px);
             z-index: 1000;
         }
 
-        .logo img {
-            height: 40px;
-            width: auto;
-            display: block;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 30px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
+        /* ... 其餘樣式保持不變 ... */
+        .logo img { height: 40px; width: auto; display: block; }
+        nav ul { list-style: none; display: flex; gap: 30px; }
+        nav a { text-decoration: none; color: rgba(255, 255, 255, 0.7); font-size: 14px; transition: color 0.3s; }
         nav a:hover { color: #60a5fa; }
 
-        /* --- 主要內容區塊 --- */
         main {
             padding: 150px 50px 100px;
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh; /* 確保主區塊至少佔滿一屏 */
+            min-height: 100vh;
         }
 
         .hero-container {
@@ -104,60 +146,27 @@
             height: auto;
             border-radius: 15px;
             filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));
+            animation: float 6s ease-in-out infinite; /* 加入漂浮動畫 */
         }
 
-        /* --- 頁腳 Footer (簡化版 + 漸變色) --- */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
         footer {
-            /* 頁腳專屬漸變色：從深藍到深紫，增加層次感 */
-            background: linear-gradient(to bottom, transparent, rgba(10, 25, 49, 0.9), #050c1a);
+            background: linear-gradient(to bottom, transparent, rgba(10, 25, 49, 0.95));
             padding: 80px 50px 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 1;
         }
 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between; /* 左右對開，符合簡化設計 */
-            align-items: flex-start;
-        }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; }
+        .footer-section { display: flex; flex-direction: column; gap: 15px; }
+        .footer-section h4 { font-size: 18px; font-weight: 600; margin-bottom: 10px; color: #60a5fa; }
+        .footer-section p, .footer-section a { font-size: 15px; color: rgba(255, 255, 255, 0.7); text-decoration: none; line-height: 1.6; }
+        .footer-bottom { max-width: 1200px; margin: 60px auto 0; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 12px; color: rgba(255, 255, 255, 0.4); text-align: center; }
 
-        .footer-section {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .footer-section h4 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #60a5fa; /* 標題用藍色突出 */
-        }
-
-        .footer-section p, .footer-section a {
-            font-size: 15px;
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            line-height: 1.6;
-        }
-
-        .footer-section a:hover {
-            color: white;
-            text-decoration: underline;
-        }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 60px auto 0;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.4);
-            text-align: center;
-        }
-
-        /* --- 響應式設定 --- */
         @media (max-width: 768px) {
             .hero-container { grid-template-columns: 1fr; text-align: center; }
             .footer-content { flex-direction: column; align-items: center; text-align: center; gap: 40px; }
@@ -166,6 +175,13 @@
     </style>
 </head>
 <body>
+
+    <div class="water-bg"></div>
+    <div class="waves-container">
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+    </div>
 
     <header>
         <a href="#" class="logo">
