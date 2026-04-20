@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>About Us - URMET PLUS</title>
+    <style>
+        /* --- 1. Font Integration --- */
+        @font-face {
+            font-family: 'Bariol Bold';
+            src: url('fonts/Bariol-Bold.woff2') format('woff2'),
+                 url('fonts/Bariol-Bold.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* --- 2. Global Styles --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #ffffff;
+            font-family: 'Bariol Bold', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* --- 3. Header (Deep Blue Gradient) --- */
+        header {
+            width: 100%; padding: 12px 8%; display: flex; justify-content: space-between; align-items: center;
+            position: fixed; top: 0; left: 0; 
+            background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+        .logo img { height: 32px; width: auto; display: block; }
+        .nav-wrapper { display: flex; align-items: center; gap: 30px; }
+        nav ul { list-style: none; display: flex; gap: 30px; position: relative; }
+        nav a { text-decoration: none; color: white; font-size: 14px; text-transform: uppercase; letter-spacing: 1.2px; opacity: 0.8; transition: 0.3s; padding-bottom: 5px; }
+        nav::after { content: ""; position: absolute; bottom: -8px; left: 0; width: 100%; height: 2px; background: white; box-shadow: 0 0 8px rgba(255, 255, 255, 0.5); }
+        nav a:hover { opacity: 1; color: #60a5fa; }
+        .lang-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; cursor: pointer; }
+
+        /* --- 4. White Middle Section --- */
+        .about-wrapper {
+            background: #ffffff;
+            padding-top: 140px; 
+            color: #0a1931;
+        }
+
+        .hero-banner {
+            padding: 60px 10% 20px 10%;
+            text-align: center;
+        }
+
+        h1 { color: #0a1931; font-size: clamp(32px, 5vw, 56px); margin-bottom: 10px; letter-spacing: -1px; }
+        .subtitle { color: #007aff; margin-bottom: 40px; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; }
+
+        .content-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 5% 100px 5%;
+        }
+
+        /* --- Contact & Map Section --- */
+        .contact-section {
+            background: #f8f9fa;
+            border-radius: 30px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            margin-top: 40px;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.05);
+        }
+
+        .contact-info {
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-info h2 {
+            font-size: 28px;
+            color: #0a1931;
+            margin-bottom: 30px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .info-item img {
+            width: 24px;
+            height: auto;
+            opacity: 0.7;
+        }
+
+        .info-item p {
+            color: #444;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 450px;
+            background: #eee;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* --- 5. Footer (Deep Blue Gradient) --- */
+        footer { 
+            background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
+            padding: 80px 8% 40px 8%; 
+            color: white; 
+        }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
+        .footer-section h4 { color: #60a5fa; margin-bottom: 20px; font-size: 18px; text-transform: uppercase; }
+        .footer-section p, .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin-bottom: 10px; font-size: 15px; }
+        .footer-section a:hover { color: white; }
+        .copyright { text-align: center; padding-top: 60px; color: rgba(255,255,255,0.3); font-size: 12px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; }
+
+        @media (max-width: 900px) {
+            .contact-section { grid-template-columns: 1fr; }
+            .map-container { height: 350px; }
+            .about-wrapper { padding-top: 100px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Urmet Logo">
+        </div>
+        <div class="nav-wrapper">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#products">Products</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+            <div class="lang-container">
+                <button class="lang-btn">LANGUAGE ▾</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="about-wrapper">
+        <div class="hero-banner">
+            <h1>Contact Us</h1>
+            <p class="subtitle">聯絡我們 • FIND OUR OFFICE</p>
+        </div>
+
+        <div class="content-container">
+            <div class="contact-section">
+                <div class="contact-info">
+                    <h2>Get in Touch</h2>
+                    
+                    <div class="info-item">
+                        <p><strong>Address:</strong><br>
+                        香港柴灣永泰道60號<br>
+                        柴灣工業城一期7期11-14室</p>
+                    </div>
+
+                    <div class="info-item">
+                        <p><strong>Office Hours:</strong><br>
+                        Mon - Fri: 09:00 - 18:00<br>
+                        Sat - Sun: Closed</p>
+                    </div>
+
+                    <div class="info-item">
+                        <p><strong>Email:</strong><br>
+                        info@urmet.com.hk</p>
+                    </div>
+                </div>
+
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m12!1m3!1d3692.174249110468!2d114.2403439758838!3d22.267717044031683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x340401290a635f57%3A0xf47d83f23b5d7d1d!2z5p-054Gj5bel5qWt5Z-O56ys5LiA5pyf!5e0!3m2!1szh-TW!2shk!4v1713500000000!5m2!1szh-TW!2shk" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <img src="logo.png" alt="Logo" style="height: 35px; margin-bottom: 20px;">
+                <p>香港柴灣永泰道60號<br>柴灣工業城一期7期11-14室</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <a href="#">Help Desk</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2026 URMET JES LIMITED - ALL RIGHTS RESERVED</p>
+        </div>
+    </footer>
+
+</body>
+</html>
