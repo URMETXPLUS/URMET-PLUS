@@ -4,23 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>URMET PLUS</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- Reset & Mobile Overflow Fix --- */
+        /* --- 1. Custom Font Integration --- */
+        @font-face {
+            font-family: 'Bariol Bold';
+            src: url('fonts/Bariol-Bold.woff2') format('woff2'),
+                 url('fonts/Bariol-Bold.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* --- 2. Reset & Global Styles --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         html, body {
             background: #0a1931;
             color: white;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Bariol Bold', sans-serif;
             width: 100%;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- Navigation --- */
+        /* --- 3. Navigation --- */
         header {
             width: 100%; padding: 15px 5%;
             display: flex; justify-content: space-between; align-items: center;
@@ -31,116 +38,104 @@
         }
 
         .logo img { height: 35px; width: auto; }
-        
         nav ul { list-style: none; display: flex; gap: 25px; position: relative; }
-        nav a { text-decoration: none; color: white; font-weight: 700; font-size: 14px; text-transform: uppercase; padding-bottom: 5px; }
+        nav a { text-decoration: none; color: white; font-size: 14px; text-transform: uppercase; padding-bottom: 5px; }
 
-        /* THE WHITE LINE UNDER NAVIGATION */
         nav::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: white;
-            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+            content: ""; position: absolute; bottom: -10px; left: 0; width: 100%;
+            height: 2px; background: white; box-shadow: 0 0 10px rgba(255,255,255,0.5);
         }
 
-        /* Language Button & Dropdown */
-        .lang-container { position: relative; }
         .lang-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white; padding: 8px 16px;
-            border-radius: 20px; font-size: 12px;
-            cursor: pointer; font-weight: 600;
-            transition: 0.3s;
+            background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px;
+            cursor: pointer; transition: 0.3s; font-family: 'Bariol Bold', sans-serif;
         }
-        .lang-btn:hover { background: rgba(255, 255, 255, 0.2); }
 
         .lang-dropdown {
-            position: absolute; top: 45px; right: 0;
-            background: white; border-radius: 10px;
-            display: none; flex-direction: column;
-            overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            position: absolute; top: 45px; right: 0; background: white; border-radius: 10px;
+            display: none; flex-direction: column; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
-        .lang-dropdown a {
-            color: #0a1931; padding: 12px 24px;
-            text-decoration: none; font-size: 13px;
-            font-weight: 600; white-space: nowrap;
-        }
-        .lang-dropdown a:hover { background: #f0f4f8; }
+        .lang-dropdown a { color: #0a1931; padding: 12px 24px; text-decoration: none; font-size: 13px; white-space: nowrap; }
         .lang-container:hover .lang-dropdown { display: flex; }
 
-        /* --- Hero Section with STRONGER Gradient --- */
+        /* --- 4. Hero Section --- */
         .hero-section {
             min-height: 100vh; display: flex; align-items: center; justify-content: center;
             padding: 120px 5%;
-            /* Enhanced Multi-stop Radial Gradient */
             background: radial-gradient(circle at 70% 50%, #1e4b8a 0%, #0a1931 60%, #050c1a 100%);
         }
 
-        .hero-container { 
-            max-width: 1200px; width: 100%; 
-            display: grid; grid-template-columns: 1.2fr 1fr; 
-            gap: 40px; align-items: center; 
-        }
-
-        .main-title { font-size: clamp(42px, 8vw, 72px); font-weight: 700; margin: 10px 0; letter-spacing: -1px; }
+        .hero-container { max-width: 1200px; width: 100%; display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; }
+        .main-title { font-size: clamp(42px, 8vw, 72px); margin: 10px 0; letter-spacing: -1px; }
         .reader-img { max-width: 100%; height: auto; filter: drop-shadow(0 20px 50px rgba(0,0,0,0.7)); border-radius: 12px; }
 
-        /* --- Divider --- */
         .divider-line { width: 100%; height: 2px; background: #ffffff; z-index: 100; position: relative; }
 
-        /* --- Middle White Section with Water Flow --- */
+        /* --- 5. White Section --- */
         .white-section {
             background: linear-gradient(180deg, #ffffff 0%, #e6f2ff 100%);
-            color: #0a1931; padding: 100px 5%;
-            position: relative; overflow: hidden;
+            color: #0a1931; padding: 100px 5%; position: relative; overflow: hidden;
         }
 
         .white-section::before {
             content: ""; position: absolute; top: 0; left: 0; width: 200%; height: 100%;
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,73.84-4.36,147.54,16.88,218.2,35.26,69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23007aff" opacity="0.04"/></svg>');
-            background-size: 50% 100%;
-            animation: waterFlow 18s linear infinite;
-            pointer-events: none;
+            background-size: 50% 100%; animation: waterFlow 18s linear infinite; pointer-events: none;
         }
+        @keyframes waterFlow { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        @keyframes waterFlow {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
-
-        .product-row {
-            max-width: 1100px; margin: 0 auto 120px auto;
-            display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
-            gap: 60px; position: relative; z-index: 2;
-        }
-
+        .product-row { max-width: 1100px; margin: 0 auto 120px auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 60px; position: relative; z-index: 2; }
         .product-text { flex: 1; min-width: 320px; }
-        .product-image-container { flex: 1; min-width: 320px; }
         .product-row.reverse { flex-direction: row-reverse; }
-
-        .product-text h2 { font-size: 38px; color: #007aff; margin-bottom: 20px; font-weight: 700; }
+        .product-text h2 { font-size: 38px; color: #007aff; margin-bottom: 20px; }
         .product-text p { font-size: 17px; line-height: 1.8; color: #333; margin-bottom: 30px; }
         
         .tag-btn {
-            display: inline-block; padding: 14px 35px;
-            background: #007aff; color: white; border-radius: 30px;
-            text-decoration: none; font-weight: 600; transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 122, 255, 0.3);
+            display: inline-block; padding: 14px 35px; background: #007aff; color: white; border-radius: 30px;
+            text-decoration: none; transition: 0.3s; box-shadow: 0 5px 15px rgba(0, 122, 255, 0.3);
         }
         .tag-btn:hover { background: #0056b3; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 122, 255, 0.4); }
-
         .row-image { width: 100%; height: auto; border-radius: 25px; box-shadow: 0 25px 50px rgba(0,0,0,0.15); }
 
-        /* --- Footer --- */
-        footer { background: #050c1a; padding: 80px 5%; color: white; }
-        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; }
-        .footer-section h4 { color: #60a5fa; margin-bottom: 20px; }
-        .footer-section p, .footer-section a { color: rgba(255,255,255,0.6); text-decoration: none; display: block; margin-bottom: 10px; font-size: 14px; }
+        /* --- 6. Stronger Gradient Footer --- */
+        footer { 
+            /* Multi-stop gradient for a "deep space" feel */
+            background: linear-gradient(180deg, #0a1931 0%, #071224 40%, #02050a 100%); 
+            padding: 100px 5% 40px 5%; 
+            color: white;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 60px; }
+        
+        .footer-section h4 { 
+            color: #60a5fa; 
+            margin-bottom: 25px; 
+            font-size: 20px; 
+            letter-spacing: 1px;
+        }
+
+        .footer-section p, .footer-section a { 
+            color: rgba(255,255,255,0.7); 
+            text-decoration: none; 
+            display: block; 
+            margin-bottom: 12px; 
+            font-size: 15px; 
+            line-height: 1.6;
+            transition: 0.3s;
+        }
+
+        .footer-section a:hover { color: #60a5fa; }
+
+        .copyright {
+            text-align: center; 
+            padding-top: 80px; 
+            color: rgba(255,255,255,0.2); 
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
 
         /* --- Mobile --- */
         @media (max-width: 768px) {
@@ -173,7 +168,7 @@
     <section class="hero-section">
         <div class="hero-container">
             <div class="text-section">
-                <p style="color: #60a5fa; font-weight: 700; letter-spacing: 3px;">MULTI-READER</p>
+                <p style="color: #60a5fa; letter-spacing: 3px;">MULTI-READER</p>
                 <h1 class="main-title">URMET PLUS</h1>
                 <p style="font-size: 19px; opacity: 0.95; line-height: 1.6; max-width: 500px;">體驗全新世代的門禁科技，以極簡設計融合先進 IP 技術。</p>
             </div>
@@ -186,55 +181,54 @@
     <div class="divider-line"></div>
 
     <section class="white-section">
-        
         <div class="product-row">
             <div class="product-text">
-                <h2>Smart Property</h2>
-                <p>促進住宅的無接觸出入和預約流程。將住宅設施與雲端連接起來，使用者可以透過單一應用程式處理住戶相關事宜。</p>
+                <h2>Smart Access</h2>
+                <p>體驗無縫的出入管理。透過手機 App 即可生成動態 QR Code，在感應器前輕輕一掃，即可在數秒內完成身份識別與門禁解鎖，安全又快速。</p>
                 <a href="#" class="tag-btn">產品特點</a>
             </div>
             <div class="product-image-container">
-                <img src="home1.png" alt="Property" class="row-image">
+                <img src="home1.png" alt="Access" class="row-image">
             </div>
         </div>
 
         <div class="product-row reverse">
             <div class="product-text">
-                <h2>Smart Access</h2>
-                <p>以 QR code 自助進入。雲端門禁解決方案允許使用者掃描 QR code 或使用虛擬按鈕解鎖大門，提供便捷通行體驗。</p>
+                <h2>Visitor Management</h2>
+                <p>簡化訪客登記流程。訪客只需透過 QR Code 即可自主完成預約與登記，系統將自動派發臨時通行權限，大幅減輕前台負擔並提升安全性。</p>
                 <a href="#" class="tag-btn">產品特點</a>
             </div>
             <div class="product-image-container">
-                <img src="home2.png" alt="Access" class="row-image">
+                <img src="home2.png" alt="Visitor" class="row-image">
             </div>
         </div>
 
         <div class="product-row">
             <div class="product-text">
-                <h2>Smart Booking</h2>
-                <p>開始線上預約設施。線上預約平台允許用戶在客製化網站上預約設施和進行電子支付，極大簡化管理流程。</p>
+                <h2>Facility Booking</h2>
+                <p>高效管理共享空間。使用者可直接在 App 內預約會議室或各類設施，系統會自動同步門禁權限，確保設施在指定時間內僅供預約者使用。</p>
                 <a href="#" class="tag-btn">產品特點</a>
             </div>
             <div class="product-image-container">
                 <img src="home3.png" alt="Booking" class="row-image">
             </div>
         </div>
-
     </section>
 
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <img src="logo.png" alt="Logo" style="height: 30px; margin-bottom: 20px;">
+                <img src="logo.png" alt="Logo" style="height: 40px; margin-bottom: 25px; filter: brightness(0) invert(1);">
                 <p>香港柴灣永泰道60號<br>柴灣工業城一期7期11-14室</p>
             </div>
             <div class="footer-section">
                 <h4>Contact Us</h4>
                 <a href="#">Help Desk</a>
                 <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
             </div>
         </div>
-        <div style="text-align: center; padding-top: 50px; color: rgba(255,255,255,0.3); font-size: 12px;">
+        <div class="copyright">
             <p>© 2026 URMET JES LIMITED - All rights reserved</p>
         </div>
     </footer>
