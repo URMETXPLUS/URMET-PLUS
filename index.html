@@ -17,7 +17,6 @@
         }
 
         body {
-            /* 深藍色水底色調 */
             background: #0a1931;
             color: white;
             font-family: 'Inter', sans-serif;
@@ -28,214 +27,47 @@
             position: relative;
         }
 
-        /* --- 動態流動背景效果 --- */
+        /* --- 動態流動背景效果 (Soft Center Focus) --- */
         .water-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #0a1931 0%, #001f4d 50%, #003366 100%);
+            background: radial-gradient(circle at center, #003366 0%, #0a1931 100%);
             z-index: -2;
         }
 
-        /* 波浪容器 */
+        /* 波浪容器 - 移至畫面中央 */
         .waves-container {
             position: fixed;
-            bottom: 0;
+            top: 50%; /* 置中 */
             left: 0;
             width: 100%;
-            height: 30vh;
+            height: 60vh; /* 增加高度覆蓋中間區域 */
+            transform: translateY(-50%);
             z-index: -1;
-            opacity: 0.5;
+            opacity: 0.4;
             pointer-events: none;
+            filter: blur(15px); /* 使水流看起來更柔和 (Soft/Software effect) */
         }
 
         .wave {
             position: absolute;
-            bottom: 0;
-            left: 0;
             width: 200%;
             height: 100%;
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C57.21,111.45,115.54,120,173.55,110.16A518.2,518.2,0,0,0,321.39,56.44Z" fill="white"/></svg>');
             background-size: 50% 100%;
-            animation: move-wave 15s linear infinite;
-            transform-origin: center bottom;
+            animation: move-wave 20s linear infinite;
         }
 
-        .wave1 { opacity: 0.1; height: 100%; animation-duration: 20s; }
-        .wave2 { opacity: 0.2; height: 80%; animation-duration: 13s; animation-delay: -2s; }
-        .wave3 { opacity: 0.15; height: 60%; animation-duration: 8s; animation-delay: -5s; }
+        .wave1 { opacity: 0.2; top: 0; animation-duration: 25s; }
+        .wave2 { opacity: 0.1; top: 10%; animation-duration: 18s; animation-delay: -3s; transform: scaleY(-1); } /* 鏡射波浪增加層次 */
+        .wave3 { opacity: 0.15; top: -10%; animation-duration: 12s; animation-delay: -5s; }
 
         @keyframes move-wave {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
 
-        /* 光影折射感 (Caustics effect) */
-        .water-bg::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(96, 165, 250, 0.1) 0%, transparent 80%);
-            animation: pulse-glow 8s ease-in-out infinite alternate;
-        }
-
-        @keyframes pulse-glow {
-            from { opacity: 0.3; }
-            to { opacity: 0.7; }
-        }
-
-        /* --- 原有樣式 (稍作透明度微調) --- */
-        header {
-            width: 100%;
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background: rgba(10, 25, 49, 0.6);
-            backdrop-filter: blur(15px);
-            z-index: 1000;
-        }
-
-        /* ... 其餘樣式保持不變 ... */
-        .logo img { height: 40px; width: auto; display: block; }
-        nav ul { list-style: none; display: flex; gap: 30px; }
-        nav a { text-decoration: none; color: rgba(255, 255, 255, 0.7); font-size: 14px; transition: color 0.3s; }
-        nav a:hover { color: #60a5fa; }
-
-        main {
-            padding: 150px 50px 100px;
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .hero-container {
-            max-width: 1200px;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .main-title { font-size: 56px; font-weight: 700; line-height: 1.1; margin-bottom: 10px; }
-
-        .learn-more-btn {
-            background-color: #3b82f6;
-            color: white;
-            padding: 12px 28px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s;
-            max-width: 180px;
-        }
-
-        .product-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 15px;
-            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));
-            animation: float 6s ease-in-out infinite; /* 加入漂浮動畫 */
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-
-        footer {
-            background: linear-gradient(to bottom, transparent, rgba(10, 25, 49, 0.95));
-            padding: 80px 50px 40px;
-            z-index: 1;
-        }
-
-        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; }
-        .footer-section { display: flex; flex-direction: column; gap: 15px; }
-        .footer-section h4 { font-size: 18px; font-weight: 600; margin-bottom: 10px; color: #60a5fa; }
-        .footer-section p, .footer-section a { font-size: 15px; color: rgba(255, 255, 255, 0.7); text-decoration: none; line-height: 1.6; }
-        .footer-bottom { max-width: 1200px; margin: 60px auto 0; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 12px; color: rgba(255, 255, 255, 0.4); text-align: center; }
-
-        @media (max-width: 768px) {
-            .hero-container { grid-template-columns: 1fr; text-align: center; }
-            .footer-content { flex-direction: column; align-items: center; text-align: center; gap: 40px; }
-            header nav { display: none; }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="water-bg"></div>
-    <div class="waves-container">
-        <div class="wave wave1"></div>
-        <div class="wave wave2"></div>
-        <div class="wave wave3"></div>
-    </div>
-
-    <header>
-        <a href="#" class="logo">
-            <img src="logo.png" alt="Urmet Logo">
-        </a>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Products</a></li>
-                <li><a href="#">Use cases</a></li>
-                <li><a href="#">Tools</a></li>
-                <li><a href="#">Services</a></li>
-            </ul>
-        </nav>
-        <div style="font-size: 13px; color: rgba(255,255,255,0.7);">Product Search</div>
-    </header>
-
-    <main>
-        <div class="hero-container">
-            <div class="text-section">
-                <p style="color: #60a5fa; text-transform: uppercase; font-weight: 600; letter-spacing: 2px;">Multi-reader</p>
-                <h1 class="main-title">TESTING</h1>
-                <p style="color: rgba(255, 255, 255, 0.8); font-size: 18px; line-height: 1.6; margin-bottom: 20px;">
-                    體驗全新世代的門禁科技，MULT 以極簡設計融合先進 IP 技術。
-                </p>
-                <a href="#" class="learn-more-btn">Learn more →</a>
-            </div>
-            <div style="text-align: center;">
-                <img src="reader.png" alt="Urmet ONYX Reader" class="product-image">
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <img src="logo.png" alt="Urmet Logo" style="height: 30px; margin-bottom: 10px;">
-                <p>香港柴灣永泰道60號<br>柴灣工業城一期7期11-14室</p>
-                <div style="display: flex; gap: 15px; margin-top: 10px; font-size: 18px;">
-                    <span>f</span> <span>in</span> <span>y</span> <span>i</span>
-                </div>
-            </div>
-
-            <div class="footer-section">
-                <h4>Contact Us</h4>
-                <a href="#">Help Desk</a>
-                <a href="#">Privacy Policy</a>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p>© 2026 URMET JES LIMITED - All rights reserved</p>
-        </div>
-    </footer>
-
-</body>
-</html>
+        /* --- 其他
