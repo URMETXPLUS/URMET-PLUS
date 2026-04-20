@@ -103,10 +103,16 @@
 
         .text-section {
             text-align: left;
-            padding-left: 20px;
+            padding-left: 0; /* Moved much more to the left */
         }
 
-        .main-title { font-size: clamp(42px, 8vw, 72px); margin: 10px 0; letter-spacing: -1px; }
+        /* Updated: Smaller title and narrower margin */
+        .main-title { 
+            font-size: clamp(36px, 6vw, 58px); 
+            margin: 10px 0; 
+            letter-spacing: -1px; 
+            line-height: 1.1;
+        }
 
         /* Special "Learn More" Button Style */
         .learn-more-btn {
@@ -282,7 +288,7 @@
             <div class="text-section">
                 <p style="color: #60a5fa; letter-spacing: 3px;">MULTI-READER</p>
                 <h1 class="main-title">Unlock the Future: Seamless Access with URMET PLUS</h1>
-                <p style="font-size: 19px; opacity: 0.95; line-height: 1.6; max-width: 500px;">Smart Access, Simplified. Transform your smartphone into your key with URMET PLUS. Generate dynamic, encrypted QR codes for seamless, contactless entry. High-speed, secure, and fully trackable—the modern standard for intelligent building access.</p>
+                <p style="font-size: 17px; opacity: 0.95; line-height: 1.5; max-width: 500px;">Smart Access, Simplified. Transform your smartphone into your key with URMET PLUS. Generate dynamic, encrypted QR codes for seamless, contactless entry. High-speed, secure, and fully trackable—the modern standard for intelligent building access.</p>
                 <a href="product.html" class="learn-more-btn">Learn more <span>→</span></a>
             </div>
             <div style="text-align: center;">
