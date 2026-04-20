@@ -37,12 +37,13 @@
             -webkit-font-smoothing: antialiased;
         }
 
-       /* --- 3. Navigation (Menu moved to the right) --- */
+ /* --- 3. Navigation (Thinner Version) --- */
 header {
     width: 100%; 
-    padding: 25px 8%; 
+    /* Reduced top/bottom padding from 25px to 12px */
+    padding: 12px 8%; 
     display: flex; 
-    justify-content: space-between; /* Keeps Logo left and Nav/Lang right */
+    justify-content: space-between; 
     align-items: center;
     position: fixed; 
     top: 0; 
@@ -53,39 +54,46 @@ header {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
 }
 
-.logo img { height: 40px; width: auto; }
+/* Reduced logo height slightly to fit the thinner bar */
+.logo img { 
+    height: 32px; 
+    width: auto; 
+    display: block;
+}
 
-/* Wrapper to hold Nav and Language Button together on the right */
 .nav-wrapper {
     display: flex;
     align-items: center;
-    gap: 40px; /* Space between the menu and the language button */
+    gap: 30px; /* Slightly tighter gap */
 }
 
 nav ul { 
     list-style: none; 
     display: flex; 
-    gap: 40px; /* Space between individual links */
+    gap: 30px; 
 }
 
 nav a { 
     text-decoration: none; 
     color: white; 
-    font-size: 15px; 
+    font-size: 14px; /* Slightly smaller font for a thinner look */
     text-transform: uppercase; 
-    letter-spacing: 1.5px; 
+    letter-spacing: 1.2px; 
     opacity: 0.8;
     transition: 0.3s;
+    line-height: 1; /* Ensures no extra vertical space */
 }
+
 nav a:hover { opacity: 1; color: #60a5fa; }
 
+/* Adjusted button padding for a more compact feel */
 .lang-btn {
     background: rgba(255, 255, 255, 0.05); 
     border: 1px solid rgba(255, 255, 255, 0.4);
     color: white; 
-    padding: 10px 22px; 
-    border-radius: 25px; 
-    font-size: 13px; 
+    padding: 8px 18px; 
+    border-radius: 20px; 
+    font-size: 12px; 
     cursor: pointer; 
     transition: 0.3s;
 }
