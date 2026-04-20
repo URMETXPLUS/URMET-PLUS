@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中文私隱政策 - URMET PLUS</title>
+    <style>
+        @font-face {
+            font-family: 'Bariol Bold';
+            src: url('fonts/Bariol-Bold.woff2') format('woff2');
+        }
+        body {
+            margin: 0; background: #0a1931; font-family: 'Bariol Bold', sans-serif;
+            color: white; display: flex; flex-direction: column; height: 100vh;
+        }
+        header {
+            padding: 20px 5%; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(10, 25, 49, 0.95); border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .btn {
+            text-decoration: none; color: white; padding: 10px 20px; border-radius: 20px;
+            font-size: 14px; transition: 0.3s; border: 1px solid rgba(255,255,255,0.3);
+        }
+        .download-btn { background: #007aff; border: none; font-weight: bold; }
+        .download-btn:hover { background: #0056b3; }
+        
+        .pdf-viewer { flex-grow: 1; width: 100%; border: none; }
+        
+        .mobile-notice { display: none; padding: 20px; text-align: center; }
+        @media (max-width: 768px) {
+            .pdf-viewer { display: none; }
+            .mobile-notice { display: block; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="privacy.html" class="btn">← 返回</a>
+        <div style="text-align: center;">
+            <p style="margin: 0; font-size: 12px; opacity: 0.6;">URMET PLUS</p>
+            <p style="margin: 0;">私隱政策 (中文版)</p>
+        </div>
+        <a href="privacy-zh.pdf" class="btn download-btn" download>下載 PDF</a>
+    </header>
+
+    <iframe src="privacy-zh.pdf" class="pdf-viewer"></iframe>
+
+    <div class="mobile-notice">
+        <p>您的瀏覽器無法直接預覽 PDF。</p>
+        <br>
+        <a href="privacy-zh.pdf" class="btn download-btn" download>按此直接下載</a>
+    </div>
+</body>
+</html>
