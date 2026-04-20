@@ -17,7 +17,7 @@
             color: white;
             font-family: 'Inter', sans-serif;
             width: 100%;
-            overflow-x: hidden; /* Fixes the right-side gap on mobile */
+            overflow-x: hidden;
         }
 
         /* --- Navigation --- */
@@ -25,14 +25,27 @@
             width: 100%; padding: 15px 5%;
             display: flex; justify-content: space-between; align-items: center;
             position: fixed; top: 0; left: 0;
-            background: rgba(10, 25, 49, 0.9);
+            background: rgba(10, 25, 49, 0.95);
             backdrop-filter: blur(15px);
             z-index: 1000;
         }
 
         .logo img { height: 35px; width: auto; }
-        nav ul { list-style: none; display: flex; gap: 25px; }
-        nav a { text-decoration: none; color: white; font-weight: 600; font-size: 14px; text-transform: uppercase; }
+        
+        nav ul { list-style: none; display: flex; gap: 25px; position: relative; }
+        nav a { text-decoration: none; color: white; font-weight: 700; font-size: 14px; text-transform: uppercase; padding-bottom: 5px; }
+
+        /* THE WHITE LINE UNDER NAVIGATION */
+        nav::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: white;
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
 
         /* Language Button & Dropdown */
         .lang-container { position: relative; }
@@ -47,24 +60,25 @@
         .lang-btn:hover { background: rgba(255, 255, 255, 0.2); }
 
         .lang-dropdown {
-            position: absolute; top: 40px; right: 0;
+            position: absolute; top: 45px; right: 0;
             background: white; border-radius: 10px;
             display: none; flex-direction: column;
-            overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
         .lang-dropdown a {
-            color: #0a1931; padding: 10px 20px;
+            color: #0a1931; padding: 12px 24px;
             text-decoration: none; font-size: 13px;
             font-weight: 600; white-space: nowrap;
         }
         .lang-dropdown a:hover { background: #f0f4f8; }
         .lang-container:hover .lang-dropdown { display: flex; }
 
-        /* --- Hero Section --- */
+        /* --- Hero Section with STRONGER Gradient --- */
         .hero-section {
             min-height: 100vh; display: flex; align-items: center; justify-content: center;
-            padding: 100px 5%;
-            background: radial-gradient(circle at center, #003366 0%, #0a1931 100%);
+            padding: 120px 5%;
+            /* Enhanced Multi-stop Radial Gradient */
+            background: radial-gradient(circle at 70% 50%, #1e4b8a 0%, #0a1931 60%, #050c1a 100%);
         }
 
         .hero-container { 
@@ -73,25 +87,24 @@
             gap: 40px; align-items: center; 
         }
 
-        .main-title { font-size: clamp(40px, 8vw, 64px); font-weight: 700; margin: 10px 0; }
-        .reader-img { max-width: 100%; height: auto; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5)); border-radius: 12px; }
+        .main-title { font-size: clamp(42px, 8vw, 72px); font-weight: 700; margin: 10px 0; letter-spacing: -1px; }
+        .reader-img { max-width: 100%; height: auto; filter: drop-shadow(0 20px 50px rgba(0,0,0,0.7)); border-radius: 12px; }
 
         /* --- Divider --- */
         .divider-line { width: 100%; height: 2px; background: #ffffff; z-index: 100; position: relative; }
 
         /* --- Middle White Section with Water Flow --- */
         .white-section {
-            background: linear-gradient(180deg, #ffffff 0%, #f0f8ff 100%);
+            background: linear-gradient(180deg, #ffffff 0%, #e6f2ff 100%);
             color: #0a1931; padding: 100px 5%;
             position: relative; overflow: hidden;
         }
 
-        /* Smooth Water Flow Animation */
         .white-section::before {
             content: ""; position: absolute; top: 0; left: 0; width: 200%; height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,73.84-4.36,147.54,16.88,218.2,35.26,69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23007aff" opacity="0.03"/></svg>');
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,73.84-4.36,147.54,16.88,218.2,35.26,69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23007aff" opacity="0.04"/></svg>');
             background-size: 50% 100%;
-            animation: waterFlow 15s linear infinite;
+            animation: waterFlow 18s linear infinite;
             pointer-events: none;
         }
 
@@ -110,17 +123,18 @@
         .product-image-container { flex: 1; min-width: 320px; }
         .product-row.reverse { flex-direction: row-reverse; }
 
-        .product-text h2 { font-size: 36px; color: #007aff; margin-bottom: 20px; font-weight: 700; }
-        .product-text p { font-size: 16px; line-height: 1.8; color: #444; margin-bottom: 30px; }
+        .product-text h2 { font-size: 38px; color: #007aff; margin-bottom: 20px; font-weight: 700; }
+        .product-text p { font-size: 17px; line-height: 1.8; color: #333; margin-bottom: 30px; }
         
         .tag-btn {
-            display: inline-block; padding: 12px 30px;
+            display: inline-block; padding: 14px 35px;
             background: #007aff; color: white; border-radius: 30px;
             text-decoration: none; font-weight: 600; transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 122, 255, 0.3);
         }
-        .tag-btn:hover { background: #0056b3; transform: translateY(-2px); }
+        .tag-btn:hover { background: #0056b3; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 122, 255, 0.4); }
 
-        .row-image { width: 100%; height: auto; border-radius: 25px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .row-image { width: 100%; height: auto; border-radius: 25px; box-shadow: 0 25px 50px rgba(0,0,0,0.15); }
 
         /* --- Footer --- */
         footer { background: #050c1a; padding: 80px 5%; color: white; }
@@ -159,9 +173,9 @@
     <section class="hero-section">
         <div class="hero-container">
             <div class="text-section">
-                <p style="color: #60a5fa; font-weight: 600; letter-spacing: 2px;">MULTI-READER</p>
+                <p style="color: #60a5fa; font-weight: 700; letter-spacing: 3px;">MULTI-READER</p>
                 <h1 class="main-title">URMET PLUS</h1>
-                <p style="font-size: 18px; opacity: 0.9; line-height: 1.6;">體驗全新世代的門禁科技，以極簡設計融合先進 IP 技術。</p>
+                <p style="font-size: 19px; opacity: 0.95; line-height: 1.6; max-width: 500px;">體驗全新世代的門禁科技，以極簡設計融合先進 IP 技術。</p>
             </div>
             <div style="text-align: center;">
                 <img src="reader.png" alt="Reader" class="reader-img">
