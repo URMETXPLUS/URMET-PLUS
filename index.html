@@ -21,40 +21,6 @@
             flex-direction: column;
         }
 
-        /* --- 背景與波浪 (僅限於頂部區塊) --- */
-        .hero-section {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 100px 50px;
-            /* 讓水流背景只出現在這裡 */
-            background: radial-gradient(circle at center, #003366 0%, #0a1931 100%);
-        }
-
-        .waves-container {
-            position: absolute;
-            top: 50%; left: 0; width: 100%; height: 60vh;
-            transform: translateY(-50%);
-            z-index: 1;
-            opacity: 0.4;
-            pointer-events: none;
-            filter: blur(15px);
-        }
-
-        .wave {
-            position: absolute; width: 200%; height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C57.21,111.45,115.54,120,173.55,110.16A518.2,518.2,0,0,0,321.39,56.44Z" fill="white"/></svg>');
-            background-size: 50% 100%;
-            animation: move-wave 20s linear infinite;
-        }
-        .wave1 { opacity: 0.2; top: 0; animation-duration: 25s; }
-        .wave2 { opacity: 0.1; top: 10%; animation-duration: 18s; animation-delay: -3s; transform: scaleY(-1); }
-        .wave3 { opacity: 0.15; top: -10%; animation-duration: 12s; animation-delay: -5s; }
-
-        @keyframes move-wave { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
         /* --- 導覽列 --- */
         header {
             width: 100%; padding: 20px 50px;
@@ -65,137 +31,164 @@
             z-index: 1000;
         }
 
-        .hero-container {
-            max-width: 1200px; width: 100%;
-            display: grid; grid-template-columns: 1.2fr 1fr;
-            gap: 80px; align-items: center;
-            z-index: 10;
+        .logo img { height: 40px; width: auto; }
+        nav ul { list-style: none; display: flex; gap: 40px; }
+        nav a { text-decoration: none; color: white; font-weight: 600; font-size: 15px; transition: color 0.3s; }
+        nav a:hover { color: #60a5fa; }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            padding: 120px 50px;
+            background: radial-gradient(circle at center, #003366 0%, #0a1931 100%);
         }
 
-        .product-image {
-            max-width: 100%; height: auto; border-radius: 15px;
-            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));
-            animation: float 6s ease-in-out infinite;
+        .waves-container {
+            position: absolute; top: 50%; left: 0; width: 100%; height: 60vh;
+            transform: translateY(-50%); z-index: 1; opacity: 0.3; filter: blur(15px); pointer-events: none;
         }
-        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-15px); } }
+        .wave {
+            position: absolute; width: 200%; height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C57.21,111.45,115.54,120,173.55,110.16A518.2,518.2,0,0,0,321.39,56.44Z" fill="white"/></svg>');
+            background-size: 50% 100%; animation: move-wave 20s linear infinite;
+        }
+        .wave1 { opacity: 0.2; top: 0; animation-duration: 25s; }
+        .wave2 { opacity: 0.1; top: 10%; animation-duration: 18s; transform: scaleY(-1); }
 
-        /* --- 新增：白色產品區塊 --- */
+        @keyframes move-wave { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        .hero-container { max-width: 1200px; width: 100%; display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: center; z-index: 10; }
+        .main-title { font-size: 64px; font-weight: 700; margin: 15px 0; }
+        .reader-img { max-width: 100%; animation: float 6s ease-in-out infinite; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5)); }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+
+        /* --- 分隔線 (The White Line) --- */
+        .divider-line {
+            width: 100%; height: 1px;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            position: relative; z-index: 20;
+        }
+
+        /* --- Fancy White Product Section --- */
         .white-section {
             background-color: #ffffff;
-            color: #333333; /* 文字改為深色 */
-            padding: 100px 50px;
-            display: flex;
-            justify-content: center;
+            color: #0a1931;
+            padding: 100px 0;
         }
 
-        .sub-products-container {
-            max-width: 1200px; width: 100%;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
+        .product-row {
+            max-width: 1100px; margin: 0 auto 100px auto;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 60px; align-items: center;
         }
 
-        .product-card {
-            background: #f8f9fa;
-            padding: 40px 30px;
-            border-radius: 20px;
-            border: 1px solid #eeeeee;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
+        /* 使偶數行圖片在左，文字在右 (Fancy Alternating) */
+        .product-row:nth-child(even) { direction: rtl; }
+        .product-row:nth-child(even) .product-text { direction: ltr; }
 
-        .product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
-        .product-card h3 { color: #0a1931; font-size: 22px; }
-        .product-card p { color: #666666; font-size: 15px; line-height: 1.6; }
+        .product-text h2 { font-size: 32px; margin-bottom: 20px; color: #007aff; }
+        .product-text p { font-size: 17px; line-height: 1.8; color: #444; margin-bottom: 30px; }
         
         .tag-btn {
-            align-self: flex-start;
-            padding: 8px 20px;
-            background: #007aff;
-            color: white;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 13px;
+            display: inline-block; padding: 10px 25px;
+            background: #007aff; color: white; border-radius: 30px;
+            text-decoration: none; font-weight: 600; transition: 0.3s;
+        }
+        .tag-btn:hover { background: #0056b3; transform: scale(1.05); }
+
+        .row-image {
+            width: 100%; height: 400px; border-radius: 24px;
+            object-fit: cover; box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
-        /* --- 頁腳 --- */
-        footer {
-            background: #050c1a;
-            padding: 80px 50px 40px;
-        }
+        /* --- Footer --- */
+        footer { background: #050c1a; padding: 80px 50px 40px; color: white; }
         .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; }
         .footer-section h4 { color: #60a5fa; margin-bottom: 20px; }
-        .footer-section a { color: rgba(255,255,255,0.6); text-decoration: none; display: block; margin-bottom: 10px; }
+        .footer-section p, .footer-section a { color: rgba(255,255,255,0.6); text-decoration: none; display: block; margin-bottom: 10px; font-size: 14px; }
 
-        @media (max-width: 900px) {
-            .hero-container, .sub-products-container { grid-template-columns: 1fr; text-align: center; }
-            .tag-btn { align-self: center; }
+        @media (max-width: 850px) {
+            .hero-container, .product-row { grid-template-columns: 1fr; text-align: center; }
+            .product-row:nth-child(even) { direction: ltr; }
+            nav ul { display: none; }
+            .tag-btn { margin-bottom: 30px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#" class="logo"><img src="logo.png" alt="Logo" style="height:40px;"></a>
+        <a href="#" class="logo"><img src="logo.png" alt="Urmet Logo"></a>
         <nav>
-            <ul style="list-style:none; display:flex; gap:30px;">
-                <li><a href="#" style="text-decoration:none; color:white; font-size:14px;">Home</a></li>
-                <li><a href="#" style="text-decoration:none; color:white; font-size:14px;">Products</a></li>
+            <ul>
+                <li><a href="#">HOME</a></li>
+                <li><a href="#">PRODUCTS</a></li>
+                <li><a href="#">ABOUT US</a></li>
             </ul>
         </nav>
-        <div style="font-size: 13px; color: rgba(255,255,255,0.7);">Product Search</div>
+        <div style="font-size: 13px; color: rgba(255,255,255,0.8);">Product Search</div>
     </header>
 
     <section class="hero-section">
         <div class="waves-container">
             <div class="wave wave1"></div>
             <div class="wave wave2"></div>
-            <div class="wave wave3"></div>
         </div>
         <div class="hero-container">
             <div class="text-section">
                 <p style="color: #60a5fa; text-transform: uppercase; font-weight: 600; letter-spacing: 2px;">Multi-reader</p>
-                <h1 style="font-size: 56px; margin: 10px 0;">TESTING</h1>
+                <h1 class="main-title">URMET PLUS</h1>
                 <p style="font-size: 18px; line-height: 1.6; opacity: 0.9;">
-                    體驗全新世代的門禁科技，MULT 以極簡設計融合先進 IP 技術。
+                    體驗全新世代的門禁科技，以極簡設計融合先進 IP 技術。
                 </p>
             </div>
             <div style="text-align: center;">
-                <img src="reader.png" alt="Urmet Reader" class="product-image">
+                <img src="reader.png" alt="Reader" class="reader-img">
             </div>
         </div>
     </section>
 
+    <div class="divider-line"></div>
+
     <section class="white-section">
-        <div class="sub-products-container">
-            <div class="product-card">
-                <h3>Smart Property</h3>
+        
+        <div class="product-row">
+            <div class="product-text">
+                <h2>Smart Property</h2>
                 <p>促進住宅的無接觸出入和預約流程。將住宅設施與雲端連接起來，使用者可以透過單一應用程式處理住戶相關事宜。</p>
                 <a href="#" class="tag-btn">產品特點</a>
             </div>
-
-            <div class="product-card">
-                <h3>Smart Access</h3>
-                <p>以 QR code 自助進入。雲端門禁解決方案允許使用者掃描 QR code 或使用虛擬按鈕解鎖大門。</p>
-                <a href="#" class="tag-btn">產品特點</a>
-            </div>
-
-            <div class="product-card">
-                <h3>Smart Booking</h3>
-                <p>開始線上預約設施。線上預約平台允許用戶在客製化網站上預約設施和進行電子支付。</p>
-                <a href="#" class="tag-btn">產品特點</a>
-            </div>
+            <img src="home1.png" alt="Smart Property" class="row-image">
         </div>
+
+        <div class="product-row">
+            <div class="product-text">
+                <h2>Smart Access</h2>
+                <p>以 QR code 自助進入。雲端門禁解決方案允許使用者掃描 QR code 或使用虛擬按鈕解鎖大門，提供安全且便捷的通行體驗。</p>
+                <a href="#" class="tag-btn">產品特點</a>
+            </div>
+            <img src="home2.png" alt="Smart Access" class="row-image">
+        </div>
+
+        <div class="product-row">
+            <div class="product-text">
+                <h2>Smart Booking</h2>
+                <p>開始線上預約設施。線上預約平台允許用戶在客製化網站上預約設施和進行電子支付，簡化管理流程並提升滿意度。</p>
+                <a href="#" class="tag-btn">產品特點</a>
+            </div>
+            <img src="home3.png" alt="Smart Booking" class="row-image">
+        </div>
+
     </section>
 
     <footer>
         <div class="footer-content">
             <div class="footer-section">
                 <img src="logo.png" alt="Logo" style="height: 30px; margin-bottom: 20px;">
-                <p style="color:rgba(255,255,255,0.6);">香港柴灣永泰道60號<br>柴灣工業城一期7期11-14室</p>
+                <p>香港柴灣永泰道60號<br>柴灣工業城一期7期11-14室</p>
             </div>
             <div class="footer-section">
                 <h4>Contact Us</h4>
