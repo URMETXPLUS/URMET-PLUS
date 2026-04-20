@@ -27,11 +27,10 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- 3. UPDATED Navigation & Header --- */
+        /* --- 3. Navigation & Header --- */
         header {
             width: 100%; 
-            /* Decreased vertical padding to pull elements together */
-            padding: 15px 5%;
+            padding: 20px 5%;
             display: flex; 
             justify-content: space-between; 
             align-items: center;
@@ -41,25 +40,12 @@
             background: rgba(10, 25, 49, 0.95);
             backdrop-filter: blur(15px);
             z-index: 1000;
-        }
-
-        /* Create a container that spans the *entire* header width for the line */
-        header::after {
-            content: ""; 
-            position: absolute; 
-            /* Thinner line: from 2px to 1px */
-            height: 1px; 
-            /* Positioned relative to the bottom of the *container* padding, not the whole header */
-            bottom: 12px; 
-            left: 5%; 
-            right: 5%; 
-            background: rgba(255, 255, 255, 0.7); /* Slightly softer white */
-            box-shadow: 0 0 5px rgba(255,255,255,0.3); /* Subtle glow */
+            /* Removed the floating white line from here */
         }
 
         .logo img { height: 35px; width: auto; }
         nav ul { list-style: none; display: flex; gap: 25px; }
-        nav a { text-decoration: none; color: white; font-size: 14px; text-transform: uppercase; padding-bottom: 5px; }
+        nav a { text-decoration: none; color: white; font-size: 14px; text-transform: uppercase; }
 
         .lang-btn {
             background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3);
@@ -67,17 +53,10 @@
             cursor: pointer; transition: 0.3s; font-family: 'Bariol Bold', sans-serif;
         }
 
-        .lang-dropdown {
-            position: absolute; top: 45px; right: 0; background: white; border-radius: 10px;
-            display: none; flex-direction: column; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-        .lang-dropdown a { color: #0a1931; padding: 12px 24px; text-decoration: none; font-size: 13px; white-space: nowrap; }
-        .lang-container:hover .lang-dropdown { display: flex; }
-
         /* --- 4. Hero Section --- */
         .hero-section {
             min-height: 100vh; display: flex; align-items: center; justify-content: center;
-            padding: 120px 5%;
+            padding: 120px 5% 60px 5%; /* Adjusted bottom padding */
             background: radial-gradient(circle at 70% 50%, #1e4b8a 0%, #0a1931 60%, #050c1a 100%);
         }
 
@@ -85,21 +64,21 @@
         .main-title { font-size: clamp(42px, 8vw, 72px); margin: 10px 0; letter-spacing: -1px; }
         .reader-img { max-width: 100%; height: auto; filter: drop-shadow(0 20px 50px rgba(0,0,0,0.7)); border-radius: 12px; }
 
-        /* Match the divider to the new thinner, subtler nav line */
-        .divider-line { width: 100%; height: 1px; background: rgba(255,255,255,0.7); z-index: 100; position: relative; }
+        /* --- 5. THE EXACT DIVIDER --- */
+        /* This line now sits exactly between the dark and white sections */
+        .divider-line { 
+            width: 100%; 
+            height: 1px; 
+            background: rgba(255,255,255,0.2); 
+            position: relative;
+            z-index: 10;
+        }
 
-        /* --- 5. White Section --- */
+        /* --- 6. White Section --- */
         .white-section {
-            background: linear-gradient(180deg, #ffffff 0%, #e6f2ff 100%);
+            background: #ffffff; /* Clean white start */
             color: #0a1931; padding: 100px 5%; position: relative; overflow: hidden;
         }
-
-        .white-section::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 200%; height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,73.84-4.36,147.54,16.88,218.2,35.26,69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23007aff" opacity="0.04"/></svg>');
-            background-size: 50% 100%; animation: waterFlow 18s linear infinite; pointer-events: none;
-        }
-        @keyframes waterFlow { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
         .product-row { max-width: 1100px; margin: 0 auto 120px auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 60px; position: relative; z-index: 2; }
         .product-text { flex: 1; min-width: 320px; }
@@ -111,24 +90,21 @@
             display: inline-block; padding: 14px 35px; background: #007aff; color: white; border-radius: 30px;
             text-decoration: none; transition: 0.3s; box-shadow: 0 5px 15px rgba(0, 122, 255, 0.3);
         }
-        .tag-btn:hover { background: #0056b3; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 122, 255, 0.4); }
-        .row-image { width: 100%; height: auto; border-radius: 25px; box-shadow: 0 25px 50px rgba(0,0,0,0.15); }
+        .tag-btn:hover { background: #0056b3; transform: translateY(-3px); }
+        .row-image { width: 100%; height: auto; border-radius: 25px; box-shadow: 0 25px 50px rgba(0,0,0,0.1); }
 
-        /* --- 6. Footer --- */
+        /* --- 7. Footer --- */
         footer { 
-            background: linear-gradient(180deg, #0a1931 0%, #071224 40%, #02050a 100%); 
+            background: #050c1a; 
             padding: 100px 5% 40px 5%; 
             color: white;
-            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
         .footer-content { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 60px; }
-        .footer-section h4 { color: #60a5fa; margin-bottom: 25px; font-size: 20px; letter-spacing: 1px; }
-        .footer-section p, .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin-bottom: 12px; font-size: 15px; line-height: 1.6; transition: 0.3s; }
-        .footer-section a:hover { color: #60a5fa; }
-        .copyright { text-align: center; padding-top: 80px; color: rgba(255,255,255,0.2); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
+        .footer-section h4 { color: #60a5fa; margin-bottom: 25px; font-size: 20px; }
+        .footer-section p, .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin-bottom: 12px; font-size: 15px; }
+        .copyright { text-align: center; padding-top: 80px; color: rgba(255,255,255,0.2); font-size: 12px; }
 
-        /* --- Mobile --- */
         @media (max-width: 768px) {
             header nav { display: none; }
             .hero-container { grid-template-columns: 1fr; text-align: center; }
@@ -149,10 +125,6 @@
         </nav>
         <div class="lang-container">
             <button class="lang-btn">LANGUAGE ▾</button>
-            <div class="lang-dropdown">
-                <a href="#">ENGLISH</a>
-                <a href="#">CHINESE</a>
-            </div>
         </div>
     </header>
 
@@ -193,23 +165,12 @@
                 <img src="home2.png" alt="Visitor" class="row-image">
             </div>
         </div>
-
-        <div class="product-row">
-            <div class="product-text">
-                <h2>Facility Booking</h2>
-                <p>高效管理共享空間。使用者可直接在 App 內預約會議室或各類設施，系統會自動同步門禁權限，確保設施在指定時間內僅供預約者使用。</p>
-                <a href="#" class="tag-btn">產品特點</a>
-            </div>
-            <div class="product-image-container">
-                <img src="home3.png" alt="Booking" class="row-image">
-            </div>
-        </div>
     </section>
 
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <img src="logo.png" alt="Logo" style="height: 40px; margin-bottom: 25px; filter: brightness(0) invert(1);">
+                <img src="logo.png" alt="Logo" style="height: 40px; margin-bottom: 25px;">
                 <p>Units 11-14, 7/F, Phase 1<br>Chai Wan Industrial City<br>60 Wing Tai Road<br>Chai Wan, Hong Kong</p>
             </div>
             <div class="footer-section">
