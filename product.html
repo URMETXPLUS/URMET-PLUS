@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ONYX - URMET PLUS</title>
+    
+    <style>
+        /* --- 1. Custom Font Integration --- */
+        @font-face {
+            font-family: 'Bariol Bold';
+            src: url('fonts/Bariol-Bold.woff2') format('woff2'),
+                 url('fonts/Bariol-Bold.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* --- 2. Global Styles --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #ffffff;
+            color: #0a1931;
+            font-family: 'Bariol Bold', sans-serif;
+            width: 100%;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- 3. Header (Consistent with Index) --- */
+        header {
+            width: 100%; 
+            padding: 12px 8%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        .logo img { height: 32px; width: auto; display: block; }
+        .nav-wrapper { display: flex; align-items: center; gap: 30px; }
+        nav ul { list-style: none; display: flex; gap: 30px; }
+        nav a { text-decoration: none; color: white; font-size: 14px; text-transform: uppercase; letter-spacing: 1.2px; opacity: 0.8; transition: 0.3s; }
+        nav a:hover { opacity: 1; color: #60a5fa; }
+        .lang-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; cursor: pointer; }
+
+        /* --- 4. Product Content Styles --- */
+        .product-main { padding-top: 120px; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+
+        .hero-text { text-align: center; padding: 60px 0; }
+        .range-label { color: #007aff; text-transform: uppercase; letter-spacing: 2px; font-size: 14px; margin-bottom: 15px; display: block; }
+        .main-title { font-size: clamp(32px, 5vw, 56px); line-height: 1.1; margin-bottom: 25px; }
+        .main-title span { color: #007aff; }
+        .hero-description { max-width: 800px; margin: 0 auto; font-size: 18px; color: #444; line-height: 1.6; }
+
+        .full-width-img { width: 100%; height: auto; border-radius: 25px; margin-bottom: 60px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+        .feature-grid-img { width: 100%; height: auto; margin: 40px 0 80px 0; }
+
+        .content-row { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 100px; }
+        .content-row.reverse { direction: rtl; }
+        .content-row.reverse .text-box { direction: ltr; }
+
+        .text-box h2 { font-size: 32px; color: #0a1931; margin-bottom: 20px; }
+        .text-box p { font-size: 17px; color: #555; line-height: 1.7; margin-bottom: 20px; }
+        .text-box ul { list-style: none; }
+        .text-box li { margin-bottom: 15px; font-size: 16px; position: relative; padding-left: 25px; }
+        .text-box li::before { content: "•"; color: #007aff; font-weight: bold; position: absolute; left: 0; font-size: 20px; }
+
+        .row-img { width: 100%; height: auto; border-radius: 20px; }
+
+        /* --- 5. Footer (Consistent with Index) --- */
+        footer { background: #0a1931; padding: 80px 8% 40px 8%; color: white; margin-top: 60px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
+        .footer-section p { color: rgba(255,255,255,0.6); font-size: 15px; line-height: 1.6; }
+        .footer-section a { color: rgba(255,255,255,0.6); text-decoration: none; display: block; margin-top: 10px; }
+        .copyright { text-align: center; padding-top: 60px; color: rgba(255,255,255,0.2); font-size: 12px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; }
+
+        @media (max-width: 768px) {
+            .content-row { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+            .content-row.reverse { direction: ltr; }
+            .text-box li { text-align: left; }
+            header nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Urmet Logo">
+        </div>
+        <div class="nav-wrapper">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Products</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+            <button class="lang-btn">LANGUAGE ▾</button>
+        </div>
+    </header>
+
+    <main class="product-main">
+        <div class="container">
+            
+            <div class="hero-text">
+                <span class="range-label">ENTRY PANEL RANGE</span>
+                <h1 class="main-title">ONYX<br><span>The new concept</span> in access control</h1>
+                <p class="hero-description">
+                    Onyx is Urmet's new IP entry panel with a 10" touchscreen display and facial recognition function, designed to ensure the highest level of security in access control.
+                </p>
+            </div>
+
+            <img src="product1.png" alt="Onyx Panel and Architecture" class="full-width-img">
+
+            <img src="product2.png" alt="Features Icons" class="feature-grid-img">
+
+            <div class="content-row">
+                <div class="text-box">
+                    <h2>Design and technology total black</h2>
+                    <p>With its clean lines, total black finish, and large touchscreen display, the new ONYX entry panel is a symbol of elegance and simplicity. Advanced IP technology, different input control modes, and two-factor authentication redefine access control security standards.</p>
+                </div>
+                <img src="product3.png" alt="Onyx Device Design" class="row-img">
+            </div>
+
+            <div class="content-row reverse">
+                <div class="text-box">
+                    <h2>ONYX elevates access protection</h2>
+                    <ul>
+                        <li><strong>Facial recognition:</strong> biometric, secure, intelligent. Each user creates their own profile: one account, one face.</li>
+                        <li><strong>Two-way authentication:</strong> Combining facial biometric recognition with a personal code or QR code for maximum security.</li>
+                    </ul>
+                </div>
+                <img src="product4.png" alt="Facial Recognition Technology" class="row-img">
+            </div>
+
+            <div class="content-row">
+                <div class="text-box">
+                    <h2>Smartphone management with the CallMe Uin app</h2>
+                    <p>The Urmet CallMe Uin app allows you to manage guests and external access from your smartphone in complete security. Generate temporary, personalized passes for visitors in different modes to suit every need.</p>
+                </div>
+                <img src="product5.png" alt="CallMe Uin App Management" class="row-img">
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <img src="logo.png" alt="Logo" style="height: 30px; margin-bottom: 20px;">
+                <p>香港柴灣永泰道60號<br>柴灣工業城一期7期11-14室</p>
+            </div>
+            <div class="footer-section">
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2026 URMET JES LIMITED - ALL RIGHTS RESERVED</p>
+        </div>
+    </footer>
+
+</body>
+</html>
