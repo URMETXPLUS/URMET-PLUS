@@ -38,18 +38,17 @@
             z-index: -2;
         }
 
-        /* 波浪容器 - 移至畫面中央 */
         .waves-container {
             position: fixed;
-            top: 50%; /* 置中 */
+            top: 50%;
             left: 0;
             width: 100%;
-            height: 60vh; /* 增加高度覆蓋中間區域 */
+            height: 60vh;
             transform: translateY(-50%);
             z-index: -1;
             opacity: 0.4;
             pointer-events: none;
-            filter: blur(15px); /* 使水流看起來更柔和 (Soft/Software effect) */
+            filter: blur(15px);
         }
 
         .wave {
@@ -62,7 +61,7 @@
         }
 
         .wave1 { opacity: 0.2; top: 0; animation-duration: 25s; }
-        .wave2 { opacity: 0.1; top: 10%; animation-duration: 18s; animation-delay: -3s; transform: scaleY(-1); } /* 鏡射波浪增加層次 */
+        .wave2 { opacity: 0.1; top: 10%; animation-duration: 18s; animation-delay: -3s; transform: scaleY(-1); }
         .wave3 { opacity: 0.15; top: -10%; animation-duration: 12s; animation-delay: -5s; }
 
         @keyframes move-wave {
@@ -70,7 +69,6 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* --- 其他介面元素 --- */
         header {
             width: 100%;
             padding: 20px 50px;
@@ -86,7 +84,6 @@
         }
 
         .logo img { height: 40px; width: auto; }
-
         nav ul { list-style: none; display: flex; gap: 30px; }
         nav a { text-decoration: none; color: rgba(255, 255, 255, 0.7); font-size: 14px; transition: color 0.3s; }
         nav a:hover { color: #60a5fa; }
@@ -98,31 +95,67 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            z-index: 2; /* 確保內容在水流之上 */
+            z-index: 2;
         }
 
         .hero-container {
             max-width: 1200px;
             width: 100%;
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 80px;
+            grid-template-columns: 1.5fr 1fr; /* Adjusted for more text space */
+            gap: 50px;
             align-items: center;
         }
 
         .main-title { font-size: 56px; font-weight: 700; line-height: 1.1; margin-bottom: 10px; }
 
-        .learn-more-btn {
-            background-color: #3b82f6;
+        /* --- New Sub-Products Section --- */
+        .sub-products {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .product-card h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .product-card p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .tag-btn {
+            display: inline-block;
+            font-size: 11px;
+            padding: 4px 12px;
+            background: #007aff;
             color: white;
-            padding: 12px 28px;
-            border-radius: 30px;
+            border-radius: 20px;
             text-decoration: none;
             font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s;
         }
 
         .product-image {
@@ -149,16 +182,15 @@
         .footer-section a { color: rgba(255,255,255,0.6); text-decoration: none; display: block; margin-bottom: 8px; }
         .footer-bottom { text-align: center; margin-top: 40px; color: rgba(255,255,255,0.3); font-size: 12px; }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
+            .sub-products { grid-template-columns: 1fr; }
             .hero-container { grid-template-columns: 1fr; text-align: center; }
-            header nav { display: none; }
         }
     </style>
 </head>
 <body>
 
     <div class="water-bg"></div>
-    
     <div class="waves-container">
         <div class="wave wave1"></div>
         <div class="wave wave2"></div>
@@ -184,11 +216,31 @@
             <div class="text-section">
                 <p style="color: #60a5fa; text-transform: uppercase; font-weight: 600; letter-spacing: 2px;">Multi-reader</p>
                 <h1 class="main-title">TESTING</h1>
-                <p style="color: rgba(255, 255, 255, 0.8); font-size: 18px; line-height: 1.6; margin-bottom: 25px;">
+                <p style="color: rgba(255, 255, 255, 0.8); font-size: 18px; line-height: 1.6;">
                     體驗全新世代的門禁科技，MULT 以極簡設計融合先進 IP 技術。
                 </p>
-                <a href="#" class="learn-more-btn">Learn more →</a>
+
+                <div class="sub-products">
+                    <div class="product-card">
+                        <h3>🏠 Smart Property</h3>
+                        <p>將住宅設施與雲端連接起來，使用者可以透過單一應用程式處理住戶相關事宜。</p>
+                        <a href="#" class="tag-btn">產品特點</a>
+                    </div>
+
+                    <div class="product-card">
+                        <h3>🔑 Smart Access</h3>
+                        <p>雲端門禁解決方案允許使用者掃描 QR code 或使用虛擬按鈕解鎖大門。</p>
+                        <a href="#" class="tag-btn">產品特點</a>
+                    </div>
+
+                    <div class="product-card">
+                        <h3>📅 Smart Booking</h3>
+                        <p>線上預約平台允許用戶在客製化網站上預約設施和進行電子支付。</p>
+                        <a href="#" class="tag-btn">產品特點</a>
+                    </div>
+                </div>
             </div>
+
             <div style="text-align: center;">
                 <img src="reader.png" alt="Urmet Reader" class="product-image">
             </div>
