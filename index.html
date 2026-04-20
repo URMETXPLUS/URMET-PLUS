@@ -28,10 +28,9 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- 3. Navigation (Large Logo, Thin Row) --- */
+        /* --- 3. Navigation --- */
         header {
             width: 100%; 
-            /* Set padding to 0 vertically to allow the logo to define the height */
             padding: 10px 8%; 
             display: flex; 
             justify-content: space-between; 
@@ -42,21 +41,18 @@
             background: rgba(10, 25, 49, 0.85); 
             backdrop-filter: blur(20px); 
             z-index: 1000;
-            min-height: 70px; /* Ensures enough room for a 20mm+ logo */
+            min-height: 70px;
         }
 
         .logo img { 
-            /* 76px is roughly 20mm on standard screens (96dpi) */
-            height: 76px; 
+            height: 76px; /* Larger size (approx 20mm) */
             width: auto; 
             display: block; 
-            /* If using .eps, note that browsers will need a fallback or .svg conversion */
+            object-fit: contain; /* Ensures the JPG doesn't distort */
         }
 
         .nav-wrapper { display: flex; align-items: center; gap: 30px; }
-        
         nav ul { list-style: none; display: flex; gap: 30px; position: relative; }
-        
         nav a { 
             text-decoration: none; 
             color: white; 
@@ -68,7 +64,6 @@
             padding-bottom: 5px; 
         }
 
-        /* Underline stays thin and tucked under the text */
         nav::after { 
             content: ""; 
             position: absolute; 
@@ -95,7 +90,6 @@
 
         /* --- 4. Hero Section --- */
         .hero-section { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 120px 5% 60px 5%; background: transparent; }
-        
         .hero-container { 
             max-width: 1400px; 
             width: 100%; 
@@ -105,7 +99,6 @@
             align-items: center; 
             margin: 0 auto;
         }
-
         .text-section { text-align: left; padding-left: 20px; }
         .hero-container div:last-child { text-align: right; }
         .main-title { font-size: clamp(42px, 8vw, 72px); margin: 10px 0; letter-spacing: -1px; }
@@ -142,7 +135,7 @@
 
         @media (max-width: 768px) {
             header { padding: 10px 5%; flex-direction: column; gap: 15px; }
-            .logo img { height: 50px; } /* Slightly smaller for mobile */
+            .logo img { height: 50px; }
             header nav { display: none; }
             .hero-container { grid-template-columns: 1fr; text-align: center; }
             .product-row { flex-direction: column; text-align: center; }
@@ -153,7 +146,7 @@
 
     <header>
         <div class="logo">
-            <img src="logo.eps" alt="Urmet Logo">
+            <img src="logo.jpg" alt="Urmet Logo">
         </div>
         <div class="nav-wrapper">
             <nav>
@@ -223,7 +216,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <img src="logo.eps" alt="Logo" style="height: 60px; margin-bottom: 20px;">
+                <img src="logo.jpg" alt="Logo" style="height: 60px; margin-bottom: 20px; object-fit: contain;">
                 <p>香港柴灣永泰道60號<br>柴灣工業城一期7期11-14室</p>
             </div>
             <div class="footer-section">
