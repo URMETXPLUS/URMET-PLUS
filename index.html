@@ -1,246 +1,641 @@
 <!DOCTYPE html>
+
 <html lang="zh-Hant">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <title>URMET PLUS</title>
+
     
+
     <style>
+
         /* --- 1. Custom Font Integration --- */
+
         @font-face {
+
             font-family: 'Bariol Bold';
+
             src: url('fonts/Bariol-Bold.woff2') format('woff2'),
+
                  url('fonts/Bariol-Bold.woff') format('woff');
+
             font-weight: normal;
+
             font-style: normal;
+
         }
 
-        /* --- 2. Global Styles --- */
+
+
+        /* --- 2. Global Styles & Background --- */
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+
+
         html, body {
+
             background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
+
             background-attachment: fixed;
+
             color: white;
+
             font-family: 'Bariol Bold', sans-serif;
+
             width: 100%;
+
             overflow-x: hidden;
+
             -webkit-font-smoothing: antialiased;
+
         }
 
-        /* --- 3. Header (Synced with About Page Style) --- */
+
+
+        /* --- 3. Navigation (Optimized for Thinness) --- */
+
         header {
+
             width: 100%; 
-            padding: 12px 8%; 
+
+            padding: 6px 8%; /* Reduced from 12px */
+
             display: flex; 
+
             justify-content: space-between; 
+
             align-items: center;
+
             position: fixed; 
+
             top: 0; 
+
             left: 0; 
-            background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+
+            background: rgba(10, 25, 49, 0.85); 
+
+            backdrop-filter: blur(20px); 
+
             z-index: 1000;
+
         }
+
+
 
         .logo img { 
-            height: 76px; /* Large size (approx 20mm) */
+
+            height: 24px; /* Reduced from 32px */
+
             width: auto; 
+
             display: block; 
+
         }
+
+
 
         .nav-wrapper { display: flex; align-items: center; gap: 30px; }
+
+        
+
         nav ul { list-style: none; display: flex; gap: 30px; position: relative; }
+
+        
+
         nav a { 
+
             text-decoration: none; 
+
             color: white; 
-            font-size: 14px; 
+
+            font-size: 13px; /* Slightly smaller for proportion */
+
             text-transform: uppercase; 
+
             letter-spacing: 1.2px; 
+
             opacity: 0.8; 
+
             transition: 0.3s; 
-            padding-bottom: 5px; 
+
+            padding-bottom: 2px; 
+
         }
 
+
+
         nav::after { 
+
             content: ""; 
+
             position: absolute; 
-            bottom: -8px; 
+
+            bottom: -4px; /* Adjusted from -8px to fit thinner bar */
+
             left: 0; 
+
             width: 100%; 
+
             height: 2px; 
+
             background: white; 
+
             box-shadow: 0 0 8px rgba(255, 255, 255, 0.5); 
+
         }
+
+
 
         nav a:hover { opacity: 1; color: #60a5fa; }
 
+
+
         .lang-btn { 
-            background: rgba(255, 255, 255, 0.1); 
+
+            background: rgba(255, 255, 255, 0.05); 
+
             border: 1px solid rgba(255, 255, 255, 0.4); 
+
             color: white; 
-            padding: 8px 16px; 
+
+            padding: 6px 14px; /* Slightly tighter padding */
+
             border-radius: 20px; 
-            font-size: 12px; 
+
+            font-size: 11px; 
+
             cursor: pointer; 
+
+            transition: 0.3s; 
+
         }
+
+
 
         /* --- 4. Hero Section --- */
-        .hero-section { 
-            min-height: 100vh; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            padding: 140px 5% 60px 5%; 
-            background: transparent; 
-        }
+
+        .hero-section { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 100px 5% 60px 5%; background: transparent; }
+
         
+
         .hero-container { 
+
             max-width: 1400px; 
+
             width: 100%; 
+
             display: grid; 
+
             grid-template-columns: 1fr 1fr; 
+
             gap: 100px; 
+
             align-items: center; 
+
             margin: 0 auto;
+
         }
 
-        .text-section { text-align: left; padding-left: 20px; }
+
+
+        .text-section {
+
+            text-align: left;
+
+            padding-left: 20px;
+
+        }
+
+
+
+        .hero-container div:last-child {
+
+            text-align: right; 
+
+        }
+
+
+
         .main-title { font-size: clamp(42px, 8vw, 72px); margin: 10px 0; letter-spacing: -1px; }
 
+
+
         .reader-img { 
+
             max-width: 90%; 
+
             height: auto; 
+
             filter: drop-shadow(0 20px 50px rgba(0,0,0,0.7)); 
+
             border: 4px solid rgba(255, 255, 255, 0.1); 
+
             border-radius: 12px; 
+
             margin-left: auto;
+
             display: block;
+
         }
+
+
 
         /* --- 5. Flowing Feature Section --- */
-        .flowing-section { background-color: #f0f4f8; color: #0a1931; padding: 140px 5%; position: relative; overflow: hidden; }
-        .feature-container { max-width: 1600px; margin: 0 auto; display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; position: relative; z-index: 2; }
-        .feature-item { text-align: center; display: flex; flex-direction: column; align-items: center; padding: 20px; border-radius: 20px; transition: all 0.4s ease; }
-        .feature-icon { height: 160px; width: auto; margin-bottom: 25px; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.12)); }
-        .feature-text { font-size: 18px; font-weight: 800; color: #0a1931; text-transform: uppercase; }
 
-        /* --- 6. White Content Section --- */
-        .white-section { background: #ffffff; color: #0a1931; padding: 100px 5%; position: relative; }
-        .product-row { max-width: 1400px; margin: 0 auto 120px auto; display: flex; align-items: center; justify-content: space-between; gap: 80px; }
+        @keyframes waterFlow {
+
+            from { background-position: 0 0; }
+
+            to { background-position: -1200px 0; }
+
+        }
+
+
+
+        .flowing-section {
+
+            background-color: #f0f4f8; 
+
+            color: #0a1931;
+
+            padding: 140px 5%; 
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+
+        .flowing-section::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0; left: 0;
+
+            width: 200%;
+
+            height: 100%;
+
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,73.84-4.36,147.54,16.88,218.2,35.26,69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23007aff" opacity="0.1"/></svg>');
+
+            background-size: 50% 100%;
+
+            animation: waterFlow 12s linear infinite; 
+
+            pointer-events: none;
+
+        }
+
+
+
+        .feature-container {
+
+            max-width: 1600px; 
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns: repeat(5, 1fr);
+
+            gap: 20px;
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+
+
+        .feature-item {
+
+            text-align: center;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            padding: 20px;
+
+            border-radius: 20px;
+
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+        }
+
+
+
+        .feature-item:hover {
+
+            transform: translateY(-15px) scale(1.1);
+
+            background: rgba(255, 255, 255, 0.4);
+
+            backdrop-filter: blur(10px);
+
+            box-shadow: 0 20px 40px rgba(0, 122, 255, 0.1);
+
+        }
+
+
+
+        .feature-icon {
+
+            height: 160px; 
+
+            width: auto;
+
+            margin-bottom: 25px;
+
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.12));
+
+            transition: filter 0.3s ease;
+
+        }
+
+
+
+        .feature-item:hover .feature-icon {
+
+            filter: drop-shadow(0 20px 35px rgba(0, 122, 255, 0.3));
+
+        }
+
+
+
+        .feature-text {
+
+            font-size: 18px;
+
+            font-weight: 800;
+
+            color: #0a1931;
+
+            line-height: 1.2;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.8px;
+
+        }
+
+
+
+        /* --- 6. Original White Content Section --- */
+
+        .white-section {
+
+            background: #ffffff; 
+
+            color: #0a1931; padding: 100px 5%; position: relative;
+
+        }
+
+        .product-row { 
+
+            max-width: 1400px; 
+
+            margin: 0 auto 120px auto; 
+
+            display: flex; 
+
+            align-items: center; 
+
+            justify-content: space-between; 
+
+            gap: 80px; 
+
+        }
+
+        .product-text { flex: 1; min-width: 320px; }
+
         .product-text h2 { font-size: 38px; color: #007aff; margin-bottom: 20px; }
+
         .product-text p { font-size: 17px; line-height: 1.8; color: #333; margin-bottom: 30px; }
-        .tag-btn { display: inline-block; padding: 14px 35px; background: #007aff; color: white; border-radius: 30px; text-decoration: none; }
+
+        .tag-btn { display: inline-block; padding: 14px 35px; background: #007aff; color: white; border-radius: 30px; text-decoration: none; transition: 0.3s; }
+
         .row-image { width: 100%; height: auto; border-radius: 25px; box-shadow: 0 25px 50px rgba(0,0,0,0.1); }
 
-        /* --- 7. Footer (Synced with About Page Style) --- */
-        footer { 
-            background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
-            padding: 80px 8% 40px 8%; 
-            color: white; 
-        }
-        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
-        .footer-section h4 { color: #60a5fa; margin-bottom: 20px; font-size: 18px; text-transform: uppercase; }
-        .footer-section p, .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin-bottom: 10px; font-size: 15px; }
-        .footer-section a:hover { color: white; }
-        .copyright { text-align: center; padding-top: 60px; color: rgba(255,255,255,0.3); font-size: 12px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; }
 
-        @media (max-width: 900px) {
-            header { padding: 10px 5%; flex-direction: column; gap: 15px; }
+
+        /* --- 7. Footer --- */
+
+        footer { background: transparent; padding: 80px 8% 40px 8%; color: white; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
+
+        .footer-section h4 { color: #60a5fa; margin-bottom: 20px; font-size: 18px; text-transform: uppercase; }
+
+        .footer-section p, .footer-section a { color: rgba(255,255,255,0.6); text-decoration: none; display: block; margin-bottom: 10px; font-size: 15px; }
+
+        .copyright { text-align: center; padding-top: 60px; color: rgba(255,255,255,0.2); font-size: 12px; }
+
+
+
+        @media (max-width: 1200px) { .feature-icon { height: 120px; } }
+
+        @media (max-width: 900px) { .feature-container { grid-template-columns: repeat(3, 1fr); } }
+
+        @media (max-width: 768px) {
+
             header nav { display: none; }
+
             .hero-container { grid-template-columns: 1fr; text-align: center; }
+
             .product-row { flex-direction: column; text-align: center; }
+
         }
+
     </style>
+
 </head>
+
 <body>
 
+
+
     <header>
+
         <div class="logo">
+
             <img src="logo.png" alt="Urmet Logo">
+
         </div>
+
         <div class="nav-wrapper">
+
             <nav>
+
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="index.html#products">Products</a></li>
+
+                    <li><a href="#">Home</a></li>
+
+                    <li><a href="#">Products</a></li>
+
                     <li><a href="about.html">About Us</a></li>
+
                 </ul>
+
             </nav>
+
             <div class="lang-container">
+
                 <button class="lang-btn">LANGUAGE ▾</button>
+
             </div>
+
         </div>
+
     </header>
 
+
+
     <section class="hero-section">
+
         <div class="hero-container">
+
             <div class="text-section">
+
                 <p style="color: #60a5fa; letter-spacing: 3px;">MULTI-READER</p>
+
                 <h1 class="main-title">URMET PLUS</h1>
+
                 <p style="font-size: 19px; opacity: 0.95; line-height: 1.6; max-width: 500px;">體驗全新世代的門禁科技，以極簡設計融合先進 IP 技術。</p>
+
             </div>
+
             <div style="text-align: center;">
+
                 <img src="reader.png" alt="Reader" class="reader-img">
+
             </div>
+
         </div>
+
     </section>
+
+
 
     <section class="flowing-section">
+
         <div class="feature-container">
+
             <div class="feature-item">
+
                 <img src="access.png" alt="Access Control" class="feature-icon">
+
                 <p class="feature-text">Access Control</p>
+
             </div>
+
             <div class="feature-item">
+
                 <img src="facility.png" alt="Facility Booking" class="feature-icon">
+
                 <p class="feature-text">Facility Booking</p>
+
             </div>
+
             <div class="feature-item">
+
                 <img src="invitation.png" alt="Invitation QR" class="feature-icon">
+
                 <p class="feature-text">Invitation QR</p>
+
             </div>
+
             <div class="feature-item">
+
                 <img src="visitor.png" alt="Visitor Registration" class="feature-icon">
+
                 <p class="feature-text">Visitor Registration</p>
+
             </div>
+
             <div class="feature-item">
+
                 <img src="notication.png" alt="Notification Service" class="feature-icon">
+
                 <p class="feature-text">Notification Service</p>
+
             </div>
+
         </div>
+
     </section>
 
-    <section class="white-section" id="products">
+
+
+    <section class="white-section">
+
         <div class="product-row">
+
             <div class="product-text">
+
                 <h2>Smart Access</h2>
+
                 <p>體驗無縫的出入管理。透過手機 App 即可生成動態 QR Code，在感應器前輕輕一掃，即可在數秒內完成身份識別與門禁解鎖。</p>
+
                 <a href="#" class="tag-btn">產品特點</a>
+
             </div>
+
             <div class="product-image-container">
+
                 <img src="home1.png" alt="Access" class="row-image">
+
             </div>
+
         </div>
+
     </section>
+
+
 
     <footer>
+
         <div class="footer-content">
+
             <div class="footer-section">
-                <img src="logo.png" alt="Logo" style="height: 60px; margin-bottom: 20px;">
+
+                <img src="logo.png" alt="Logo" style="height: 35px; margin-bottom: 20px;">
+
                 <p>香港柴灣永泰道60號<br>柴灣工業城一期7期11-14室</p>
+
             </div>
+
             <div class="footer-section">
-                <h4>Contact Us</h4>
-                <a href="#">Help Desk</a>
+
                 <a href="privacy.html">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
+
             </div>
+
         </div>
+
         <div class="copyright">
+
             <p>© 2026 URMET JES LIMITED - ALL RIGHTS RESERVED</p>
+
         </div>
+
     </footer>
 
+
+
 </body>
+
 </html>
