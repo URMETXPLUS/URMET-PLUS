@@ -217,84 +217,13 @@
         .footer-section p, .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin-bottom: 10px; font-size: 15px; }
         .copyright { text-align: center; padding-top: 60px; color: rgba(255,255,255,0.3); font-size: 12px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; }
 
-        /* --- New Arrivals Grid Styles --- */
-        .arrivals-grid {
-            display: flex;
-            width: 100vw;
-            height: 100vh;
-            background: #000;
-        }
-
-        .arrivals-main {
-            flex: 0 0 65%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .arrivals-side {
-            flex: 0 0 35%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .arrivals-box {
-            position: relative;
-            overflow: hidden;
-            flex: 1;
-        }
-
-        .arrivals-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.8s ease;
-        }
-
-        .arrivals-box:hover img {
-            transform: scale(1.05);
-        }
-
-        .arrivals-overlay {
-            position: absolute;
-            bottom: 40px;
-            left: 40px;
-            z-index: 2;
-        }
-
-        .arrivals-overlay h2 {
-            font-size: 48px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        .arrivals-link {
-            color: #fff;
-            text-decoration: none;
-            font-size: 14px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .arrivals-side-label {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            font-size: 18px;
-            text-transform: uppercase;
-            font-weight: bold;
-            color: #fff;
-        }
-
         @media (max-width: 768px) {
-            .arrivals-grid { flex-direction: column; height: auto; }
-            .arrivals-main, .arrivals-side { flex: 0 0 auto; width: 100%; height: 60vh; }
-            .arrivals-box { height: 30vh; }
-            .arrivals-overlay h2 { font-size: 32px; }
+            .intro-section { flex-direction: column; text-align: center; padding-top: 120px; }
+            .intro-image { justify-content: center; margin-top: 40px; }
+            .intro-text h2 { font-size: 32px; }
+            .stage { width: 300px; height: 200px; }
+            .product-card { width: 300px; height: 200px; margin-left: -150px; }
+            .p1, .p2, .p3, .p4, .p5 { transform: rotateY(var(--ry)) translateZ(300px); }
         }
     </style>
 </head>
@@ -337,28 +266,9 @@
         <div class="grid-box sub-hero">
             <img src="intro2.png" alt="Smart Access">
             <div class="text-overlay small">
+
                 
             </div>
-        </div>
-    </div>
-</section>
-
-<section class="arrivals-grid">
-    <div class="arrivals-main">
-        <img src="middle1.png" alt="New Arrivals Main">
-        <div class="arrivals-overlay">
-            <h2>New Arrivals</h2>
-            <a href="#" class="arrivals-link">Discover More →</a>
-        </div>
-    </div>
-    <div class="arrivals-side">
-        <div class="arrivals-box" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-            <img src="feature1.png" alt="Smart Access">
-            <div class="arrivals-side-label">Smart Access</div>
-        </div>
-        <div class="arrivals-box">
-            <img src="feature2.png" alt="Innovation">
-            <div class="arrivals-side-label">Urmet Innovation</div>
         </div>
     </div>
 </section>
