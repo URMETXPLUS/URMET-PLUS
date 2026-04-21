@@ -17,7 +17,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            /* 背景：從上方深黑漸變到下方深藍 */
             background: linear-gradient(to bottom, #000000 0%, #050c1a 50%, #102a4d 100%);
             color: white;
             font-family: 'Bariol Bold', sans-serif;
@@ -50,7 +49,7 @@
         nav a:hover { opacity: 1; color: #60a5fa; }
         .lang-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: 0.3s; }
 
-        /* --- 3. Cyberpunk 星空背景 --- */
+        /* --- 3. Cyberpunk 背景 --- */
         .stars-container {
             position: relative;
             width: 100%;
@@ -62,58 +61,52 @@
             perspective: 2500px;
         }
 
-        /* 偽元素生成星點 */
         .stars-container::before {
             content: "";
             position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
+            width: 200%; height: 200%; top: -50%; left: -50%;
             background-image: 
                 radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
                 radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)),
                 radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0));
             background-repeat: repeat;
-            background-size: 200px 200px;
-            opacity: 0.3;
+            background-size: 250px 250px;
+            opacity: 0.2;
             z-index: 0;
         }
 
-        /* --- 4. 3D 舞台與鋼鐵軌跡環 --- */
+        /* --- 4. 3D 舞台與軌道設定 --- */
         .stage {
-            width: 600px;
-            height: 400px;
+            width: 100%;
+            height: 100%;
             position: relative;
             transform-style: preserve-3d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             z-index: 2;
         }
 
-        /* 實體化軌跡環 (3D 灰色鋼鐵感) */
+        /* 鋼鐵軌跡環：縮小尺寸並下移至相片下方 */
         .orbit-ring {
             position: absolute;
-            width: 850px;
-            height: 850px;
-            border: 6px solid #4a4a4a; /* 鋼鐵灰 */
+            width: 720px; /* 按比例縮小以匹配 350px 的旋轉半徑 */
+            height: 720px;
+            border: 5px solid #4a4a4a; /* 鋼鐵灰 */
             border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            margin-left: -425px;
-            margin-top: -425px;
-            transform: rotateX(80deg); /* 平躺 */
+            /* 關鍵：將圓環平躺並垂直向下移動，使其位於產品底部 */
+            transform: rotateX(82deg) translateZ(-140px); 
             box-shadow: 
-                0 0 20px rgba(0, 0, 0, 0.8),
-                inset 0 0 15px rgba(255, 255, 255, 0.1),
-                0 0 40px rgba(96, 165, 250, 0.2); /* 微微發藍光 */
+                0 0 15px rgba(0, 0, 0, 0.8),
+                inset 0 0 10px rgba(255, 255, 255, 0.1),
+                0 0 30px rgba(96, 165, 250, 0.15);
             z-index: 1;
+            pointer-events: none;
         }
 
-        /* 旋轉容器 (25秒慢速) */
+        /* 旋轉容器 */
         .carousel {
-            width: 100%;
-            height: 100%;
-            position: absolute;
+            position: relative;
             transform-style: preserve-3d;
             animation: rotateCarousel 25s linear infinite;
         }
@@ -125,71 +118,58 @@
 
         .product-card {
             position: absolute;
-            width: 280px;
+            width: 220px; /* 圖片縮小一點 */
             left: 50%;
             top: 50%;
-            margin-left: -140px;
-            margin-top: -140px;
+            margin-left: -110px;
+            margin-top: -110px;
             transform-style: preserve-3d;
             text-align: center;
         }
 
-        /* 5個位置計算 (360/5 = 72度) */
-        .p1 { transform: rotateY(0deg) translateZ(400px); }
-        .p2 { transform: rotateY(72deg) translateZ(400px); }
-        .p3 { transform: rotateY(144deg) translateZ(400px); }
-        .p4 { transform: rotateY(216deg) translateZ(400px); }
-        .p5 { transform: rotateY(288deg) translateZ(400px); }
+        /* 5個位置 (半徑改為 350px 讓結構更緊湊) */
+        .p1 { transform: rotateY(0deg) translateZ(350px); }
+        .p2 { transform: rotateY(72deg) translateZ(350px); }
+        .p3 { transform: rotateY(144deg) translateZ(350px); }
+        .p4 { transform: rotateY(216deg) translateZ(350px); }
+        .p5 { transform: rotateY(288deg) translateZ(350px); }
 
-        /* --- 圖片與標籤 --- */
         .product-card img {
             width: 100%;
             height: auto;
-            object-fit: contain;
-            filter: drop-shadow(0 0 15px rgba(96, 165, 250, 0.5));
-            transition: transform 0.4s ease;
-            /* 反向旋轉動畫 */
+            filter: drop-shadow(0 0 12px rgba(96, 165, 250, 0.4));
             animation: billboardCounter 25s linear infinite;
         }
 
         .product-label {
-            margin-top: 15px;
-            font-size: 18px;
+            margin-top: 10px;
+            font-size: 16px;
             color: #60a5fa;
-            text-shadow: 0 0 10px rgba(96, 165, 250, 0.8);
-            letter-spacing: 1px;
+            text-shadow: 0 0 8px rgba(96, 165, 250, 0.8);
+            letter-spacing: 0.5px;
             white-space: nowrap;
-            /* 標籤也要反向旋轉以保持正面 */
             animation: billboardCounter 25s linear infinite;
         }
 
-        /* 核心正面技術：每張卡片的起始角度需補償其父層位置 */
+        /* 核心正面技術 */
         @keyframes billboardCounter {
-            /* 這裡透過 CSS 繼承，瀏覽器會自動處理相對於父層的補償 */
             from { transform: rotateY(0deg); }
             to { transform: rotateY(-360deg); }
         }
 
-        /* 針對個別位置微調，確保圖片起始就面對你 */
+        /* 補償初始角度 */
         .p1 img, .p1 .product-label { animation-delay: 0s; }
         .p2 img, .p2 .product-label { animation-delay: -5s; }
         .p3 img, .p3 .product-label { animation-delay: -10s; }
         .p4 img, .p4 .product-label { animation-delay: -15s; }
         .p5 img, .p5 .product-label { animation-delay: -20s; }
 
-        /* --- 5. Demo Section --- */
+        /* --- 5. Demo & Footer --- */
         .demo-section {
             background: #000;
-            padding: 80px 8%;
+            padding: 60px 8%;
             text-align: center;
             border-top: 1px solid rgba(96, 165, 250, 0.2);
-        }
-
-        .demo-section h3 {
-            font-size: 28px;
-            margin-bottom: 25px;
-            color: #60a5fa;
-            letter-spacing: 1.5px;
         }
 
         .demo-btn {
@@ -203,35 +183,26 @@
             text-transform: uppercase;
         }
 
-        .demo-btn:hover {
-            background: #60a5fa;
-            box-shadow: 0 0 20px rgba(96, 165, 250, 0.6);
-        }
+        .demo-btn:hover { background: #60a5fa; box-shadow: 0 0 20px rgba(96, 165, 250, 0.6); }
 
-        /* --- 6. Footer --- */
-        footer { 
-            background: #000;
-            padding: 60px 8% 30px 8%; 
-            color: white; 
-        }
-        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
-        .footer-section h4 { color: #60a5fa; margin-bottom: 20px; text-transform: uppercase; }
-        .footer-section p { color: rgba(255,255,255,0.6); font-size: 14px; line-height: 1.6; }
-        .copyright { text-align: center; padding-top: 40px; color: rgba(255,255,255,0.3); font-size: 12px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
+        footer { background: #000; padding: 40px 8%; color: white; border-top: 1px solid rgba(255,255,255,0.1); }
+        .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; }
+        .footer-section h4 { color: #60a5fa; margin-bottom: 15px; }
+        .footer-section p { color: rgba(255,255,255,0.6); font-size: 14px; }
+        .copyright { text-align: center; margin-top: 30px; color: rgba(255,255,255,0.3); font-size: 11px; }
 
+        /* 行動端適應 */
         @media (max-width: 768px) {
-            .orbit-ring { width: 500px; height: 500px; margin-left: -250px; margin-top: -250px; }
-            .p1, .p2, .p3, .p4, .p5 { transform: rotateY(var(--angle)) translateZ(250px); }
-            .product-card { width: 180px; }
+            .orbit-ring { width: 450px; height: 450px; transform: rotateX(80deg) translateZ(-100px); }
+            .p1, .p2, .p3, .p4, .p5 { transform: rotateY(var(--angle)) translateZ(220px); }
+            .product-card { width: 150px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">
-            <img src="logo.png" alt="Urmet Logo">
-        </div>
+        <div class="logo"><img src="logo.png" alt="Urmet Logo"></div>
         <div class="nav-wrapper">
             <nav>
                 <ul>
@@ -245,9 +216,9 @@
     </header>
 
     <main class="stars-container">
-        <div class="orbit-ring"></div>
-
         <div class="stage">
+            <div class="orbit-ring"></div>
+
             <div class="carousel">
                 <div class="product-card p1">
                     <img src="product1.png" alt="QR Code Access Control">
@@ -274,14 +245,14 @@
     </main>
 
     <section class="demo-section">
-        <h3>如有興趣，歡迎找我們做 demo</h3>
+        <h3 style="margin-bottom: 20px;">如有興趣，歡迎找我們做 demo</h3>
         <a href="mailto:info@urmet.com.hk" class="demo-btn">Book a Demo</a>
     </section>
 
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <img src="logo.png" alt="Logo" style="height: 35px; margin-bottom: 20px;">
+                <img src="logo.png" alt="Logo" style="height: 30px; margin-bottom: 15px;">
                 <p>香港柴灣永泰道60號<br>柴灣工業城一期7期11-14室</p>
             </div>
             <div class="footer-section">
