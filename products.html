@@ -7,132 +7,277 @@
     
     <style>
         /* --- 1. 字體與基礎設定 --- */
-        @font-face { font-family: 'Bariol Bold'; src: url('fonts/Bariol-Bold.woff2') format('woff2'); }
-        @font-face { font-family: 'Aptos Bold'; src: url('fonts/Aptos-Bold.woff2') format('woff2'); font-weight: bold; }
+        @font-face {
+            font-family: 'Bariol Bold';
+            src: url('fonts/Bariol-Bold.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* Aptos Bold (用於產品標籤) */
+        @font-face {
+            font-family: 'Aptos Bold';
+            src: url('fonts/Aptos-Bold.woff2') format('woff2');
+            font-weight: bold;
+            font-style: normal;
+        }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background: #ffffff;
+            background: #050c1a;
+            color: white;
             font-family: 'Bariol Bold', sans-serif;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- 2. Header (同步 About 頁風格) --- */
+        /* --- 2. Header (保留樣式) --- */
         header {
-            width: 100%; padding: 15px 8%; 
-            display: flex; justify-content: space-between; align-items: center;
-            position: fixed; top: 0; left: 0; 
+            width: 100%; 
+            padding: 12px 8%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            position: fixed; 
+            top: 0; 
+            left: 0; 
             background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
             z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
         }
-        .logo img { height: 40px; transform: translateX(-38px); }
+
+        .logo img { height: 40px; width: auto; display: block; transform: translateX(-38px); }
         .nav-wrapper { display: flex; align-items: center; gap: 30px; }
         nav ul { list-style: none; display: flex; gap: 30px; }
-        nav a { text-decoration: none; color: white; font-size: 14px; text-transform: uppercase; opacity: 0.8; }
-        nav a:hover { color: #60a5fa; }
-        .lang-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; cursor: pointer; }
+        nav a { text-decoration: none; color: white; font-size: 14px; text-transform: uppercase; letter-spacing: 1.2px; opacity: 0.8; transition: 0.3s; }
+        nav a:hover { opacity: 1; color: #60a5fa; }
+        .lang-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: 0.3s; }
 
-        /* --- 3. 3D 產品展示區 --- */
+        /* --- 3. 3D 展示區 (深藍漸變背景) --- */
         .stars-container {
             position: relative;
-            width: 100%; height: 90vh;
-            display: flex; justify-content: center; align-items: center;
-            perspective: 2500px;
-            padding-top: 150px;
-            background: linear-gradient(to bottom, #000000 0%, #050c1a 50%, #102a4d 100%);
+            width: 100%;
+            height: 100vh;
+            background: radial-gradient(circle at center, #102a4d 0%, #050c1a 100%);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 3000px; /* 增加透視距離以適應更大的空間 */
         }
 
-        .stage { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; }
-        .orbit-ring {
-            position: absolute; width: 800px; height: 800px; border: 6px solid #4a4a4a; border-radius: 50%;
-            left: 50%; top: 50%; margin-left: -400px; margin-top: -400px;
-            transform: rotateX(85deg) translateZ(-250px); pointer-events: none;
+        /* 3D 舞台 */
+        .stage {
+            width: 400px;
+            height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(0deg); 
         }
 
-        .carousel { transform-style: preserve-3d; animation: rotateCarousel 25s linear infinite; }
-        @keyframes rotateCarousel { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
-
-        .product-card { position: absolute; width: 280px; left: 50%; top: 45%; margin-left: -140px; margin-top: -120px; text-align: center; }
-        .p1 { transform: rotateY(0deg) translateZ(400px); }
-        .p2 { transform: rotateY(72deg) translateZ(400px); }
-        .p3 { transform: rotateY(144deg) translateZ(400px); }
-        .p4 { transform: rotateY(216deg) translateZ(400px); }
-        .p5 { transform: rotateY(288deg) translateZ(400px); }
-        
-        .product-card img { width: 100%; animation: billboardCounter 25s linear infinite; }
-        .product-label { margin-top: 15px; font-family: 'Aptos Bold', sans-serif; font-size: 18px; color: #ffffff; text-shadow: 0 0 8px #fff; animation: billboardCounter 25s linear infinite; }
-        @keyframes billboardCounter { from { transform: rotateY(0deg); } to { transform: rotateY(-360deg); } }
-
-        /* --- 4. 新增的介紹區塊 (白色背景) --- */
-        .info-section {
-            padding: 100px 10%;
-            background: #ffffff;
-            display: flex; align-items: center; justify-content: space-between;
-            gap: 60px;
+        /* 旋轉容器 - 控制 5 張卡片的位置旋轉 */
+        .carousel {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            animation: rotateCarousel 25s linear infinite;
         }
-        .info-text { flex: 1; color: #0a1931; }
-        .info-text h2 { font-size: 42px; margin-bottom: 25px; color: #1e4b8a; }
-        .info-text p { font-size: 18px; line-height: 1.8; margin-bottom: 20px; }
-        .info-img { flex: 1; text-align: right; }
-        .info-img img { width: 100%; max-width: 500px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
 
-        /* --- 5. Footer (同步 About 頁風格) --- */
+        @keyframes rotateCarousel {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+
+        /* --- 核心技術修正：Billboard Setup --- */
+        .product-card {
+            position: absolute;
+            width: 420px; 
+            height: 280px;
+            left: 50%;
+            top: 50%;
+            margin-left: -210px;
+            margin-top: -140px;
+            transform-style: preserve-3d;
+            /* 圖片本身不旋轉，由內層處理 */
+        }
+
+        /* 空間放大：將半徑從 350px 顯著放大至 550px */
+        .p1 { transform: rotateY(0deg) translateZ(550px); }
+        .p2 { transform: rotateY(72deg) translateZ(550px); }
+        .p3 { transform: rotateY(144deg) translateZ(550px); }
+        .p4 { transform: rotateY(216deg) translateZ(550px); }
+        .p5 { transform: rotateY(288deg) translateZ(550px); }
+
+        /* Billboard 內容層：負責真正的圖片顯示與正面補償 */
+        .billboard-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        .billboard-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            cursor: pointer;
+            transition: transform 0.4s ease;
+        }
+
+        /* 滑鼠懸停依然保有放大效果 */
+        .product-card:hover .billboard-content img {
+            transform: scale(1.1);
+        }
+
+        /* --- 核心技術修正：Billboard Animation --- */
+        /* 為每張圖片設置單獨的反向旋轉動畫，起動點加上修正角度（0, -72, -144, -216, -288）來補償佈局角度，
+           這能確保圖片在 3D 空間中不論移動到何處，其初始 0 度角永遠垂直於螢幕看向你。 */
+
+        .p1 .billboard-content { animation: billboardFacing1 25s linear infinite; }
+        .p2 .billboard-content { animation: billboardFacing2 25s linear infinite; }
+        .p3 .billboard-content { animation: billboardFacing3 25s linear infinite; }
+        .p4 .billboard-content { animation: billboardFacing4 25s linear infinite; }
+        .p5 .billboard-content { animation: billboardFacing5 25s linear infinite; }
+
+        @keyframes billboardFacing1 {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(-360deg); }
+        }
+        @keyframes billboardFacing2 {
+            from { transform: rotateY(-72deg); }
+            to { transform: rotateY(-432deg); }
+        }
+        @keyframes billboardFacing3 {
+            from { transform: rotateY(-144deg); }
+            to { transform: rotateY(-504deg); }
+        }
+        @keyframes billboardFacing4 {
+            from { transform: rotateY(-216deg); }
+            to { transform: rotateY(-576deg); }
+        }
+        @keyframes billboardFacing5 {
+            from { transform: rotateY(-288deg); }
+            to { transform: rotateY(-648deg); }
+        }
+
+        /* --- 產品標籤 (保持白光粗體) --- */
+        .product-label {
+            margin-top: 15px;
+            font-family: 'Aptos Bold', sans-serif;
+            font-size: 18px;
+            color: #ffffff;
+            text-shadow: 0 0 8px #fff, 0 0 15px #60a5fa;
+            font-weight: bold;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        /* --- 4. Footer (保留) --- */
         footer { 
             background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
-            padding: 80px 8% 40px 8%; color: white;
+            padding: 80px 8% 40px 8%; 
+            color: white; 
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 0;
+            z-index: 5;
+            position: relative;
         }
-        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; }
-        .footer-section h4 { color: #60a5fa; margin-bottom: 20px; }
-        .copyright { text-align: center; margin-top: 40px; color: rgba(255,255,255,0.3); font-size: 12px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
+        .footer-section h4 { color: #60a5fa; margin-bottom: 20px; font-size: 18px; text-transform: uppercase; }
+        .footer-section p, .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin-bottom: 10px; font-size: 15px; }
+        .copyright { text-align: center; padding-top: 60px; color: rgba(255,255,255,0.3); font-size: 12px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; }
+
+        @media (max-width: 768px) {
+            .logo img { transform: none; }
+            header nav { display: none; }
+            .stage { width: 300px; height: 200px; }
+            .product-card { width: 300px; height: 200px; margin-left: -150px; }
+            /* 行動裝置縮短半徑 */
+            .p1, .p2, .p3, .p4, .p5 { transform: rotateY(var(--ry)) translateZ(300px); }
+            .product-label { font-size: 14px; }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo"><img src="logo.png" alt="Urmet Logo"></div>
+        <div class="logo">
+            <img src="logo.png" alt="Urmet Logo">
+        </div>
         <div class="nav-wrapper">
-            <nav><ul><li><a href="index.html">Home</a></li><li><a href="products.html">Products</a></li><li><a href="about.html">About Us</a></li></ul></nav>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+            <div class="lang-container">
+                <button class="lang-btn">LANGUAGE ▾</button>
+            </div>
         </div>
     </header>
 
     <main class="stars-container">
         <div class="stage">
-            <div class="orbit-ring"></div>
             <div class="carousel">
-                <div class="product-card p1"><img src="product1.png"><div class="product-label">QR Code Access</div></div>
-                <div class="product-card p2"><img src="product2.png"><div class="product-label">Invitation</div></div>
-                <div class="product-card p3"><img src="product3.png"><div class="product-label">Facility Booking</div></div>
-                <div class="product-card p4"><img src="product4.png"><div class="product-label">URMET PLUS</div></div>
-                <div class="product-card p5"><img src="product5.png"><div class="product-label">Panic Alarm</div></div>
+                <div class="product-card p1">
+                    <div class="billboard-content">
+                        <img src="product1.png" alt="QR Code Access Control">
+                        <div class="product-label">QR Code Access</div>
+                    </div>
+                </div>
+                <div class="product-card p2">
+                    <div class="billboard-content">
+                        <img src="product2.png" alt="Invitation">
+                        <div class="product-label">Invitation</div>
+                    </div>
+                </div>
+                <div class="product-card p3">
+                    <div class="billboard-content">
+                        <img src="product3.png" alt="Facility Booking">
+                        <div class="product-label">Facility Booking</div>
+                    </div>
+                </div>
+                <div class="product-card p4">
+                    <div class="billboard-content">
+                        <img src="product4.png" alt="URMET PLUS">
+                        <div class="product-label">URMET PLUS</div>
+                    </div>
+                </div>
+                <div class="product-card p5">
+                    <div class="billboard-content">
+                        <img src="product5.png" alt="Panic Alarm">
+                        <div class="product-label">Panic Alarm</div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 
-    <section class="info-section">
-        <div class="info-text">
-            <h2>智聯生活，無界體驗</h2>
-            <p>透過 URMET 專業讀卡器與 URMET PLUS App 的無縫結合，我們為您打造全方位的智能門禁生態系統。</p>
-            <p>無論是<strong>門禁出入 (Access Control)</strong>、<strong>設施預約 (Facility Booking)</strong>、<strong>訪客邀請 (Invitation)</strong>，還是實時<strong>緊急警報 (Panic Alarm)</strong>，一切皆在指尖掌控。</p>
-            <p>讓科技簡化您的管理，讓生活更安全、便捷、高效。</p>
-        </div>
-        <div class="info-img">
-            <img src="intro.png" alt="URMET System">
-        </div>
-    </section>
-
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <img src="logo.png" style="height: 35px; margin-bottom: 20px;">
+                <img src="logo.png" alt="Logo" style="height: 35px; margin-bottom: 20px;">
                 <p>香港柴灣永泰道60號<br>柴灣工業城一期7期11-14室</p>
             </div>
             <div class="footer-section">
                 <h4>Contact Us</h4>
-                <a href="#">Help Desk</a> | <a href="privacy.html">Privacy Policy</a>
+                <a href="#">Help Desk</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
             </div>
         </div>
-        <div class="copyright">© 2026 URMET JES LIMITED - ALL RIGHTS RESERVED</div>
+        <div class="copyright">
+            <p>© 2026 URMET JES LIMITED - ALL RIGHTS RESERVED</p>
+        </div>
     </footer>
 
 </body>
