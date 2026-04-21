@@ -326,12 +326,12 @@
         transform: scale(1.08);
     }
 
-    /* 文字覆蓋樣式 (白色文字) */
+    /* --- 修改重點：Intro Section 文字改為黑色 --- */
     .text-overlay {
         position: absolute;
         bottom: 10%;
         left: 8%;
-        color: #ffffff;
+        color: #000000; /* 已改為黑色 */
         z-index: 2;
     }
 
@@ -345,6 +345,7 @@
         letter-spacing: 3px;
         margin-bottom: 10px;
         opacity: 0.9;
+        color: #000000; /* 已改為黑色 */
     }
 
     .title {
@@ -352,20 +353,22 @@
         font-weight: bold;
         margin: 0 0 20px 0;
         line-height: 1.1;
+        color: #000000; /* 已改為黑色 */
     }
 
     .sub-title {
         font-size: clamp(18px, 2vw, 24px);
         letter-spacing: 1px;
         margin: 0;
+        color: #000000; /* 已改為黑色 */
     }
 
     .cta-button {
         display: inline-block;
-        color: #fff;
+        color: #000000; /* 已改為黑色 */
         text-decoration: none;
         font-size: 14px;
-        border-bottom: 1px solid #fff;
+        border-bottom: 1px solid #000000; /* 底線改為黑色 */
         padding-bottom: 5px;
         transition: opacity 0.3s;
     }
