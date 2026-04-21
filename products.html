@@ -247,15 +247,158 @@
         </div>
     </header>
 
-    <section class="intro-section">
-        <div class="intro-text">
-            <h2>Smart Access</h2>
-            <p>體驗無縫的出入管理。透過手機 App 即可生成動態 QR Code，在感應器前輕輕一掃，即可在數秒內完成身份識別與門禁解鎖。</p>
-            <a href="#" class="btn-feature">產品特點</a>
+<section class="intro-grid-container">
+    <div class="grid-item large-box">
+        <img src="intro1.png" alt="New Arrivals">
+        <div class="overlay-content">
+            <p class="subtitle">ENTRY PANEL RANGE</p>
+            <h2 class="main-title">NEW ARRIVALS</h2>
+            <a href="#" class="discover-link">DISCOVER MORE <span class="arrow">→</span></a>
         </div>
-        <div class="intro-image">
-            <img src="product1.png" alt="Smart Access Device"> </div>
-    </section>
+    </div>
+
+    <div class="right-column">
+        <div class="grid-item small-box">
+            <img src="intro2.png" alt="Smart Security">
+            <div class="overlay-content">
+                <h3 class="small-title">SMART ACCESS</h3>
+                <span class="circle-arrow">→</span>
+            </div>
+        </div>
+        <div class="grid-item small-box">
+            <img src="intro3.png" alt="Innovation">
+            <div class="overlay-content">
+                <h3 class="small-title">URMET INNOVATION</h3>
+                <span class="circle-arrow">→</span>
+            </div>
+        </div>
+        <div class="grid-item small-box">
+            <img src="intro4.png" alt="Onyx Series">
+            <div class="overlay-content">
+                <h3 class="small-title">ONYX SERIES</h3>
+                <span class="circle-arrow">→</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* --- 新的 Grid 佈局樣式 --- */
+    .intro-grid-container {
+        display: flex;
+        width: 100%;
+        height: 100vh; /* 佔滿螢幕高度 */
+        background: #fff;
+        padding-top: 65px; /* 避開 Header */
+    }
+
+    /* 左側大圖佔 65% 寬度 */
+    .large-box {
+        flex: 0 0 65%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* 右側欄佔 35% 寬度 */
+    .right-column {
+        flex: 0 0 35%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .small-box {
+        flex: 1; /* 三個等分 */
+        position: relative;
+        overflow: hidden;
+        border-left: 1px solid #fff; /* 增加間隔線感 */
+        border-bottom: 1px solid #fff;
+    }
+
+    /* 圖片基礎樣式 */
+    .grid-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+    }
+
+    .grid-item:hover img {
+        transform: scale(1.05);
+    }
+
+    /* 文字覆蓋層樣式 */
+    .overlay-content {
+        position: absolute;
+        bottom: 40px;
+        left: 40px;
+        color: #ffffff; /* 確保是白色文字 */
+        text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        pointer-events: none;
+    }
+
+    .large-box .subtitle {
+        font-size: 14px;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+    }
+
+    .large-box .main-title {
+        font-size: 42px;
+        font-family: 'Aptos Bold', sans-serif;
+        margin-bottom: 20px;
+    }
+
+    .discover-link {
+        font-size: 12px;
+        text-decoration: none;
+        color: #fff;
+        border-bottom: 1px solid #fff;
+        padding-bottom: 5px;
+        pointer-events: auto;
+    }
+
+    /* 右側小圖文字 */
+    .small-box .overlay-content {
+        bottom: 20px;
+        left: 25px;
+        right: 25px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: calc(100% - 50px);
+    }
+
+    .small-title {
+        font-size: 18px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .circle-arrow {
+        width: 30px;
+        height: 30px;
+        border: 1px solid #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+    }
+
+    /* 手機版排版優化 */
+    @media (max-width: 768px) {
+        .intro-grid-container {
+            flex-direction: column;
+            height: auto;
+        }
+        .large-box, .right-column {
+            flex: 0 0 100%;
+        }
+        .large-box { height: 400px; }
+        .small-box { height: 250px; }
+    }
+</style>
 
     <main class="stars-container">
         <div class="stage">
