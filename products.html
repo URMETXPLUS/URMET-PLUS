@@ -27,7 +27,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- 3. Header --- */
+        /* --- 3. Navigation (Updated to match index.html) --- */
         header {
             width: 100%; 
             padding: 12px 8%; 
@@ -40,15 +40,54 @@
             background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
             z-index: 1000;
-            /* 已刪除 border-bottom 白線 */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
         }
 
-        .logo img { height: 32px; width: auto; display: block; }
-        .nav-wrapper { display: flex; align-items: center; gap: 30px; }
+        .logo img { 
+            height: 40px; 
+            width: auto; 
+            display: block; 
+            transform: translateX(-38px); 
+        }
+
+        .nav-wrapper { 
+            display: flex; 
+            align-items: center; 
+            gap: 30px; 
+            height: 100%; 
+        }
+        
+        nav {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 40px; 
+        }
+
         nav ul { list-style: none; display: flex; gap: 30px; }
-        nav a { text-decoration: none; color: white; font-size: 14px; text-transform: uppercase; letter-spacing: 1.2px; opacity: 0.8; transition: 0.3s; }
+        
+        nav a { 
+            text-decoration: none; 
+            color: white; 
+            font-size: 14px; 
+            text-transform: uppercase; 
+            letter-spacing: 1.2px; 
+            opacity: 0.8; 
+            transition: 0.3s; 
+        }
+
         nav a:hover { opacity: 1; color: #60a5fa; }
-        .lang-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; cursor: pointer; }
+
+        .lang-btn { 
+            background: rgba(255, 255, 255, 0.1); 
+            border: 1px solid rgba(255, 255, 255, 0.4); 
+            color: white; 
+            padding: 8px 16px; 
+            border-radius: 20px; 
+            font-size: 12px; 
+            cursor: pointer; 
+            transition: 0.3s; 
+        }
 
         /* --- 4. Product Content Styles --- */
         .product-main { padding-top: 120px; }
@@ -77,7 +116,7 @@
 
         .row-img { width: 100%; height: auto; border-radius: 20px; }
 
-        /* --- 5. Footer (Updated to match about.html) --- */
+        /* --- 5. Footer --- */
         footer { 
             background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
             padding: 80px 8% 40px 8%; 
@@ -95,6 +134,7 @@
             .content-row.reverse { direction: ltr; }
             .text-box li { text-align: left; }
             header nav { display: none; }
+            .logo img { transform: none; }
         }
     </style>
 </head>
@@ -112,7 +152,9 @@
                     <li><a href="about.html">About Us</a></li>
                 </ul>
             </nav>
-            <button class="lang-btn">LANGUAGE ▾</button>
+            <div class="lang-container">
+                <button class="lang-btn">LANGUAGE ▾</button>
+            </div>
         </div>
     </header>
 
