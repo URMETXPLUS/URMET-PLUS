@@ -31,23 +31,40 @@
         /* --- 3. Navigation --- */
         header {
             width: 100%; 
-            padding: 12px 5%; 
+            padding: 12px 8%; 
             display: flex; 
             justify-content: space-between; 
             align-items: center;
             position: fixed; 
             top: 0; 
             left: 0; 
-            background: rgba(10, 25, 49, 0.95);
+            background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.4);
         }
 
-        .logo img { height: 40px; width: auto; display: block; }
+        .logo img { 
+            height: 40px; 
+            width: auto; 
+            display: block; 
+            transform: translateX(-38px); 
+        }
 
-        .nav-wrapper { display: flex; align-items: center; gap: 30px; }
+        .nav-wrapper { 
+            display: flex; 
+            align-items: center; 
+            gap: 30px; 
+            height: 100%; 
+        }
         
+        nav {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 40px; 
+        }
+
         nav ul { list-style: none; display: flex; gap: 30px; }
         
         nav a { 
@@ -70,34 +87,37 @@
             border-radius: 20px; 
             font-size: 12px; 
             cursor: pointer; 
+            transition: 0.3s; 
         }
 
-        /* --- 4. Hero Section (修正對齊與斷行) --- */
+        /* --- 4. Hero Section --- */
         .hero-section { 
             min-height: 100vh; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            padding: 100px 5% 50px 5%; 
+            padding: 5px 5% 0px 5%; 
+            background: transparent; 
         }
         
         .hero-container { 
-            max-width: 1200px; 
+            max-width: 1400px; 
             width: 100%; 
-            display: flex; 
-            flex-wrap: wrap; 
-            gap: 50px; 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 100px; 
             align-items: center; 
-            justify-content: center;
+            margin: 0 auto;
         }
 
         .text-section {
-            flex: 1 1 500px;
             text-align: left;
+            padding-left: 0;
+            transform: translateX(-113px);
         }
 
         .main-title { 
-            font-size: clamp(32px, 5vw, 58px); 
+            font-size: clamp(36px, 6vw, 58px); 
             margin: 10px 0; 
             letter-spacing: -1px; 
             line-height: 1.1;
@@ -114,18 +134,33 @@
             text-decoration: none;
             border-radius: 50px;
             font-size: 16px;
-            transition: 0.4s;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
         }
 
-        .learn-more-btn:hover { background: #ffffff; color: #0a1931; }
+        .learn-more-btn:hover {
+            background: #ffffff;
+            color: #0a1931;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+        }
+
+        .learn-more-btn span {
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
 
         .reader-img { 
-            flex: 1 1 300px;
-            max-width: 100%; 
+            max-width: 90%; 
             height: auto; 
             filter: drop-shadow(0 20px 50px rgba(0,0,0,0.7)); 
             border: 4px solid rgba(255, 255, 255, 0.1); 
-            border-radius: 12px;
+            border-radius: 12px; 
+            margin-left: auto;
+            display: block;
+            transform: translateX(113px);
         }
 
         /* --- 5. Flowing Feature Section --- */
@@ -137,7 +172,7 @@
         .flowing-section {
             background-color: #f0f4f8; 
             color: #0a1931;
-            padding: 60px 5%; 
+            padding: 45px 5%; 
             position: relative;
             overflow: hidden;
         }
@@ -155,47 +190,92 @@
         }
 
         .feature-container {
-            max-width: 1200px; 
+            max-width: 1600px; 
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(5, 1fr);
             gap: 20px;
             position: relative;
             z-index: 2;
         }
 
-        .feature-item { text-align: center; display: flex; flex-direction: column; align-items: center; padding: 10px; }
-        .feature-icon { height: 80px; width: auto; margin-bottom: 15px; }
-        .feature-text { font-size: 14px; font-weight: 800; color: #0a1931; text-transform: uppercase; }
+        .feature-item {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .feature-icon {
+            height: 100px; 
+            width: auto;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.12));
+            transition: filter 0.3s ease;
+        }
+
+        .feature-text {
+            font-size: 16px;
+            font-weight: 800;
+            color: #0a1931;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
 
         /* --- 6. White Content Section --- */
-        .white-section { background: #ffffff; color: #0a1931; padding: 80px 5%; position: relative; }
-        .product-row { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; gap: 50px; }
-        .product-text { flex: 1 1 400px; }
+        .white-section {
+            background: #ffffff; 
+            color: #0a1931; 
+            padding: 5px 5%; 
+            position: relative;
+        }
+        .product-row { 
+            max-width: 1400px; 
+            margin: 0 auto 30px auto; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            gap: 80px; 
+        }
+        .product-text { flex: 1; min-width: 320px; }
         .product-text h2 { font-size: 38px; color: #007aff; margin-bottom: 20px; }
-        .product-text p { font-size: 17px; line-height: 1.8; margin-bottom: 30px; }
-        .tag-btn { display: inline-block; padding: 14px 35px; background: #007aff; color: white; border-radius: 30px; text-decoration: none; }
-        .row-image { width: 100%; max-width: 600px; height: auto; border-radius: 25px; box-shadow: 0 25px 50px rgba(0,0,0,0.1); }
+        .product-text p { font-size: 17px; line-height: 1.8; color: #333; margin-bottom: 30px; }
+        .tag-btn { display: inline-block; padding: 14px 35px; background: #007aff; color: white; border-radius: 30px; text-decoration: none; transition: 0.3s; }
+        .row-image { width: 100%; height: auto; border-radius: 25px; box-shadow: 0 25px 50px rgba(0,0,0,0.1); }
 
-        /* --- 7. Footer --- */
-        footer { background: #050c1a; padding: 60px 5%; color: white; }
+        /* --- 7. Footer (Updated to match about.html) --- */
+        footer { 
+            background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
+            padding: 80px 8% 40px 8%; 
+            color: white; 
+        }
         .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
-        .footer-section h4 { color: #60a5fa; margin-bottom: 15px; }
-        .footer-section a { color: rgba(255,255,255,0.7); display: block; margin-bottom: 8px; text-decoration: none; }
+        .footer-section h4 { color: #60a5fa; margin-bottom: 20px; font-size: 18px; text-transform: uppercase; }
+        .footer-section p, .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin-bottom: 10px; font-size: 15px; }
+        .footer-section a:hover { color: white; }
+        .copyright { text-align: center; padding-top: 60px; color: rgba(255,255,255,0.3); font-size: 12px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; }
 
-        /* --- Media Queries --- */
         @media (max-width: 768px) {
             header nav { display: none; }
-            .hero-container { text-align: center; }
-            .text-section { text-align: center; }
+            .hero-container { grid-template-columns: 1fr; text-align: center; }
+            .text-section { padding-left: 0; transform: none; }
+            .reader-img { transform: none; }
+            .logo img { transform: none; }
             .product-row { flex-direction: column; text-align: center; }
+            .feature-container { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo"><img src="logo.png" alt="Urmet Logo"></div>
+        <div class="logo">
+            <img src="logo.png" alt="Urmet Logo">
+        </div>
         <div class="nav-wrapper">
             <nav>
                 <ul>
@@ -204,7 +284,9 @@
                     <li><a href="about.html">About Us</a></li>
                 </ul>
             </nav>
-            <button class="lang-btn">LANGUAGE ▾</button>
+            <div class="lang-container">
+                <button class="lang-btn">LANGUAGE ▾</button>
+            </div>
         </div>
     </header>
 
@@ -213,20 +295,37 @@
             <div class="text-section">
                 <p style="color: #60a5fa; letter-spacing: 3px;">MULTI-READER</p>
                 <h1 class="main-title">Unlock the Future: Seamless Access with URMET PLUS</h1>
-                <p style="font-size: 17px; opacity: 0.95; line-height: 1.5;">Smart Access, Simplified. Transform your smartphone into your key with URMET PLUS. Generate dynamic, encrypted QR codes for seamless, contactless entry.</p>
+                <p style="font-size: 17px; opacity: 0.95; line-height: 1.5; max-width: 500px;">Smart Access, Simplified. Transform your smartphone into your key with URMET PLUS. Generate dynamic, encrypted QR codes for seamless, contactless entry. High-speed, secure, and fully trackable—the modern standard for intelligent building access.</p>
                 <a href="products.html" class="learn-more-btn">Learn more <span>→</span></a>
             </div>
-            <img src="reader.png" alt="Reader" class="reader-img">
+            <div style="text-align: center;">
+                <img src="reader.png" alt="Reader" class="reader-img">
+            </div>
         </div>
     </section>
 
     <section class="flowing-section" id="products">
         <div class="feature-container">
-            <div class="feature-item"><img src="access.png" alt="Access" class="feature-icon"><p class="feature-text">Access Control</p></div>
-            <div class="feature-item"><img src="facility.png" alt="Facility" class="feature-icon"><p class="feature-text">Facility Booking</p></div>
-            <div class="feature-item"><img src="invitation.png" alt="Invitation" class="feature-icon"><p class="feature-text">Invitation QR</p></div>
-            <div class="feature-item"><img src="visitor.png" alt="Visitor" class="feature-icon"><p class="feature-text">Visitor Registration</p></div>
-            <div class="feature-item"><img src="notication.png" alt="Notification" class="feature-icon"><p class="feature-text">Notification Service</p></div>
+            <div class="feature-item">
+                <img src="access.png" alt="Access Control" class="feature-icon">
+                <p class="feature-text">Access Control</p>
+            </div>
+            <div class="feature-item">
+                <img src="facility.png" alt="Facility Booking" class="feature-icon">
+                <p class="feature-text">Facility Booking</p>
+            </div>
+            <div class="feature-item">
+                <img src="invitation.png" alt="Invitation QR" class="feature-icon">
+                <p class="feature-text">Invitation QR</p>
+            </div>
+            <div class="feature-item">
+                <img src="visitor.png" alt="Visitor Registration" class="feature-icon">
+                <p class="feature-text">Visitor Registration</p>
+            </div>
+            <div class="feature-item">
+                <img src="notication.png" alt="Notification Service" class="feature-icon">
+                <p class="feature-text">Notification Service</p>
+            </div>
         </div>
     </section>
 
@@ -237,14 +336,16 @@
                 <p>體驗無縫的出入管理。透過手機 App 即可生成動態 QR Code，在感應器前輕輕一掃，即可在數秒內完成身份識別與門禁解鎖。</p>
                 <a href="#" class="tag-btn">產品特點</a>
             </div>
-            <img src="home1.png" alt="Access" class="row-image">
+            <div class="product-image-container">
+                <img src="home1.png" alt="Access" class="row-image">
+            </div>
         </div>
     </section>
 
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <img src="logo.png" alt="Logo" style="height: 35px; margin-bottom: 15px;">
+                <img src="logo.png" alt="Logo" style="height: 35px; margin-bottom: 20px;">
                 <p>香港柴灣永泰道60號<br>柴灣工業城一期7期11-14室</p>
             </div>
             <div class="footer-section">
@@ -254,7 +355,7 @@
                 <a href="#">Terms of Service</a>
             </div>
         </div>
-        <div class="copyright" style="text-align: center; margin-top: 40px; opacity: 0.5; font-size: 12px;">
+        <div class="copyright">
             <p>© 2026 URMET JES LIMITED - ALL RIGHTS RESERVED</p>
         </div>
     </footer>
