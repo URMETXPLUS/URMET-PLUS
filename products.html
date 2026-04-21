@@ -54,11 +54,11 @@
         nav a:hover { opacity: 1; color: #60a5fa; }
         .lang-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: 0.3s; }
 
-        /* --- 3. 新增：白色介紹區塊 (像圖中那樣) --- */
+        /* --- 3. 新增：白色介紹區塊 --- */
         .intro-section {
             background: #ffffff;
             color: #333;
-            padding: 160px 8% 80px 8%; /* 上方留 160px 以免被固定 Header 擋住 */
+            padding: 160px 8% 80px 8%; 
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -72,7 +72,7 @@
 
         .intro-text h2 {
             font-size: 48px;
-            color: #007bff; /* 鮮豔藍色 */
+            color: #007bff; 
             margin-bottom: 20px;
             font-family: 'Aptos Bold', sans-serif;
         }
@@ -112,7 +112,7 @@
             height: auto;
         }
 
-        /* --- 4. 3D 展示區 (原封不動移動到下方) --- */
+        /* --- 4. 3D 展示區 --- */
         .stars-container {
             position: relative;
             width: 100%;
@@ -250,9 +250,9 @@
 <section class="intro-fullscreen">
     <div class="grid-box main-hero">
         <img src="intro1.png" alt="New Arrivals">
-<div class="text-overlay">
+        <div class="text-overlay">
             <p class="tagline">URMET PLUS</p>
-            <h2 class="title">MULTI-READER</h1>
+            <h2 class="title">MULTI-READER</h2>
             <p class="tagline">
                 Secure every entry with one device:<br>
                 QR code, card, or mobile.<br>
@@ -269,17 +269,10 @@
                 <h2 class="sub-title">SMART ACCESS</h2>
             </div>
         </div>
-        <div class="grid-box sub-hero">
-            <img src="intro3.png" alt="Urmet Innovation">
-            <div class="text-overlay small">
-                <h2 class="sub-title">URMET INNOVATION</h2>
-            </div>
-        </div>
     </div>
 </section>
 
 <style>
-    /* 移除網頁預設間距 */
     body, html {
         margin: 0;
         padding: 0;
@@ -289,40 +282,35 @@
     .intro-fullscreen {
         display: flex;
         width: 100vw;
-        height: 100vh; /* 關鍵：強制填滿螢幕高度 */
+        height: 100vh;
         background-color: #000;
     }
 
-    /* 基礎方格設定 */
     .grid-box {
         position: relative;
         overflow: hidden;
     }
 
     .main-hero {
-        flex: 0 0 65%; /* 左側佔 65% 寬度 */
+        flex: 0 0 65%;
     }
 
     .side-column {
-        flex: 0 0 35%; /* 右側佔 35% 寬度 */
+        flex: 0 0 35%;
         display: flex;
         flex-direction: column;
     }
 
+    /* 使唯一的子方格填滿父容器高度 */
     .sub-hero {
-        flex: 1; /* 兩個右側方格平分高度 */
-        border-left: 1px solid rgba(255,255,255,0.1); /* 極細分隔線 */
+        flex: 1;
+        border-left: 1px solid rgba(255,255,255,0.1);
     }
 
-    .sub-hero:first-child {
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    /* 圖片填滿容器 */
     .grid-box img {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* 確保圖片不變形地填滿 */
+        object-fit: cover;
         display: block;
         transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
     }
@@ -331,12 +319,11 @@
         transform: scale(1.08);
     }
 
-    /* --- 修改重點：Intro Section 文字改為黑色 --- */
     .text-overlay {
         position: absolute;
         bottom: 10%;
         left: 1.8%;
-        color: #000000; /* 已改為黑色 */
+        color: #000000;
         z-index: 2;
     }
 
@@ -350,39 +337,24 @@
         letter-spacing: 3px;
         margin-bottom: 10px;
         opacity: 0.9;
-        color: #000000; /* 已改為黑色 */
+        color: #000000;
     }
 
     .title {
-        font-size: clamp(32px, 5vw, 64px); /* 根據螢幕大小縮放字體 */
+        font-size: clamp(32px, 5vw, 64px);
         font-weight: bold;
         margin: 0 0 20px 0;
         line-height: 1.1;
-        color: #000000; /* 已改為黑色 */
+        color: #000000;
     }
 
     .sub-title {
         font-size: clamp(18px, 2vw, 24px);
         letter-spacing: 1px;
         margin: 0;
-        color: #000000; /* 已改為黑色 */
+        color: #000000;
     }
 
-    .cta-button {
-        display: inline-block;
-        color: #000000; /* 已改為黑色 */
-        text-decoration: none;
-        font-size: 14px;
-        border-bottom: 1px solid #000000; /* 底線改為黑色 */
-        padding-bottom: 5px;
-        transition: opacity 0.3s;
-    }
-
-    .cta-button:hover {
-        opacity: 0.7;
-    }
-
-    /* 手機版適應：改為垂直堆疊 */
     @media (max-width: 768px) {
         .intro-fullscreen {
             flex-direction: column;
@@ -391,10 +363,10 @@
         .main-hero, .side-column {
             flex: 0 0 auto;
             width: 100%;
-            height: 60vh; /* 手機版左側大圖佔 60% 高 */
+            height: 60vh;
         }
         .sub-hero {
-            height: 40vh; /* 手機版右側每圖佔 40% 高 */
+            height: 40vh;
         }
     }
 </style>
