@@ -13,99 +13,78 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background: linear-gradient(to bottom, #000000 0%, #050c1a 50%, #102a4d 100%);
-            color: white;
+            background: #ffffff;
             font-family: 'Bariol Bold', sans-serif;
             overflow-x: hidden;
         }
 
-        /* --- 2. Header (深藍風格) --- */
+        /* --- 2. Header (同步 About 頁風格) --- */
         header {
             width: 100%; padding: 15px 8%; 
             display: flex; justify-content: space-between; align-items: center;
             position: fixed; top: 0; left: 0; 
-            background: rgba(5, 12, 26, 0.95);
-            backdrop-filter: blur(10px);
+            background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
             z-index: 1000;
-            border-bottom: 1px solid rgba(96, 165, 250, 0.3);
         }
-
-        .logo img { height: 40px; }
+        .logo img { height: 40px; transform: translateX(-38px); }
         .nav-wrapper { display: flex; align-items: center; gap: 30px; }
         nav ul { list-style: none; display: flex; gap: 30px; }
         nav a { text-decoration: none; color: white; font-size: 14px; text-transform: uppercase; opacity: 0.8; }
         nav a:hover { color: #60a5fa; }
+        .lang-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; cursor: pointer; }
 
-        /* --- 3. 3D 展示區 --- */
+        /* --- 3. 3D 產品展示區 --- */
         .stars-container {
             position: relative;
-            width: 100%; height: 95vh;
+            width: 100%; height: 90vh;
             display: flex; justify-content: center; align-items: center;
             perspective: 2500px;
-            padding-top: 100px;
+            padding-top: 150px;
+            background: linear-gradient(to bottom, #000000 0%, #050c1a 50%, #102a4d 100%);
         }
 
-        /* --- 4. 舞台與托盤鋼環 --- */
-        .stage {
-            width: 100%; height: 100%;
-            position: relative;
-            transform-style: preserve-3d;
-            display: flex; justify-content: center; align-items: center;
-        }
-
+        .stage { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; }
         .orbit-ring {
-            position: absolute;
-            width: 800px; height: 800px;
-            border: 6px solid #4a4a4a;
-            border-radius: 50%;
-            /* 關鍵：傾斜並托在相片群下方 */
-            transform: rotateX(85deg) translateZ(-250px); 
-            box-shadow: 0 0 30px rgba(96, 165, 250, 0.2);
-            pointer-events: none;
+            position: absolute; width: 800px; height: 800px; border: 6px solid #4a4a4a; border-radius: 50%;
+            left: 50%; top: 50%; margin-left: -400px; margin-top: -400px;
+            transform: rotateX(85deg) translateZ(-250px); pointer-events: none;
         }
 
         .carousel { transform-style: preserve-3d; animation: rotateCarousel 25s linear infinite; }
         @keyframes rotateCarousel { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
 
-        .product-card {
-            position: absolute;
-            width: 280px;
-            left: 50%; top: 45%; /* 稍微置中偏上 */
-            margin-left: -140px; margin-top: -120px;
-            text-align: center;
-        }
-
+        .product-card { position: absolute; width: 280px; left: 50%; top: 45%; margin-left: -140px; margin-top: -120px; text-align: center; }
         .p1 { transform: rotateY(0deg) translateZ(400px); }
         .p2 { transform: rotateY(72deg) translateZ(400px); }
         .p3 { transform: rotateY(144deg) translateZ(400px); }
         .p4 { transform: rotateY(216deg) translateZ(400px); }
         .p5 { transform: rotateY(288deg) translateZ(400px); }
-
-        .product-card img { width: 100%; animation: billboardCounter 25s linear infinite; }
         
-        /* Aptos 粗體發光字 */
-        .product-label {
-            margin-top: 15px;
-            font-family: 'Aptos Bold', sans-serif;
-            font-size: 18px;
-            color: #ffffff;
-            text-shadow: 0 0 8px #fff, 0 0 15px #60a5fa;
-            animation: billboardCounter 25s linear infinite;
-        }
-
+        .product-card img { width: 100%; animation: billboardCounter 25s linear infinite; }
+        .product-label { margin-top: 15px; font-family: 'Aptos Bold', sans-serif; font-size: 18px; color: #ffffff; text-shadow: 0 0 8px #fff; animation: billboardCounter 25s linear infinite; }
         @keyframes billboardCounter { from { transform: rotateY(0deg); } to { transform: rotateY(-360deg); } }
-        .p1 img, .p1 .product-label { animation-delay: 0s; }
-        .p2 img, .p2 .product-label { animation-delay: -5s; }
-        .p3 img, .p3 .product-label { animation-delay: -10s; }
-        .p4 img, .p4 .product-label { animation-delay: -15s; }
-        .p5 img, .p5 .product-label { animation-delay: -20s; }
 
-        /* --- 5. Footer (深藍風格) --- */
-        footer { 
-            background: rgba(5, 12, 26, 1); 
-            padding: 60px 8%; 
-            border-top: 1px solid rgba(96, 165, 250, 0.3);
+        /* --- 4. 新增的介紹區塊 (白色背景) --- */
+        .info-section {
+            padding: 100px 10%;
+            background: #ffffff;
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 60px;
         }
+        .info-text { flex: 1; color: #0a1931; }
+        .info-text h2 { font-size: 42px; margin-bottom: 25px; color: #1e4b8a; }
+        .info-text p { font-size: 18px; line-height: 1.8; margin-bottom: 20px; }
+        .info-img { flex: 1; text-align: right; }
+        .info-img img { width: 100%; max-width: 500px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+        /* --- 5. Footer (同步 About 頁風格) --- */
+        footer { 
+            background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
+            padding: 80px 8% 40px 8%; color: white;
+        }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; }
+        .footer-section h4 { color: #60a5fa; margin-bottom: 20px; }
+        .copyright { text-align: center; margin-top: 40px; color: rgba(255,255,255,0.3); font-size: 12px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
     </style>
 </head>
 <body>
@@ -130,8 +109,30 @@
         </div>
     </main>
 
+    <section class="info-section">
+        <div class="info-text">
+            <h2>智聯生活，無界體驗</h2>
+            <p>透過 URMET 專業讀卡器與 URMET PLUS App 的無縫結合，我們為您打造全方位的智能門禁生態系統。</p>
+            <p>無論是<strong>門禁出入 (Access Control)</strong>、<strong>設施預約 (Facility Booking)</strong>、<strong>訪客邀請 (Invitation)</strong>，還是實時<strong>緊急警報 (Panic Alarm)</strong>，一切皆在指尖掌控。</p>
+            <p>讓科技簡化您的管理，讓生活更安全、便捷、高效。</p>
+        </div>
+        <div class="info-img">
+            <img src="intro.png" alt="URMET System">
+        </div>
+    </section>
+
     <footer>
-        <div style="text-align: center; color: white;">© 2026 URMET JES LIMITED - ALL RIGHTS RESERVED</div>
+        <div class="footer-content">
+            <div class="footer-section">
+                <img src="logo.png" style="height: 35px; margin-bottom: 20px;">
+                <p>香港柴灣永泰道60號<br>柴灣工業城一期7期11-14室</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <a href="#">Help Desk</a> | <a href="privacy.html">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="copyright">© 2026 URMET JES LIMITED - ALL RIGHTS RESERVED</div>
     </footer>
 
 </body>
