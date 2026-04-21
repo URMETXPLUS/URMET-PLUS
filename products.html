@@ -24,7 +24,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- 2. Header --- */
+        /* --- 2. Header (保持原樣) --- */
         header {
             width: 100%; 
             padding: 12px 8%; 
@@ -45,34 +45,40 @@
         nav ul { list-style: none; display: flex; gap: 30px; }
         nav a { text-decoration: none; color: white; font-size: 14px; text-transform: uppercase; letter-spacing: 1.2px; opacity: 0.8; transition: 0.3s; }
         nav a:hover { opacity: 1; color: #60a5fa; }
-        .lang-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; cursor: pointer; }
+        .lang-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: 0.3s; }
 
         /* --- 3. 3D 展示區 (深藍漸變背景) --- */
         .stars-container {
             position: relative;
             width: 100%;
             height: 100vh;
+            /* 漸變深藍色背景 */
             background: radial-gradient(circle at center, #102a4d 0%, #050c1a 100%);
             overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            perspective: 2000px;
+            /* 調整透視點，讓側面看起來不會過度扁平 */
+            perspective: 2500px;
         }
 
+        /* 3D 舞台 */
         .stage {
             width: 400px;
             height: 300px;
             position: relative;
             transform-style: preserve-3d;
+            /* 移除 tilt (傾斜)，傾斜會導致側面卡片看起來變形 */
+            transform: rotateX(0deg); 
         }
 
-        /* 旋轉容器 - 速度加快至 15s */
+        /* 旋轉容器 - 控制 4 張卡片的位置旋轉 */
         .carousel {
             width: 100%;
             height: 100%;
             position: absolute;
             transform-style: preserve-3d;
+            /* 速度保持在 15s */
             animation: rotateCarousel 15s linear infinite;
         }
 
@@ -83,16 +89,19 @@
 
         .product-card {
             position: absolute;
-            width: 420px;
+            width: 420px; /* 相片放大 */
             height: 280px;
             left: 50%;
             top: 50%;
             margin-left: -210px;
             margin-top: -140px;
             transform-style: preserve-3d;
+            /* 確保背面不顯示，防止轉到背面時出現反像 */
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
 
-        /* 3D 佈局：均勻分佈在圓周上 */
+        /* 佈局位置固定 */
         .p1 { transform: rotateY(0deg) translateZ(350px); }
         .p2 { transform: rotateY(90deg) translateZ(350px); }
         .p3 { transform: rotateY(180deg) translateZ(350px); }
@@ -103,20 +112,36 @@
             height: 100%;
             object-fit: contain;
             background: transparent;
-            /* 核心修正：與容器旋轉方向相反，確保正面對觀眾 */
-            animation: keepFacing 15s linear infinite;
+            cursor: pointer;
             transition: transform 0.4s ease;
         }
 
-        /* 滑鼠懸停依然保有放大效果，但不會停下旋轉 */
-        .product-card:hover img {
-            transform: scale(1.15);
-            z-index: 100;
-        }
+        /* --- 核心技術修正：Billboard Animation --- */
+        /* 為每張圖片設置單獨的反向旋轉動畫，
+           起動點加上修正角度（0, -90, -180, -270）來補償佈局角度，
+           這能確保圖片在 3D 空間中不論移動到何處，
+           其初始 0 度角永遠垂直於螢幕看向你。 */
 
-        @keyframes keepFacing {
+        .p1 img { animation: billboardFacing1 15s linear infinite; }
+        .p2 img { animation: billboardFacing2 15s linear infinite; }
+        .p3 img { animation: billboardFacing3 15s linear infinite; }
+        .p4 img { animation: billboardFacing4 15s linear infinite; }
+
+        @keyframes billboardFacing1 {
             from { transform: rotateY(0deg); }
             to { transform: rotateY(-360deg); }
+        }
+        @keyframes billboardFacing2 {
+            from { transform: rotateY(-90deg); }
+            to { transform: rotateY(-450deg); }
+        }
+        @keyframes billboardFacing3 {
+            from { transform: rotateY(-180deg); }
+            to { transform: rotateY(-540deg); }
+        }
+        @keyframes billboardFacing4 {
+            from { transform: rotateY(-270deg); }
+            to { transform: rotateY(-630deg); }
         }
 
         /* --- 4. Demo Section --- */
@@ -167,7 +192,7 @@
             .logo img { transform: none; }
             header nav { display: none; }
             .product-card { width: 300px; height: 200px; margin-left: -150px; }
-            /* 行動裝置縮短半徑 */
+            /* 行動裝置縮短半徑以防圖片超出螢幕 */
             .p1 { transform: rotateY(0deg) translateZ(220px); }
             .p2 { transform: rotateY(90deg) translateZ(220px); }
             .p3 { transform: rotateY(180deg) translateZ(220px); }
