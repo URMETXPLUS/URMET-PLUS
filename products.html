@@ -17,11 +17,11 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
+            /* 背景：從上方深黑漸變到下方深藍 */
             background: linear-gradient(to bottom, #000000 0%, #050c1a 50%, #102a4d 100%);
             color: white;
             font-family: 'Bariol Bold', sans-serif;
             overflow-x: hidden;
-            height: 100vh;
             -webkit-font-smoothing: antialiased;
         }
 
@@ -49,16 +49,17 @@
         nav a:hover { opacity: 1; color: #60a5fa; }
         .lang-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: 0.3s; }
 
-        /* --- 3. Cyberpunk 背景 --- */
+        /* --- 3. Cyberpunk 背景與 3D 展示區 (已上移) --- */
         .stars-container {
             position: relative;
             width: 100%;
-            height: 100vh;
+            height: 85vh; /* 縮小容器高度，讓內容在視覺上上移 */
             overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
             perspective: 2500px;
+            padding-top: 100px; /* 為 fixed header 留白 */
         }
 
         .stars-container::before {
@@ -87,14 +88,14 @@
             z-index: 2;
         }
 
-        /* 鋼鐵軌跡環：縮小尺寸並下移至相片下方 */
+        /* 鋼鐵軌跡環 (按比例放置在相片轉動下方) */
         .orbit-ring {
             position: absolute;
-            width: 720px; /* 按比例縮小以匹配 350px 的旋轉半徑 */
+            width: 720px; /* 對應 350px 旋轉半徑 */
             height: 720px;
             border: 5px solid #4a4a4a; /* 鋼鐵灰 */
             border-radius: 50%;
-            /* 關鍵：將圓環平躺並垂直向下移動，使其位於產品底部 */
+            /* 關鍵：傾斜視角並下移 z 軸，使其位於底部 */
             transform: rotateX(82deg) translateZ(-140px); 
             box-shadow: 
                 0 0 15px rgba(0, 0, 0, 0.8),
@@ -104,7 +105,7 @@
             pointer-events: none;
         }
 
-        /* 旋轉容器 */
+        /* 旋轉容器 (25秒慢速) */
         .carousel {
             position: relative;
             transform-style: preserve-3d;
@@ -118,16 +119,17 @@
 
         .product-card {
             position: absolute;
-            width: 220px; /* 圖片縮小一點 */
+            width: 220px; /* 圖片縮小一些 */
             left: 50%;
-            top: 50%;
+            /* 將 top 位置從 50% 移至 45%，使相片移高 */
+            top: 45%; 
             margin-left: -110px;
             margin-top: -110px;
             transform-style: preserve-3d;
             text-align: center;
         }
 
-        /* 5個位置 (半徑改為 350px 讓結構更緊湊) */
+        /* 5個位置 */
         .p1 { transform: rotateY(0deg) translateZ(350px); }
         .p2 { transform: rotateY(72deg) translateZ(350px); }
         .p3 { transform: rotateY(144deg) translateZ(350px); }
@@ -137,15 +139,25 @@
         .product-card img {
             width: 100%;
             height: auto;
+            object-fit: contain;
             filter: drop-shadow(0 0 12px rgba(96, 165, 250, 0.4));
+            /* 核心：反向旋轉動畫保持正面 */
             animation: billboardCounter 25s linear infinite;
+            transition: 0.3s;
         }
 
+        /* --- 文字標籤修訂：發光的白色 --- */
         .product-label {
             margin-top: 10px;
             font-size: 16px;
-            color: #60a5fa;
-            text-shadow: 0 0 8px rgba(96, 165, 250, 0.8);
+            color: #ffffff; /* 改為白色 */
+            /* 新增：白色 neon 發光效果 */
+            text-shadow: 
+                0 0 5px #fff,
+                0 0 10px #fff,
+                0 0 15px #fff,
+                0 0 20px #fff,
+                0 0 35px #fff;
             letter-spacing: 0.5px;
             white-space: nowrap;
             animation: billboardCounter 25s linear infinite;
@@ -157,14 +169,14 @@
             to { transform: rotateY(-360deg); }
         }
 
-        /* 補償初始角度 */
+        /* 動畫延遲補償 */
         .p1 img, .p1 .product-label { animation-delay: 0s; }
         .p2 img, .p2 .product-label { animation-delay: -5s; }
         .p3 img, .p3 .product-label { animation-delay: -10s; }
         .p4 img, .p4 .product-label { animation-delay: -15s; }
         .p5 img, .p5 .product-label { animation-delay: -20s; }
 
-        /* --- 5. Demo & Footer --- */
+        /* --- 5. Demo & Footer (保持) --- */
         .demo-section {
             background: #000;
             padding: 60px 8%;
@@ -191,11 +203,13 @@
         .footer-section p { color: rgba(255,255,255,0.6); font-size: 14px; }
         .copyright { text-align: center; margin-top: 30px; color: rgba(255,255,255,0.3); font-size: 11px; }
 
-        /* 行動端適應 */
+        /* 手機端適應 */
         @media (max-width: 768px) {
+            .stars-container { height: 70vh; padding-top: 80px; }
             .orbit-ring { width: 450px; height: 450px; transform: rotateX(80deg) translateZ(-100px); }
             .p1, .p2, .p3, .p4, .p5 { transform: rotateY(var(--angle)) translateZ(220px); }
-            .product-card { width: 150px; }
+            .product-card { width: 150px; top: 40%; }
+            .product-label { font-size: 14px; }
         }
     </style>
 </head>
