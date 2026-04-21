@@ -206,15 +206,13 @@
             align-items: center;
             padding: 10px;
             border-radius: 20px;
-            /* 修改此處：增加平滑動畫效果 */
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
         }
 
-        /* 新增：滑鼠懸停在整個項目上時，圖示放大的效果 */
         .feature-item:hover .feature-icon {
-            transform: scale(1.15); /* 放大 1.15 倍 */
-            filter: drop-shadow(0 20px 30px rgba(0,122,255,0.25)); /* 懸浮時增加藍色陰影感 */
+            transform: scale(1.15); 
+            filter: drop-shadow(0 20px 30px rgba(0,122,255,0.25)); 
         }
 
         .feature-icon {
@@ -222,7 +220,6 @@
             width: auto;
             margin-bottom: 15px;
             filter: drop-shadow(0 15px 25px rgba(0,0,0,0.12));
-            /* 必須包含 transform 的 transition */
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
@@ -237,7 +234,7 @@
         }
         
         .feature-item:hover .feature-text {
-            color: #007aff; /* 懸停時文字變色 */
+            color: #007aff; 
         }
 
         /* --- 6. White Content Section --- */
@@ -249,15 +246,16 @@
         }
         .product-row { 
             max-width: 1400px; 
-            margin: 0 auto 30px auto; 
+            margin: 50px auto 30px auto; /* 調整：增加頂部空間 */
             display: flex; 
             align-items: center; 
             justify-content: space-between; 
             gap: 80px; 
         }
         .product-text { flex: 1; min-width: 320px; }
-        .product-text h2 { font-size: 38px; color: #007aff; margin-bottom: 20px; }
-        .product-text p { font-size: 17px; line-height: 1.8; color: #333; margin-bottom: 30px; }
+        /* 調整：明確指定字體 */
+        .product-text h2 { font-family: 'Bariol Bold', sans-serif; font-size: 38px; color: #007aff; margin-bottom: 20px; }
+        .product-text p { font-family: 'Bariol Bold', sans-serif; font-size: 17px; line-height: 1.8; color: #333; margin-bottom: 30px; }
         .tag-btn { display: inline-block; padding: 14px 35px; background: #007aff; color: white; border-radius: 30px; text-decoration: none; transition: 0.3s; }
         .row-image { width: 100%; height: auto; border-radius: 25px; box-shadow: 0 25px 50px rgba(0,0,0,0.1); }
 
@@ -343,7 +341,7 @@
         </div>
     </section>
 
-<section class="white-section">
+    <section class="white-section">
         <div class="product-row">
             <div class="product-image-container" style="flex: 1;">
                 <img src="home1.png" alt="Access" class="row-image">
