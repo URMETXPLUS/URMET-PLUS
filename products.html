@@ -3,31 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ONYX - URMET PLUS</title>
+    <title>Products - URMET PLUS</title>
     
     <style>
-        /* --- 1. Custom Font Integration --- */
+        /* --- 1. 字體與基礎設定 --- */
         @font-face {
             font-family: 'Bariol Bold';
-            src: url('fonts/Bariol-Bold.woff2') format('woff2'),
-                 url('fonts/Bariol-Bold.woff') format('woff');
+            src: url('fonts/Bariol-Bold.woff2') format('woff2');
             font-weight: normal;
             font-style: normal;
         }
 
-        /* --- 2. Global Styles --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background: #ffffff;
-            color: #0a1931;
+            background: #050c1a;
+            color: white;
             font-family: 'Bariol Bold', sans-serif;
-            width: 100%;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- 3. Navigation (Updated to match index.html) --- */
+        /* --- 2. Header (保留原有樣式) --- */
         header {
             width: 100%; 
             padding: 12px 8%; 
@@ -43,98 +40,124 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.4);
         }
 
-        .logo img { 
-            height: 40px; 
-            width: auto; 
-            display: block; 
-            transform: translateX(-38px); 
-        }
-
-        .nav-wrapper { 
-            display: flex; 
-            align-items: center; 
-            gap: 30px; 
-            height: 100%; 
-        }
-        
-        nav {
-            position: relative;
-            display: flex;
-            align-items: center;
-            height: 40px; 
-        }
-
+        .logo img { height: 40px; width: auto; transform: translateX(-38px); }
+        .nav-wrapper { display: flex; align-items: center; gap: 30px; }
         nav ul { list-style: none; display: flex; gap: 30px; }
-        
-        nav a { 
-            text-decoration: none; 
-            color: white; 
-            font-size: 14px; 
-            text-transform: uppercase; 
-            letter-spacing: 1.2px; 
-            opacity: 0.8; 
-            transition: 0.3s; 
-        }
-
+        nav a { text-decoration: none; color: white; font-size: 14px; text-transform: uppercase; letter-spacing: 1.2px; opacity: 0.8; transition: 0.3s; }
         nav a:hover { opacity: 1; color: #60a5fa; }
+        .lang-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; cursor: pointer; }
 
-        .lang-btn { 
-            background: rgba(255, 255, 255, 0.1); 
-            border: 1px solid rgba(255, 255, 255, 0.4); 
-            color: white; 
-            padding: 8px 16px; 
-            border-radius: 20px; 
-            font-size: 12px; 
-            cursor: pointer; 
-            transition: 0.3s; 
+        /* --- 3. 星空背景與 3D 展現區 --- */
+        .stars-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1500px; /* 控制 3D 距離感 */
         }
 
-        /* --- 4. Product Content Styles --- */
-        .product-main { padding-top: 120px; }
+        /* 簡單的星空點綴效果 */
+        .stars-container::before {
+            content: "";
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: transparent;
+            box-shadow: 10vw 20vh #fff, 30vw 50vh #fff, 70vw 10vh #fff, 85vw 80vh #fff, 40vw 90vh #fff, 15vw 40vh #fff;
+            animation: starFlicker 3s infinite alternate;
+        }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+        @keyframes starFlicker {
+            from { opacity: 0.3; }
+            to { opacity: 1; }
+        }
 
-        .hero-text { text-align: center; padding: 60px 0; }
-        .range-label { color: #007aff; text-transform: uppercase; letter-spacing: 2px; font-size: 14px; margin-bottom: 15px; display: block; }
-        .main-title { font-size: clamp(32px, 5vw, 56px); line-height: 1.1; margin-bottom: 25px; }
-        .main-title span { color: #007aff; }
-        .hero-description { max-width: 800px; margin: 0 auto; font-size: 18px; color: #444; line-height: 1.6; }
+        /* 3D 旋轉舞台 */
+        .stage {
+            width: 400px;
+            height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            /* 關鍵：傾斜視角 (側面看圓圈) */
+            transform: rotateX(-15deg) rotateY(0deg);
+        }
 
-        .full-width-img { width: 100%; height: auto; border-radius: 25px; margin-bottom: 60px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        /* 旋轉動畫 */
+        .carousel {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            animation: rotateCarousel 20s linear infinite;
+        }
 
-        .feature-grid-img { width: 100%; height: auto; margin: 40px 0 80px 0; }
+        @keyframes rotateCarousel {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
 
-        .content-row { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 100px; }
-        .content-row.reverse { direction: rtl; }
-        .content-row.reverse .text-box { direction: ltr; }
+        .product-card {
+            position: absolute;
+            width: 280px;
+            height: 180px;
+            left: 50%;
+            top: 50%;
+            margin-left: -140px;
+            margin-top: -90px;
+            transform-style: preserve-3d;
+        }
 
-        .text-box h2 { font-size: 32px; color: #0a1931; margin-bottom: 20px; }
-        .text-box p { font-size: 17px; color: #555; line-height: 1.7; margin-bottom: 20px; }
-        .text-box ul { list-style: none; }
-        .text-box li { margin-bottom: 15px; font-size: 16px; position: relative; padding-left: 25px; }
-        .text-box li::before { content: "•"; color: #007aff; font-weight: bold; position: absolute; left: 0; font-size: 20px; }
+        /* 四張圖片的位置佈局：半徑 450px */
+        .p1 { transform: rotateY(0deg) translateZ(450px); }
+        .p2 { transform: rotateY(90deg) translateZ(450px); }
+        .p3 { transform: rotateY(180deg) translateZ(450px); }
+        .p4 { transform: rotateY(270deg) translateZ(450px); }
 
-        .row-img { width: 100%; height: auto; border-radius: 20px; }
+        .product-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: rgba(10, 25, 49, 0.6);
+            border: 2px solid #007aff;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 30px rgba(0, 122, 255, 0.4), inset 0 0 15px rgba(0, 122, 255, 0.2);
+            /* 反向旋轉：讓圖片永遠面向觀眾 */
+            animation: keepFacing 20s linear infinite;
+            transition: transform 0.3s ease;
+        }
 
-        /* --- 5. Footer --- */
+        .product-card:hover img {
+            border-color: #60a5fa;
+            box-shadow: 0 0 50px rgba(96, 165, 250, 0.8);
+        }
+
+        @keyframes keepFacing {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(-360deg); }
+        }
+
+        /* --- 4. Footer (保留原有樣式) --- */
         footer { 
             background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
             padding: 80px 8% 40px 8%; 
             color: white; 
-            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
         .footer-section h4 { color: #60a5fa; margin-bottom: 20px; font-size: 18px; text-transform: uppercase; }
         .footer-section p, .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin-bottom: 10px; font-size: 15px; }
-        .footer-section a:hover { color: white; }
         .copyright { text-align: center; padding-top: 60px; color: rgba(255,255,255,0.3); font-size: 12px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; }
 
         @media (max-width: 768px) {
-            .content-row { grid-template-columns: 1fr; gap: 30px; text-align: center; }
-            .content-row.reverse { direction: ltr; }
-            .text-box li { text-align: left; }
-            header nav { display: none; }
             .logo img { transform: none; }
+            header nav { display: none; }
+            .p1, .p2, .p3, .p4 { translateZ(250px); } /* 手機版縮小半徑 */
+            .product-card { width: 200px; height: 130px; margin-left: -100px; }
         }
     </style>
 </head>
@@ -158,48 +181,26 @@
         </div>
     </header>
 
-    <main class="product-main">
-        <div class="container">
-            
-            <div class="hero-text">
-                <span class="range-label">ENTRY PANEL RANGE</span>
-                <h1 class="main-title">ONYX<br><span>The new concept</span> in access control</h1>
-                <p class="hero-description">
-                    Onyx is Urmet's new IP entry panel with a 10" touchscreen display and facial recognition function, designed to ensure the highest level of security in access control.
-                </p>
-            </div>
-
-            <img src="product1.png" alt="Onyx Panel and Architecture" class="full-width-img">
-
-            <img src="product2.png" alt="Features Icons" class="feature-grid-img">
-
-            <div class="content-row">
-                <div class="text-box">
-                    <h2>Design and technology total black</h2>
-                    <p>With its clean lines, total black finish, and large touchscreen display, the new ONYX entry panel is a symbol of elegance and simplicity. Advanced IP technology, different input control modes, and two-factor authentication redefine access control security standards.</p>
+    <main class="stars-container">
+        <div class="stage">
+            <div class="carousel">
+                <div class="product-card p1">
+                    <img src="product1.png" alt="Product 1">
                 </div>
-                <img src="product3.png" alt="Onyx Device Design" class="row-img">
-            </div>
-
-            <div class="content-row reverse">
-                <div class="text-box">
-                    <h2>ONYX elevates access protection</h2>
-                    <ul>
-                        <li><strong>Facial recognition:</strong> biometric, secure, intelligent. Each user creates their own profile: one account, one face.</li>
-                        <li><strong>Two-way authentication:</strong> Combining facial biometric recognition with a personal code or QR code for maximum security.</li>
-                    </ul>
+                <div class="product-card p2">
+                    <img src="product2.png" alt="Product 2">
                 </div>
-                <img src="product4.png" alt="Facial Recognition Technology" class="row-img">
-            </div>
-
-            <div class="content-row">
-                <div class="text-box">
-                    <h2>Smartphone management with the CallMe Uin app</h2>
-                    <p>The Urmet CallMe Uin app allows you to manage guests and external access from your smartphone in complete security. Generate temporary, personalized passes for visitors in different modes to suit every need.</p>
+                <div class="product-card p3">
+                    <img src="product3.png" alt="Product 3">
                 </div>
-                <img src="product5.png" alt="CallMe Uin App Management" class="row-img">
+                <div class="product-card p4">
+                    <img src="product4.png" alt="Product 4">
+                </div>
             </div>
+        </div>
 
+        <div style="position: absolute; bottom: 10%; text-align: center; width: 100%;">
+            <h2 style="letter-spacing: 5px; opacity: 0.6; font-size: 24px;">PRODUCT SHOWCASE</h2>
         </div>
     </main>
 
