@@ -54,62 +54,47 @@
         nav a:hover { opacity: 1; color: #60a5fa; }
         .lang-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: 0.3s; }
 
-        /* --- 3. 新增：白色介紹區塊 --- */
-        .intro-section {
+        /* --- 3. 新增：白色介紹區塊樣式 (按截圖內容) --- */
+        .advanced-intro {
             background: #ffffff;
             color: #333;
-            padding: 160px 8% 80px 8%; 
+            padding: 100px 8%;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            min-height: 400px;
+            gap: 40px;
         }
 
-        .intro-text {
+        .advanced-intro-text {
             flex: 1;
-            max-width: 600px;
+            max-width: 650px;
         }
 
-        .intro-text h2 {
+        .advanced-intro-text h2 {
             font-size: 48px;
-            color: #007bff; 
-            margin-bottom: 20px;
+            color: #000;
+            margin-bottom: 25px;
             font-family: 'Aptos Bold', sans-serif;
+            line-height: 1.2;
         }
 
-        .intro-text p {
+        .advanced-intro-text p {
             font-size: 18px;
             line-height: 1.6;
-            color: #666;
-            margin-bottom: 30px;
+            color: #555;
         }
 
-        .btn-feature {
-            background: #007bff;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-size: 16px;
-            display: inline-block;
-            transition: 0.3s;
-        }
-
-        .btn-feature:hover {
-            background: #0056b3;
-            box-shadow: 0 4px 15px rgba(0,123,255,0.3);
-        }
-
-        .intro-image {
-            flex: 1;
+        .advanced-intro-image {
+            flex: 0 0 40%;
             display: flex;
             justify-content: flex-end;
         }
 
-        .intro-image img {
-            max-width: 400px;
+        .advanced-intro-image img {
             width: 100%;
+            max-width: 450px;
             height: auto;
+            border-radius: 15px;
         }
 
         /* --- 4. 3D 展示區 --- */
@@ -218,12 +203,10 @@
         .copyright { text-align: center; padding-top: 60px; color: rgba(255,255,255,0.3); font-size: 12px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; }
 
         @media (max-width: 768px) {
-            .intro-section { flex-direction: column; text-align: center; padding-top: 120px; }
-            .intro-image { justify-content: center; margin-top: 40px; }
-            .intro-text h2 { font-size: 32px; }
+            .advanced-intro { flex-direction: column; text-align: center; padding: 60px 8%; }
+            .advanced-intro-image { justify-content: center; margin-top: 30px; }
             .stage { width: 300px; height: 200px; }
             .product-card { width: 300px; height: 200px; margin-left: -150px; }
-            .p1, .p2, .p3, .p4, .p5 { transform: rotateY(var(--ry)) translateZ(300px); }
         }
     </style>
 </head>
@@ -262,125 +245,51 @@
         </div>
     </div>
 
-
-    
     <div class="side-column">
         <div class="grid-box sub-hero">
             <img src="intro2.png" alt="Smart Access">
-            <div class="text-overlay small">
-
-                
-            </div>
+            <div class="text-overlay small"></div>
         </div>
     </div>
 </section>
 
 <style>
-    body, html {
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-    }
-
-    .intro-fullscreen {
-        display: flex;
-        width: 100vw;
-        height: 100vh;
-        background-color: #000;
-    }
-
-    .grid-box {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .main-hero {
-        flex: 0 0 65%;
-    }
-
-    .side-column {
-        flex: 0 0 35%;
-        display: flex;
-        flex-direction: column;
-    }
-
-    /* 使唯一的子方格填滿父容器高度 */
-    .sub-hero {
-        flex: 1;
-        border-left: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .grid-box img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-
-    .grid-box:hover img {
-        transform: scale(1.08);
-    }
-
-    .text-overlay {
-        position: absolute;
-        bottom: 10%;
-        left: 1.8%;
-        color: #000000;
-        z-index: 2;
-    }
-
-    .text-overlay.small {
-        bottom: 15%;
-        left: 10%;
-    }
-
-    .tagline {
-        font-size: 14px;
-        letter-spacing: 3px;
-        margin-bottom: 10px;
-        opacity: 0.9;
-        color: #000000;
-    }
-
-    .title {
-        font-size: clamp(32px, 5vw, 64px);
-        font-weight: bold;
-        margin: 0 0 20px 0;
-        line-height: 1.1;
-        color: #000000;
-    }
-
-    .sub-title {
-        font-size: clamp(18px, 2vw, 24px);
-        letter-spacing: 1px;
-        margin: 0;
-        color: #000000;
-    }
-
+    body, html { margin: 0; padding: 0; overflow-x: hidden; }
+    .intro-fullscreen { display: flex; width: 100vw; height: 100vh; background-color: #000; }
+    .grid-box { position: relative; overflow: hidden; }
+    .main-hero { flex: 0 0 65%; }
+    .side-column { flex: 0 0 35%; display: flex; flex-direction: column; }
+    .sub-hero { flex: 1; border-left: 1px solid rgba(255,255,255,0.1); }
+    .grid-box img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
+    .grid-box:hover img { transform: scale(1.08); }
+    .text-overlay { position: absolute; bottom: 10%; left: 1.8%; color: #000000; z-index: 2; }
+    .tagline { font-size: 14px; letter-spacing: 3px; margin-bottom: 10px; opacity: 0.9; color: #000000; }
+    .title { font-size: clamp(32px, 5vw, 64px); font-weight: bold; margin: 0 0 20px 0; line-height: 1.1; color: #000000; }
     @media (max-width: 768px) {
-        .intro-fullscreen {
-            flex-direction: column;
-            height: auto;
-        }
-        .main-hero, .side-column {
-            flex: 0 0 auto;
-            width: 100%;
-            height: 60vh;
-        }
-        .sub-hero {
-            height: 40vh;
-        }
+        .intro-fullscreen { flex-direction: column; height: auto; }
+        .main-hero, .side-column { flex: 0 0 auto; width: 100%; height: 60vh; }
+        .sub-hero { height: 40vh; }
     }
 </style>
 
-        <section class="second-section">
+    <section class="second-section">
         <div class="second-main">
             <img src="second1.png" alt="Second Section Feature">
         </div>
         <div class="second-side">
             <div class="second-box"></div>
             <div class="second-box"></div>
+        </div>
+    </section>
+
+    <section class="advanced-intro">
+        <div class="advanced-intro-text">
+            <h2>Advanced control and connection</h2>
+            <p>Onyx Picture-in-Picture technology enables <strong>two-way audio and video communication</strong> between the external panel and the internal monitor, allowing both images to be viewed simultaneously.<br><br>
+            Two-way audio-video calling is available for Urmet VOG7 and MAX10 IP video door phones.</p>
+        </div>
+        <div class="advanced-intro-image">
+            <img src="image_9eba86.png" alt="Control Panel">
         </div>
     </section>
     
