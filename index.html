@@ -28,7 +28,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- 3. Navigation --- */
+        /* --- 3. Navigation (Header 改動處) --- */
         header {
             width: 100%; 
             padding: 12px 8%; 
@@ -38,12 +38,13 @@
             position: fixed; 
             top: 0; 
             left: 0; 
-            background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
+            background: rgba(10, 25, 49, 0.95);
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
             z-index: 1000;
+            /* 關鍵修改：在 header 底部加上橫跨全螢幕的長線 */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        /* Logo 移向左方 1cm 並放大 */
         .logo img { 
             height: 40px; 
             width: auto; 
@@ -55,14 +56,14 @@
             display: flex; 
             align-items: center; 
             gap: 30px; 
-            height: 100%; /* 確保容器高度填滿 header */
+            height: 100%; 
         }
         
         nav {
             position: relative;
             display: flex;
             align-items: center;
-            height: 40px; /* 給予導航一個固定高度以便定位線條 */
+            height: 40px; 
         }
 
         nav ul { list-style: none; display: flex; gap: 30px; }
@@ -77,17 +78,7 @@
             transition: 0.3s; 
         }
 
-        /* 修改：將白色線緊貼在導航區域底部 */
-        nav::after { 
-            content: ""; 
-            position: absolute; 
-            bottom: 0; /* 緊貼底部 */
-            left: 0; 
-            width: 100%; 
-            height: 1px; /* 幼線 */
-            background: white; 
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5); 
-        }
+        /* 關鍵修改：已刪除原本的 nav::after 短線代碼 */
 
         nav a:hover { opacity: 1; color: #60a5fa; }
 
@@ -115,7 +106,6 @@
             margin: 0 auto;
         }
 
-        /* 文字移向左方 3cm */
         .text-section {
             text-align: left;
             padding-left: 0;
@@ -162,7 +152,6 @@
             transform: translateX(5px);
         }
 
-        /* 圖片移向右方 3cm */
         .reader-img { 
             max-width: 90%; 
             height: auto; 
@@ -278,6 +267,7 @@
             .logo img { transform: none; }
             .text-section p { margin: 0 auto; }
             .product-row { flex-direction: column; text-align: center; }
+            .feature-container { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
