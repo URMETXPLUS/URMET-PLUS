@@ -54,7 +54,7 @@
         nav a:hover { opacity: 1; color: #60a5fa; }
         .lang-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: 0.3s; }
 
-        /* --- 3. 新增：白色介紹區塊樣式 (按截圖內容) --- */
+        /* --- 3. 新增：白色介紹區塊樣式 --- */
         .advanced-intro {
             background: #ffffff;
             color: #333;
@@ -63,6 +63,9 @@
             align-items: center;
             justify-content: space-between;
             gap: 40px;
+            /* 增加上下黑線，粗細對標 intro section */
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .advanced-intro-text {
@@ -271,8 +274,6 @@
         .sub-hero { height: 40vh; }
     }
 </style>
-
-
 
     <section class="advanced-intro">
         <div class="advanced-intro-text">
