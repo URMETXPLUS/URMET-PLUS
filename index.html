@@ -43,10 +43,12 @@
             z-index: 1000;
         }
 
+        /* 修改：Logo 移向左方 1cm (約 38px) 並放大 */
         .logo img { 
-            height: 32px; 
+            height: 40px; /* 從 32px 放大 */
             width: auto; 
             display: block; 
+            transform: translateX(-38px); /* 向左移 1cm */
         }
 
         .nav-wrapper { display: flex; align-items: center; gap: 30px; }
@@ -64,13 +66,14 @@
             padding-bottom: 5px; 
         }
 
+        /* 修改：下方的白線改幼一點 (從 2px 改為 1px) */
         nav::after { 
             content: ""; 
             position: absolute; 
             bottom: -8px; 
             left: 0; 
             width: 100%; 
-            height: 2px; 
+            height: 1px; 
             background: white; 
             box-shadow: 0 0 8px rgba(255, 255, 255, 0.5); 
         }
@@ -101,12 +104,13 @@
             margin: 0 auto;
         }
 
+        /* 修改：文字移向左方 3cm (約 113px) */
         .text-section {
             text-align: left;
-            padding-left: 0; /* Moved much more to the left */
+            padding-left: 0;
+            transform: translateX(-113px);
         }
 
-        /* Updated: Smaller title and narrower margin */
         .main-title { 
             font-size: clamp(36px, 6vw, 58px); 
             margin: 10px 0; 
@@ -114,7 +118,6 @@
             line-height: 1.1;
         }
 
-        /* Special "Learn More" Button Style */
         .learn-more-btn {
             display: inline-flex;
             align-items: center;
@@ -148,6 +151,7 @@
             transform: translateX(5px);
         }
 
+        /* 修改：圖片移向右方 3cm (約 113px) */
         .reader-img { 
             max-width: 90%; 
             height: auto; 
@@ -156,6 +160,7 @@
             border-radius: 12px; 
             margin-left: auto;
             display: block;
+            transform: translateX(113px);
         }
 
         /* --- 5. Flowing Feature Section --- */
@@ -257,7 +262,9 @@
         @media (max-width: 768px) {
             header nav { display: none; }
             .hero-container { grid-template-columns: 1fr; text-align: center; }
-            .text-section { padding-left: 0; }
+            .text-section { padding-left: 0; transform: none; }
+            .reader-img { transform: none; }
+            .logo img { transform: none; }
             .text-section p { margin: 0 auto; }
             .product-row { flex-direction: column; text-align: center; }
         }
