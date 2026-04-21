@@ -24,7 +24,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- 2. Header (保持原樣) --- */
+        /* --- 2. Header --- */
         header {
             width: 100%; 
             padding: 12px 8%; 
@@ -45,14 +45,13 @@
         nav ul { list-style: none; display: flex; gap: 30px; }
         nav a { text-decoration: none; color: white; font-size: 14px; text-transform: uppercase; letter-spacing: 1.2px; opacity: 0.8; transition: 0.3s; }
         nav a:hover { opacity: 1; color: #60a5fa; }
-        .lang-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: 0.3s; }
+        .lang-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; cursor: pointer; }
 
         /* --- 3. 3D 展示區 (深藍漸變背景) --- */
         .stars-container {
             position: relative;
             width: 100%;
             height: 100vh;
-            /* 漸變深藍色背景 */
             background: radial-gradient(circle at center, #102a4d 0%, #050c1a 100%);
             overflow: hidden;
             display: flex;
@@ -61,29 +60,20 @@
             perspective: 2000px;
         }
 
-        /* 3D 舞台 */
         .stage {
             width: 400px;
             height: 300px;
             position: relative;
             transform-style: preserve-3d;
-            transform: rotateX(-5deg); /* 極輕微傾斜增加立體感 */
         }
 
-        /* 旋轉容器 */
+        /* 旋轉容器 - 速度加快至 15s */
         .carousel {
             width: 100%;
             height: 100%;
             position: absolute;
             transform-style: preserve-3d;
-            /* 動慢一點：由 20s 改為 35s */
-            animation: rotateCarousel 35s linear infinite;
-        }
-
-        /* 當滑鼠懸停在整個舞台或圖片上時，停止旋轉 */
-        .stars-container:hover .carousel,
-        .stars-container:hover .product-card img {
-            animation-play-state: paused;
+            animation: rotateCarousel 15s linear infinite;
         }
 
         @keyframes rotateCarousel {
@@ -93,37 +83,34 @@
 
         .product-card {
             position: absolute;
-            width: 420px; /* 相片放大 */
+            width: 420px;
             height: 280px;
             left: 50%;
             top: 50%;
             margin-left: -210px;
             margin-top: -140px;
             transform-style: preserve-3d;
-            transition: all 0.5s ease;
         }
 
-        /* 圓圈弄小一點 (translateZ 縮小) */
-        .p1 { transform: rotateY(0deg) translateZ(380px); }
-        .p2 { transform: rotateY(90deg) translateZ(380px); }
-        .p3 { transform: rotateY(180deg) translateZ(380px); }
-        .p4 { transform: rotateY(270deg) translateZ(380px); }
+        /* 3D 佈局：均勻分佈在圓周上 */
+        .p1 { transform: rotateY(0deg) translateZ(350px); }
+        .p2 { transform: rotateY(90deg) translateZ(350px); }
+        .p3 { transform: rotateY(180deg) translateZ(350px); }
+        .p4 { transform: rotateY(270deg) translateZ(350px); }
 
         .product-card img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            /* 移除外框 */
             background: transparent;
-            /* 反向旋轉：相片永遠面向觀眾 */
-            animation: keepFacing 35s linear infinite;
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
+            /* 核心修正：與容器旋轉方向相反，確保正面對觀眾 */
+            animation: keepFacing 15s linear infinite;
+            transition: transform 0.4s ease;
         }
 
-        /* 滑鼠在圖片上時放大該圖片 */
+        /* 滑鼠懸停依然保有放大效果，但不會停下旋轉 */
         .product-card:hover img {
-            transform: scale(1.3); /* 放大 1.3 倍 */
+            transform: scale(1.15);
             z-index: 100;
         }
 
@@ -169,7 +156,6 @@
             background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
             padding: 80px 8% 40px 8%; 
             color: white; 
-            margin-top: 0;
         }
         .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
         .footer-section h4 { color: #60a5fa; margin-bottom: 20px; font-size: 18px; text-transform: uppercase; }
@@ -181,7 +167,11 @@
             .logo img { transform: none; }
             header nav { display: none; }
             .product-card { width: 300px; height: 200px; margin-left: -150px; }
-            .p1, .p2, .p3, .p4 { transform: rotateY(var(--ry)) translateZ(250px); }
+            /* 行動裝置縮短半徑 */
+            .p1 { transform: rotateY(0deg) translateZ(220px); }
+            .p2 { transform: rotateY(90deg) translateZ(220px); }
+            .p3 { transform: rotateY(180deg) translateZ(220px); }
+            .p4 { transform: rotateY(270deg) translateZ(220px); }
         }
     </style>
 </head>
@@ -226,7 +216,7 @@
 
     <section class="demo-section">
         <h3>如有興趣，歡迎找我們做 demo</h3>
-        <a href="#" class="demo-btn">Book a Demo</a>
+        <a href="mailto:info@urmet.com.hk" class="demo-btn">Book a Demo</a>
     </section>
 
     <footer>
