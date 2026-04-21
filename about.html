@@ -25,20 +25,20 @@
             overflow-x: hidden;
         }
 
-        /* --- 3. Header (Updated to match index.html) --- */
+        /* --- 3. Header --- */
         header {
             width: 100%; padding: 12px 8%; display: flex; justify-content: space-between; align-items: center;
             position: fixed; top: 0; left: 0; 
             background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.4); /* 保留全寬長線 */
+            /* 已刪除 border-bottom 白線 */
         }
         .logo img { 
-            height: 40px; /* 依照 index.html 調整高度 */
+            height: 40px; 
             width: auto; 
             display: block; 
-            transform: translateX(-38px); /* 依照 index.html 調整位移 */
+            transform: translateX(-38px); 
         }
         .nav-wrapper { display: flex; align-items: center; gap: 30px; }
         nav ul { list-style: none; display: flex; gap: 30px; }
