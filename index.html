@@ -206,7 +206,15 @@
             align-items: center;
             padding: 10px;
             border-radius: 20px;
+            /* 修改此處：增加平滑動畫效果 */
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        /* 新增：滑鼠懸停在整個項目上時，圖示放大的效果 */
+        .feature-item:hover .feature-icon {
+            transform: scale(1.15); /* 放大 1.15 倍 */
+            filter: drop-shadow(0 20px 30px rgba(0,122,255,0.25)); /* 懸浮時增加藍色陰影感 */
         }
 
         .feature-icon {
@@ -214,7 +222,8 @@
             width: auto;
             margin-bottom: 15px;
             filter: drop-shadow(0 15px 25px rgba(0,0,0,0.12));
-            transition: filter 0.3s ease;
+            /* 必須包含 transform 的 transition */
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .feature-text {
@@ -224,6 +233,11 @@
             line-height: 1.2;
             text-transform: uppercase;
             letter-spacing: 0.8px;
+            transition: color 0.3s ease;
+        }
+        
+        .feature-item:hover .feature-text {
+            color: #007aff; /* 懸停時文字變色 */
         }
 
         /* --- 6. White Content Section --- */
@@ -247,7 +261,7 @@
         .tag-btn { display: inline-block; padding: 14px 35px; background: #007aff; color: white; border-radius: 30px; text-decoration: none; transition: 0.3s; }
         .row-image { width: 100%; height: auto; border-radius: 25px; box-shadow: 0 25px 50px rgba(0,0,0,0.1); }
 
-        /* --- 7. Footer (Updated to match about.html) --- */
+        /* --- 7. Footer --- */
         footer { 
             background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
             padding: 80px 8% 40px 8%; 
