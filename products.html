@@ -14,7 +14,6 @@
             font-style: normal;
         }
 
-        /* Aptos Bold (用於產品標籤) */
         @font-face {
             font-family: 'Aptos Bold';
             src: url('fonts/Aptos-Bold.woff2') format('woff2');
@@ -32,7 +31,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- 2. Header (保留樣式) --- */
+        /* --- 2. Header (固定在頂部) --- */
         header {
             width: 100%; 
             padding: 12px 8%; 
@@ -55,7 +54,65 @@
         nav a:hover { opacity: 1; color: #60a5fa; }
         .lang-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: 0.3s; }
 
-        /* --- 3. 3D 展示區 (深藍漸變背景) --- */
+        /* --- 3. 新增：白色介紹區塊 (像圖中那樣) --- */
+        .intro-section {
+            background: #ffffff;
+            color: #333;
+            padding: 160px 8% 80px 8%; /* 上方留 160px 以免被固定 Header 擋住 */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 400px;
+        }
+
+        .intro-text {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .intro-text h2 {
+            font-size: 48px;
+            color: #007bff; /* 鮮豔藍色 */
+            margin-bottom: 20px;
+            font-family: 'Aptos Bold', sans-serif;
+        }
+
+        .intro-text p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .btn-feature {
+            background: #007bff;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 16px;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .btn-feature:hover {
+            background: #0056b3;
+            box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+        }
+
+        .intro-image {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .intro-image img {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+        }
+
+        /* --- 4. 3D 展示區 (原封不動移動到下方) --- */
         .stars-container {
             position: relative;
             width: 100%;
@@ -65,19 +122,16 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            perspective: 3000px; /* 增加透視距離以適應更大的空間 */
+            perspective: 3000px;
         }
 
-        /* 3D 舞台 */
         .stage {
             width: 400px;
             height: 300px;
             position: relative;
             transform-style: preserve-3d;
-            transform: rotateX(0deg); 
         }
 
-        /* 旋轉容器 - 控制 5 張卡片的位置旋轉 */
         .carousel {
             width: 100%;
             height: 100%;
@@ -91,7 +145,6 @@
             to { transform: rotateY(360deg); }
         }
 
-        /* --- 核心技術修正：Billboard Setup --- */
         .product-card {
             position: absolute;
             width: 420px; 
@@ -101,17 +154,14 @@
             margin-left: -210px;
             margin-top: -140px;
             transform-style: preserve-3d;
-            /* 圖片本身不旋轉，由內層處理 */
         }
 
-        /* 空間放大：將半徑從 350px 顯著放大至 550px */
         .p1 { transform: rotateY(0deg) translateZ(550px); }
         .p2 { transform: rotateY(72deg) translateZ(550px); }
         .p3 { transform: rotateY(144deg) translateZ(550px); }
         .p4 { transform: rotateY(216deg) translateZ(550px); }
         .p5 { transform: rotateY(288deg) translateZ(550px); }
 
-        /* Billboard 內容層：負責真正的圖片顯示與正面補償 */
         .billboard-content {
             width: 100%;
             height: 100%;
@@ -120,7 +170,6 @@
             align-items: center;
             transform-style: preserve-3d;
             backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
         }
 
         .billboard-content img {
@@ -131,14 +180,7 @@
             transition: transform 0.4s ease;
         }
 
-        /* 滑鼠懸停依然保有放大效果 */
-        .product-card:hover .billboard-content img {
-            transform: scale(1.1);
-        }
-
-        /* --- 核心技術修正：Billboard Animation --- */
-        /* 為每張圖片設置單獨的反向旋轉動畫，起動點加上修正角度（0, -72, -144, -216, -288）來補償佈局角度，
-           這能確保圖片在 3D 空間中不論移動到何處，其初始 0 度角永遠垂直於螢幕看向你。 */
+        .product-card:hover .billboard-content img { transform: scale(1.1); }
 
         .p1 .billboard-content { animation: billboardFacing1 25s linear infinite; }
         .p2 .billboard-content { animation: billboardFacing2 25s linear infinite; }
@@ -146,28 +188,12 @@
         .p4 .billboard-content { animation: billboardFacing4 25s linear infinite; }
         .p5 .billboard-content { animation: billboardFacing5 25s linear infinite; }
 
-        @keyframes billboardFacing1 {
-            from { transform: rotateY(0deg); }
-            to { transform: rotateY(-360deg); }
-        }
-        @keyframes billboardFacing2 {
-            from { transform: rotateY(-72deg); }
-            to { transform: rotateY(-432deg); }
-        }
-        @keyframes billboardFacing3 {
-            from { transform: rotateY(-144deg); }
-            to { transform: rotateY(-504deg); }
-        }
-        @keyframes billboardFacing4 {
-            from { transform: rotateY(-216deg); }
-            to { transform: rotateY(-576deg); }
-        }
-        @keyframes billboardFacing5 {
-            from { transform: rotateY(-288deg); }
-            to { transform: rotateY(-648deg); }
-        }
+        @keyframes billboardFacing1 { from { transform: rotateY(0deg); } to { transform: rotateY(-360deg); } }
+        @keyframes billboardFacing2 { from { transform: rotateY(-72deg); } to { transform: rotateY(-432deg); } }
+        @keyframes billboardFacing3 { from { transform: rotateY(-144deg); } to { transform: rotateY(-504deg); } }
+        @keyframes billboardFacing4 { from { transform: rotateY(-216deg); } to { transform: rotateY(-576deg); } }
+        @keyframes billboardFacing5 { from { transform: rotateY(-288deg); } to { transform: rotateY(-648deg); } }
 
-        /* --- 產品標籤 (保持白光粗體) --- */
         .product-label {
             margin-top: 15px;
             font-family: 'Aptos Bold', sans-serif;
@@ -176,32 +202,28 @@
             text-shadow: 0 0 8px #fff, 0 0 15px #60a5fa;
             font-weight: bold;
             letter-spacing: 1px;
-            white-space: nowrap;
         }
 
-        /* --- 4. Footer (保留) --- */
+        /* --- 5. Footer --- */
         footer { 
-            background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
+            background: #050c1a;
             padding: 80px 8% 40px 8%; 
             color: white; 
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 0;
-            z-index: 5;
             position: relative;
         }
         .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
-        .footer-section h4 { color: #60a5fa; margin-bottom: 20px; font-size: 18px; text-transform: uppercase; }
+        .footer-section h4 { color: #60a5fa; margin-bottom: 20px; font-size: 18px; }
         .footer-section p, .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin-bottom: 10px; font-size: 15px; }
         .copyright { text-align: center; padding-top: 60px; color: rgba(255,255,255,0.3); font-size: 12px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; }
 
         @media (max-width: 768px) {
-            .logo img { transform: none; }
-            header nav { display: none; }
+            .intro-section { flex-direction: column; text-align: center; padding-top: 120px; }
+            .intro-image { justify-content: center; margin-top: 40px; }
+            .intro-text h2 { font-size: 32px; }
             .stage { width: 300px; height: 200px; }
             .product-card { width: 300px; height: 200px; margin-left: -150px; }
-            /* 行動裝置縮短半徑 */
             .p1, .p2, .p3, .p4, .p5 { transform: rotateY(var(--ry)) translateZ(300px); }
-            .product-label { font-size: 14px; }
         }
     </style>
 </head>
@@ -224,6 +246,16 @@
             </div>
         </div>
     </header>
+
+    <section class="intro-section">
+        <div class="intro-text">
+            <h2>Smart Access</h2>
+            <p>體驗無縫的出入管理。透過手機 App 即可生成動態 QR Code，在感應器前輕輕一掃，即可在數秒內完成身份識別與門禁解鎖。</p>
+            <a href="#" class="btn-feature">產品特點</a>
+        </div>
+        <div class="intro-image">
+            <img src="product1.png" alt="Smart Access Device"> </div>
+    </section>
 
     <main class="stars-container">
         <div class="stage">
