@@ -58,7 +58,7 @@
         .advanced-intro {
             background: #ffffff;
             color: #333;
-            padding: 80px 8% 120px 8%;
+            padding: 120px 8%;
             border-top: 1px solid rgba(0, 0, 0, 0.1);
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
@@ -87,7 +87,6 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             margin-top: 50px;
-            margin-bottom: 50px;
         }
 
         .feature-item {
@@ -117,8 +116,9 @@
         }
 
         .one-app-callout {
-            background: #ffffff;
-            padding: 120px 8% 40px 8%;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid #eee;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -132,15 +132,11 @@
             font-family: 'Aptos Bold', sans-serif;
         }
 
-        .callout-text p {
-            color: #444;
-            font-size: 18px;
-        }
-
         .advanced-intro-image {
             flex: 0 0 35%;
         }
 
+        /* Modified: middle1.png is now 40% smaller (max-width reduced) */
         .advanced-intro-image img {
             width: 60%;
             height: auto;
@@ -152,11 +148,7 @@
         /* --- 4. 3D 展示區 --- */
         .stars-container {
             position: relative;
-            width: 100vw;
-            left: 50%;
-            right: 50%;
-            margin-left: -50vw;
-            margin-right: -50vw;
+            width: 100%;
             height: 100vh;
             background: radial-gradient(circle at center, #102a4d 0%, #050c1a 100%);
             overflow: hidden;
@@ -197,6 +189,7 @@
             transform-style: preserve-3d;
         }
 
+        /* Adjusted math for 6 cards (360 / 6 = 60 degrees) */
         .p1 { transform: rotateY(0deg) translateZ(550px); }
         .p2 { transform: rotateY(60deg) translateZ(550px); }
         .p3 { transform: rotateY(120deg) translateZ(550px); }
@@ -353,20 +346,12 @@
     </div>
 </section>
 
-    <div class="one-app-callout">
-        <div class="callout-text">
-            <h4>One App. Total Control.</h4>
-            <p>Empower your team and delight your residents with a seamless, secure, and efficient management experience.</p>
-        </div>
-        <div class="advanced-intro-image">
-            <img src="middle1.png" alt="Control Panel Display">
-        </div>
-    </div>
-
     <section class="advanced-intro">
         <div class="intro-header">
             <h2>Elevate Your Property Management with URMET PLUS</h2>
-            <p>Transform your building into a premier smart community with <strong>URMET PLUS</strong>. Elevate your building into a premier smart community with URMET PLUS—the all-in-one digital ecosystem that redefines modern living. By integrating cutting-edge technology with high-level security protocols, URMET PLUS provides a seamless, sophisticated experience for both residents and staff.</p>
+            <p>Transform your building into a premier smart community with <strong>URMET PLUS</strong>, Elevate your building into a premier smart community with URMET PLUS—the all-in-one digital ecosystem that redefines modern living.
+
+By integrating cutting-edge technology with high-level security protocols, URMET PLUS provides a seamless, sophisticated experience for both residents and staff. Whether it’s enhancing building safety or providing a future-proof tech infrastructure, we deliver the tools needed to keep your community safe, connected, and ahead of the curve.</p>
         </div>
 
         <div class="feature-grid">
@@ -388,49 +373,59 @@
             </div>
         </div>
 
-        <div class="stars-container">
-            <div class="stage">
-                <div class="carousel">
-                    <div class="product-card p1">
-                        <div class="billboard-content">
-                            <img src="product1.png" alt="QR Code Access Control">
-                            <div class="product-label">QR Code Access</div>
-                        </div>
+        <div class="one-app-callout">
+            <div class="callout-text">
+                <h4>One App. Total Control.</h4>
+                <p>Empower your team and delight your residents with a seamless, secure, and efficient management experience.</p>
+            </div>
+            <div class="advanced-intro-image">
+                <img src="middle1.png" alt="Control Panel Display">
+            </div>
+        </div>
+    </section>
+    
+    <main class="stars-container">
+        <div class="stage">
+            <div class="carousel">
+                <div class="product-card p1">
+                    <div class="billboard-content">
+                        <img src="product1.png" alt="QR Code Access Control">
+                        <div class="product-label">QR Code Access</div>
                     </div>
-                    <div class="product-card p2">
-                        <div class="billboard-content">
-                            <img src="product2.png" alt="Invitation">
-                            <div class="product-label">Invitation</div>
-                        </div>
+                </div>
+                <div class="product-card p2">
+                    <div class="billboard-content">
+                        <img src="product2.png" alt="Invitation">
+                        <div class="product-label">Invitation</div>
                     </div>
-                    <div class="product-card p3">
-                        <div class="billboard-content">
-                            <img src="product3.png" alt="Facility Booking">
-                            <div class="product-label">Facility Booking</div>
-                        </div>
+                </div>
+                <div class="product-card p3">
+                    <div class="billboard-content">
+                        <img src="product3.png" alt="Facility Booking">
+                        <div class="product-label">Facility Booking</div>
                     </div>
-                    <div class="product-card p4">
-                        <div class="billboard-content">
-                            <img src="product4.png" alt="URMET PLUS">
-                            <div class="product-label">URMET PLUS</div>
-                        </div>
+                </div>
+                <div class="product-card p4">
+                    <div class="billboard-content">
+                        <img src="product4.png" alt="URMET PLUS">
+                        <div class="product-label">URMET PLUS</div>
                     </div>
-                    <div class="product-card p5">
-                        <div class="billboard-content">
-                            <img src="product5.png" alt="Panic Alarm">
-                            <div class="product-label">Panic Alarm</div>
-                        </div>
+                </div>
+                <div class="product-card p5">
+                    <div class="billboard-content">
+                        <img src="product5.png" alt="Panic Alarm">
+                        <div class="product-label">Panic Alarm</div>
                     </div>
-                    <div class="product-card p6">
-                        <div class="billboard-content">
-                            <img src="product6.png" alt="Visitor Registration">
-                            <div class="product-label">Visitor Registration</div>
-                        </div>
+                </div>
+                <div class="product-card p6">
+                    <div class="billboard-content">
+                        <img src="product6.png" alt="Visitor Registration">
+                        <div class="product-label">Visitor Registration</div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </main>
 
     <footer>
         <div class="footer-content">
