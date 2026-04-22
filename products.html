@@ -87,6 +87,7 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             margin-top: 50px;
+            margin-bottom: 50px; /* Added spacing before 3D section */
         }
 
         .feature-item {
@@ -136,7 +137,6 @@
             flex: 0 0 35%;
         }
 
-        /* Modified: middle1.png is now 40% smaller (max-width reduced) */
         .advanced-intro-image img {
             width: 60%;
             height: auto;
@@ -156,6 +156,7 @@
             justify-content: center;
             align-items: center;
             perspective: 3000px;
+            border-radius: 20px; /* Optional: adds a smoother transition within the white section */
         }
 
         .stage {
@@ -189,7 +190,6 @@
             transform-style: preserve-3d;
         }
 
-        /* Adjusted math for 6 cards (360 / 6 = 60 degrees) */
         .p1 { transform: rotateY(0deg) translateZ(550px); }
         .p2 { transform: rotateY(60deg) translateZ(550px); }
         .p3 { transform: rotateY(120deg) translateZ(550px); }
@@ -349,9 +349,7 @@
     <section class="advanced-intro">
         <div class="intro-header">
             <h2>Elevate Your Property Management with URMET PLUS</h2>
-            <p>Transform your building into a premier smart community with <strong>URMET PLUS</strong>, Elevate your building into a premier smart community with URMET PLUS—the all-in-one digital ecosystem that redefines modern living.
-
-By integrating cutting-edge technology with high-level security protocols, URMET PLUS provides a seamless, sophisticated experience for both residents and staff. Whether it’s enhancing building safety or providing a future-proof tech infrastructure, we deliver the tools needed to keep your community safe, connected, and ahead of the curve.</p>
+            <p>Transform your building into a premier smart community with <strong>URMET PLUS</strong>. Elevate your building into a premier smart community with URMET PLUS—the all-in-one digital ecosystem that redefines modern living. By integrating cutting-edge technology with high-level security protocols, URMET PLUS provides a seamless, sophisticated experience for both residents and staff.</p>
         </div>
 
         <div class="feature-grid">
@@ -373,6 +371,49 @@ By integrating cutting-edge technology with high-level security protocols, URMET
             </div>
         </div>
 
+        <div class="stars-container">
+            <div class="stage">
+                <div class="carousel">
+                    <div class="product-card p1">
+                        <div class="billboard-content">
+                            <img src="product1.png" alt="QR Code Access Control">
+                            <div class="product-label">QR Code Access</div>
+                        </div>
+                    </div>
+                    <div class="product-card p2">
+                        <div class="billboard-content">
+                            <img src="product2.png" alt="Invitation">
+                            <div class="product-label">Invitation</div>
+                        </div>
+                    </div>
+                    <div class="product-card p3">
+                        <div class="billboard-content">
+                            <img src="product3.png" alt="Facility Booking">
+                            <div class="product-label">Facility Booking</div>
+                        </div>
+                    </div>
+                    <div class="product-card p4">
+                        <div class="billboard-content">
+                            <img src="product4.png" alt="URMET PLUS">
+                            <div class="product-label">URMET PLUS</div>
+                        </div>
+                    </div>
+                    <div class="product-card p5">
+                        <div class="billboard-content">
+                            <img src="product5.png" alt="Panic Alarm">
+                            <div class="product-label">Panic Alarm</div>
+                        </div>
+                    </div>
+                    <div class="product-card p6">
+                        <div class="billboard-content">
+                            <img src="product6.png" alt="Visitor Registration">
+                            <div class="product-label">Visitor Registration</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="one-app-callout">
             <div class="callout-text">
                 <h4>One App. Total Control.</h4>
@@ -383,49 +424,6 @@ By integrating cutting-edge technology with high-level security protocols, URMET
             </div>
         </div>
     </section>
-    
-    <main class="stars-container">
-        <div class="stage">
-            <div class="carousel">
-                <div class="product-card p1">
-                    <div class="billboard-content">
-                        <img src="product1.png" alt="QR Code Access Control">
-                        <div class="product-label">QR Code Access</div>
-                    </div>
-                </div>
-                <div class="product-card p2">
-                    <div class="billboard-content">
-                        <img src="product2.png" alt="Invitation">
-                        <div class="product-label">Invitation</div>
-                    </div>
-                </div>
-                <div class="product-card p3">
-                    <div class="billboard-content">
-                        <img src="product3.png" alt="Facility Booking">
-                        <div class="product-label">Facility Booking</div>
-                    </div>
-                </div>
-                <div class="product-card p4">
-                    <div class="billboard-content">
-                        <img src="product4.png" alt="URMET PLUS">
-                        <div class="product-label">URMET PLUS</div>
-                    </div>
-                </div>
-                <div class="product-card p5">
-                    <div class="billboard-content">
-                        <img src="product5.png" alt="Panic Alarm">
-                        <div class="product-label">Panic Alarm</div>
-                    </div>
-                </div>
-                <div class="product-card p6">
-                    <div class="billboard-content">
-                        <img src="product6.png" alt="Visitor Registration">
-                        <div class="product-label">Visitor Registration</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
 
     <footer>
         <div class="footer-content">
