@@ -241,6 +241,74 @@
             letter-spacing: 1px;
         }
 
+        /* --- New Section Styles --- */
+        .why-choose-section {
+            padding: 100px 8%;
+            background: #ffffff;
+            color: #333;
+            text-align: center;
+        }
+
+        .why-choose-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .why-choose-section h2 {
+            font-size: 38px;
+            color: #000;
+            margin-bottom: 50px;
+            font-family: 'Aptos Bold', sans-serif;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 40px;
+            text-align: left;
+            margin-bottom: 60px;
+        }
+
+        .why-item h3 {
+            font-size: 20px;
+            color: #1e4b8a;
+            margin-bottom: 12px;
+            font-family: 'Aptos Bold', sans-serif;
+            display: flex;
+            align-items: center;
+        }
+
+        .why-item h3::before {
+            content: "✓";
+            margin-right: 10px;
+            color: #60a5fa;
+            font-weight: bold;
+        }
+
+        .why-item p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .why-footer-callout {
+            border-top: 1px solid #eee;
+            padding-top: 40px;
+        }
+
+        .why-footer-callout h4 {
+            font-size: 24px;
+            font-family: 'Aptos Bold', sans-serif;
+            margin-bottom: 10px;
+            color: #1e4b8a;
+        }
+
+        .why-footer-callout p {
+            font-size: 18px;
+            color: #444;
+            font-weight: bold;
+        }
+
         /* --- 5. Footer --- */
         footer { 
             background: #050c1a;
@@ -292,6 +360,7 @@
             .text-overlay { bottom: 5%; left: 3%; }
             .title { margin-bottom: 10px; }
             .one-app-callout { flex-direction: column; text-align: center; }
+            .why-grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
@@ -301,6 +370,7 @@
             .text-overlay { bottom: 5%; left: 5%; }
             .advanced-intro { padding: 80px 5%; }
             .intro-header h2 { font-size: 32px; }
+            .why-choose-section { padding: 60px 5%; }
         }
     </style>
 </head>
@@ -426,6 +496,36 @@ By integrating cutting-edge technology with high-level security protocols, URMET
             </div>
         </div>
     </main>
+
+    <section class="why-choose-section">
+        <div class="why-choose-container">
+            <h2>Why Choose URMET PLUS?</h2>
+            
+            <div class="why-grid">
+                <div class="why-item">
+                    <h3>Superior Security</h3>
+                    <p>Protect your property and gain peace of mind with advanced encryption and real-time monitoring.</p>
+                </div>
+                <div class="why-item">
+                    <h3>Next-Gen Technology</h3>
+                    <p>A robust digital framework built for seamless smart home integration and high-speed connectivity.</p>
+                </div>
+                <div class="why-item">
+                    <h3>Premium Resident Experience</h3>
+                    <p>User-friendly interfaces that make luxury living intuitive, effortless, and sophisticated.</p>
+                </div>
+                <div class="why-item">
+                    <h3>Scalable Solutions</h3>
+                    <p>Designed to evolve alongside your building, ensuring you always stay at the forefront of innovation.</p>
+                </div>
+            </div>
+
+            <div class="why-footer-callout">
+                <h4>Efficiency for You. Premium Living for Them.</h4>
+                <p>Upgrade to URMET PLUS and set the new standard for smart living.</p>
+            </div>
+        </div>
+    </section>
 
     <footer>
         <div class="footer-content">
