@@ -58,7 +58,7 @@
         .advanced-intro {
             background: #ffffff;
             color: #333;
-            padding: 120px 8%;
+            padding: 80px 8% 120px 8%;
             border-top: 1px solid rgba(0, 0, 0, 0.1);
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
@@ -87,7 +87,7 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             margin-top: 50px;
-            margin-bottom: 50px; /* Added spacing before 3D section */
+            margin-bottom: 50px;
         }
 
         .feature-item {
@@ -117,9 +117,8 @@
         }
 
         .one-app-callout {
-            margin-top: 60px;
-            padding-top: 40px;
-            border-top: 1px solid #eee;
+            background: #ffffff;
+            padding: 120px 8% 40px 8%;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -131,6 +130,11 @@
             color: #000;
             margin-bottom: 10px;
             font-family: 'Aptos Bold', sans-serif;
+        }
+
+        .callout-text p {
+            color: #444;
+            font-size: 18px;
         }
 
         .advanced-intro-image {
@@ -148,7 +152,11 @@
         /* --- 4. 3D 展示區 --- */
         .stars-container {
             position: relative;
-            width: 100%;
+            width: 100vw;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
             height: 100vh;
             background: radial-gradient(circle at center, #102a4d 0%, #050c1a 100%);
             overflow: hidden;
@@ -156,7 +164,6 @@
             justify-content: center;
             align-items: center;
             perspective: 3000px;
-            border-radius: 20px; /* Optional: adds a smoother transition within the white section */
         }
 
         .stage {
@@ -346,6 +353,16 @@
     </div>
 </section>
 
+    <div class="one-app-callout">
+        <div class="callout-text">
+            <h4>One App. Total Control.</h4>
+            <p>Empower your team and delight your residents with a seamless, secure, and efficient management experience.</p>
+        </div>
+        <div class="advanced-intro-image">
+            <img src="middle1.png" alt="Control Panel Display">
+        </div>
+    </div>
+
     <section class="advanced-intro">
         <div class="intro-header">
             <h2>Elevate Your Property Management with URMET PLUS</h2>
@@ -411,16 +428,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="one-app-callout">
-            <div class="callout-text">
-                <h4>One App. Total Control.</h4>
-                <p>Empower your team and delight your residents with a seamless, secure, and efficient management experience.</p>
-            </div>
-            <div class="advanced-intro-image">
-                <img src="middle1.png" alt="Control Panel Display">
             </div>
         </div>
     </section>
