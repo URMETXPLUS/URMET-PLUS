@@ -63,7 +63,6 @@
             align-items: center;
             justify-content: space-between;
             gap: 40px;
-            /* 增加上下黑線，粗細對標 intro section */
             border-top: 1px solid rgba(0, 0, 0, 0.1);
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
@@ -205,11 +204,50 @@
         .footer-section p, .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin-bottom: 10px; font-size: 15px; }
         .copyright { text-align: center; padding-top: 60px; color: rgba(255,255,255,0.3); font-size: 12px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; }
 
+        /* --- Hero Section Fixes for Small Screens --- */
+        .intro-fullscreen { 
+            display: flex; 
+            width: 100vw; 
+            height: 100vh; 
+            min-height: 600px; /* Ensures it doesn't get too squashed on very short screens */
+            background-color: #000; 
+        }
+        .grid-box { position: relative; overflow: hidden; height: 100%; }
+        .main-hero { flex: 0 0 65.5%; } /* Fine-tuned ratio to match second photo */
+        .side-column { flex: 0 0 34.5%; display: flex; flex-direction: column; }
+        .sub-hero { flex: 1; border-left: 1px solid rgba(255,255,255,0.1); }
+        
+        .grid-box img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            display: block; 
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); 
+        }
+        .grid-box:hover img { transform: scale(1.08); }
+
+        .text-overlay { 
+            position: absolute; 
+            bottom: 12%; /* Moved slightly up to prevent overlap on small laptops */
+            left: 5%; 
+            color: #000000; 
+            z-index: 2; 
+            max-width: 80%;
+        }
+        .tagline { font-size: 14px; letter-spacing: 3px; margin-bottom: 8px; opacity: 0.9; color: #000000; font-family: 'Aptos Bold', sans-serif; }
+        .title { font-size: clamp(28px, 4.5vw, 64px); font-weight: bold; margin: 0 0 15px 0; line-height: 1.1; color: #000000; font-family: 'Aptos Bold', sans-serif; }
+        .tagline-desc { font-size: 14px; line-height: 1.6; letter-spacing: 1px; color: #000000; opacity: 0.8; }
+
+        @media (max-width: 1024px) {
+            .text-overlay { bottom: 8%; left: 4%; }
+            .title { margin-bottom: 10px; }
+        }
+
         @media (max-width: 768px) {
-            .advanced-intro { flex-direction: column; text-align: center; padding: 60px 8%; }
-            .advanced-intro-image { justify-content: center; margin-top: 30px; }
-            .stage { width: 300px; height: 200px; }
-            .product-card { width: 300px; height: 200px; margin-left: -150px; }
+            .intro-fullscreen { flex-direction: column; height: auto; }
+            .main-hero, .side-column { flex: 0 0 auto; width: 100%; height: 60vh; }
+            .sub-hero { height: 40vh; }
+            .text-overlay { bottom: 10%; left: 8%; }
         }
     </style>
 </head>
@@ -239,7 +277,7 @@
         <div class="text-overlay">
             <p class="tagline">URMET PLUS</p>
             <h2 class="title">MULTI-READER</h2>
-            <p class="tagline">
+            <p class="tagline-desc">
                 Secure every entry with one device:<br>
                 QR code, card, or mobile.<br>
                 One reader. All access. Total control.<br>
@@ -251,29 +289,9 @@
     <div class="side-column">
         <div class="grid-box sub-hero">
             <img src="intro2.png" alt="Smart Access">
-            <div class="text-overlay small"></div>
         </div>
     </div>
 </section>
-
-<style>
-    body, html { margin: 0; padding: 0; overflow-x: hidden; }
-    .intro-fullscreen { display: flex; width: 100vw; height: 100vh; background-color: #000; }
-    .grid-box { position: relative; overflow: hidden; }
-    .main-hero { flex: 0 0 65%; }
-    .side-column { flex: 0 0 35%; display: flex; flex-direction: column; }
-    .sub-hero { flex: 1; border-left: 1px solid rgba(255,255,255,0.1); }
-    .grid-box img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
-    .grid-box:hover img { transform: scale(1.08); }
-    .text-overlay { position: absolute; bottom: 10%; left: 1.8%; color: #000000; z-index: 2; }
-    .tagline { font-size: 14px; letter-spacing: 3px; margin-bottom: 10px; opacity: 0.9; color: #000000; }
-    .title { font-size: clamp(32px, 5vw, 64px); font-weight: bold; margin: 0 0 20px 0; line-height: 1.1; color: #000000; }
-    @media (max-width: 768px) {
-        .intro-fullscreen { flex-direction: column; height: auto; }
-        .main-hero, .side-column { flex: 0 0 auto; width: 100%; height: 60vh; }
-        .sub-hero { height: 40vh; }
-    }
-</style>
 
     <section class="advanced-intro">
         <div class="advanced-intro-text">
