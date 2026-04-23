@@ -24,7 +24,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         html {
-            scroll-snap-type: y mandatory;
             scroll-behavior: smooth;
             height: 100%;
         }
@@ -35,7 +34,9 @@
             font-family: 'Bariol Bold', sans-serif;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            height: 100%;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         /* --- 2. Header --- */
@@ -66,19 +67,19 @@
         nav a:hover { opacity: 1; color: #60a5fa; }
         .lang-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: 0.3s; }
 
-        section, footer, main.stars-container {
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
-            height: 100vh;
+        /* Updated: Use min-height instead of fixed height for flexibility */
+        section, main.stars-container {
             width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
 
         /* --- 3. Hero Section --- */
         .intro-fullscreen { 
             display: flex; 
-            width: 100vw; 
-            height: 100vh; 
-            min-height: 600px; 
+            flex-direction: row;
             background-color: #000; 
         }
         .grid-box { position: relative; overflow: hidden; height: 100%; }
@@ -109,21 +110,18 @@
 
         /* --- 4. 3D Stars Container --- */
         .stars-container {
-            position: relative;
-            width: 100%;
-            height: 100vh;
             background: #ffffff;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
             align-items: center;
             perspective: 3000px;
-            padding-top: 80px;
+            padding-top: 100px;
+            padding-bottom: 40px;
         }
 
         .stars-container .section-title {
-            margin-top: 40px;
+            margin-top: 20px;
             text-align: center;
             width: 100%;
             font-family: 'Aptos Bold', sans-serif;
@@ -135,17 +133,18 @@
 
         .stage {
             width: 100%;
-            height: 350px;
+            height: 400px; /* Base height for 3D effect */
             position: relative;
             transform-style: preserve-3d;
-            margin-top: 60px;
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-bottom: 20px;
         }
 
         .carousel {
-            width: 400px;
+            width: 100%;
+            max-width: 400px;
             height: 300px;
             position: relative;
             transform-style: preserve-3d;
@@ -159,21 +158,22 @@
 
         .product-card {
             position: absolute;
-            width: 420px; 
-            height: 280px;
+            width: 300px; 
+            height: 200px;
             left: 50%;
             top: 50%;
-            margin-left: -210px;
-            margin-top: -140px;
+            margin-left: -150px;
+            margin-top: -100px;
             transform-style: preserve-3d;
         }
 
-        .p1 { transform: rotateY(0deg) translateZ(550px); }
-        .p2 { transform: rotateY(60deg) translateZ(550px); }
-        .p3 { transform: rotateY(120deg) translateZ(550px); }
-        .p4 { transform: rotateY(180deg) translateZ(550px); }
-        .p5 { transform: rotateY(240deg) translateZ(550px); }
-        .p6 { transform: rotateY(300deg) translateZ(550px); }
+        /* Responsive Z-Translate for 3D Carousel */
+        .p1 { transform: rotateY(0deg) translateZ(400px); }
+        .p2 { transform: rotateY(60deg) translateZ(400px); }
+        .p3 { transform: rotateY(120deg) translateZ(400px); }
+        .p4 { transform: rotateY(180deg) translateZ(400px); }
+        .p5 { transform: rotateY(240deg) translateZ(400px); }
+        .p6 { transform: rotateY(300deg) translateZ(400px); }
 
         .billboard-content {
             width: 100%;
@@ -187,7 +187,7 @@
 
         .billboard-content img {
             width: 100%;
-            height: 100%;
+            height: 80%;
             object-fit: contain;
             cursor: pointer;
             transition: transform 0.4s ease;
@@ -210,29 +210,30 @@
         @keyframes billboardFacing6 { from { transform: rotateY(-300deg); } to { transform: rotateY(-660deg); } }
 
         .product-label {
-            margin-top: 15px;
+            margin-top: 10px;
             font-family: 'Bariol Bold', sans-serif;
-            font-size: 15px;
+            font-size: 14px;
             color: #000000;
             font-weight: bold;
             letter-spacing: 1px;
+            text-align: center;
         }
 
         /* --- 5 Column Row --- */
         .new-row-container {
             display: flex;
             justify-content: center;
-            align-items: flex-start;
+            align-items: stretch;
+            flex-wrap: wrap;
             gap: 20px;
             width: 100%;
             padding: 40px 5%;
             margin-top: auto; 
-            margin-bottom: 40px;
             z-index: 10;
         }
 
         .new-item {
-            flex: 1;
+            flex: 1 1 200px;
             max-width: 240px; 
             text-align: center;
             padding: 25px 15px;
@@ -241,6 +242,8 @@
             background: #ffffff;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
         }
 
         .new-item:hover {
@@ -249,8 +252,8 @@
         }
 
         .new-item .icon-box {
-            width: 80px; 
-            height: 80px; 
+            width: 70px; 
+            height: 70px; 
             background: #eff6ff; 
             border-radius: 8px;
             display: flex;
@@ -260,8 +263,8 @@
         }
 
         .new-item img {
-            width: 50px; 
-            height: 50px; 
+            width: 40px; 
+            height: 40px; 
             object-fit: contain;
         }
 
@@ -284,7 +287,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 8%;
+            padding: 80px 8%;
             border-top: 1px solid rgba(255, 255, 255, 0.4);
             border-bottom: 1px solid rgba(255, 255, 255, 0.4);
         }
@@ -293,27 +296,31 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            flex-wrap: wrap;
             gap: 40px;
             max-width: 1200px;
             width: 100%;
         }
 
+        .callout-text { flex: 1 1 400px; }
+
         .callout-text h4 {
-            font-size: 48px;
+            font-size: clamp(32px, 4vw, 48px);
             color: #ffffff;
             margin-bottom: 20px;
             font-family: 'Aptos Bold', sans-serif;
         }
 
         .callout-text p {
-            font-size: 20px;
+            font-size: clamp(16px, 2vw, 20px);
             line-height: 1.6;
             color: #ffffff;
             opacity: 0.9;
         }
 
         .advanced-intro-image {
-            flex: 0 0 45%;
+            flex: 0 1 45%;
+            min-width: 300px;
         }
 
         .advanced-intro-image img {
@@ -323,11 +330,11 @@
             display: block;
         }
 
-        /* --- 6. Why Choose Section (UPDATED) --- */
+        /* --- 6. Why Choose Section --- */
         .why-choose-section {
             padding: 100px 8%;
-            background: #000000; /* Changed to Black */
-            color: #ffffff; /* Changed to White */
+            background: #000000;
+            color: #ffffff;
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -340,8 +347,8 @@
         }
 
         .why-choose-section h2 {
-            font-size: 38px;
-            color: #ffffff; /* Changed to White */
+            font-size: clamp(28px, 4vw, 38px);
+            color: #ffffff;
             margin-bottom: 50px;
             font-family: 'Aptos Bold', sans-serif;
         }
@@ -356,7 +363,7 @@
 
         .why-item h3 {
             font-size: 20px;
-            color: #60a5fa; /* Adjusted for better visibility on black */
+            color: #60a5fa;
             margin-bottom: 12px;
             font-family: 'Aptos Bold', sans-serif;
             display: flex;
@@ -373,11 +380,11 @@
         .why-item p {
             font-size: 16px;
             line-height: 1.6;
-            color: rgba(255, 255, 255, 0.8); /* Changed to slightly transparent white */
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .why-footer-callout {
-            border-top: 1px solid rgba(255, 255, 255, 0.2); /* Adjusted border color */
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
             padding-top: 40px;
         }
 
@@ -385,26 +392,23 @@
             font-size: 24px;
             font-family: 'Aptos Bold', sans-serif;
             margin-bottom: 10px;
-            color: #60a5fa; /* Adjusted for better visibility */
+            color: #60a5fa;
         }
 
         .why-footer-callout p {
             font-size: 18px;
-            color: #ffffff; /* Changed to White */
+            color: #ffffff;
             font-weight: bold;
         }
 
-        /* --- 7. Footer (NEW STYLES) --- */
+        /* --- 7. Footer --- */
         footer { 
             background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
-            padding: 40px 8% 20px 8%;
+            padding: 60px 8% 20px 8%;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end; /* Moves content to the bottom of the 100vh section */
             color: white; 
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
-            height: 100vh;
+            min-height: auto;
         }
 
         .footer-content { 
@@ -415,7 +419,7 @@
             justify-content: space-between; 
             flex-wrap: wrap; 
             gap: 40px; 
-            margin-bottom: 20px; 
+            margin-bottom: 40px; 
         }
 
         .footer-section h4 { 
@@ -447,22 +451,29 @@
             width: 100%;
         }
 
+        /* --- Media Queries for Responsive Handling --- */
         @media (max-width: 1024px) {
-            .text-overlay { bottom: 5%; left: 3%; }
+            .text-overlay { bottom: 5%; left: 5%; }
             .one-app-callout { flex-direction: column; text-align: center; }
-            .why-grid { grid-template-columns: 1fr; }
-            .new-row-container { gap: 15px; flex-wrap: wrap; }
-            .new-item { max-width: 100%; flex: 1 1 30%; }
-            .callout-text h4 { font-size: 32px; }
+            .advanced-intro-image { flex: 0 0 100%; }
         }
 
         @media (max-width: 768px) {
-            .intro-fullscreen { flex-direction: column; height: auto; }
-            .main-hero, .side-column { flex: 0 0 auto; width: 100%; height: 60vh; }
-            .sub-hero { height: 40vh; }
-            .stars-container { height: auto; padding-bottom: 60px; }
-            .stage { height: 300px; }
-            .new-row-container { margin-top: 40px; }
+            header { padding: 10px 5%; }
+            nav { display: none; } /* Hide regular nav on mobile, ideally replace with burger */
+            
+            .intro-fullscreen { flex-direction: column; min-height: auto; }
+            .main-hero, .side-column { flex: 0 0 auto; width: 100%; height: 50vh; }
+            .sub-hero { height: 30vh; border-left: none; border-top: 1px solid rgba(255,255,255,0.1); }
+            
+            .stars-container { padding-top: 80px; }
+            .carousel { transform: scale(0.7); } /* Scale down 3D carousel for mobile */
+            .p1, .p2, .p3, .p4, .p5, .p6 { translateZ(280px); } /* Bring items closer on small screens */
+
+            .new-item { flex: 1 1 100%; max-width: 100%; }
+            
+            .why-grid { grid-template-columns: 1fr; gap: 20px; }
+            footer { padding: 40px 5% 20px 5%; }
         }
     </style>
 </head>
@@ -509,6 +520,7 @@
     </section>
 
     <main class="stars-container">
+        <div class="section-title">Explore URMET PLUS Features</div>
                 
         <div class="stage">
             <div class="carousel">
@@ -643,13 +655,15 @@
 
     <script>
         const header = document.getElementById('mainHeader');
-        
+        let lastScrollY = window.scrollY;
+
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
+            if (window.scrollY > 100) {
                 header.classList.add('hide');
             } else {
                 header.classList.remove('hide');
             }
+            lastScrollY = window.scrollY;
         });
     </script>
 
