@@ -34,11 +34,13 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Essential for Snap Effect */
+        /* Essential for Snap Effect - Changed to min-height for responsiveness */
         section, footer {
             scroll-snap-align: start;
             scroll-snap-stop: always;
-            height: 100vh;
+            min-height: 100vh; 
+            display: flex;
+            flex-direction: column;
         }
 
         /* --- 3. Navigation (with Hide Logic) --- */
@@ -58,7 +60,6 @@
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Class to hide header */
         header.hide {
             transform: translateY(-100%);
         }
@@ -114,7 +115,7 @@
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            padding: 80px 5% 40px 5%; 
+            padding: 120px 5% 60px 5%; /* Increased padding for better mobile view */
             background: transparent; 
         }
         
@@ -125,7 +126,7 @@
             grid-template-columns: 1.2fr 0.8fr; 
             gap: 40px; 
             align-items: center; 
-            margin: 0 auto;
+            margin: auto;
         }
 
         .text-section {
@@ -188,7 +189,7 @@
             background-position: center;
             background-repeat: no-repeat;
             display: flex;
-            align-items: center;
+            flex-direction: column; /* Allows vertical alignment */
             padding: 0 8%; 
             position: relative;
         }
@@ -211,6 +212,8 @@
             gap: 80px; 
             position: relative;
             z-index: 2;
+            margin-top: auto; /* Pushes content to the bottom */
+            margin-bottom: 80px; /* Space from the very bottom edge */
         }
 
         .product-text { flex: 0 1 500px; text-align: left; } 
@@ -245,10 +248,10 @@
         /* --- 6. Footer (Adjusted Layout) --- */
         footer { 
             background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
-            padding: 80px 8% 20px 8%; /* Reduced bottom padding */
+            padding: 80px 8% 20px 8%;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Pushes content and copyright apart */
+            justify-content: space-between;
             color: white; 
         }
         .footer-content { 
@@ -278,14 +281,16 @@
             .hero-container { grid-template-columns: 1fr; text-align: center; gap: 40px; }
             .text-section { display: flex; flex-direction: column; align-items: center; }
             .reader-img { max-width: 500px; }
-            .product-row { justify-content: center; }
+            .product-row { justify-content: center; text-align: center; }
+            .product-text { flex: 1; }
         }
 
         @media (max-width: 768px) {
             header nav { display: none; }
             .logo img { transform: none; }
-            .product-row { flex-direction: column-reverse; text-align: center; }
+            .product-row { flex-direction: column-reverse; text-align: center; margin-bottom: 50px; }
             .product-text h2 { font-size: 38px; }
+            .product-text { text-align: center; }
         }
     </style>
 </head>
@@ -355,8 +360,6 @@
         const header = document.getElementById('mainHeader');
         
         window.addEventListener('scroll', () => {
-            // If vertical scroll is greater than a small threshold (e.g., 50px), hide it.
-            // Only show it when we are back at the top.
             if (window.scrollY > 50) {
                 header.classList.add('hide');
             } else {
