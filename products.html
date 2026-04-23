@@ -121,10 +121,10 @@
             perspective: 3000px;
         }
 
-        /* New Title Above Carousel */
+        /* Adjusting Title - Higher position */
         .stars-container .section-title {
             position: absolute;
-            top: 12%;
+            top: 8%; /* Higher from top */
             text-align: center;
             width: 100%;
             font-family: 'Aptos Bold', sans-serif;
@@ -134,12 +134,13 @@
             z-index: 20;
         }
 
+        /* Adjusting Stage - Lower position */
         .stage {
             width: 400px;
             height: 300px;
             position: relative;
             transform-style: preserve-3d;
-            margin-top: 40px; /* Shifted down to accommodate title */
+            margin-top: 100px; /* Increased margin to push photos down */
         }
 
         .carousel {
@@ -216,14 +217,14 @@
             letter-spacing: 1px;
         }
 
-        /* --- New Row Styles --- */
+        /* Adjusting Row - Pushed down further */
         .new-row-container {
             display: flex;
             justify-content: center;
             gap: 25px;
             width: 100%;
             padding: 0 5%;
-            margin-top: 140px; /* Moved down more as requested */
+            margin-top: 180px; /* Increased to avoid overlap with lowered carousel */
             z-index: 10;
         }
 
