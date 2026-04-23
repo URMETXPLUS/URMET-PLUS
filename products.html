@@ -107,7 +107,7 @@
         .title { font-size: clamp(24px, 3.5vw, 48px); font-weight: bold; margin: 0 0 15px 0; line-height: 1.1; color: #000000; font-family: 'Aptos Bold', sans-serif; }
         .tagline-desc { font-size: 14px; line-height: 1.6; letter-spacing: 1px; color: #000000; opacity: 0.8; }
 
-        /* --- 4. 3D Stars Container (Positioned Content Higher) --- */
+        /* --- 4. 3D Stars Container & New Row --- */
         .stars-container {
             position: relative;
             width: 100%;
@@ -115,8 +115,9 @@
             background: #ffffff;
             overflow: hidden;
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            align-items: center; /* Center horizontally */
+            align-items: center;
             perspective: 3000px;
         }
 
@@ -125,7 +126,7 @@
             height: 300px;
             position: relative;
             transform-style: preserve-3d;
-            margin-top: -100px; /* Moves the entire carousel upward */
+            margin-top: -180px; /* Moved higher up to accommodate second row */
         }
 
         .carousel {
@@ -200,6 +201,48 @@
             color: #000000;
             font-weight: bold;
             letter-spacing: 1px;
+        }
+
+        /* --- New Row Styles --- */
+        .new-row-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            width: 100%;
+            padding: 0 5%;
+            margin-top: 80px;
+            z-index: 10;
+        }
+
+        .new-item {
+            flex: 1;
+            max-width: 200px;
+            text-align: center;
+        }
+
+        .new-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .new-item:hover img {
+            transform: translateY(-10px);
+        }
+
+        .new-item h5 {
+            font-family: 'Aptos Bold', sans-serif;
+            font-size: 16px;
+            color: #1e4b8a;
+            margin-bottom: 8px;
+        }
+
+        .new-item p {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
         }
 
         /* --- 5. Advanced Intro Section --- */
@@ -386,6 +429,7 @@
             .text-overlay { bottom: 5%; left: 3%; }
             .one-app-callout { flex-direction: column; text-align: center; }
             .why-grid { grid-template-columns: 1fr; }
+            .new-row-container { gap: 20px; flex-wrap: wrap; }
         }
 
         @media (max-width: 768px) {
@@ -394,6 +438,9 @@
             .sub-hero { height: 40vh; }
             .advanced-intro { padding: 80px 5%; }
             .intro-header h2 { font-size: 32px; }
+            .stars-container { height: auto; padding: 100px 0; }
+            .stage { margin-top: 0; margin-bottom: 40px; }
+            .new-row-container { margin-top: 20px; }
         }
     </style>
 </head>
@@ -478,6 +525,34 @@
                         <div class="product-label">Visitor Registration</div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="new-row-container">
+            <div class="new-item">
+                <img src="access.png" alt="Access Control">
+                <h5>Access Control</h5>
+                <p>Advanced encrypted credential management for ultimate security.</p>
+            </div>
+            <div class="new-item">
+                <img src="invitation.png" alt="Invitation">
+                <h5>Invitation</h5>
+                <p>Send secure, time-limited digital passes to guests instantly.</p>
+            </div>
+            <div class="new-item">
+                <img src="visitor.png" alt="Visitor registration">
+                <h5>Visitor registration</h5>
+                <p>Digital check-in system to streamline lobby and visitor flows.</p>
+            </div>
+            <div class="new-item">
+                <img src="facility.png" alt="Facility Booking">
+                <h5>Facility Booking</h5>
+                <p>Effortless scheduling for common areas and clubhouse amenities.</p>
+            </div>
+            <div class="new-item">
+                <img src="notification.png" alt="Notifcation">
+                <h5>Notification</h5>
+                <p>Real-time community updates and emergency alerts on the go.</p>
             </div>
         </div>
     </main>
