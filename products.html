@@ -338,21 +338,58 @@
             font-weight: bold;
         }
 
-        /* --- 5. Footer --- */
+        /* --- 5. Updated Footer Styles --- */
         footer { 
-            background: #050c1a;
-            padding: 80px 8% 40px 8%; 
-            color: white; 
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
+            /* Gradient matches the hero theme */
+            background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
+            padding: 40px 8% 20px 8%;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-end; /* Aligns content to bottom for full-height snapping */
+            color: white; 
+            height: 100vh; /* Maintain scroll-snap effect */
+            scroll-snap-align: start;
         }
-        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; width: 100%;}
-        .footer-section h4 { color: #60a5fa; margin-bottom: 20px; font-size: 18px; }
-        .footer-section p, .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin-bottom: 10px; font-size: 15px; }
-        .copyright { text-align: center; padding-top: 60px; color: rgba(255,255,255,0.3); font-size: 12px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; width: 100%;}
+
+        .footer-content { 
+            width: 100%; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            display: flex; 
+            justify-content: space-between; 
+            flex-wrap: wrap; 
+            gap: 40px; 
+            margin-bottom: 20px; 
+        }
+
+        .footer-section h4 { 
+            color: #60a5fa; 
+            margin-bottom: 20px; 
+            font-size: 18px; 
+            text-transform: uppercase; 
+        }
+
+        .footer-section p, 
+        .footer-section a { 
+            color: rgba(255,255,255,0.7); 
+            text-decoration: none; 
+            display: block; 
+            margin-bottom: 10px; 
+            font-size: 15px; 
+        }
+
+        .footer-section a:hover { 
+            color: white; 
+        }
+
+        .copyright { 
+            text-align: center; 
+            color: rgba(255,255,255,0.3); 
+            font-size: 12px; 
+            border-top: 1px solid rgba(255,255,255,0.1); 
+            padding-top: 20px; 
+            width: 100%;
+        }
 
         /* Hero Section Fixes */
         .intro-fullscreen { 
@@ -564,6 +601,7 @@
                 <img src="logo.png" alt="Logo" style="height: 35px; margin-bottom: 20px;">
                 <p>香港柴灣永泰道60號<br>柴灣工業城一期7期11-14室</p>
             </div>
+            
             <div class="footer-section">
                 <h4>Contact Us</h4>
                 <a href="#">Help Desk</a>
@@ -571,6 +609,7 @@
                 <a href="#">Terms of Service</a>
             </div>
         </div>
+
         <div class="copyright">
             <p>© 2026 URMET JES LIMITED - ALL RIGHTS RESERVED</p>
         </div>
@@ -580,8 +619,6 @@
         const header = document.getElementById('mainHeader');
         
         window.addEventListener('scroll', () => {
-            // Hide header if we have scrolled down at all (scrollY > 0)
-            // Show header only if we are back at the absolute top (scrollY === 0)
             if (window.scrollY > 50) {
                 header.classList.add('hide');
             } else {
