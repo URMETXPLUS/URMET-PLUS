@@ -15,13 +15,12 @@
             font-style: normal;
         }
 
-        /* --- 2. Global Styles & Full Page Scroll Logic --- */
+        /* --- 2. Global Styles --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         html {
             scroll-snap-type: y mandatory;
             scroll-behavior: smooth;
-            height: 100%;
         }
 
         body {
@@ -34,14 +33,16 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Essential for Snap Effect */
+        /* Responsive height logic */
         section, footer {
             scroll-snap-align: start;
             scroll-snap-stop: always;
-            height: 100vh;
+            min-height: 100vh; /* Use min-height instead of height to prevent cutoff */
+            display: flex;
+            width: 100%;
         }
 
-        /* --- 3. Navigation (with Hide Logic) --- */
+        /* --- 3. Navigation --- */
         header {
             width: 100%; 
             padding: 12px 8%; 
@@ -51,41 +52,20 @@
             position: fixed; 
             top: 0; 
             left: 0; 
-            background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
+            background: rgba(10, 25, 49, 0.9); /* Slight transparency */
+            backdrop-filter: blur(10px);
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Class to hide header */
-        header.hide {
-            transform: translateY(-100%);
-        }
+        header.hide { transform: translateY(-100%); }
 
-        .logo img { 
-            height: 40px; 
-            width: auto; 
-            display: block; 
-            transform: translateX(-38px); 
-        }
+        .logo img { height: 40px; width: auto; display: block; }
 
-        .nav-wrapper { 
-            display: flex; 
-            align-items: center; 
-            gap: 30px; 
-            height: 100%; 
-        }
-        
-        nav {
-            position: relative;
-            display: flex;
-            align-items: center;
-            height: 40px; 
-        }
-
+        .nav-wrapper { display: flex; align-items: center; gap: 30px; }
         nav ul { list-style: none; display: flex; gap: 30px; }
-        
         nav a { 
             text-decoration: none; 
             color: white; 
@@ -95,7 +75,6 @@
             opacity: 0.8; 
             transition: 0.3s; 
         }
-
         nav a:hover { opacity: 1; color: #60a5fa; }
 
         .lang-btn { 
@@ -106,16 +85,13 @@
             border-radius: 20px; 
             font-size: 12px; 
             cursor: pointer; 
-            transition: 0.3s; 
         }
 
         /* --- 4. Hero Section --- */
         .hero-section { 
-            display: flex; 
             align-items: center; 
             justify-content: center; 
-            padding: 80px 5% 40px 5%; 
-            background: transparent; 
+            padding: 100px 8% 60px 8%; 
         }
         
         .hero-container { 
@@ -125,24 +101,16 @@
             grid-template-columns: 1.2fr 0.8fr; 
             gap: 40px; 
             align-items: center; 
-            margin: 0 auto;
-        }
-
-        .text-section {
-            text-align: left;
-            z-index: 2;
         }
 
         .main-title { 
             font-size: clamp(32px, 5vw, 58px); 
             margin: 15px 0; 
-            letter-spacing: -1px; 
             line-height: 1.1;
         }
 
         .learn-more-btn {
             display: inline-flex;
-            align-items: center;
             margin-top: 35px;
             padding: 15px 35px;
             background: rgba(255, 255, 255, 0.1);
@@ -150,143 +118,97 @@
             color: white;
             text-decoration: none;
             border-radius: 50px;
-            font-size: 16px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
             transition: all 0.4s ease;
-            backdrop-filter: blur(10px);
         }
 
-        .learn-more-btn:hover {
-            background: #ffffff;
-            color: #0a1931;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
-        }
-
-        .learn-more-btn span {
-            margin-left: 10px;
-            transition: transform 0.3s ease;
-        }
+        .learn-more-btn:hover { background: #fff; color: #0a1931; }
 
         .reader-img { 
             width: 100%;
-            max-width: 600px; 
+            max-width: 100%;
             height: auto; 
-            object-fit: contain; 
             filter: drop-shadow(0 20px 50px rgba(0,0,0,0.7)); 
             border: 4px solid rgba(255, 255, 255, 0.1); 
             border-radius: 12px; 
-            display: block;
-            margin: 0 auto;
         }
 
-        /* --- 5. White Content Section --- */
+        /* --- 5. White Content Section (Corrected) --- */
         .white-section {
-            /* Photo background added here */
-            background-image: url('home3.png');
+            background-image: url('home3.png'); /* Ensure this file is in the same folder as this HTML */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            display: flex;
-            align-items: center;
-            padding: 0 8%; 
             position: relative;
+            padding: 80px 8%;
+            align-items: center;
+            justify-content: center;
         }
 
-        .white-section::after {
+        /* This overlay ensures text is readable regardless of the photo brightness */
+        .white-section::before {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.2); 
+            background: rgba(0, 0, 0, 0.4); 
             z-index: 1;
         }
 
         .product-row { 
             max-width: 1400px; 
-            margin: 0 auto; 
             width: 100%;
             display: flex; 
-            align-items: center; 
             justify-content: flex-end; 
-            gap: 80px; 
             position: relative;
             z-index: 2;
         }
 
-        .product-text { flex: 0 1 500px; text-align: left; } 
+        .product-text { max-width: 600px; } 
 
         .product-text h2 { 
-            font-family: 'Bariol Bold', sans-serif; 
-            font-size: 52px; 
+            font-size: clamp(38px, 6vw, 52px); 
             font-weight: 900;
             color: #ffffff;
             margin-bottom: 25px; 
-            letter-spacing: -1.5px;
-            text-transform: uppercase;
         }
 
-        .product-text p:nth-of-type(1) { 
-            font-size: 22px; 
-            line-height: 1.4; 
-            color: #ffffff;
-            margin-bottom: 10px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-        }
+        .product-text p { font-size: 20px; line-height: 1.5; color: #fff; margin-bottom: 10px; }
 
-        .product-text p:nth-of-type(2) { 
-            font-size: 18px; 
-            font-style: italic;
-            color: #ffffff;
-            margin-bottom: 0px; 
-            opacity: 0.9;
-        }
-
-        /* --- 6. Footer (Moved to Bottom) --- */
+        /* --- 6. Footer --- */
         footer { 
-            background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
-            padding: 40px 8% 20px 8%;
-            display: flex;
+            background: #050c1a;
+            padding: 60px 8% 20px 8%;
             flex-direction: column;
-            justify-content: flex-end; /* This moves the content to the bottom */
-            color: white; 
+            justify-content: space-between;
         }
+
         .footer-content { 
             width: 100%; 
-            max-width: 1200px; 
-            margin: 0 auto; 
             display: flex; 
             justify-content: space-between; 
             flex-wrap: wrap; 
             gap: 40px; 
-            margin-bottom: 20px; /* Space between links and copyright */
         }
-        .footer-section h4 { color: #60a5fa; margin-bottom: 20px; font-size: 18px; text-transform: uppercase; }
-        .footer-section p, .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin-bottom: 10px; font-size: 15px; }
-        .footer-section a:hover { color: white; }
-        
+
         .copyright { 
             text-align: center; 
             color: rgba(255,255,255,0.3); 
-            font-size: 12px; 
-            border-top: 1px solid rgba(255,255,255,0.1); 
             padding-top: 20px; 
-            width: 100%;
+            border-top: 1px solid rgba(255,255,255,0.1); 
+            margin-top: 40px;
         }
 
+        /* --- 7. Responsive Adjustments --- */
         @media (max-width: 1024px) {
-            .hero-container { grid-template-columns: 1fr; text-align: center; gap: 40px; }
-            .text-section { display: flex; flex-direction: column; align-items: center; }
-            .reader-img { max-width: 500px; }
-            .product-row { justify-content: center; }
+            .hero-container { grid-template-columns: 1fr; text-align: center; }
+            .image-wrapper { order: -1; } /* Image shows above text on mobile */
+            .product-row { justify-content: center; text-align: center; }
         }
 
         @media (max-width: 768px) {
-            header nav { display: none; }
-            .logo img { transform: none; }
-            .product-row { flex-direction: column-reverse; text-align: center; }
-            .product-text h2 { font-size: 38px; }
+            header { padding: 12px 5%; }
+            nav { display: none; } /* Mobile users usually use a burger menu; hidden for now as requested */
+            .hero-section { padding-top: 120px; }
+            .main-title { font-size: 32px; }
         }
     </style>
 </head>
@@ -315,7 +237,7 @@
             <div class="text-section">
                 <p style="color: #60a5fa; letter-spacing: 3px; font-weight: 800;">MULTI-READER</p>
                 <h1 class="main-title">Unlock the Future: Seamless Access with URMET PLUS</h1>
-                <p style="font-size: 18px; opacity: 0.95; line-height: 1.6; max-width: 600px;">Smart Access, Simplified. Transform your smartphone into your key with URMET PLUS. Generate dynamic, encrypted QR codes for seamless, contactless entry. High-speed, secure, and fully trackable—the modern standard for intelligent building access.</p>
+                <p>Smart Access, Simplified. Transform your smartphone into your key with URMET PLUS. Generate dynamic, encrypted QR codes for seamless, contactless entry.</p>
                 <a href="products.html" class="learn-more-btn">Learn more <span>→</span></a>
             </div>
             <div class="image-wrapper">
@@ -329,7 +251,7 @@
             <div class="product-text">
                 <h2>URMET PLUS</h2>
                 <p>One Reader. One App. Your Bespoke Access Universe.</p>
-                <p>Redefining the art of secure living.</p>
+                <p style="font-style: italic; opacity: 0.8;">Redefining the art of secure living.</p>
             </div>
         </div>
     </section>
@@ -341,10 +263,9 @@
                 <p>香港柴灣永泰道60號<br>柴灣工業城一期7期11-14室</p>
             </div>
             <div class="footer-section">
-                <h4>Contact Us</h4>
-                <a href="#">Help Desk</a>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
+                <h4 style="color: #60a5fa; margin-bottom: 15px;">Contact Us</h4>
+                <a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin-bottom: 8px;">Help Desk</a>
+                <a href="privacy.html" style="color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin-bottom: 8px;">Privacy Policy</a>
             </div>
         </div>
         <div class="copyright">
@@ -354,13 +275,18 @@
 
     <script>
         const header = document.getElementById('mainHeader');
-        
+        let lastScroll = 0;
+
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
+            const currentScroll = window.pageYOffset;
+            
+            // If scrolling down and past 100px, hide header
+            if (currentScroll > lastScroll && currentScroll > 100) {
                 header.classList.add('hide');
             } else {
                 header.classList.remove('hide');
             }
+            lastScroll = currentScroll;
         });
     </script>
 
