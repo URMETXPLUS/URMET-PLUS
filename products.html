@@ -394,21 +394,58 @@
             font-weight: bold;
         }
 
-        /* --- 7. Footer --- */
+        /* --- 7. Footer (NEW STYLES) --- */
         footer { 
-            background: #050c1a;
-            padding: 80px 8% 40px 8%; 
-            color: white; 
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
+            background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
+            padding: 40px 8% 20px 8%;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-end; /* Moves content to the bottom of the 100vh section */
+            color: white; 
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            height: 100vh;
         }
-        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; width: 100%;}
-        .footer-section h4 { color: #60a5fa; margin-bottom: 20px; font-size: 18px; }
-        .footer-section p, .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin-bottom: 10px; font-size: 15px; }
-        .copyright { text-align: center; padding-top: 60px; color: rgba(255,255,255,0.3); font-size: 12px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; width: 100%;}
+
+        .footer-content { 
+            width: 100%; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            display: flex; 
+            justify-content: space-between; 
+            flex-wrap: wrap; 
+            gap: 40px; 
+            margin-bottom: 20px; 
+        }
+
+        .footer-section h4 { 
+            color: #60a5fa; 
+            margin-bottom: 20px; 
+            font-size: 18px; 
+            text-transform: uppercase; 
+        }
+
+        .footer-section p, 
+        .footer-section a { 
+            color: rgba(255,255,255,0.7); 
+            text-decoration: none; 
+            display: block; 
+            margin-bottom: 10px; 
+            font-size: 15px; 
+        }
+
+        .footer-section a:hover { 
+            color: white; 
+        }
+
+        .copyright { 
+            text-align: center; 
+            color: rgba(255,255,255,0.3); 
+            font-size: 12px; 
+            border-top: 1px solid rgba(255,255,255,0.1); 
+            padding-top: 20px; 
+            width: 100%;
+        }
 
         @media (max-width: 1024px) {
             .text-overlay { bottom: 5%; left: 3%; }
