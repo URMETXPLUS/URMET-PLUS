@@ -23,12 +23,20 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        /* Added for full page scroll snap */
+        html {
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+            height: 100%;
+        }
+
         body {
             background: #050c1a;
             color: white;
             font-family: 'Bariol Bold', sans-serif;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            height: 100%;
         }
 
         /* --- 2. Header (固定在頂部) --- */
@@ -45,6 +53,12 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Class to hide header */
+        header.hide {
+            transform: translateY(-100%);
         }
 
         .logo img { height: 40px; width: auto; display: block; transform: translateX(-38px); }
@@ -54,6 +68,14 @@
         nav a:hover { opacity: 1; color: #60a5fa; }
         .lang-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: 0.3s; }
 
+        /* Snap targets */
+        section, footer, main.stars-container {
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            height: 100vh;
+            width: 100%;
+        }
+
         /* --- 3. 白色介紹區塊與排版優化 --- */
         .advanced-intro {
             background: #ffffff;
@@ -61,6 +83,9 @@
             padding: 120px 8%;
             border-top: 1px solid rgba(0, 0, 0, 0.1);
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .intro-header {
@@ -248,6 +273,9 @@
             background: #ffffff;
             color: #333;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .why-choose-container {
@@ -317,11 +345,14 @@
             color: white; 
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
-        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; width: 100%;}
         .footer-section h4 { color: #60a5fa; margin-bottom: 20px; font-size: 18px; }
         .footer-section p, .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin-bottom: 10px; font-size: 15px; }
-        .copyright { text-align: center; padding-top: 60px; color: rgba(255,255,255,0.3); font-size: 12px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; }
+        .copyright { text-align: center; padding-top: 60px; color: rgba(255,255,255,0.3); font-size: 12px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; width: 100%;}
 
         /* Hero Section Fixes */
         .intro-fullscreen { 
@@ -377,7 +408,7 @@
 </head>
 <body>
 
-    <header>
+    <header id="mainHeader">
         <div class="logo">
             <img src="logo.png" alt="Urmet Logo">
         </div>
@@ -544,6 +575,20 @@
             <p>© 2026 URMET JES LIMITED - ALL RIGHTS RESERVED</p>
         </div>
     </footer>
+
+    <script>
+        const header = document.getElementById('mainHeader');
+        
+        window.addEventListener('scroll', () => {
+            // Hide header if we have scrolled down at all (scrollY > 0)
+            // Show header only if we are back at the absolute top (scrollY === 0)
+            if (window.scrollY > 50) {
+                header.classList.add('hide');
+            } else {
+                header.classList.remove('hide');
+            }
+        });
+    </script>
 
 </body>
 </html>
