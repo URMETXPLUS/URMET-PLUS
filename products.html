@@ -23,7 +23,6 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* Added for full page scroll snap */
         html {
             scroll-snap-type: y mandatory;
             scroll-behavior: smooth;
@@ -39,7 +38,7 @@
             height: 100%;
         }
 
-        /* --- 2. Header (固定在頂部) --- */
+        /* --- 2. Header --- */
         header {
             width: 100%; 
             padding: 12px 8%; 
@@ -56,7 +55,6 @@
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Class to hide header */
         header.hide {
             transform: translateY(-100%);
         }
@@ -68,7 +66,6 @@
         nav a:hover { opacity: 1; color: #60a5fa; }
         .lang-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: 0.3s; }
 
-        /* Snap targets */
         section, footer, main.stars-container {
             scroll-snap-align: start;
             scroll-snap-stop: always;
@@ -76,7 +73,136 @@
             width: 100%;
         }
 
-        /* --- 3. 白色介紹區塊與排版優化 --- */
+        /* --- 3. Hero Section --- */
+        .intro-fullscreen { 
+            display: flex; 
+            width: 100vw; 
+            height: 100vh; 
+            min-height: 600px; 
+            background-color: #000; 
+        }
+        .grid-box { position: relative; overflow: hidden; height: 100%; }
+        .main-hero { flex: 0 0 65.5%; } 
+        .side-column { flex: 0 0 34.5%; display: flex; flex-direction: column; }
+        .sub-hero { flex: 1; border-left: 1px solid rgba(255,255,255,0.1); }
+        
+        .grid-box img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            display: block; 
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); 
+        }
+        .grid-box:hover img { transform: scale(1.08); }
+
+        .text-overlay { 
+            position: absolute; 
+            bottom: 8%; 
+            left: 3%; 
+            color: #000000; 
+            z-index: 2; 
+            max-width: 80%;
+        }
+        .tagline { font-size: 14px; letter-spacing: 3px; margin-bottom: 8px; opacity: 0.9; color: #000000; font-family: 'Aptos Bold', sans-serif; }
+        .title { font-size: clamp(24px, 3.5vw, 48px); font-weight: bold; margin: 0 0 15px 0; line-height: 1.1; color: #000000; font-family: 'Aptos Bold', sans-serif; }
+        .tagline-desc { font-size: 14px; line-height: 1.6; letter-spacing: 1px; color: #000000; opacity: 0.8; }
+
+        /* --- 4. 3D Stars Container (Positioned Content Higher) --- */
+        .stars-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: #ffffff;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Center horizontally */
+            perspective: 3000px;
+        }
+
+        .stage {
+            width: 400px;
+            height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            margin-top: -100px; /* Moves the entire carousel upward */
+        }
+
+        .carousel {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            animation: rotateCarousel 25s linear infinite;
+        }
+
+        @keyframes rotateCarousel {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+
+        .product-card {
+            position: absolute;
+            width: 420px; 
+            height: 280px;
+            left: 50%;
+            top: 50%;
+            margin-left: -210px;
+            margin-top: -140px;
+            transform-style: preserve-3d;
+        }
+
+        .p1 { transform: rotateY(0deg) translateZ(550px); }
+        .p2 { transform: rotateY(60deg) translateZ(550px); }
+        .p3 { transform: rotateY(120deg) translateZ(550px); }
+        .p4 { transform: rotateY(180deg) translateZ(550px); }
+        .p5 { transform: rotateY(240deg) translateZ(550px); }
+        .p6 { transform: rotateY(300deg) translateZ(550px); }
+
+        .billboard-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+        }
+
+        .billboard-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            cursor: pointer;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .billboard-content img { transform: scale(1.1); }
+
+        .p1 .billboard-content { animation: billboardFacing1 25s linear infinite; }
+        .p2 .billboard-content { animation: billboardFacing2 25s linear infinite; }
+        .p3 .billboard-content { animation: billboardFacing3 25s linear infinite; }
+        .p4 .billboard-content { animation: billboardFacing4 25s linear infinite; }
+        .p5 .billboard-content { animation: billboardFacing5 25s linear infinite; }
+        .p6 .billboard-content { animation: billboardFacing6 25s linear infinite; }
+
+        @keyframes billboardFacing1 { from { transform: rotateY(0deg); } to { transform: rotateY(-360deg); } }
+        @keyframes billboardFacing2 { from { transform: rotateY(-60deg); } to { transform: rotateY(-420deg); } }
+        @keyframes billboardFacing3 { from { transform: rotateY(-120deg); } to { transform: rotateY(-480deg); } }
+        @keyframes billboardFacing4 { from { transform: rotateY(-180deg); } to { transform: rotateY(-540deg); } }
+        @keyframes billboardFacing5 { from { transform: rotateY(-240deg); } to { transform: rotateY(-600deg); } }
+        @keyframes billboardFacing6 { from { transform: rotateY(-300deg); } to { transform: rotateY(-660deg); } }
+
+        .product-label {
+            margin-top: 15px;
+            font-family: 'Bariol Bold', sans-serif;
+            font-size: 15px;
+            color: #000000;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* --- 5. Advanced Intro Section --- */
         .advanced-intro {
             background: #ffffff;
             color: #333;
@@ -169,102 +295,7 @@
             margin-left: auto;
         }
 
-        /* --- 4. 3D 展示區 (Updated to White Background) --- */
-        .stars-container {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            background: #ffffff; /* Background set to White */
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            perspective: 3000px;
-        }
-
-        .stage {
-            width: 400px;
-            height: 300px;
-            position: relative;
-            transform-style: preserve-3d;
-        }
-
-        .carousel {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            transform-style: preserve-3d;
-            animation: rotateCarousel 25s linear infinite;
-        }
-
-        @keyframes rotateCarousel {
-            from { transform: rotateY(0deg); }
-            to { transform: rotateY(360deg); }
-        }
-
-        .product-card {
-            position: absolute;
-            width: 420px; 
-            height: 280px;
-            left: 50%;
-            top: 50%;
-            margin-left: -210px;
-            margin-top: -140px;
-            transform-style: preserve-3d;
-        }
-
-        .p1 { transform: rotateY(0deg) translateZ(550px); }
-        .p2 { transform: rotateY(60deg) translateZ(550px); }
-        .p3 { transform: rotateY(120deg) translateZ(550px); }
-        .p4 { transform: rotateY(180deg) translateZ(550px); }
-        .p5 { transform: rotateY(240deg) translateZ(550px); }
-        .p6 { transform: rotateY(300deg) translateZ(550px); }
-
-        .billboard-content {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transform-style: preserve-3d;
-            backface-visibility: hidden;
-        }
-
-        .billboard-content img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            cursor: pointer;
-            transition: transform 0.4s ease;
-        }
-
-        .product-card:hover .billboard-content img { transform: scale(1.1); }
-
-        .p1 .billboard-content { animation: billboardFacing1 25s linear infinite; }
-        .p2 .billboard-content { animation: billboardFacing2 25s linear infinite; }
-        .p3 .billboard-content { animation: billboardFacing3 25s linear infinite; }
-        .p4 .billboard-content { animation: billboardFacing4 25s linear infinite; }
-        .p5 .billboard-content { animation: billboardFacing5 25s linear infinite; }
-        .p6 .billboard-content { animation: billboardFacing6 25s linear infinite; }
-
-        @keyframes billboardFacing1 { from { transform: rotateY(0deg); } to { transform: rotateY(-360deg); } }
-        @keyframes billboardFacing2 { from { transform: rotateY(-60deg); } to { transform: rotateY(-420deg); } }
-        @keyframes billboardFacing3 { from { transform: rotateY(-120deg); } to { transform: rotateY(-480deg); } }
-        @keyframes billboardFacing4 { from { transform: rotateY(-180deg); } to { transform: rotateY(-540deg); } }
-        @keyframes billboardFacing5 { from { transform: rotateY(-240deg); } to { transform: rotateY(-600deg); } }
-        @keyframes billboardFacing6 { from { transform: rotateY(-300deg); } to { transform: rotateY(-660deg); } }
-
-        /* Updated Label: Black Color, No Shadow for white background */
-        .product-label {
-            margin-top: 15px;
-            font-family: 'Bariol Bold', sans-serif;
-            font-size: 15px;
-            color: #000000;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-
-        /* --- New Section Styles --- */
+        /* --- 6. Why Choose Section --- */
         .why-choose-section {
             padding: 100px 8%;
             background: #ffffff;
@@ -335,7 +366,7 @@
             font-weight: bold;
         }
 
-        /* --- 5. Footer --- */
+        /* --- 7. Footer --- */
         footer { 
             background: #050c1a;
             padding: 80px 8% 40px 8%; 
@@ -351,43 +382,8 @@
         .footer-section p, .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin-bottom: 10px; font-size: 15px; }
         .copyright { text-align: center; padding-top: 60px; color: rgba(255,255,255,0.3); font-size: 12px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; width: 100%;}
 
-        /* Hero Section Fixes */
-        .intro-fullscreen { 
-            display: flex; 
-            width: 100vw; 
-            height: 100vh; 
-            min-height: 600px; 
-            background-color: #000; 
-        }
-        .grid-box { position: relative; overflow: hidden; height: 100%; }
-        .main-hero { flex: 0 0 65.5%; } 
-        .side-column { flex: 0 0 34.5%; display: flex; flex-direction: column; }
-        .sub-hero { flex: 1; border-left: 1px solid rgba(255,255,255,0.1); }
-        
-        .grid-box img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            display: block; 
-            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); 
-        }
-        .grid-box:hover img { transform: scale(1.08); }
-
-        .text-overlay { 
-            position: absolute; 
-            bottom: 8%; 
-            left: 3%; 
-            color: #000000; 
-            z-index: 2; 
-            max-width: 80%;
-        }
-        .tagline { font-size: 14px; letter-spacing: 3px; margin-bottom: 8px; opacity: 0.9; color: #000000; font-family: 'Aptos Bold', sans-serif; }
-        .title { font-size: clamp(24px, 3.5vw, 48px); font-weight: bold; margin: 0 0 15px 0; line-height: 1.1; color: #000000; font-family: 'Aptos Bold', sans-serif; }
-        .tagline-desc { font-size: 14px; line-height: 1.6; letter-spacing: 1px; color: #000000; opacity: 0.8; }
-
         @media (max-width: 1024px) {
             .text-overlay { bottom: 5%; left: 3%; }
-            .title { margin-bottom: 10px; }
             .one-app-callout { flex-direction: column; text-align: center; }
             .why-grid { grid-template-columns: 1fr; }
         }
@@ -396,10 +392,8 @@
             .intro-fullscreen { flex-direction: column; height: auto; }
             .main-hero, .side-column { flex: 0 0 auto; width: 100%; height: 60vh; }
             .sub-hero { height: 40vh; }
-            .text-overlay { bottom: 5%; left: 5%; }
             .advanced-intro { padding: 80px 5%; }
             .intro-header h2 { font-size: 32px; }
-            .why-choose-section { padding: 60px 5%; }
         }
     </style>
 </head>
