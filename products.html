@@ -161,7 +161,6 @@
             flex: 0 0 35%;
         }
 
-        /* Modified: middle1.png is now 40% smaller (max-width reduced) */
         .advanced-intro-image img {
             width: 60%;
             height: auto;
@@ -170,17 +169,16 @@
             margin-left: auto;
         }
 
-        /* --- 4. 3D 展示區 --- */
+        /* --- 4. 3D 展示區 (Updated to White Background) --- */
         .stars-container {
             position: relative;
             width: 100%;
             height: 100vh;
-            background: radial-gradient(circle at center, #102a4d 0%, #050c1a 100%);
+            background: #ffffff; /* Background set to White */
             overflow: hidden;
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Changed from center to move content up */
-            padding-top: 15vh; /* Adjust this value to control how high it goes */
+            align-items: center;
             perspective: 3000px;
         }
 
@@ -215,7 +213,6 @@
             transform-style: preserve-3d;
         }
 
-        /* Adjusted math for 6 cards (360 / 6 = 60 degrees) */
         .p1 { transform: rotateY(0deg) translateZ(550px); }
         .p2 { transform: rotateY(60deg) translateZ(550px); }
         .p3 { transform: rotateY(120deg) translateZ(550px); }
@@ -257,13 +254,12 @@
         @keyframes billboardFacing5 { from { transform: rotateY(-240deg); } to { transform: rotateY(-600deg); } }
         @keyframes billboardFacing6 { from { transform: rotateY(-300deg); } to { transform: rotateY(-660deg); } }
 
-        /* Modified: Label font changed to Bariol Bold, smaller size, drop shadow removed blue glow */
+        /* Updated Label: Black Color, No Shadow for white background */
         .product-label {
             margin-top: 15px;
             font-family: 'Bariol Bold', sans-serif;
             font-size: 15px;
-            color: #ffffff;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            color: #000000;
             font-weight: bold;
             letter-spacing: 1px;
         }
@@ -339,58 +335,21 @@
             font-weight: bold;
         }
 
-        /* --- 5. Updated Footer Styles --- */
+        /* --- 5. Footer --- */
         footer { 
-            /* Gradient matches the hero theme */
-            background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
-            padding: 40px 8% 20px 8%;
+            background: #050c1a;
+            padding: 80px 8% 40px 8%; 
+            color: white; 
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end; /* Aligns content to bottom for full-height snapping */
-            color: white; 
-            height: 100vh; /* Maintain scroll-snap effect */
-            scroll-snap-align: start;
+            justify-content: space-between;
         }
-
-        .footer-content { 
-            width: 100%; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            display: flex; 
-            justify-content: space-between; 
-            flex-wrap: wrap; 
-            gap: 40px; 
-            margin-bottom: 20px; 
-        }
-
-        .footer-section h4 { 
-            color: #60a5fa; 
-            margin-bottom: 20px; 
-            font-size: 18px; 
-            text-transform: uppercase; 
-        }
-
-        .footer-section p, 
-        .footer-section a { 
-            color: rgba(255,255,255,0.7); 
-            text-decoration: none; 
-            display: block; 
-            margin-bottom: 10px; 
-            font-size: 15px; 
-        }
-
-        .footer-section a:hover { 
-            color: white; 
-        }
-
-        .copyright { 
-            text-align: center; 
-            color: rgba(255,255,255,0.3); 
-            font-size: 12px; 
-            border-top: 1px solid rgba(255,255,255,0.1); 
-            padding-top: 20px; 
-            width: 100%;
-        }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; width: 100%;}
+        .footer-section h4 { color: #60a5fa; margin-bottom: 20px; font-size: 18px; }
+        .footer-section p, .footer-section a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin-bottom: 10px; font-size: 15px; }
+        .copyright { text-align: center; padding-top: 60px; color: rgba(255,255,255,0.3); font-size: 12px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; width: 100%;}
 
         /* Hero Section Fixes */
         .intro-fullscreen { 
@@ -464,64 +423,28 @@
         </div>
     </header>
 
-<section class="intro-fullscreen">
-    <div class="grid-box main-hero">
-        <img src="intro1.png" alt="New Arrivals">
-        <div class="text-overlay">
-            <p class="tagline">URMET PLUS</p>
-            <h2 class="title">MULTI-READER</h2>
-            <p class="tagline-desc">
-                Secure every entry with one device:<br>
-                QR code, card, or mobile.<br>
-                One reader. All access. Total control.<br>
-                Seamless access, unified.
-            </p>
-        </div>
-    </div>
-
-    <div class="side-column">
-        <div class="grid-box sub-hero">
-            <img src="intro2.png" alt="Smart Access">
-        </div>
-    </div>
-</section>
-
-    <section class="advanced-intro">
-        <div class="intro-header">
-            <h2>Elevate Your Property Management with URMET PLUS</h2>
-            <p>Transform your property into a premier smart community. URMET PLUS integrates cutting-edge technology with high-level security to create a seamless, sophisticated experience for residents and staff alike. Keep your community safe, connected, and ahead of the curve.</p>
-        </div>
-
-        <div class="feature-grid">
-            <div class="feature-item">
-                <h3>Next-Gen Access Control</h3>
-                <p>Replace traditional keys with dynamic, encrypted QR codes and mobile access for secure, contactless entry.</p>
-            </div>
-            <div class="feature-item">
-                <h3>Seamless Visitor Management</h3>
-                <p>Reduce lobby congestion with digital visitor registration and instant "Invitation" passes sent directly from residents to guests.</p>
-            </div>
-            <div class="feature-item">
-                <h3>Instant Notifications</h3>
-                <p>Keep your community informed with real-time digital notices and emergency alerts delivered straight to every smartphone.</p>
-            </div>
-            <div class="feature-item">
-                <h3>Smart Facility Booking</h3>
-                <p>Automated scheduling for clubhouses and common areas, eliminating double-bookings and manual paperwork.</p>
+    <section class="intro-fullscreen">
+        <div class="grid-box main-hero">
+            <img src="intro1.png" alt="New Arrivals">
+            <div class="text-overlay">
+                <p class="tagline">URMET PLUS</p>
+                <h2 class="title">MULTI-READER</h2>
+                <p class="tagline-desc">
+                    Secure every entry with one device:<br>
+                    QR code, card, or mobile.<br>
+                    One reader. All access. Total control.<br>
+                    Seamless access, unified.
+                </p>
             </div>
         </div>
 
-        <div class="one-app-callout">
-            <div class="callout-text">
-                <h4>One App. Total Control.</h4>
-                <p>Empower your team and delight your residents with a seamless, secure, and efficient management experience.</p>
-            </div>
-            <div class="advanced-intro-image">
-                <img src="middle1.png" alt="Control Panel Display">
+        <div class="side-column">
+            <div class="grid-box sub-hero">
+                <img src="intro2.png" alt="Smart Access">
             </div>
         </div>
     </section>
-    
+
     <main class="stars-container">
         <div class="stage">
             <div class="carousel">
@@ -565,6 +488,42 @@
         </div>
     </main>
 
+    <section class="advanced-intro">
+        <div class="intro-header">
+            <h2>Elevate Your Property Management with URMET PLUS</h2>
+            <p>Transform your property into a premier smart community. URMET PLUS integrates cutting-edge technology with high-level security to create a seamless, sophisticated experience for residents and staff alike. Keep your community safe, connected, and ahead of the curve.</p>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-item">
+                <h3>Next-Gen Access Control</h3>
+                <p>Replace traditional keys with dynamic, encrypted QR codes and mobile access for secure, contactless entry.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Seamless Visitor Management</h3>
+                <p>Reduce lobby congestion with digital visitor registration and instant "Invitation" passes sent directly from residents to guests.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Instant Notifications</h3>
+                <p>Keep your community informed with real-time digital notices and emergency alerts delivered straight to every smartphone.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Smart Facility Booking</h3>
+                <p>Automated scheduling for clubhouses and common areas, eliminating double-bookings and manual paperwork.</p>
+            </div>
+        </div>
+
+        <div class="one-app-callout">
+            <div class="callout-text">
+                <h4>One App. Total Control.</h4>
+                <p>Empower your team and delight your residents with a seamless, secure, and efficient management experience.</p>
+            </div>
+            <div class="advanced-intro-image">
+                <img src="middle1.png" alt="Control Panel Display">
+            </div>
+        </div>
+    </section>
+
     <section class="why-choose-section">
         <div class="why-choose-container">
             <h2>Why Choose URMET PLUS?</h2>
@@ -602,7 +561,6 @@
                 <img src="logo.png" alt="Logo" style="height: 35px; margin-bottom: 20px;">
                 <p>香港柴灣永泰道60號<br>柴灣工業城一期7期11-14室</p>
             </div>
-            
             <div class="footer-section">
                 <h4>Contact Us</h4>
                 <a href="#">Help Desk</a>
@@ -610,7 +568,6 @@
                 <a href="#">Terms of Service</a>
             </div>
         </div>
-
         <div class="copyright">
             <p>© 2026 URMET JES LIMITED - ALL RIGHTS RESERVED</p>
         </div>
