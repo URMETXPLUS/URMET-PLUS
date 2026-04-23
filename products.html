@@ -107,7 +107,7 @@
         .title { font-size: clamp(24px, 3.5vw, 48px); font-weight: bold; margin: 0 0 15px 0; line-height: 1.1; color: #000000; font-family: 'Aptos Bold', sans-serif; }
         .tagline-desc { font-size: 14px; line-height: 1.6; letter-spacing: 1px; color: #000000; opacity: 0.8; }
 
-        /* --- 4. 3D Stars Container --- */
+        /* --- 4. 3D Stars Container (Updated Layout) --- */
         .stars-container {
             position: relative;
             width: 100%;
@@ -116,14 +116,14 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Centers everything vertically */
-            align-items: center; /* Centers everything horizontally */
+            justify-content: flex-start; /* Aligned to top to control spacing manually */
+            align-items: center;
             perspective: 3000px;
+            padding-top: 80px; /* Space for the fixed header */
         }
 
         .stars-container .section-title {
-            position: absolute;
-            top: 5%; /* Moved up from 8% */
+            margin-top: 40px; /* Positioned just like the photo */
             text-align: center;
             width: 100%;
             font-family: 'Aptos Bold', sans-serif;
@@ -134,17 +134,20 @@
         }
 
         .stage {
-            width: 400px;
-            height: 300px;
+            width: 100%;
+            height: 350px;
             position: relative;
             transform-style: preserve-3d;
-            margin-top: 40px; /* Added margin to move the stage down */
+            margin-top: 60px; /* Gap between title and phones */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .carousel {
-            width: 100%;
-            height: 100%;
-            position: absolute;
+            width: 400px;
+            height: 300px;
+            position: relative;
             transform-style: preserve-3d;
             animation: rotateCarousel 25s linear infinite;
         }
@@ -215,52 +218,63 @@
             letter-spacing: 1px;
         }
 
-        /* --- New Row Styles --- */
+        /* --- 5 Column Row (Updated Position) --- */
         .new-row-container {
             display: flex;
             justify-content: center;
-            gap: 25px;
+            align-items: flex-start;
+            gap: 20px;
             width: 100%;
-            padding: 0 5%;
-            margin-top: 120px; /* Increased from 80px to move the 5 columns down */
+            padding: 40px 5%;
+            margin-top: auto; /* Pushes the row to the bottom of the section */
+            margin-bottom: 40px;
             z-index: 10;
         }
 
         .new-item {
             flex: 1;
-            max-width: 220px;
+            max-width: 200px;
             text-align: center;
-            padding: 20px 15px;
-            border: 1px solid rgba(30, 75, 138, 0.1); 
+            padding: 25px 15px;
+            border: 1px solid #f1f5f9; 
             border-radius: 12px;
-            background: #fcfdfe;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+            background: #ffffff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
         }
 
         .new-item:hover {
-            transform: scale(1.1); 
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            border-color: rgba(30, 75, 138, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .new-item .icon-box {
+            width: 60px;
+            height: 60px;
+            background: #eff6ff; /* Light blue tint from photo */
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px auto;
         }
 
         .new-item img {
-            width: 80px;
-            height: 80px;
+            width: 35px;
+            height: 35px;
             object-fit: contain;
-            margin-bottom: 15px;
         }
 
         .new-item h5 {
             font-family: 'Aptos Bold', sans-serif;
-            font-size: 16px;
+            font-size: 15px;
             color: #1e4b8a;
             margin-bottom: 8px;
         }
 
         .new-item p {
             font-size: 12px;
-            color: #666;
+            color: #64748b;
             line-height: 1.4;
         }
 
@@ -448,7 +462,8 @@
             .text-overlay { bottom: 5%; left: 3%; }
             .one-app-callout { flex-direction: column; text-align: center; }
             .why-grid { grid-template-columns: 1fr; }
-            .new-row-container { gap: 20px; flex-wrap: wrap; }
+            .new-row-container { gap: 15px; flex-wrap: wrap; }
+            .new-item { max-width: 100%; flex: 1 1 30%; }
         }
 
         @media (max-width: 768px) {
@@ -457,9 +472,9 @@
             .sub-hero { height: 40vh; }
             .advanced-intro { padding: 80px 5%; }
             .intro-header h2 { font-size: 32px; }
-            .stars-container { height: auto; padding: 100px 0; }
-            .stage { margin-top: 0; margin-bottom: 40px; }
-            .new-row-container { margin-top: 20px; }
+            .stars-container { height: auto; padding-bottom: 60px; }
+            .stage { height: 300px; }
+            .new-row-container { margin-top: 40px; }
         }
     </style>
 </head>
@@ -551,27 +566,27 @@
 
         <div class="new-row-container">
             <div class="new-item">
-                <img src="access.png" alt="Access Control">
+                <div class="icon-box"><img src="access.png" alt="Access Control"></div>
                 <h5>Access Control</h5>
                 <p>Advanced encrypted credential management for ultimate security.</p>
             </div>
             <div class="new-item">
-                <img src="invitation.png" alt="Invitation">
+                <div class="icon-box"><img src="invitation.png" alt="Invitation"></div>
                 <h5>Invitation</h5>
                 <p>Send secure, time-limited digital passes to guests instantly.</p>
             </div>
             <div class="new-item">
-                <img src="visitor.png" alt="Visitor registration">
+                <div class="icon-box"><img src="visitor.png" alt="Visitor registration"></div>
                 <h5>Visitor registration</h5>
                 <p>Digital check-in system to streamline lobby and visitor flows.</p>
             </div>
             <div class="new-item">
-                <img src="facility.png" alt="Facility Booking">
+                <div class="icon-box"><img src="facility.png" alt="Facility Booking"></div>
                 <h5>Facility Booking</h5>
                 <p>Effortless scheduling for common areas and clubhouse amenities.</p>
             </div>
             <div class="new-item">
-                <img src="notication.png" alt="Notifcation">
+                <div class="icon-box"><img src="notication.png" alt="Notification"></div>
                 <h5>Notification</h5>
                 <p>Real-time community updates and emergency alerts on the go.</p>
             </div>
