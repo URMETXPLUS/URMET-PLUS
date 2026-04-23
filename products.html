@@ -121,10 +121,9 @@
             perspective: 3000px;
         }
 
-        /* Adjusting Title - Higher position */
         .stars-container .section-title {
             position: absolute;
-            top: 8%; /* Higher from top */
+            top: 12%;
             text-align: center;
             width: 100%;
             font-family: 'Aptos Bold', sans-serif;
@@ -134,13 +133,12 @@
             z-index: 20;
         }
 
-        /* Adjusting Stage - Lower position */
         .stage {
             width: 400px;
             height: 300px;
             position: relative;
             transform-style: preserve-3d;
-            margin-top: 100px; /* Increased margin to push photos down */
+            margin-top: calc(40px + 2cm); /* Added 2cm to existing margin */
         }
 
         .carousel {
@@ -217,14 +215,14 @@
             letter-spacing: 1px;
         }
 
-        /* Adjusting Row - Pushed down further */
+        /* --- New Row Styles --- */
         .new-row-container {
             display: flex;
             justify-content: center;
             gap: 25px;
             width: 100%;
             padding: 0 5%;
-            margin-top: 180px; /* Increased to avoid overlap with lowered carousel */
+            margin-top: 140px; 
             z-index: 10;
         }
 
