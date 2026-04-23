@@ -116,14 +116,14 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            justify-content: center; /* Centers everything vertically */
+            align-items: center; /* Centers everything horizontally */
             perspective: 3000px;
         }
 
         .stars-container .section-title {
             position: absolute;
-            top: 12%;
+            top: 8%; /* Reduced top slightly to make room for central carousel */
             text-align: center;
             width: 100%;
             font-family: 'Aptos Bold', sans-serif;
@@ -138,7 +138,7 @@
             height: 300px;
             position: relative;
             transform-style: preserve-3d;
-            margin-top: calc(40px + 2cm); /* Moved down by exactly 2cm */
+            margin: 0; /* Removed manual margins to keep it in the flex center */
         }
 
         .carousel {
@@ -222,7 +222,7 @@
             gap: 25px;
             width: 100%;
             padding: 0 5%;
-            margin-top: 140px; 
+            margin-top: 80px; /* Reduced to pull icons closer to the centered carousel */
             z-index: 10;
         }
 
