@@ -107,7 +107,7 @@
         .title { font-size: clamp(24px, 3.5vw, 48px); font-weight: bold; margin: 0 0 15px 0; line-height: 1.1; color: #000000; font-family: 'Aptos Bold', sans-serif; }
         .tagline-desc { font-size: 14px; line-height: 1.6; letter-spacing: 1px; color: #000000; opacity: 0.8; }
 
-        /* --- 4. 3D Stars Container (Updated Layout) --- */
+        /* --- 4. 3D Stars Container --- */
         .stars-container {
             position: relative;
             width: 100%;
@@ -116,14 +116,14 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Aligned to top to control spacing manually */
+            justify-content: flex-start;
             align-items: center;
             perspective: 3000px;
-            padding-top: 80px; /* Space for the fixed header */
+            padding-top: 80px;
         }
 
         .stars-container .section-title {
-            margin-top: 40px; /* Positioned just like the photo */
+            margin-top: 40px;
             text-align: center;
             width: 100%;
             font-family: 'Aptos Bold', sans-serif;
@@ -138,7 +138,7 @@
             height: 350px;
             position: relative;
             transform-style: preserve-3d;
-            margin-top: 60px; /* Gap between title and phones */
+            margin-top: 60px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -218,7 +218,7 @@
             letter-spacing: 1px;
         }
 
-        /* --- 5 Column Row (Updated Position) --- */
+        /* --- 5 Column Row (Updated for larger icons) --- */
         .new-row-container {
             display: flex;
             justify-content: center;
@@ -226,14 +226,14 @@
             gap: 20px;
             width: 100%;
             padding: 40px 5%;
-            margin-top: auto; /* Pushes the row to the bottom of the section */
+            margin-top: auto; 
             margin-bottom: 40px;
             z-index: 10;
         }
 
         .new-item {
             flex: 1;
-            max-width: 200px;
+            max-width: 240px; /* Slightly wider to accommodate larger icons */
             text-align: center;
             padding: 25px 15px;
             border: 1px solid #f1f5f9; 
@@ -249,9 +249,9 @@
         }
 
         .new-item .icon-box {
-            width: 60px;
-            height: 60px;
-            background: transparent; /* Removed the light blue tint */
+            width: 80px; /* Increased from 60px */
+            height: 80px; /* Increased from 60px */
+            background: #eff6ff; 
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -260,8 +260,8 @@
         }
 
         .new-item img {
-            width: 35px;
-            height: 35px;
+            width: 50px; /* Increased from 35px */
+            height: 50px; /* Increased from 35px */
             object-fit: contain;
         }
 
