@@ -107,7 +107,7 @@
         .title { font-size: clamp(24px, 3.5vw, 48px); font-weight: bold; margin: 0 0 15px 0; line-height: 1.1; color: #000000; font-family: 'Aptos Bold', sans-serif; }
         .tagline-desc { font-size: 14px; line-height: 1.6; letter-spacing: 1px; color: #000000; opacity: 0.8; }
 
-        /* --- 4. 3D Stars Container & New Row --- */
+        /* --- 4. 3D Stars Container --- */
         .stars-container {
             position: relative;
             width: 100%;
@@ -126,7 +126,7 @@
             height: 300px;
             position: relative;
             transform-style: preserve-3d;
-            margin-top: -180px; /* Moved higher up to accommodate second row */
+            margin-top: -120px; /* Moved down slightly as requested */
         }
 
         .carousel {
@@ -207,29 +207,37 @@
         .new-row-container {
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 25px;
             width: 100%;
             padding: 0 5%;
-            margin-top: 80px;
+            margin-top: 100px; /* Moved down more a little bit as requested */
             z-index: 10;
         }
 
         .new-item {
             flex: 1;
-            max-width: 200px;
+            max-width: 220px;
             text-align: center;
+            padding: 20px 15px;
+            border: 1px solid rgba(30, 75, 138, 0.1); /* Added outline/frame */
+            border-radius: 12px;
+            background: #fcfdfe;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* Whole box expands when cursor is on top */
+        .new-item:hover {
+            transform: scale(1.1); 
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border-color: rgba(30, 75, 138, 0.3);
         }
 
         .new-item img {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             object-fit: contain;
             margin-bottom: 15px;
-            transition: transform 0.3s ease;
-        }
-
-        .new-item:hover img {
-            transform: translateY(-10px);
         }
 
         .new-item h5 {
@@ -550,7 +558,7 @@
                 <p>Effortless scheduling for common areas and clubhouse amenities.</p>
             </div>
             <div class="new-item">
-                <img src="notification.png" alt="Notifcation">
+                <img src="notication.png" alt="Notifcation">
                 <h5>Notification</h5>
                 <p>Real-time community updates and emergency alerts on the go.</p>
             </div>
