@@ -179,16 +179,16 @@
             border-radius: 12px; 
         }
 
-        /* --- 5. White Content Section (Updated positioning) --- */
+        /* --- 5. White Content Section (Layout Updated per Attachment) --- */
         .white-section {
             background-color: #000000;
             background-image: url('home4.png');
             background-size: contain; 
-            /* Moved image further right to 85% */
-            background-position: 85% center; 
+            /* Moved home4.png further to the right using 25% position */
+            background-position: 25% center; 
             background-repeat: no-repeat;
             justify-content: center;
-            padding: 0 12%; 
+            padding: 0 8%; 
             position: relative;
         }
 
@@ -198,18 +198,19 @@
             width: 100%;
             display: flex; 
             align-items: center; 
-            /* Push the text block to the left as per reference photo */
-            justify-content: flex-start; 
+            /* Aligned to the right to match the text position in photo */
+            justify-content: flex-end; 
             z-index: 2;
         }
 
         .product-text { 
             flex: 0 1 600px; 
-            /* Aligned text to the left */
-            text-align: left; 
+            /* Text alignment updated to center-right feel */
+            text-align: center; 
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
+            padding-right: 5%;
         } 
 
         .product-text h2 { 
@@ -223,16 +224,16 @@
         }
 
         .product-text p:nth-of-type(1) { 
-            font-size: clamp(18px, 2.2vw, 24px); 
+            font-size: clamp(18px, 2vw, 22px); 
             line-height: 1.2; 
             color: #ffffff;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             font-weight: 800;
-            max-width: 500px;
+            max-width: 450px;
         }
 
         .product-text p:nth-of-type(2) { 
-            font-size: 18px; 
+            font-size: 16px; 
             font-style: italic;
             color: #ffffff;
             opacity: 0.9;
@@ -273,9 +274,9 @@
 
         /* Responsive Logic */
         @media (max-width: 1024px) {
-            .white-section { background-size: 50%; background-position: center right; }
+            .white-section { background-size: 50%; background-position: center left; }
             .product-row { justify-content: center; }
-            .product-text { background: rgba(0,0,0,0.4); padding: 20px; border-radius: 15px; text-align: center; align-items: center; }
+            .product-text { background: rgba(0,0,0,0.4); padding: 20px; border-radius: 15px; padding-right: 0; }
         }
 
         @media (max-width: 768px) {
