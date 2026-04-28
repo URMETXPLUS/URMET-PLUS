@@ -34,11 +34,10 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Essential for Snap Effect - Updated to min-height for flexibility */
         section, footer {
             scroll-snap-align: start;
             scroll-snap-stop: always;
-            min-height: 100vh; /* Changed from height to min-height */
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
@@ -119,8 +118,8 @@
         .hero-container { 
             max-width: 1400px; 
             width: 100%; 
-            display: flex; /* Switched from Grid to Flex */
-            flex-wrap: wrap; /* Allows items to stack on small screens */
+            display: flex; 
+            flex-wrap: wrap; 
             justify-content: space-between;
             align-items: center; 
             margin: 0 auto;
@@ -128,7 +127,7 @@
         }
 
         .text-section {
-            flex: 1 1 500px; /* Base width of 500px, but can grow */
+            flex: 1 1 500px;
             text-align: left;
             z-index: 2;
         }
@@ -180,11 +179,11 @@
             border-radius: 12px; 
         }
 
-        /* --- 5. White Content Section - FLEXBOX UPDATE --- */
+        /* --- 5. White Content Section - UPDATED POSITIONING --- */
         .white-section {
             background-image: url('home4.png');
-            background-size: cover;
-            background-position: center;
+            background-size: contain; /* Changed to contain for better control */
+            background-position: right center; /* Moves image to the right */
             background-repeat: no-repeat;
             justify-content: center;
             padding: 80px 8%; 
@@ -205,7 +204,7 @@
             width: 100%;
             display: flex; 
             align-items: center; 
-            justify-content: flex-end; 
+            justify-content: flex-start; /* Aligns text to left */
             position: relative;
             z-index: 2;
         }
@@ -279,6 +278,7 @@
             .text-section { flex: 1 1 100%; display: flex; flex-direction: column; align-items: center; }
             .product-row { justify-content: center; }
             .product-text { text-align: center; flex: 1 1 100%; }
+            .white-section { background-position: center; }
         }
 
         @media (max-width: 768px) {
