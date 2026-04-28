@@ -179,12 +179,11 @@
             border-radius: 12px; 
         }
 
-        /* --- 5. White Content Section (Layout Updated per Attachment) --- */
+        /* --- 5. White Content Section --- */
         .white-section {
             background-color: #000000;
             background-image: url('home4.png');
             background-size: contain; 
-            /* Moved home4.png further to the right using 25% position */
             background-position: 25% center; 
             background-repeat: no-repeat;
             justify-content: center;
@@ -198,18 +197,18 @@
             width: 100%;
             display: flex; 
             align-items: center; 
-            /* Aligned to the right to match the text position in photo */
             justify-content: flex-end; 
             z-index: 2;
         }
 
         .product-text { 
             flex: 0 1 600px; 
-            /* Text alignment updated to center-right feel */
-            text-align: center; 
+            /* Align the text lines to the right */
+            text-align: right; 
             display: flex;
             flex-direction: column;
-            align-items: center;
+            /* Align the flex children items to the right */
+            align-items: flex-end;
             padding-right: 5%;
         } 
 
