@@ -24,9 +24,11 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         html {
-            scroll-snap-type: y proximity; /* Changed to proximity to prevent locking on content that is taller than the screen */
+            /* Restored strict snap behavior for smooth section-to-section jumping */
+            scroll-snap-type: y mandatory; 
             scroll-behavior: smooth;
             height: 100%;
+            overflow-y: scroll;
         }
 
         body {
@@ -69,10 +71,10 @@
         section, footer, main.stars-container {
             scroll-snap-align: start;
             scroll-snap-stop: always;
-            min-height: 100vh; /* Changed to min-height to prevent overlap */
+            min-height: 100vh;
             width: 100%;
             position: relative;
-            overflow: hidden; /* Ensures internal floats/margins don't leak */
+            overflow: hidden;
         }
 
         /* --- 3. Hero Section --- */
@@ -226,8 +228,8 @@
             justify-content: center;
             width: 100%;
             min-height: 100vh;
-            height: auto; /* Expand with content */
-            padding: 100px 0; /* Add padding so content doesn't touch edges when zoomed */
+            height: auto; 
+            padding: 100px 0; 
         }
 
         .new-row-container {
@@ -238,11 +240,11 @@
             width: 100%;
             padding: 0 5%;
             z-index: 10;
-            flex-wrap: wrap; /* Prevent horizontal overflow on zoom */
+            flex-wrap: wrap; 
         }
 
         .new-item {
-            flex: 1 1 240px; /* Allow growing and shrinking but base on 240px */
+            flex: 1 1 240px; 
             max-width: 240px; 
             text-align: center;
             padding: 40px 20px;
@@ -297,7 +299,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 100px 8%; /* Increased vertical padding */
+            padding: 100px 8%; 
             border-top: 1px solid rgba(255, 255, 255, 0.4);
             border-bottom: 1px solid rgba(255, 255, 255, 0.4);
             min-height: 100vh;
@@ -311,7 +313,7 @@
             gap: 40px;
             max-width: 1200px;
             width: 100%;
-            flex-wrap: wrap; /* Wrap on zoom or small screens */
+            flex-wrap: wrap; 
         }
 
         .callout-text { flex: 1 1 500px; }
