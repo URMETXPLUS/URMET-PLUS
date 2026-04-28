@@ -228,7 +228,21 @@
             min-height: 100vh;
             height: auto; 
             padding: 100px 0; 
+            position: relative; /* Added for absolute positioning child */
         }
+
+        /* New Top-Right Content Wrapper */
+        .features-top-right-overlay {
+            position: absolute;
+            top: 50px;
+            right: 60px;
+            text-align: right;
+            color: #000;
+            z-index: 100;
+        }
+        .features-brand { font-size: 16px; letter-spacing: 3px; color: #555; text-transform: uppercase; font-family: 'Aptos Bold', sans-serif; }
+        .features-title { font-size: 56px; font-weight: 800; text-transform: uppercase; margin: 10px 0; font-family: 'Aptos Bold', sans-serif; }
+        .features-desc { font-size: 18px; line-height: 1.6; color: #333; font-weight: 300; }
 
         .new-row-container {
             display: flex;
@@ -490,7 +504,6 @@
             .new-row-container { padding: 20px 5%; }
             .features-fullscreen { padding: 60px 0; }
             
-            /* 優化間距：縮短 Section 內文字與圖片的垂直距離 */
             .callout-fullscreen { padding: 40px 5%; }
             .one-app-callout { gap: 20px; }
             .callout-text h4 { margin-bottom: 10px; }
@@ -543,6 +556,17 @@
     </section>
 
     <section class="features-fullscreen section-target">
+        <div class="features-top-right-overlay">
+            <p class="features-brand">URMET PLUS</p>
+            <h1 class="features-title">MULTI-READER</h1>
+            <div class="features-desc">
+                <p>Secure every entry with one device:</p>
+                <p>QR code, card, or mobile.</p>
+                <p>One reader. All access. Total control.</p>
+                <p>Seamless access, unified.</p>
+            </div>
+        </div>
+
         <div class="new-row-container">
             <div class="new-item">
                 <div class="icon-box"><img src="access.png" alt="Access Control"></div>
