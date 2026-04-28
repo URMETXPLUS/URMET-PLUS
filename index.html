@@ -179,12 +179,13 @@
             border-radius: 12px; 
         }
 
-        /* --- 5. White Content Section (Background Updated) --- */
+        /* --- 5. White Content Section (Layout Updated per Attachment) --- */
         .white-section {
             background-color: #000000;
             background-image: url('home4.png');
-            background-size: contain; /* Scales to fit height perfectly like the photo */
-            background-position: 10% center; /* Positioned to the left */
+            background-size: contain; 
+            /* Moved home4.png further to the right using 25% position */
+            background-position: 25% center; 
             background-repeat: no-repeat;
             justify-content: center;
             padding: 0 8%; 
@@ -197,16 +198,19 @@
             width: 100%;
             display: flex; 
             align-items: center; 
+            /* Aligned to the right to match the text position in photo */
             justify-content: flex-end; 
             z-index: 2;
         }
 
         .product-text { 
-            flex: 0 1 500px; 
+            flex: 0 1 600px; 
+            /* Text alignment updated to center-right feel */
             text-align: center; 
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding-right: 5%;
         } 
 
         .product-text h2 { 
@@ -214,25 +218,25 @@
             font-size: clamp(36px, 6vw, 64px); 
             font-weight: 900;
             color: #ffffff;
-            margin-bottom: 15px; 
+            margin-bottom: 10px; 
             letter-spacing: 1px;
             text-transform: uppercase;
         }
 
         .product-text p:nth-of-type(1) { 
-            font-size: clamp(18px, 2vw, 24px); 
-            line-height: 1.3; 
+            font-size: clamp(18px, 2vw, 22px); 
+            line-height: 1.2; 
             color: #ffffff;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             font-weight: 800;
-            max-width: 400px;
+            max-width: 450px;
         }
 
         .product-text p:nth-of-type(2) { 
-            font-size: 18px; 
+            font-size: 16px; 
             font-style: italic;
             color: #ffffff;
-            opacity: 0.8;
+            opacity: 0.9;
             font-weight: normal;
         }
 
@@ -272,7 +276,7 @@
         @media (max-width: 1024px) {
             .white-section { background-size: 50%; background-position: center left; }
             .product-row { justify-content: center; }
-            .product-text { background: rgba(0,0,0,0.4); padding: 20px; border-radius: 15px; }
+            .product-text { background: rgba(0,0,0,0.4); padding: 20px; border-radius: 15px; padding-right: 0; }
         }
 
         @media (max-width: 768px) {
