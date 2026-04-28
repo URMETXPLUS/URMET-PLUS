@@ -181,10 +181,11 @@
 
         /* --- 5. White Content Section - UPDATED TO BLACK BG & RIGHT ALIGN --- */
         .white-section {
-            background-color: #000000; /* Set background to black */
+            background-color: #000000;
             background-image: url('home4.png');
             background-size: contain; 
-            background-position: center left; /* Image sits on the left/center */
+            /* UPDATED: Moves background image 6cm to the right from center */
+            background-position: calc(center + 6cm) center; 
             background-repeat: no-repeat;
             justify-content: center;
             padding: 80px 8%; 
@@ -205,14 +206,14 @@
             width: 100%;
             display: flex; 
             align-items: center; 
-            justify-content: flex-end; /* Moved text to the right side */
+            justify-content: flex-end; 
             position: relative;
             z-index: 2;
         }
 
         .product-text { 
             flex: 0 1 550px; 
-            text-align: right; /* Align text to the right inside its container */
+            text-align: right; 
         } 
 
         .product-text h2 { 
