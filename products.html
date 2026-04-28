@@ -24,7 +24,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         html {
-            /* Changed to mandatory for a stricter "one scroll, one section" feel */
             scroll-snap-type: y mandatory; 
             scroll-behavior: smooth;
             height: 100%;
@@ -332,9 +331,9 @@
         }
 
         .advanced-intro-image {
-            flex: 0 1 35%; /* Reduced from 45% to make it smaller on desktop */
-            min-width: 250px; /* Ensures it doesn't get too small on mobile */
-            max-width: 400px; /* Hard limit to prevent it being too big */
+            flex: 0 1 35%;
+            min-width: 250px; 
+            max-width: 400px; 
             margin: 0 auto;
         }
 
@@ -490,8 +489,14 @@
             .new-item { max-width: 100%; flex: 1 1 100%; padding: 20px; }
             .new-row-container { padding: 20px 5%; }
             .features-fullscreen { padding: 60px 0; }
-            .callout-fullscreen, .why-choose-section { padding: 80px 5%; }
-            .advanced-intro-image { flex: 0 1 auto; width: 70%; max-width: 300px; }
+            
+            /* 優化間距：縮短 Section 內文字與圖片的垂直距離 */
+            .callout-fullscreen { padding: 40px 5%; }
+            .one-app-callout { gap: 20px; }
+            .callout-text h4 { margin-bottom: 10px; }
+            
+            .why-choose-section { padding: 60px 5%; }
+            .advanced-intro-image { flex: 0 1 auto; width: 60%; max-width: 280px; }
         }
     </style>
 </head>
@@ -687,25 +692,22 @@
 
         // Single Smooth Scroll Logic
         window.addEventListener('wheel', (e) => {
-            if (isScrolling) return; // Prevent multiple triggers during one move
+            if (isScrolling) return; 
             
-            e.preventDefault(); // Stop default browser scroll
+            e.preventDefault(); 
             
             const direction = e.deltaY > 0 ? 1 : -1;
             let targetIndex = -1;
 
-            // Find current active section
             const currentScroll = window.pageYOffset;
             
             sections.forEach((section, index) => {
                 const sectionTop = section.offsetTop;
-                // If we are currently at or within this section
                 if (Math.abs(currentScroll - sectionTop) < 10) {
                     targetIndex = index + direction;
                 }
             });
 
-            // If we found a valid next section, scroll to it
             if (targetIndex >= 0 && targetIndex < sections.length) {
                 isScrolling = true;
                 window.scrollTo({
@@ -713,10 +715,9 @@
                     behavior: 'smooth'
                 });
 
-                // Re-enable scrolling after transition
                 setTimeout(() => {
                     isScrolling = false;
-                }, 800); // 800ms matches the smooth scroll timing
+                }, 800); 
             }
         }, { passive: false });
     </script>
