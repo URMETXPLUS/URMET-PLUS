@@ -179,11 +179,12 @@
             border-radius: 12px; 
         }
 
-        /* --- 5. White Content Section - UPDATED POSITIONING --- */
+        /* --- 5. White Content Section - UPDATED TO BLACK BG & RIGHT ALIGN --- */
         .white-section {
+            background-color: #000000; /* Set background to black */
             background-image: url('home4.png');
-            background-size: contain; /* Changed to contain for better control */
-            background-position: right center; /* Moves image to the right */
+            background-size: contain; 
+            background-position: center left; /* Image sits on the left/center */
             background-repeat: no-repeat;
             justify-content: center;
             padding: 80px 8%; 
@@ -204,14 +205,14 @@
             width: 100%;
             display: flex; 
             align-items: center; 
-            justify-content: flex-start; /* Aligns text to left */
+            justify-content: flex-end; /* Moved text to the right side */
             position: relative;
             z-index: 2;
         }
 
         .product-text { 
             flex: 0 1 550px; 
-            text-align: left; 
+            text-align: right; /* Align text to the right inside its container */
         } 
 
         .product-text h2 { 
