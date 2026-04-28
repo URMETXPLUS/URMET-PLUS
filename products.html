@@ -332,8 +332,10 @@
         }
 
         .advanced-intro-image {
-            flex: 0 1 45%;
-            min-width: 300px;
+            flex: 0 1 35%; /* Reduced from 45% to make it smaller on desktop */
+            min-width: 250px; /* Ensures it doesn't get too small on mobile */
+            max-width: 400px; /* Hard limit to prevent it being too big */
+            margin: 0 auto;
         }
 
         .advanced-intro-image img {
@@ -489,6 +491,7 @@
             .new-row-container { padding: 20px 5%; }
             .features-fullscreen { padding: 60px 0; }
             .callout-fullscreen, .why-choose-section { padding: 80px 5%; }
+            .advanced-intro-image { flex: 0 1 auto; width: 70%; max-width: 300px; }
         }
     </style>
 </head>
