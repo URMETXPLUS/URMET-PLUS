@@ -179,12 +179,12 @@
             border-radius: 12px; 
         }
 
-        /* --- 5. White Content Section (Fine-tuned) --- */
+        /* --- 5. White Content Section (Background Updated) --- */
         .white-section {
             background-color: #000000;
             background-image: url('home4.png');
-            background-size: 45%; /* Sized to match standard phone visual */
-            background-position: 15% center; /* Shifted to the left */
+            background-size: contain; /* Scales to fit height perfectly like the photo */
+            background-position: 10% center; /* Positioned to the left */
             background-repeat: no-repeat;
             justify-content: center;
             padding: 0 8%; 
@@ -203,7 +203,7 @@
 
         .product-text { 
             flex: 0 1 500px; 
-            text-align: center; /* Centered text within the right block per attached photo */
+            text-align: center; 
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -270,7 +270,7 @@
 
         /* Responsive Logic */
         @media (max-width: 1024px) {
-            .white-section { background-size: 60%; background-position: center left; }
+            .white-section { background-size: 50%; background-position: center left; }
             .product-row { justify-content: center; }
             .product-text { background: rgba(0,0,0,0.4); padding: 20px; border-radius: 15px; }
         }
@@ -278,7 +278,7 @@
         @media (max-width: 768px) {
             header nav { display: none; }
             .logo img { transform: none; }
-            .white-section { background-image: none; } /* Better for small mobile readability */
+            .white-section { background-image: none; } 
         }
     </style>
 </head>
