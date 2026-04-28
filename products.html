@@ -24,11 +24,10 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         html {
-            /* Restored strict snap behavior for smooth section-to-section jumping */
+            /* Changed to mandatory for a stricter "one scroll, one section" feel */
             scroll-snap-type: y mandatory; 
             scroll-behavior: smooth;
             height: 100%;
-            overflow-y: scroll;
         }
 
         body {
@@ -71,10 +70,10 @@
         section, footer, main.stars-container {
             scroll-snap-align: start;
             scroll-snap-stop: always;
-            min-height: 100vh;
+            min-height: 100vh; 
             width: 100%;
             position: relative;
-            overflow: hidden;
+            overflow: hidden; 
         }
 
         /* --- 3. Hero Section --- */
@@ -220,7 +219,7 @@
             letter-spacing: 1px;
         }
 
-        /* --- 5. Features Grid Section (REFINED) --- */
+        /* --- 5. Features Grid Section --- */
         .features-fullscreen {
             background: #ffffff;
             display: flex;
@@ -293,7 +292,7 @@
             line-height: 1.5;
         }
 
-        /* --- 6. One App Callout Section (REFINED) --- */
+        /* --- 6. One App Callout Section --- */
         .callout-fullscreen {
             background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
             display: flex;
@@ -344,7 +343,7 @@
             display: block;
         }
 
-        /* --- 7. Why Choose Section (REFINED) --- */
+        /* --- 7. Why Choose Section --- */
         .why-choose-section {
             padding: 100px 8%;
             background: #000000;
@@ -513,7 +512,7 @@
         </div>
     </header>
 
-    <section class="intro-fullscreen">
+    <section class="intro-fullscreen section-target">
         <div class="grid-box main-hero">
             <img src="intro1.png" alt="New Arrivals">
             <div class="text-overlay">
@@ -535,7 +534,7 @@
         </div>
     </section>
 
-    <main class="stars-container">
+    <main class="stars-container section-target">
         <div class="stage">
             <div class="carousel">
                 <div class="product-card p1">
@@ -578,7 +577,7 @@
         </div>
     </main>
 
-    <section class="features-fullscreen">
+    <section class="features-fullscreen section-target">
         <div class="new-row-container">
             <div class="new-item">
                 <div class="icon-box"><img src="access.png" alt="Access Control"></div>
@@ -608,7 +607,7 @@
         </div>
     </section>
 
-    <section class="callout-fullscreen">
+    <section class="callout-fullscreen section-target">
         <div class="one-app-callout">
             <div class="callout-text">
                 <h4>One App. Total Control.</h4>
@@ -620,7 +619,7 @@
         </div>
     </section>
 
-    <section class="why-choose-section">
+    <section class="why-choose-section section-target">
         <div class="why-choose-container">
             <h2>Why Choose URMET PLUS?</h2>
             
@@ -651,7 +650,7 @@
         </div>
     </section>
 
-    <footer>
+    <footer class="section-target">
         <div class="footer-content">
             <div class="footer-section">
                 <img src="logo.png" alt="Logo" style="height: 35px; margin-bottom: 20px;">
@@ -671,7 +670,10 @@
 
     <script>
         const header = document.getElementById('mainHeader');
-        
+        const sections = document.querySelectorAll('.section-target');
+        let isScrolling = false;
+
+        // Header Hide/Show Logic
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 header.classList.add('hide');
@@ -679,6 +681,41 @@
                 header.classList.remove('hide');
             }
         });
+
+        // Single Smooth Scroll Logic
+        window.addEventListener('wheel', (e) => {
+            if (isScrolling) return; // Prevent multiple triggers during one move
+            
+            e.preventDefault(); // Stop default browser scroll
+            
+            const direction = e.deltaY > 0 ? 1 : -1;
+            let targetIndex = -1;
+
+            // Find current active section
+            const currentScroll = window.pageYOffset;
+            
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop;
+                // If we are currently at or within this section
+                if (Math.abs(currentScroll - sectionTop) < 10) {
+                    targetIndex = index + direction;
+                }
+            });
+
+            // If we found a valid next section, scroll to it
+            if (targetIndex >= 0 && targetIndex < sections.length) {
+                isScrolling = true;
+                window.scrollTo({
+                    top: sections[targetIndex].offsetTop,
+                    behavior: 'smooth'
+                });
+
+                // Re-enable scrolling after transition
+                setTimeout(() => {
+                    isScrolling = false;
+                }, 800); // 800ms matches the smooth scroll timing
+            }
+        }, { passive: false });
     </script>
 
 </body>
