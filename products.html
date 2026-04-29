@@ -246,6 +246,7 @@
             justify-content: flex-end;
             padding: 30px;
             cursor: pointer;
+            transition: background 0.4s ease;
         }
 
         .new-item.main-feature {
@@ -308,7 +309,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 4; /* Higher than hover-overlay */
+            z-index: 5; /* Higher than flipped overlay */
             font-size: 14px;
             transition: background 0.3s, color 0.3s, border-color 0.3s;
         }
@@ -355,6 +356,43 @@
 
         .new-item:hover h5, .new-item:hover p, .new-item:hover .icon-box {
             opacity: 0;
+        }
+
+        /* --- Click-to-Flip Image Logic --- */
+        .flipped-img-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            z-index: 4;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .flipped-img-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        /* When the box is clicked, add this class via JS */
+        .new-item.flipped .flipped-img-overlay {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .new-item.flipped h5, 
+        .new-item.flipped p, 
+        .new-item.flipped .icon-box, 
+        .new-item.flipped .hover-overlay {
+            opacity: 0 !important;
         }
 
         .new-item:hover::after {
@@ -626,7 +664,7 @@
 
     <section class="features-fullscreen section-target">
         <div class="new-row-container">
-            <div class="new-item main-feature">
+            <div class="new-item main-feature clickable-feature" data-product-img="product1.png">
                 <div class="icon-box"><img src="access.png" alt="Access Control"></div>
                 <h5>Access Control</h5>
                 <p>Seamless security integration</p>
@@ -634,9 +672,10 @@
                     <h6>🔑 QR Code Access Control</h6>
                     <div class="desc">The End of Lost Keys. Forget fumbling for fobs or physical keys. Securely unlock main entrances, elevators, or restricted zones with a simple scan of your personalized, encrypted QR code. It’s fast, touchless, and incredibly secure.</div>
                 </div>
+                <div class="flipped-img-overlay"><img src="product1.png" alt="Product 1"></div>
             </div>
 
-            <div class="new-item">
+            <div class="new-item clickable-feature" data-product-img="product2.png">
                 <div class="icon-box"><img src="invitation.png" alt="Invitation"></div>
                 <h5>Invitation</h5>
                 <p>Digital Guest Passes</p>
@@ -644,9 +683,10 @@
                     <h6>✉️ Digital Invitations</h6>
                     <div class="desc">Hospitality, Reimagined. Expecting a guest? Send a secure, temporary access link directly to their phone via WhatsApp or SMS. Your guests arrive with a "digital VIP pass" that expires once they leave, keeping your security tight without the hassle of manual buzz-ins.</div>
                 </div>
+                <div class="flipped-img-overlay"><img src="product2.png" alt="Product 2"></div>
             </div>
             
-            <div class="new-item">
+            <div class="new-item clickable-feature" data-product-img="product6.png">
                 <div class="icon-box"><img src="visitor.png" alt="Visitor registration"></div>
                 <h5>Visitor</h5>
                 <p>Lobby Flow Management</p>
@@ -654,9 +694,10 @@
                     <h6>👤 Easy Visitor Registration</h6>
                     <div class="desc">Goodbye, Paper Logbooks. Register your visitors in seconds. Our streamlined check-in process ensures that building security knows exactly who is coming, providing a professional experience for your guests and peace of mind for you.</div>
                 </div>
+                <div class="flipped-img-overlay"><img src="product6.png" alt="Product 6"></div>
             </div>
 
-            <div class="new-item">
+            <div class="new-item clickable-feature" data-product-img="product3.png">
                 <div class="icon-box"><img src="facility.png" alt="Facility Booking"></div>
                 <h5>Booking</h5>
                 <p>Clubhouse Amenities</p>
@@ -664,6 +705,7 @@
                     <h6>🎾 Facility Booking</h6>
                     <div class="desc">Your Amenities, Your Schedule. Whether it’s the gym, the tennis court, or the rooftop lounge, check real-time availability and book your spot instantly. No more walking down to the lobby to check a paper calendar—if it's free, it's yours.</div>
                 </div>
+                <div class="flipped-img-overlay"><img src="product3.png" alt="Product 3"></div>
             </div>
 
             <div class="new-item">
@@ -792,6 +834,14 @@
             } else {
                 header.classList.remove('hide');
             }
+        });
+
+        // Click-to-Flip Functionality for Features
+        const clickableItems = document.querySelectorAll('.clickable-feature');
+        clickableItems.forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('flipped');
+            });
         });
 
         // Single Smooth Scroll Logic
