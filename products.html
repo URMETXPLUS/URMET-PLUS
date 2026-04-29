@@ -66,7 +66,7 @@
         nav a:hover { opacity: 1; color: #60a5fa; }
         .lang-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: 0.3s; }
 
-        section, footer, main.stars-container {
+        section, footer {
             scroll-snap-align: start;
             scroll-snap-stop: always;
             min-height: 100vh; 
@@ -108,115 +108,6 @@
         .tagline { font-size: 14px; letter-spacing: 3px; margin-bottom: 8px; opacity: 0.9; color: #000000; font-family: 'Aptos Bold', sans-serif; }
         .title { font-size: clamp(24px, 3.5vw, 48px); font-weight: bold; margin: 0 0 15px 0; line-height: 1.1; color: #000000; font-family: 'Aptos Bold', sans-serif; }
         .tagline-desc { font-size: 14px; line-height: 1.6; letter-spacing: 1px; color: #000000; opacity: 0.8; }
-
-        /* --- 4. 3D Stars Container --- */
-        .stars-container {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            background: #ffffff;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            perspective: 3000px;
-        }
-
-        .stars-container .section-title {
-            margin-bottom: 20px;
-            text-align: center;
-            width: 100%;
-            font-family: 'Aptos Bold', sans-serif;
-            font-size: clamp(20px, 2.5vw, 32px);
-            color: #1e4b8a;
-            letter-spacing: 1px;
-            z-index: 20;
-        }
-
-        .stage {
-            width: 100%;
-            height: 400px;
-            position: relative;
-            transform-style: preserve-3d;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .carousel {
-            width: 400px;
-            height: 300px;
-            position: relative;
-            transform-style: preserve-3d;
-            animation: rotateCarousel 25s linear infinite;
-        }
-
-        @keyframes rotateCarousel {
-            from { transform: rotateY(0deg); }
-            to { transform: rotateY(360deg); }
-        }
-
-        .product-card {
-            position: absolute;
-            width: 420px; 
-            height: 280px;
-            left: 50%;
-            top: 50%;
-            margin-left: -210px;
-            margin-top: -140px;
-            transform-style: preserve-3d;
-        }
-
-        .p1 { transform: rotateY(0deg) translateZ(550px); }
-        .p2 { transform: rotateY(60deg) translateZ(550px); }
-        .p3 { transform: rotateY(120deg) translateZ(550px); }
-        .p4 { transform: rotateY(180deg) translateZ(550px); }
-        .p5 { transform: rotateY(240deg) translateZ(550px); }
-        .p6 { transform: rotateY(300deg) translateZ(550px); }
-
-        .billboard-content {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transform-style: preserve-3d;
-            backface-visibility: hidden;
-        }
-
-        .billboard-content img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            cursor: pointer;
-            transition: transform 0.4s ease;
-        }
-
-        .product-card:hover .billboard-content img { transform: scale(1.1); }
-
-        .p1 .billboard-content { animation: billboardFacing1 25s linear infinite; }
-        .p2 .billboard-content { animation: billboardFacing2 25s linear infinite; }
-        .p3 .billboard-content { animation: billboardFacing3 25s linear infinite; }
-        .p4 .billboard-content { animation: billboardFacing4 25s linear infinite; }
-        .p5 .billboard-content { animation: billboardFacing5 25s linear infinite; }
-        .p6 .billboard-content { animation: billboardFacing6 25s linear infinite; }
-
-        @keyframes billboardFacing1 { from { transform: rotateY(0deg); } to { transform: rotateY(-360deg); } }
-        @keyframes billboardFacing2 { from { transform: rotateY(-60deg); } to { transform: rotateY(-420deg); } }
-        @keyframes billboardFacing3 { from { transform: rotateY(-120deg); } to { transform: rotateY(-480deg); } }
-        @keyframes billboardFacing4 { from { transform: rotateY(-180deg); } to { transform: rotateY(-540deg); } }
-        @keyframes billboardFacing5 { from { transform: rotateY(-240deg); } to { transform: rotateY(-600deg); } }
-        @keyframes billboardFacing6 { from { transform: rotateY(-300deg); } to { transform: rotateY(-660deg); } }
-
-        .product-label {
-            margin-top: 15px;
-            font-family: 'Bariol Bold', sans-serif;
-            font-size: 15px;
-            color: #000000;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
 
         /* --- 5. Features Grid Section --- */
         .features-fullscreen {
@@ -592,12 +483,10 @@
             .intro-fullscreen { flex-direction: column; height: auto; }
             .main-hero, .side-column { flex: 0 0 auto; width: 100%; height: 60vh; }
             .sub-hero { height: 40vh; }
-            .stars-container { height: 100vh; }
-            .stage { height: 300px; }
             
             .new-row-container { grid-template-columns: 1fr; grid-template-rows: auto; }
             .new-item.main-feature { grid-row: auto; height: 40vh; }
-            .new-item { height: 45vh; } /* Increased height for mobile readability of long text */
+            .new-item { height: 45vh; } 
             
             .callout-fullscreen { padding: 40px 5%; }
             .one-app-callout { gap: 20px; }
@@ -729,49 +618,6 @@
             </div>
         </div>
     </section>
-
-    <main class="stars-container section-target">
-        <div class="stage">
-            <div class="carousel">
-                <div class="product-card p1">
-                    <div class="billboard-content">
-                        <img src="product1.png" alt="QR Code Access Control">
-                        <div class="product-label">QR Code Access</div>
-                    </div>
-                </div>
-                <div class="product-card p2">
-                    <div class="billboard-content">
-                        <img src="product2.png" alt="Invitation">
-                        <div class="product-label">Invitation</div>
-                    </div>
-                </div>
-                <div class="product-card p3">
-                    <div class="billboard-content">
-                        <img src="product3.png" alt="Facility Booking">
-                        <div class="product-label">Facility Booking</div>
-                    </div>
-                </div>
-                <div class="product-card p4">
-                    <div class="billboard-content">
-                        <img src="product4.png" alt="URMET PLUS">
-                        <div class="product-label">URMET PLUS</div>
-                    </div>
-                </div>
-                <div class="product-card p5">
-                    <div class="billboard-content">
-                        <img src="product5.png" alt="Panic Alarm">
-                        <div class="product-label">Panic Alarm</div>
-                    </div>
-                </div>
-                <div class="product-card p6">
-                    <div class="billboard-content">
-                        <img src="product6.png" alt="Visitor Registration">
-                        <div class="product-label">Visitor Registration</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
 
     <section class="why-choose-section section-target">
         <div class="why-choose-container">
