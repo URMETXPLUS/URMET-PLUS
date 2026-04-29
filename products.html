@@ -218,7 +218,7 @@
             letter-spacing: 1px;
         }
 
-        /* --- 5. Features Grid Section (Updated to match photo layout) --- */
+        /* --- 5. Features Grid Section (Modified for 3x2 Layout) --- */
         .features-fullscreen {
             background: #ffffff;
             width: 100%;
@@ -229,12 +229,12 @@
 
         .new-row-container {
             display: grid;
-            grid-template-columns: 2fr 1fr; /* Left main, Right sidebar grid */
-            grid-template-rows: 1fr 1fr;
+            grid-template-columns: repeat(3, 1fr); /* Force 3 Columns */
+            grid-template-rows: repeat(2, 1fr);    /* Force 2 Rows */
             width: 100%;
             height: 100%;
-            gap: 2px; /* Thin borders between boxes */
-            background: #000; /* Color for the gaps */
+            gap: 2px; 
+            background: #000; 
         }
 
         .new-item {
@@ -248,10 +248,10 @@
             cursor: pointer;
         }
 
-        /* The Main Large Box (like "New Arrivals") */
+        /* Removed grid-row span to make it a uniform grid box */
         .new-item.main-feature {
-            grid-row: span 2;
-            justify-content: flex-start;
+            grid-row: auto; 
+            justify-content: flex-end;
         }
 
         .new-item .icon-box {
@@ -261,17 +261,21 @@
             width: 100%;
             height: 100%;
             z-index: 1;
+            display: flex; /* Added for centering */
+            align-items: center;
+            justify-content: center;
         }
 
+        /* Adjusted image size to be smaller within the box */
         .new-item .icon-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            width: 60%; /* Reduced size */
+            height: 60%; /* Reduced size */
+            object-fit: contain; /* Changed to contain to avoid cropping */
             transition: transform 0.6s ease;
         }
 
         .new-item:hover .icon-box img {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
         /* Text Styling for Boxes */
@@ -279,7 +283,7 @@
             position: relative;
             z-index: 2;
             font-family: 'Aptos Bold', sans-serif;
-            font-size: 24px;
+            font-size: 20px; /* Slightly smaller for 3-column layout */
             color: #000;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -289,14 +293,13 @@
         .new-item p {
             position: relative;
             z-index: 2;
-            font-size: 12px;
+            font-size: 11px;
             color: #333;
             text-transform: uppercase;
             letter-spacing: 1px;
             opacity: 0.8;
         }
 
-        /* Arrow Icon styling (Optional, matching the circles in the photo) */
         .new-item::after {
             content: '→';
             position: absolute;
@@ -514,7 +517,7 @@
             .stage { height: 300px; }
             
             .new-row-container { grid-template-columns: 1fr; grid-template-rows: auto; }
-            .new-item.main-feature { grid-row: auto; height: 60vh; }
+            .new-item.main-feature { grid-row: auto; height: 40vh; }
             .new-item { height: 40vh; }
             
             .callout-fullscreen { padding: 40px 5%; }
