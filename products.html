@@ -218,7 +218,7 @@
             letter-spacing: 1px;
         }
 
-        /* --- 5. Features Grid Section (Modified for 3x2 Layout) --- */
+        /* --- 5. Features Grid Section --- */
         .features-fullscreen {
             background: #ffffff;
             width: 100%;
@@ -229,8 +229,8 @@
 
         .new-row-container {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* Force 3 Columns */
-            grid-template-rows: repeat(2, 1fr);    /* Force 2 Rows */
+            grid-template-columns: repeat(3, 1fr); 
+            grid-template-rows: repeat(2, 1fr);    
             width: 100%;
             height: 100%;
             gap: 2px; 
@@ -248,7 +248,6 @@
             cursor: pointer;
         }
 
-        /* Removed grid-row span to make it a uniform grid box */
         .new-item.main-feature {
             grid-row: auto; 
             justify-content: flex-end;
@@ -261,21 +260,16 @@
             width: 100%;
             height: 100%;
             z-index: 1;
-            display: flex; /* Added for centering */
+            display: flex; 
             align-items: center;
             justify-content: center;
         }
 
-        /* Adjusted image size to be smaller within the box */
         .new-item .icon-box img {
-            width: 60%; /* Reduced size */
-            height: 60%; /* Reduced size */
-            object-fit: contain; /* Changed to contain to avoid cropping */
+            width: 60%; 
+            height: 60%; 
+            object-fit: contain; 
             transition: transform 0.6s ease;
-        }
-
-        .new-item:hover .icon-box img {
-            transform: scale(1.1);
         }
 
         /* Text Styling for Boxes */
@@ -283,11 +277,12 @@
             position: relative;
             z-index: 2;
             font-family: 'Aptos Bold', sans-serif;
-            font-size: 20px; /* Slightly smaller for 3-column layout */
+            font-size: 20px; 
             color: #000;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 5px;
+            transition: opacity 0.3s ease;
         }
 
         .new-item p {
@@ -298,6 +293,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             opacity: 0.8;
+            transition: opacity 0.3s ease;
         }
 
         .new-item::after {
@@ -312,14 +308,59 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 2;
+            z-index: 4; /* Higher than hover-overlay */
             font-size: 14px;
-            transition: background 0.3s, color 0.3s;
+            transition: background 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        /* --- Hover Overlay Logic --- */
+        .hover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f0f0f0; /* Grey background */
+            z-index: 3;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: left;
+            pointer-events: none; /* Allows mouse to trigger parent hover */
+        }
+
+        .hover-overlay h6 {
+            font-family: 'Aptos Bold', sans-serif;
+            font-size: 18px;
+            color: #000;
+            margin-bottom: 15px;
+            text-transform: none;
+        }
+
+        .hover-overlay .desc {
+            font-size: 13px;
+            color: #444;
+            line-height: 1.5;
+            text-transform: none;
+            letter-spacing: 0.5px;
+            font-family: 'Bariol Bold', sans-serif;
+        }
+
+        .new-item:hover .hover-overlay {
+            opacity: 1;
+        }
+
+        .new-item:hover h5, .new-item:hover p, .new-item:hover .icon-box {
+            opacity: 0;
         }
 
         .new-item:hover::after {
             background: #000;
             color: #fff;
+            border-color: #000;
         }
 
         /* --- 6. One App Callout Section --- */
@@ -518,7 +559,7 @@
             
             .new-row-container { grid-template-columns: 1fr; grid-template-rows: auto; }
             .new-item.main-feature { grid-row: auto; height: 40vh; }
-            .new-item { height: 40vh; }
+            .new-item { height: 45vh; } /* Increased height for mobile readability of long text */
             
             .callout-fullscreen { padding: 40px 5%; }
             .one-app-callout { gap: 20px; }
@@ -577,36 +618,60 @@
                 <div class="icon-box"><img src="access.png" alt="Access Control"></div>
                 <h5>Access Control</h5>
                 <p>Seamless security integration</p>
+                <div class="hover-overlay">
+                    <h6>🔑 QR Code Access Control</h6>
+                    <div class="desc">The End of Lost Keys. Forget fumbling for fobs or physical keys. Securely unlock main entrances, elevators, or restricted zones with a simple scan of your personalized, encrypted QR code. It’s fast, touchless, and incredibly secure.</div>
+                </div>
             </div>
 
             <div class="new-item">
                 <div class="icon-box"><img src="invitation.png" alt="Invitation"></div>
                 <h5>Invitation</h5>
                 <p>Digital Guest Passes</p>
+                <div class="hover-overlay">
+                    <h6>✉️ Digital Invitations</h6>
+                    <div class="desc">Hospitality, Reimagined. Expecting a guest? Send a secure, temporary access link directly to their phone via WhatsApp or SMS. Your guests arrive with a "digital VIP pass" that expires once they leave, keeping your security tight without the hassle of manual buzz-ins.</div>
+                </div>
             </div>
             
             <div class="new-item">
                 <div class="icon-box"><img src="visitor.png" alt="Visitor registration"></div>
                 <h5>Visitor</h5>
                 <p>Lobby Flow Management</p>
+                <div class="hover-overlay">
+                    <h6>👤 Easy Visitor Registration</h6>
+                    <div class="desc">Goodbye, Paper Logbooks. Register your visitors in seconds. Our streamlined check-in process ensures that building security knows exactly who is coming, providing a professional experience for your guests and peace of mind for you.</div>
+                </div>
             </div>
 
             <div class="new-item">
                 <div class="icon-box"><img src="facility.png" alt="Facility Booking"></div>
                 <h5>Booking</h5>
                 <p>Clubhouse Amenities</p>
+                <div class="hover-overlay">
+                    <h6>🎾 Facility Booking</h6>
+                    <div class="desc">Your Amenities, Your Schedule. Whether it’s the gym, the tennis court, or the rooftop lounge, check real-time availability and book your spot instantly. No more walking down to the lobby to check a paper calendar—if it's free, it's yours.</div>
+                </div>
             </div>
 
             <div class="new-item">
                 <div class="icon-box"><img src="notication.png" alt="Notification"></div>
                 <h5>Notification</h5>
                 <p>Real-time updates</p>
+                <div class="hover-overlay">
+                    <h6>🔔 Smart Notifications</h6>
+                    <div class="desc">Stay in the Loop. Get instant alerts the moment your package arrives, when your guest checks in, or when there’s an important building announcement. Urmet Plus ensures you’re always the first to know, wherever you are.</div>
+                </div>
             </div>
 
             <div class="new-item">
                 <div class="icon-box"><img src="intro1.png" alt="Smart Living"></div>
                 <h5>Smart Living</h5>
                 <p>Unified Experience</p>
+                <div class="hover-overlay">
+                    <h6>🏠 Smart Living</h6>
+                    <div class="desc">Unified Experience. Control your home and building services through a single platform designed for the modern lifestyle.</div>
+                </div>
             </div>
         </div>
     </section>
