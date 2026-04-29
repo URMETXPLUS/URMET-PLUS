@@ -218,91 +218,105 @@
             letter-spacing: 1px;
         }
 
-        /* --- 5. Features Grid Section --- */
+        /* --- 5. Features Grid Section (Updated to match photo layout) --- */
         .features-fullscreen {
             background: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             width: 100%;
-            min-height: 100vh;
-            height: auto; 
-            padding: 100px 0; 
-            position: relative; /* Added for absolute positioning child */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-
-        /* New Top-Right Content Wrapper */
-        .features-top-right-overlay {
-            position: absolute;
-            top: 50px;
-            right: 60px;
-            text-align: right;
-            color: #000;
-            z-index: 100;
-        }
-        .features-brand { font-size: 16px; letter-spacing: 3px; color: #555; text-transform: uppercase; font-family: 'Aptos Bold', sans-serif; }
-        .features-title { font-size: 56px; font-weight: 800; text-transform: uppercase; margin: 10px 0; font-family: 'Aptos Bold', sans-serif; }
-        .features-desc { font-size: 18px; line-height: 1.6; color: #333; font-weight: 300; }
 
         .new-row-container {
-            display: flex;
-            justify-content: center;
-            align-items: stretch;
-            gap: 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* Left main, Right sidebar grid */
+            grid-template-rows: 1fr 1fr;
             width: 100%;
-            padding: 0 5%;
-            z-index: 10;
-            flex-wrap: wrap; 
+            height: 100%;
+            gap: 2px; /* Thin borders between boxes */
+            background: #000; /* Color for the gaps */
         }
 
         .new-item {
-            flex: 1 1 300px; 
-            max-width: 320px; 
-            text-align: center;
-            padding: 40px 20px;
-            border: 1px solid #f1f5f9; 
-            border-radius: 12px;
-            background: #ffffff;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
+            position: relative;
+            background: #fff;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-end;
+            padding: 30px;
+            cursor: pointer;
         }
 
-        .new-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        /* The Main Large Box (like "New Arrivals") */
+        .new-item.main-feature {
+            grid-row: span 2;
+            justify-content: flex-start;
         }
 
         .new-item .icon-box {
-            width: 160px; 
-            height: 160px; 
-            background: #eff6ff; 
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
         }
 
-        .new-item img {
-            width: 110px; 
-            height: 110px; 
-            object-fit: contain;
+        .new-item .icon-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
         }
 
+        .new-item:hover .icon-box img {
+            transform: scale(1.05);
+        }
+
+        /* Text Styling for Boxes */
         .new-item h5 {
+            position: relative;
+            z-index: 2;
             font-family: 'Aptos Bold', sans-serif;
-            font-size: 18px;
-            color: #1e4b8a;
-            margin-bottom: 12px;
+            font-size: 24px;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
         }
 
         .new-item p {
+            position: relative;
+            z-index: 2;
+            font-size: 12px;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        /* Arrow Icon styling (Optional, matching the circles in the photo) */
+        .new-item::after {
+            content: '→';
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            width: 30px;
+            height: 30px;
+            border: 1px solid #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
             font-size: 14px;
-            color: #64748b;
-            line-height: 1.5;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .new-item:hover::after {
+            background: #000;
+            color: #fff;
         }
 
         /* --- 6. One App Callout Section --- */
@@ -490,8 +504,6 @@
         @media (max-width: 1024px) {
             .text-overlay { bottom: 5%; left: 3%; }
             .one-app-callout { flex-direction: column; text-align: center; justify-content: center; }
-            .new-row-container { gap: 15px; }
-            .new-item { max-width: 100%; flex: 1 1 calc(50% - 20px); }
         }
 
         @media (max-width: 768px) {
@@ -500,9 +512,10 @@
             .sub-hero { height: 40vh; }
             .stars-container { height: 100vh; }
             .stage { height: 300px; }
-            .new-item { max-width: 100%; flex: 1 1 100%; padding: 20px; }
-            .new-row-container { padding: 20px 5%; }
-            .features-fullscreen { padding: 60px 0; }
+            
+            .new-row-container { grid-template-columns: 1fr; grid-template-rows: auto; }
+            .new-item.main-feature { grid-row: auto; height: 60vh; }
+            .new-item { height: 40vh; }
             
             .callout-fullscreen { padding: 40px 5%; }
             .one-app-callout { gap: 20px; }
@@ -556,39 +569,41 @@
     </section>
 
     <section class="features-fullscreen section-target">
-        <div class="features-top-right-overlay">
-            <p class="features-brand">URMET PLUS</p>
-            <div class="features-desc">
-                <p>One unified platform, infinite smart capabilities: </p>
-                <p>streamlining residential access and lifestyle management with absolute precision.</p>
-            </div>
-        </div>
-
         <div class="new-row-container">
-            <div class="new-item">
+            <div class="new-item main-feature">
                 <div class="icon-box"><img src="access.png" alt="Access Control"></div>
                 <h5>Access Control</h5>
-                <p>Advanced encrypted credential management for ultimate security.</p>
+                <p>Seamless security integration</p>
             </div>
+
             <div class="new-item">
                 <div class="icon-box"><img src="invitation.png" alt="Invitation"></div>
                 <h5>Invitation</h5>
-                <p>Send secure, time-limited digital passes to guests instantly.</p>
+                <p>Digital Guest Passes</p>
             </div>
+            
             <div class="new-item">
                 <div class="icon-box"><img src="visitor.png" alt="Visitor registration"></div>
-                <h5>Visitor registration</h5>
-                <p>Digital check-in system to streamline lobby and visitor flows.</p>
+                <h5>Visitor</h5>
+                <p>Lobby Flow Management</p>
             </div>
+
             <div class="new-item">
                 <div class="icon-box"><img src="facility.png" alt="Facility Booking"></div>
-                <h5>Facility Booking</h5>
-                <p>Effortless scheduling for common areas and clubhouse amenities.</p>
+                <h5>Booking</h5>
+                <p>Clubhouse Amenities</p>
             </div>
+
             <div class="new-item">
                 <div class="icon-box"><img src="notication.png" alt="Notification"></div>
                 <h5>Notification</h5>
-                <p>Real-time community updates and emergency alerts on the go.</p>
+                <p>Real-time updates</p>
+            </div>
+
+            <div class="new-item">
+                <div class="icon-box"><img src="intro1.png" alt="Smart Living"></div>
+                <h5>Smart Living</h5>
+                <p>Unified Experience</p>
             </div>
         </div>
     </section>
