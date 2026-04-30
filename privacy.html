@@ -81,17 +81,6 @@
 
         nav a:hover { opacity: 1; color: #60a5fa; }
 
-        .lang-btn { 
-            background: rgba(255, 255, 255, 0.1); 
-            border: 1px solid rgba(255, 255, 255, 0.4); 
-            color: white; 
-            padding: 8px 16px; 
-            border-radius: 20px; 
-            font-size: 12px; 
-            cursor: pointer; 
-            transition: 0.3s; 
-        }
-
         /* --- Mobile Menu Elements --- */
         .hamburger {
             display: none;
@@ -203,7 +192,7 @@
 
         @media (max-width: 900px) {
             .logo img { transform: none; }
-            nav, .lang-container { display: none; }
+            nav { display: none; }
             .hamburger { display: flex; }
             .white-content-wrapper { padding-top: 100px; }
             .page-header { padding-bottom: 80px; }
@@ -224,9 +213,6 @@
                     <li><a href="about.html">Contact Us</a></li>
                 </ul>
             </nav>
-            <div class="lang-container">
-                <button class="lang-btn">LANGUAGE ▾</button>
-            </div>
             <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
