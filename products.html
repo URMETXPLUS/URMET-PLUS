@@ -533,29 +533,39 @@
             .new-item.main-feature { grid-row: auto; height: 40vh; }
             .new-item { height: 45vh; } 
             
-            /* Specific fix for Callout section on mobile */
+            /* Fixed Callout section for mobile/half-screen */
             .callout-fullscreen { 
-                padding: 100px 5% 60px 5%; 
+                padding: 60px 5% 40px 5%; 
                 min-height: 100vh;
                 height: auto;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
+                align-items: center;
             }
             .one-app-callout { 
-                gap: 30px; 
+                gap: 20px; 
                 flex-direction: column;
                 align-items: center;
+                justify-content: center;
             }
             .callout-text {
                 flex: 0 0 auto;
                 width: 100%;
             }
-            .callout-text h4 { margin-bottom: 15px; }
+            .callout-text h4 { margin-bottom: 10px; font-size: 28px; }
+            .callout-text p { font-size: 16px; }
             .advanced-intro-image { 
                 flex: 0 0 auto; 
-                width: 70%; 
-                max-width: 300px; 
+                width: 80%; 
+                max-width: 280px; 
+                margin: 0 auto;
+                display: block;
+            }
+            .advanced-intro-image img {
+                max-height: 40vh;
+                object-fit: contain;
+                width: auto;
                 margin: 0 auto;
             }
             
