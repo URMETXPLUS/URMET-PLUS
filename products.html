@@ -41,7 +41,7 @@
         /* --- 2. Header --- */
         header {
             width: 100%; 
-            padding: 12px 8%; 
+            padding: 12px 5%; /* Adjusted padding for better mobile fit */
             display: flex; 
             justify-content: space-between; 
             align-items: center;
@@ -59,12 +59,51 @@
             transform: translateY(-100%);
         }
 
-        .logo img { height: 40px; width: auto; display: block; transform: translateX(-38px); }
-        .nav-wrapper { display: flex; align-items: center; gap: 30px; }
-        nav ul { list-style: none; display: flex; gap: 30px; }
-        nav a { text-decoration: none; color: white; font-size: 14px; text-transform: uppercase; letter-spacing: 1.2px; opacity: 0.8; transition: 0.3s; }
+        .logo img { height: 32px; width: auto; display: block; } /* Reduced height slightly for mobile */
+        
+        /* Modified Navigation Wrapper for Scrolling */
+        .nav-wrapper { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            overflow-x: auto; /* Enable horizontal scroll */
+            white-space: nowrap; /* Keep items in one line */
+            -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+            padding-bottom: 5px;
+            scrollbar-width: none; /* Hide scrollbar Firefox */
+        }
+        
+        .nav-wrapper::-webkit-scrollbar { display: none; } /* Hide scrollbar Chrome/Safari */
+
+        nav ul { 
+            list-style: none; 
+            display: flex; 
+            gap: 20px; 
+        }
+
+        nav a { 
+            text-decoration: none; 
+            color: white; 
+            font-size: 13px; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            opacity: 0.8; 
+            transition: 0.3s; 
+        }
+
         nav a:hover { opacity: 1; color: #60a5fa; }
-        .lang-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: 0.3s; }
+
+        .lang-btn { 
+            background: rgba(255, 255, 255, 0.1); 
+            border: 1px solid rgba(255, 255, 255, 0.4); 
+            color: white; 
+            padding: 6px 12px; 
+            border-radius: 20px; 
+            font-size: 11px; 
+            cursor: pointer; 
+            transition: 0.3s;
+            flex-shrink: 0; /* Prevent button from squeezing */
+        }
 
         section, footer {
             scroll-snap-align: start;
@@ -200,7 +239,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 5; /* Higher than flipped overlay */
+            z-index: 5; 
             font-size: 14px;
             transition: background 0.3s, color 0.3s, border-color 0.3s;
         }
@@ -212,7 +251,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #f0f0f0; /* Grey background */
+            background: #f0f0f0; 
             z-index: 3;
             opacity: 0;
             transition: opacity 0.4s ease;
@@ -221,7 +260,7 @@
             flex-direction: column;
             justify-content: center;
             text-align: left;
-            pointer-events: none; /* Allows mouse to trigger parent hover */
+            pointer-events: none; 
         }
 
         .hover-overlay h6 {
@@ -480,6 +519,12 @@
         }
 
         @media (max-width: 768px) {
+            header { padding: 10px 15px; }
+            .logo img { height: 28px; }
+            .nav-wrapper { gap: 10px; }
+            nav ul { gap: 15px; }
+            nav a { font-size: 12px; }
+
             .intro-fullscreen { flex-direction: column; height: auto; }
             .main-hero, .side-column { flex: 0 0 auto; width: 100%; height: 60vh; }
             .sub-hero { height: 40vh; }
@@ -512,7 +557,7 @@
                 </ul>
             </nav>
             <div class="lang-container">
-                <button class="lang-btn">LANGUAGE ▾</button>
+                <button class="lang-btn">LANG ▾</button>
             </div>
         </div>
     </header>
