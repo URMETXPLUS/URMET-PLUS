@@ -337,7 +337,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 100px 8%; 
+            padding: 80px 8%; 
             border-top: 1px solid rgba(255, 255, 255, 0.4);
             border-bottom: 1px solid rgba(255, 255, 255, 0.4);
             min-height: 100vh;
@@ -533,12 +533,33 @@
             .new-item.main-feature { grid-row: auto; height: 40vh; }
             .new-item { height: 45vh; } 
             
-            .callout-fullscreen { padding: 40px 5%; }
-            .one-app-callout { gap: 20px; }
-            .callout-text h4 { margin-bottom: 10px; }
+            /* Specific fix for Callout section on mobile */
+            .callout-fullscreen { 
+                padding: 100px 5% 60px 5%; 
+                min-height: 100vh;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .one-app-callout { 
+                gap: 30px; 
+                flex-direction: column;
+                align-items: center;
+            }
+            .callout-text {
+                flex: 0 0 auto;
+                width: 100%;
+            }
+            .callout-text h4 { margin-bottom: 15px; }
+            .advanced-intro-image { 
+                flex: 0 0 auto; 
+                width: 70%; 
+                max-width: 300px; 
+                margin: 0 auto;
+            }
             
             .why-choose-section { padding: 60px 5%; }
-            .advanced-intro-image { flex: 0 1 auto; width: 60%; max-width: 280px; }
         }
     </style>
 </head>
