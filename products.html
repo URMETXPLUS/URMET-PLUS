@@ -529,9 +529,19 @@
             .main-hero, .side-column { flex: 0 0 auto; width: 100%; height: 60vh; }
             .sub-hero { height: 40vh; }
             
-            .new-row-container { grid-template-columns: 1fr; grid-template-rows: auto; }
-            .new-item.main-feature { grid-row: auto; height: 40vh; }
-            .new-item { height: 45vh; } 
+            /* ADJUSTED FOR MOBILE BOX VISIBILITY */
+            .features-fullscreen { height: auto; min-height: 100vh; }
+            .new-row-container { 
+                grid-template-columns: repeat(2, 1fr); /* Shows 2 boxes per row */
+                grid-template-rows: auto; 
+                height: auto;
+            }
+            .new-item.main-feature { grid-row: auto; height: 33vh; }
+            .new-item { height: 33vh; padding: 15px; } 
+
+            .new-item h5 { font-size: 14px; }
+            .new-item p { font-size: 9px; }
+            .new-item::after { bottom: 15px; right: 15px; width: 20px; height: 20px; font-size: 10px; }
             
             /* Fixed Callout section for mobile/half-screen */
             .callout-fullscreen { 
@@ -570,6 +580,14 @@
             }
             
             .why-choose-section { padding: 60px 5%; }
+        }
+
+        /* Further adjustment for very small screens */
+        @media (max-width: 480px) {
+            .new-row-container { 
+                grid-template-columns: 1fr; /* 1 box per row on very small phones */
+            }
+            .new-item { height: 40vh; }
         }
     </style>
 </head>
