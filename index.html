@@ -184,7 +184,7 @@
             background-color: #000000;
             background-image: url('home4.png');
             background-size: contain; 
-            background-position: 25% center; 
+            background-position: 20% center; 
             background-repeat: no-repeat;
             justify-content: center;
             padding: 0 8%; 
@@ -279,7 +279,19 @@
         @media (max-width: 768px) {
             header nav { display: none; }
             .logo img { transform: none; }
-            .white-section { background-image: none; } 
+            
+            /* FIXED: Keep background image visible on phone */
+            .white-section { 
+                background-image: url('home4.png'); 
+                background-size: 60%; /* Adjusted size for mobile */
+                background-position: -20% center; /* Shifted left so it doesn't overlap text */
+            } 
+            
+            .product-text {
+                align-items: center;
+                text-align: center;
+                flex: 1;
+            }
         }
     </style>
 </head>
