@@ -92,15 +92,70 @@
             transition: 0.3s; 
         }
 
+        /* --- Mobile Menu Elements --- */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 2001;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 2px;
+            background: white;
+            transition: 0.3s;
+        }
+
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.5s;
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-overlay ul {
+            list-style: none;
+            text-align: center;
+        }
+
+        .mobile-overlay ul li {
+            margin: 25px 0;
+        }
+
+        .mobile-overlay ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
         /* --- 4. White Middle Section --- */
         .about-wrapper {
             background: #ffffff;
-            padding-top: 80px;  /* Reduced from 140px */
+            padding-top: 80px; 
             color: #0a1931;
         }
 
         .hero-banner {
-            padding: 30px 10% 20px 10%; /* Reduced top padding from 60px to 30px */
+            padding: 30px 10% 20px 10%;
             text-align: center;
         }
 
@@ -185,7 +240,9 @@
             .map-container { height: 350px; }
             .about-wrapper { padding-top: 100px; }
             .logo img { transform: none; }
-            header nav { display: none; }
+            
+            nav, .lang-container { display: none; }
+            .hamburger { display: flex; }
         }
     </style>
 </head>
@@ -206,8 +263,21 @@
             <div class="lang-container">
                 <button class="lang-btn">LANGUAGE ▾</button>
             </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </header>
+
+    <div class="mobile-overlay" id="mobileOverlay">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+    </div>
 
     <div class="about-wrapper">
         <div class="hero-banner">
@@ -270,12 +340,34 @@
 
     <script>
         const header = document.getElementById('mainHeader');
+        const hamburger = document.getElementById('hamburger');
+        const mobileOverlay = document.getElementById('mobileOverlay');
         
+        // Hide/Show Header on Scroll
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 header.classList.add('hide');
             } else {
                 header.classList.remove('hide');
+            }
+        });
+
+        // Hamburger Menu Toggle
+        hamburger.addEventListener('click', () => {
+            mobileOverlay.classList.toggle('active');
+            // Prevent scrolling when menu is open
+            document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : 'auto';
+            
+            // Hamburger Animation
+            const spans = hamburger.querySelectorAll('span');
+            if(mobileOverlay.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
             }
         });
     </script>
