@@ -88,9 +88,16 @@
         .solution-block:nth-child(even) { direction: rtl; }
         .solution-block:nth-child(even) .content-box { direction: ltr; }
 
+        .image-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
         .image-placeholder {
             width: 100%;
-            aspect-ratio: 4/3;
+            aspect-ratio: 16/9;
             background: #f1f5f9;
             border-radius: 4px;
             overflow: hidden;
@@ -99,11 +106,23 @@
         }
 
         .image-placeholder img {
-            width: 100%; height: 100%; object-fit: cover;
+            width: 100%; height: 100%; object-fit: contain;
             transition: 0.6s ease;
+            padding: 20px;
         }
         
         .image-placeholder:hover img { transform: scale(1.03); }
+
+        .icon-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .icon-label img {
+            width: 30px; height: 30px; filter: brightness(0);
+        }
 
         .content-box h2 {
             font-family: 'Aptos Bold';
@@ -187,27 +206,30 @@
 
     <!-- 01 QR CODE ACCESS -->
     <section class="solution-block">
-        <div class="image-placeholder">
-            <!-- Put your QR access photo here -->
-            <img src="intro1.png" alt="QR Control">
+        <div class="image-container">
+            <div class="image-placeholder"><img src="intro1.png" alt="Hardware"></div>
+            <div class="image-placeholder"><img src="qr_code.png" alt="QR App Interface"></div>
         </div>
         <div class="content-box">
-            <h2>Access Control</h2>
+            <div class="icon-label">
+                <img src="access.png" alt="Icon">
+                <h2>Access Control</h2>
+            </div>
             <h3>Dynamic QR Entry</h3>
             <p>Eradicate unauthorized access with time-sensitive, encrypted QR codes that refresh automatically.</p>
             
             <div class="steps-container">
                 <div class="step-item">
                     <div class="step-num">1</div>
-                    <div class="step-text"><b>Open URMET+ App</b><span>Biometric authentication (FaceID/Fingerprint) ensures the user is legitimate.</span></div>
+                    <div class="step-text"><b>Open URMET+ App</b><span>Biometric authentication ensures the user is legitimate.</span></div>
                 </div>
                 <div class="step-item">
                     <div class="step-num">2</div>
-                    <div class="step-text"><b>Generate Live Code</b><span>The system generates a unique AES-256 encrypted QR code valid for 30 seconds.</span></div>
+                    <div class="step-text"><b>Generate Live Code</b><span>The system generates a unique AES-256 encrypted QR code valid for 30s.</span></div>
                 </div>
                 <div class="step-item">
                     <div class="step-num">3</div>
-                    <div class="step-text"><b>Scan & Enter</b><span>Hold the phone to the Multi-Reader V2 for instant millisecond verification.</span></div>
+                    <div class="step-text"><b>Scan & Enter</b><span>Hold the phone to the Multi-Reader V2 for instant verification.</span></div>
                 </div>
             </div>
         </div>
@@ -215,12 +237,16 @@
 
     <!-- 02 INVITATION -->
     <section class="solution-block">
-        <div class="image-placeholder">
-            <!-- Put your Invitation system photo here -->
-            <img src="invitation.png" alt="Digital Invitation">
+        <div class="image-container">
+            <div class="image-placeholder"><img src="invitation.png" alt="Invitation UI"></div>
+            <!-- Extra space for photos -->
+            <div class="image-placeholder" style="background:#e2e8f0; display:flex; align-items:center; justify:center; color:#94a3b8;">[Photo: Resident sharing link]</div>
         </div>
         <div class="content-box">
-            <h2>Management</h2>
+            <div class="icon-label">
+                <img src="invitation.png" alt="Icon">
+                <h2>Management</h2>
+            </div>
             <h3>Guest Invitations</h3>
             <p>Provide premium hospitality by sending digital keys to your visitors before they arrive.</p>
             
@@ -231,11 +257,11 @@
                 </div>
                 <div class="step-item">
                     <div class="step-num">2</div>
-                    <div class="step-text"><b>Set Schedule</b><span>Define specific entry dates and time windows (e.g., Sat 2pm - 6pm).</span></div>
+                    <div class="step-text"><b>Set Schedule</b><span>Define specific entry dates and time windows.</span></div>
                 </div>
                 <div class="step-item">
                     <div class="step-num">3</div>
-                    <div class="step-text"><b>Instant Sharing</b><span>Send the secure link via WhatsApp, SMS, or Email directly to your guest.</span></div>
+                    <div class="step-text"><b>Instant Sharing</b><span>Send the secure link via WhatsApp or SMS directly to your guest.</span></div>
                 </div>
             </div>
         </div>
@@ -243,27 +269,30 @@
 
     <!-- 03 VISITOR REGISTRATION -->
     <section class="solution-block">
-        <div class="image-placeholder">
-            <!-- Put your Visitor Registration photo here -->
-            <img src="middle1.png" alt="Visitor Registration">
+        <div class="image-container">
+            <div class="image-placeholder"><img src="visitor.png" alt="Visitor Log"></div>
+            <div class="image-placeholder"><img src="middle1.png" alt="Cloud Logs"></div>
         </div>
         <div class="content-box">
-            <h2>Security</h2>
-            <h3>Cloud Registration</h3>
-            <p>Every entry is logged in the cloud with high-resolution logs, replacing traditional paper books.</p>
+            <div class="icon-label">
+                <img src="visitor.png" alt="Icon">
+                <h2>Security</h2>
+            </div>
+            <h3>Visitor Registration</h3>
+            <p>Every entry is logged in the cloud with high-resolution data, replacing traditional paper books.</p>
             
             <div class="steps-container">
                 <div class="step-item">
                     <div class="step-num">1</div>
-                    <div class="step-text"><b>Automated Check-in</b><span>Guests scan their invite; the system logs the time and gate location.</span></div>
+                    <div class="step-text"><b>Automated Check-in</b><span>Guests scan their invite; the system logs time and gate location.</span></div>
                 </div>
                 <div class="step-item">
                     <div class="step-num">2</div>
-                    <div class="step-text"><b>Resident Notification</b><span>The host receives an instant push notification that the guest has arrived.</span></div>
+                    <div class="step-text"><b>Resident Notification</b><span>The host receives an instant notification that the guest has arrived.</span></div>
                 </div>
                 <div class="step-item">
                     <div class="step-num">3</div>
-                    <div class="step-text"><b>Real-time Audit</b><span>Building management can view live occupancy and historical visitor flow instantly.</span></div>
+                    <div class="step-text"><b>Real-time Audit</b><span>Building management can view live occupancy and historical flow.</span></div>
                 </div>
             </div>
         </div>
@@ -271,27 +300,30 @@
 
     <!-- 04 FACILITY BOOKING -->
     <section class="solution-block">
-        <div class="image-placeholder">
-            <!-- Put your Booking system photo here -->
-            <img src="qr_code.png" alt="Facility Booking">
+        <div class="image-container">
+            <div class="image-placeholder"><img src="facility.png" alt="Booking UI"></div>
+            <div class="image-placeholder" style="background:#e2e8f0; display:flex; align-items:center; justify:center; color:#94a3b8;">[Photo: Clubhouse Amenity]</div>
         </div>
         <div class="content-box">
-            <h2>Lifestyle</h2>
+            <div class="icon-label">
+                <img src="facility.png" alt="Icon">
+                <h2>Lifestyle</h2>
+            </div>
             <h3>Facility Booking</h3>
             <p>Modernize Clubhouse management with an integrated real-time booking engine.</p>
             
             <div class="steps-container">
                 <div class="step-item">
                     <div class="step-num">1</div>
-                    <div class="step-text"><b>Browse Facilities</b><span>View live availability for Gym, BBQ, Pool, or Function Rooms.</span></div>
+                    <div class="step-text"><b>Browse Facilities</b><span>View live availability for Gym, BBQ, or Function Rooms.</span></div>
                 </div>
                 <div class="step-item">
                     <div class="step-num">2</div>
-                    <div class="step-text"><b>Reserve & Pay</b><span>Confirm slots and handle any associated booking fees through the app.</span></div>
+                    <div class="step-text"><b>Reserve & Pay</b><span>Confirm slots and handle any associated fees through the app.</span></div>
                 </div>
                 <div class="step-item">
                     <div class="step-num">3</div>
-                    <div class="step-text"><b>Access Activation</b><span>Your QR code automatically gains "Clubhouse Rights" during your booked slot.</span></div>
+                    <div class="step-text"><b>Access Activation</b><span>QR code automatically gains rights during your booked slot.</span></div>
                 </div>
             </div>
         </div>
@@ -299,27 +331,30 @@
 
     <!-- 05 NOTIFICATIONS & PANIC -->
     <section class="solution-block">
-        <div class="image-placeholder">
-            <!-- Put your SOS/Alert photo here -->
-            <img src="panic.png" alt="SOS System">
+        <div class="image-container">
+            <div class="image-placeholder"><img src="notication.png" alt="Push UI"></div>
+            <div class="image-placeholder"><img src="panic.png" alt="SOS UI"></div>
         </div>
         <div class="content-box">
-            <h2>Safety</h2>
+            <div class="icon-label">
+                <img src="panic.png" alt="Icon">
+                <h2>Safety</h2>
+            </div>
             <h3>SOS & Notification</h3>
             <p>Critical communication between management and residents for daily updates or emergencies.</p>
             
             <div class="steps-container">
                 <div class="step-item">
                     <div class="step-num">1</div>
-                    <div class="step-text"><b>Building Notices</b><span>Receive instant alerts for maintenance, water suspension, or parcels.</span></div>
+                    <div class="step-text"><b>Building Notices</b><span>Receive alerts for maintenance, water suspension, or parcels.</span></div>
                 </div>
                 <div class="step-item">
                     <div class="step-num">2</div>
-                    <div class="step-text"><b>Panic Trigger</b><span>In an emergency, long-press the SOS button to alert the control room.</span></div>
+                    <div class="step-text"><b>Panic Trigger</b><span>Long-press the SOS button to alert the control room.</span></div>
                 </div>
                 <div class="step-item">
                     <div class="step-num">3</div>
-                    <div class="step-text"><b>GPS Localization</b><span>Security personnel receive your precise location for immediate response.</span></div>
+                    <div class="step-text"><b>GPS Localization</b><span>Security receives your precise location for immediate response.</span></div>
                 </div>
             </div>
         </div>
