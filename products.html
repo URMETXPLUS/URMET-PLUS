@@ -6,7 +6,7 @@
     <title>Products - URMET PLUS</title>
     
     <style>
-        /* --- 1. Tech Base & Variables --- */
+        /* --- 1. Tech Base & Global Styles --- */
         @font-face {
             font-family: 'Bariol Bold';
             src: url('fonts/Bariol-Bold.woff2') format('woff2');
@@ -43,144 +43,139 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- 2. Advanced Hero Section (Cloud, App, Reader) --- */
-        .hero-trinity {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            height: 100vh;
-            width: 100%;
-            background: #000;
-            gap: 1px;
-            background: var(--glass-border);
-        }
-
-        .trinity-box {
-            position: relative;
-            overflow: hidden;
-            background: #000;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 40px;
-            transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .trinity-box img {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%) scale(1.1);
-            width: 80%; height: auto;
-            object-fit: contain;
-            opacity: 0.5;
-            transition: 0.8s ease;
-            pointer-events: none;
-        }
-
-        .trinity-box:hover img {
-            opacity: 1;
-            transform: translate(-50%, -60%) scale(1.15);
-        }
-
-        .trinity-box::before {
-            content: "";
-            position: absolute; inset: 0;
-            background: linear-gradient(to top, #000 10%, transparent 60%);
-            z-index: 2;
-        }
-
-        .box-content {
-            position: relative;
-            z-index: 5;
-        }
-
-        .box-num {
-            font-family: 'Aptos Bold';
-            font-size: 12px;
-            color: var(--neon-blue);
-            letter-spacing: 3px;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .box-title {
-            font-family: 'Aptos Bold';
-            font-size: 32px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-
-        .box-desc {
-            font-size: 14px;
-            color: rgba(255,255,255,0.6);
-            line-height: 1.6;
-            max-width: 280px;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: 0.5s ease;
-        }
-
-        .trinity-box:hover .box-desc {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        /* --- 3. Features Section Enhancements --- */
-        .features-fullscreen { background: #000; padding: 2px; }
-        .new-row-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            width: 100%; height: 100%; gap: 2px;
-        }
-
-        .new-item {
-            position: relative; background: #050c1a; overflow: hidden;
-            padding: 50px; cursor: pointer; transition: 0.4s;
-        }
-
-        .new-item:hover { background: #0a1931; }
-        
-        .icon-box img { width: 60px; height: 60px; filter: invert(1) brightness(2); }
-
-        .flipped-img-overlay {
-            position: absolute; inset: 0; background: #fff; z-index: 10;
-            display: flex; align-items: center; justify-content: center;
-            transform: translateY(100%); transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-        .flipped-img-overlay img { width: 80%; object-fit: contain; }
-        .new-item.flipped .flipped-img-overlay { transform: translateY(0); }
-
-        /* --- 4. Navigation & UI --- */
+        /* --- 2. Navigation --- */
         header {
-            width: 100%; padding: 20px 5%;
+            width: 100%; padding: 25px 5%;
             display: flex; justify-content: space-between; align-items: center;
             position: fixed; top: 0; z-index: 1000;
-            background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(20px);
+            background: rgba(2, 6, 23, 0.85); backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--glass-border);
+            transition: 0.4s ease;
         }
 
-        .logo img { height: 25px; }
+        .logo img { height: 28px; }
         nav ul { list-style: none; display: flex; gap: 40px; }
         nav a { 
             text-decoration: none; color: white; font-size: 11px; 
-            text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; transition: 0.3s; 
+            text-transform: uppercase; letter-spacing: 2px; opacity: 0.6; transition: 0.3s; 
         }
         nav a:hover { opacity: 1; color: var(--neon-blue); }
 
-        section { scroll-snap-align: start; min-height: 100vh; }
+        /* --- 3. Hero Trinity Section --- */
+        .hero-trinity {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            height: 100vh; width: 100%;
+            background: var(--glass-border); gap: 1px;
+            scroll-snap-align: start;
+        }
 
-        /* --- Mobile --- */
+        .trinity-box {
+            position: relative; overflow: hidden; background: #000;
+            display: flex; flex-direction: column; justify-content: flex-end;
+            padding: 50px; transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .trinity-box img {
+            position: absolute; top: 45%; left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            width: 75%; height: auto; object-fit: contain;
+            opacity: 0.4; transition: 0.8s ease; pointer-events: none;
+        }
+
+        .trinity-box:hover img {
+            opacity: 0.9; transform: translate(-50%, -55%) scale(1.05);
+        }
+
+        .trinity-box::before {
+            content: ""; position: absolute; inset: 0;
+            background: linear-gradient(to top, #000 15%, transparent 70%);
+            z-index: 2;
+        }
+
+        .box-content { position: relative; z-index: 5; }
+        .box-num { font-family: 'Aptos Bold'; font-size: 10px; color: var(--neon-blue); letter-spacing: 4px; margin-bottom: 10px; display: block; }
+        .box-title { font-family: 'Aptos Bold'; font-size: 34px; margin-bottom: 15px; text-transform: uppercase; line-height: 1.1; }
+        .box-desc { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.6; max-width: 300px; transform: translateY(20px); opacity: 0; transition: 0.5s ease; }
+        .trinity-box:hover .box-desc { transform: translateY(0); opacity: 1; }
+
+        /* --- 4. Enhanced Full-Screen Feature Grid --- */
+        .features-fullscreen {
+            height: 100vh; width: 100%; background: #000;
+            display: flex; align-items: center; justify-content: center;
+            scroll-snap-align: start;
+        }
+
+        .new-row-container {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            width: 100%; height: 100%; gap: 1px; background: var(--glass-border);
+        }
+
+        .new-item {
+            position: relative; background: #050c1a; 
+            padding: 60px; cursor: pointer; text-decoration: none; color: white;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; transition: 0.4s;
+        }
+
+        .new-item:hover { background: #0a1931; }
+        .new-item::after {
+            content: "VIEW SOLUTION →"; position: absolute; bottom: 30px;
+            font-size: 9px; letter-spacing: 2px; color: var(--neon-blue);
+            opacity: 0; transform: translateY(10px); transition: 0.3s;
+        }
+        .new-item:hover::after { opacity: 1; transform: translateY(0); }
+        
+        .icon-box img { 
+            width: 55px; height: 55px; filter: invert(1) brightness(2); 
+            margin-bottom: 25px; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .new-item:hover .icon-box img { transform: scale(1.15) rotate(5deg); }
+
+        .new-item h5 { font-family: 'Aptos Bold'; font-size: 24px; margin-bottom: 12px; letter-spacing: 1px; }
+        .new-item p { font-size: 13px; color: rgba(255,255,255,0.4); max-width: 240px; line-height: 1.5; }
+
+        /* --- 5. Footer (With Company Data) --- */
+        footer {
+            background: #000; padding: 80px 5%;
+            border-top: 1px solid var(--glass-border);
+            text-align: center; scroll-snap-align: end;
+        }
+
+        .footer-logo img { height: 22px; margin-bottom: 30px; opacity: 0.8; }
+        
+        .footer-address {
+            font-size: 13px; color: rgba(255,255,255,0.5);
+            line-height: 1.8; margin-bottom: 40px; letter-spacing: 0.5px;
+        }
+
+        .footer-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 40px; }
+        .footer-links a { 
+            text-decoration: none; color: rgba(255,255,255,0.3); 
+            font-size: 11px; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
+        }
+        .footer-links a:hover { color: var(--neon-blue); }
+
+        .copyright {
+            font-size: 10px; color: rgba(255,255,255,0.2);
+            letter-spacing: 3px; text-transform: uppercase;
+        }
+
+        /* --- Mobile Responsiveness --- */
         @media (max-width: 900px) {
             .hero-trinity, .new-row-container { grid-template-columns: 1fr; }
-            .trinity-box { height: 33.33vh; }
-            .trinity-box img { width: 50%; }
+            .trinity-box, .new-item { height: 50vh; padding: 40px; }
+            .features-fullscreen { height: auto; }
+            header { padding: 15px 5%; }
+            nav ul { gap: 20px; }
         }
     </style>
 </head>
 <body>
 
     <header id="mainHeader">
-        <div class="logo"><img src="logo.png" alt="Urmet Logo"></div>
+        <div class="logo"><img src="logo.png" alt="URMET PLUS"></div>
         <nav>
             <ul>
                 <li><a href="index.html">Vision</a></li>
@@ -190,135 +185,117 @@
         </nav>
     </header>
 
-    <!-- SECTION 1: THE TRINITY (Cloud, App, Reader) -->
+    <!-- SECTION 1: THE TRINITY -->
     <section class="hero-trinity">
-        <!-- Part A: The Cloud -->
         <div class="trinity-box">
-            <img src="middle1.png" alt="Cloud Core">
+            <img src="middle1.png" alt="Cloud">
             <div class="box-content">
                 <span class="box-num">01 / CORE</span>
                 <h3 class="box-title">Cloud<br>Management</h3>
-                <p class="box-desc">The brain of your building. Real-time monitoring, encrypted data storage, and instant remote authorization from anywhere in the world.</p>
+                <p class="box-desc">The digital brain of your building. Encrypted data management with real-time global monitoring.</p>
             </div>
         </div>
 
-        <!-- Part B: The App -->
         <div class="trinity-box">
-            <img src="qr_code.png" alt="QR App">
+            <img src="qr_code.png" alt="App">
             <div class="box-content">
                 <span class="box-num">02 / INTERFACE</span>
                 <h3 class="box-title">Dynamic<br>QR App</h3>
-                <p class="box-desc">Eliminate physical keys. High-security QR codes refresh every 60 seconds, ensuring your digital pass is impossible to duplicate.</p>
+                <p class="box-desc">Next-gen mobile entry. High-security codes refresh instantly to prevent duplication.</p>
             </div>
         </div>
 
-        <!-- Part C: The Reader -->
         <div class="trinity-box">
-            <img src="intro1.png" alt="Multi-Reader">
+            <img src="intro1.png" alt="Reader">
             <div class="box-content">
                 <span class="box-num">03 / HARDWARE</span>
                 <h3 class="box-title">Multi-Reader<br>V2</h3>
-                <p class="box-desc">Industrial-grade precision. Supports QR scanning, Bluetooth LE, and RFID. Designed for the toughest architectural environments.</p>
+                <p class="box-desc">Industrial precision hardware supporting QR, Bluetooth LE, and multi-protocol RFID.</p>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 2: THE ECOSYSTEM FEATURES -->
+    <!-- SECTION 2: THE ECOSYSTEM SOLUTIONS (Direct Links) -->
     <section class="features-fullscreen">
         <div class="new-row-container">
             <!-- Box 1: Invitation -->
-            <div class="new-item clickable-feature">
-                <div class="icon-box"><img src="invitation.png" alt="Invite"></div>
-                <h5>Instant Invite</h5>
-                <p>Guest Pass Management</p>
-                <div class="hover-overlay">
-                    <h6>Digital Invitations</h6>
-                    <div class="desc">Send time-limited access links directly to visitors. Once they arrive, the cloud logs the entry automatically.</div>
-                </div>
-                <div class="flipped-img-overlay"><img src="invite_page.png" alt="App Invite Screen"></div>
-            </div>
+            <a href="invitation.html" class="new-item">
+                <div class="icon-box"><img src="invitation.png" alt="Invitation"></div>
+                <h5>Invitation</h5>
+                <p>Generate time-limited guest passes and digital entry links.</p>
+            </a>
 
             <!-- Box 2: Facility -->
-            <div class="new-item clickable-feature">
+            <a href="facility.html" class="new-item">
                 <div class="icon-box"><img src="facility.png" alt="Facility"></div>
-                <h5>Amenity Hub</h5>
-                <p>Live Resource Booking</p>
-                <div class="hover-overlay">
-                    <h6>Smart Booking</h6>
-                    <div class="desc">Check availability of clubhouses or gyms and book your slot. The door unlocks only during your session.</div>
-                </div>
-                <div class="flipped-img-overlay"><img src="facility_page.png" alt="Facility Booking"></div>
-            </div>
+                <h5>Facility</h5>
+                <p>Smart amenity booking with integrated access scheduling.</p>
+            </a>
 
             <!-- Box 3: SOS -->
-            <div class="new-item">
-                <div class="icon-box"><img src="panic.png" alt="Panic"></div>
+            <a href="panic.html" class="new-item">
+                <div class="icon-box"><img src="panic.png" alt="SOS"></div>
                 <h5>SOS Protocol</h5>
-                <p>Emergency Response</p>
-                <div class="hover-overlay">
-                    <h6>Panic Trigger</h6>
-                    <div class="desc">One-tap emergency alerts that notify building security with your exact location coordinates.</div>
-                </div>
-            </div>
+                <p>Emergency panic triggers with instant location broadcasting.</p>
+            </a>
 
             <!-- Box 4: Access -->
-            <div class="new-item">
+            <a href="access.html" class="new-item">
                 <div class="icon-box"><img src="access.png" alt="Access"></div>
-                <h5>Secure Entry</h5>
-                <p>Edge Encryption</p>
-                <div class="hover-overlay">
-                    <h6>Military Grade</h6>
-                    <div class="desc">All communication between the app and the reader is protected by AES-256 encryption standards.</div>
-                </div>
-            </div>
+                <h5>Secure Access</h5>
+                <p>AES-256 encrypted communication for all entry points.</p>
+            </a>
 
             <!-- Box 5: Notice -->
-            <div class="new-item">
+            <a href="notice.html" class="new-item">
                 <div class="icon-box"><img src="notication.png" alt="Notice"></div>
                 <h5>Push Sync</h5>
-                <p>Building Broadcasts</p>
-                <div class="hover-overlay">
-                    <h6>Real-time Alerts</h6>
-                    <div class="desc">Receive parcel delivery notices or management announcements directly to your smartphone.</div>
-                </div>
-            </div>
+                <p>Broadcast critical building updates and parcel notifications.</p>
+            </a>
 
             <!-- Box 6: E-Form -->
-            <div class="new-item">
+            <a href="eform.html" class="new-item">
                 <div class="icon-box"><img src="eform.png" alt="Form"></div>
                 <h5>E-Form</h5>
-                <p>Paperless Admin</p>
-                <div class="hover-overlay">
-                    <h6>Digital Office</h6>
-                    <div class="desc">Submit maintenance requests or renovation forms digitally. No more paper, no more waiting.</div>
-                </div>
-            </div>
+                <p>Paperless administration for maintenance and applications.</p>
+            </a>
         </div>
     </section>
 
+    <!-- FOOTER WITH BUSINESS DETAILS -->
     <footer>
+        <div class="footer-logo">
+            <img src="logo.png" alt="URMET PLUS">
+        </div>
+        
+        <div class="footer-address">
+            <strong>URMET JES LIMITED</strong><br>
+            Hong Kong Business Center<br>
+            Hong Kong
+        </div>
+
+        <div class="footer-links">
+            <a href="products.html">Solutions</a>
+            <a href="#">Support</a>
+            <a href="#">Privacy</a>
+            <a href="#">HKIE Graduate Portal</a>
+        </div>
+
         <div class="copyright">
-            <p>© 2026 URMET JES LIMITED // NEXT-GEN ACCESS CONTROL</p>
+            © 2026 URMET JES LIMITED // SECURING THE FUTURE OF SMART LIVING
         </div>
     </footer>
 
     <script>
-        // Flip Interaction
-        document.querySelectorAll('.clickable-feature').forEach(item => {
-            item.addEventListener('click', () => {
-                item.classList.toggle('flipped');
-            });
-        });
-
-        // Simple Header Scroll
+        // Header Scroll Effect
         window.addEventListener('scroll', () => {
             const header = document.getElementById('mainHeader');
-            if (window.scrollY > 50) {
-                header.style.padding = "10px 5%";
-                header.style.background = "rgba(0,0,0,0.9)";
+            if (window.scrollY > 80) {
+                header.style.padding = "15px 5%";
+                header.style.background = "rgba(0,0,0,0.95)";
             } else {
-                header.style.padding = "20px 5%";
-                header.style.background = "rgba(2, 6, 23, 0.8)";
+                header.style.padding = "25px 5%";
+                header.style.background = "rgba(2, 6, 23, 0.85)";
             }
         });
     </script>
