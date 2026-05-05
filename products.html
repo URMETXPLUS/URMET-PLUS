@@ -52,7 +52,11 @@
             transition: 0.4s ease;
         }
 
-        .logo img { height: 28px; }
+        .logo img { 
+            height: 28px; 
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3)); /* Light of logo effect */
+        }
+
         nav ul { list-style: none; display: flex; gap: 30px; }
         nav a { 
             text-decoration: none; color: white; font-size: 11px; 
@@ -78,10 +82,16 @@
             position: absolute; top: 45%; left: 50%;
             transform: translate(-50%, -50%) scale(1);
             width: 75%; height: auto; object-fit: contain;
-            opacity: 0.4; transition: 0.8s ease; pointer-events: none;
+            opacity: 0.8; /* Increased from 0.4 to make it brighter */
+            filter: brightness(1.1); /* Added brightness boost */
+            transition: 0.8s ease; pointer-events: none;
         }
 
-        .trinity-box:hover img { opacity: 0.9; transform: translate(-50%, -55%) scale(1.05); }
+        .trinity-box:hover img { 
+            opacity: 1; 
+            transform: translate(-50%, -55%) scale(1.05); 
+            filter: brightness(1.2); 
+        }
 
         .trinity-box::before {
             content: ""; position: absolute; inset: 0;
@@ -140,7 +150,7 @@
         }
         .new-item:hover { background: #0a1931; }
         
-        .icon-box img { width: 45px; height: 45px; filter: invert(1); margin-bottom: 20px; }
+        .icon-box img { width: 45px; height: 45px; filter: invert(1) brightness(1.2); margin-bottom: 20px; }
         .new-item h5 { font-family: 'Aptos Bold'; font-size: 20px; margin-bottom: 10px; }
         .new-item p { font-size: 13px; opacity: 0.4; }
 
