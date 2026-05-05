@@ -43,9 +43,9 @@
             100% { transform: translateY(0px); }
         }
 
-        @keyframes scanline {
-            0% { top: 0%; }
-            100% { top: 100%; }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         /* --- 3. Navigation --- */
@@ -139,93 +139,78 @@
 
         .cta-btn:hover { transform: scale(1.05); box-shadow: 0 15px 30px rgba(0, 210, 255, 0.5); }
 
-        /* --- 5. Delivery & Visitor Management (New Full Screen Section) --- */
-        .delivery-showcase {
-            min-height: 100vh;
+        /* --- 5. NEW: Delivery Registration Section (Full Screen) --- */
+        .delivery-section {
+            height: 100vh;
             width: 100%;
+            position: relative;
             display: flex;
             align-items: center;
-            padding: 100px 8%;
-            background: radial-gradient(circle at center, #0a1931 0%, #050c1a 100%);
-            position: relative;
             overflow: hidden;
+            background: #000;
+        }
+
+        .delivery-bg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: url('deliver1.png') no-repeat center center;
+            background-size: cover;
+            filter: brightness(0.4) saturate(1.2);
+            z-index: 1;
+        }
+
+        /* Gradient Overlay for Text Readability */
+        .delivery-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, var(--bg-dark) 20%, transparent 100%);
+            z-index: 2;
         }
 
         .delivery-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
             position: relative;
-            z-index: 5;
+            z-index: 3;
+            padding: 0 8%;
+            max-width: 800px;
+            animation: slideIn 1s ease-out;
         }
 
-        .security-visual {
-            position: relative;
-            border-radius: 30px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            box-shadow: 0 0 50px rgba(0, 210, 255, 0.1);
-        }
-
-        .security-visual img {
-            width: 100%;
-            display: block;
-            filter: contrast(1.1) brightness(0.9);
-        }
-
-        /* Fancy Scanline Effect */
-        .scanner-effect {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, transparent 0%, var(--primary-blue) 50%, transparent 100%);
-            height: 2px;
-            opacity: 0.5;
-            box-shadow: 0 0 15px var(--primary-blue);
-            animation: scanline 4s linear infinite;
-        }
-
-        .security-features {
-            list-style: none;
-            margin: 30px 0;
-        }
-
-        .security-features li {
+        .delivery-content h2 {
+            font-size: clamp(35px, 4vw, 55px);
+            line-height: 1.2;
             margin-bottom: 20px;
-            padding-left: 30px;
-            position: relative;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .delivery-content p {
             font-size: 18px;
             color: rgba(255,255,255,0.8);
+            margin-bottom: 35px;
+            max-width: 600px;
         }
 
-        .security-features li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--accent-cyan);
-            font-weight: bold;
-        }
-
-        .outline-btn {
-            display: inline-block;
-            padding: 15px 35px;
-            border: 1px solid var(--primary-blue);
+        .fancy-btn {
+            padding: 15px 45px;
+            background: transparent;
             color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
             text-decoration: none;
+            font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-size: 14px;
-            font-weight: bold;
-            transition: 0.3s;
-            background: transparent;
+            border-radius: 50px;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
         }
 
-        .outline-btn:hover {
+        .fancy-btn:hover {
+            color: #fff;
             background: var(--primary-blue);
-            color: var(--bg-dark);
-            box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+            box-shadow: 0 0 20px var(--primary-blue);
         }
 
         /* --- 6. Procedures Grid --- */
@@ -280,8 +265,9 @@
 
         /* Mobile Logic */
         @media (max-width: 900px) {
-            .hero-content, .delivery-content { grid-template-columns: 1fr; text-align: center; }
-            .delivery-content { gap: 40px; }
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .delivery-overlay { background: rgba(5, 12, 26, 0.7); }
+            .delivery-content { text-align: center; margin: 0 auto; }
             nav { display: none; }
         }
     </style>
@@ -319,30 +305,17 @@
         </div>
     </section>
 
-    <!-- NEW DELIVERY & VISITOR MANAGEMENT SECTION -->
-    <section class="delivery-showcase" id="delivery">
+    <!-- DELIVERY REGISTRATION SECTION (Full Screen Replacement) -->
+    <section class="delivery-section" id="delivery">
+        <div class="delivery-bg"></div>
+        <div class="delivery-overlay"></div>
         <div class="delivery-content">
-            <div class="security-visual">
-                <div class="scanner-effect"></div>
-                <!-- Image of a deliverer/visitor registering -->
-                <img src="home4.png" alt="Secure Visitor Registration">
-            </div>
-            <div class="security-info">
-                <span class="tech-tag">VISITOR PROTOCOL</span>
-                <h2 style="font-size: clamp(30px, 4vw, 50px); line-height: 1.2; margin-bottom: 20px;">
-                    HIGH-SECURITY <br> DELIVERY VERIFICATION
-                </h2>
-                <p style="font-size: 18px; opacity: 0.7;">
-                    Standardize every entry. Our system forces a rigorous registration process for all couriers and visitors, ensuring no one enters the premises without a verified digital identity.
-                </p>
-                <ul class="security-features">
-                    <li>Real-time Photo Verification upon entry.</li>
-                    <li>Instant timestamped cloud audit trails.</li>
-                    <li>Encrypted dynamic QR generation for approved couriers.</li>
-                    <li>Blacklist synchronization across the entire estate.</li>
-                </ul>
-                <a href="solutions.html" class="outline-btn">Learn More</a>
-            </div>
+            <span class="tech-tag">SECURE LOGISTICS</span>
+            <h2>Advanced Delivery <br> Visitor Verification</h2>
+            <p>
+                Enhance your building's perimeter defense. Our specialized delivery registration protocol ensures every courier is logged, verified, and tracked with millisecond precision via cloud-synced photo IDs.
+            </p>
+            <a href="solutions.html" class="fancy-btn">Learn More</a>
         </div>
     </section>
 
