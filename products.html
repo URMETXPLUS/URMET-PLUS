@@ -6,26 +6,25 @@
     <title>Products - URMET PLUS</title>
     
     <style>
-        /* --- 1. Fonts & Tech Base --- */
+        /* --- 1. Tech Base & Variables --- */
         @font-face {
             font-family: 'Bariol Bold';
             src: url('fonts/Bariol-Bold.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
+            font-weight: normal; font-style: normal;
         }
 
         @font-face {
             font-family: 'Aptos Bold';
             src: url('fonts/Aptos-Bold.woff2') format('woff2');
-            font-weight: bold;
-            font-style: normal;
+            font-weight: bold; font-style: normal;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
 
         :root {
             --neon-blue: #60a5fa;
             --tech-dark: #020617;
+            --accent-cyan: #22d3ee;
             --glass: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.1);
         }
@@ -42,87 +41,91 @@
             font-family: 'Bariol Bold', sans-serif;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            min-height: 100%;
         }
 
-        /* Animated Tech Background */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(30, 75, 138, 0.2) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(96, 165, 250, 0.1) 0%, transparent 40%);
-            z-index: -1;
-        }
-
-        /* --- 2. Header (Glassmorphism) --- */
-        header {
-            width: 100%; 
-            padding: 15px 5%;
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-            position: fixed; 
-            top: 0; 
-            z-index: 1000;
-            background: rgba(2, 6, 23, 0.7);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--glass-border);
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        header.hide { transform: translateY(-100%); }
-
-        .logo img { height: 30px; filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.5)); }
-        
-        .nav-wrapper { display: flex; align-items: center; gap: 25px; }
-        nav ul { list-style: none; display: flex; gap: 30px; }
-        nav a { 
-            text-decoration: none; 
-            color: white; 
-            font-size: 12px; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            opacity: 0.6; 
-            transition: 0.4s; 
-        }
-        nav a:hover { opacity: 1; color: var(--neon-blue); text-shadow: 0 0 10px var(--neon-blue); }
-
-        section, footer {
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
-            min-height: 100vh; 
+        /* --- 2. Advanced Hero Section (Cloud, App, Reader) --- */
+        .hero-trinity {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            height: 100vh;
             width: 100%;
+            background: #000;
+            gap: 1px;
+            background: var(--glass-border);
+        }
+
+        .trinity-box {
             position: relative;
+            overflow: hidden;
+            background: #000;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+            transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        /* --- 3. Hero Section (Cyberpunk Style) --- */
-        .intro-fullscreen { display: flex; background: #000; }
-        .grid-box { position: relative; overflow: hidden; height: 100%; flex: 1; }
-        .main-hero { flex: 0 0 65%; border-right: 1px solid var(--glass-border); }
-        .side-column { flex: 0 0 35%; }
-        
-        .grid-box img { 
-            width: 100%; height: 100%; object-fit: cover; 
-            opacity: 0.8; transition: 1.5s cubic-bezier(0.2, 1, 0.2, 1);
+        .trinity-box img {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(1.1);
+            width: 80%; height: auto;
+            object-fit: contain;
+            opacity: 0.5;
+            transition: 0.8s ease;
+            pointer-events: none;
         }
-        .grid-box:hover img { transform: scale(1.05); opacity: 1; }
 
-        .text-overlay { 
-            position: absolute; bottom: 10%; left: 5%; z-index: 10;
-            padding: 20px; background: rgba(0,0,0,0.4); backdrop-filter: blur(5px);
-            border-left: 3px solid var(--neon-blue);
+        .trinity-box:hover img {
+            opacity: 1;
+            transform: translate(-50%, -60%) scale(1.15);
         }
-        .tagline { color: var(--neon-blue); font-size: 12px; letter-spacing: 5px; margin-bottom: 10px; font-family: 'Aptos Bold'; }
-        .title { font-size: clamp(32px, 5vw, 60px); color: #fff; line-height: 1; font-family: 'Aptos Bold'; text-shadow: 0 0 20px rgba(0,0,0,0.5); }
-        .tagline-desc { font-size: 14px; margin-top: 15px; color: rgba(255,255,255,0.7); line-height: 1.8; }
 
-        /* --- 4. Feature Grid (Futuristic Cards) --- */
-        .features-fullscreen { background: #010409; padding: 2px; }
+        .trinity-box::before {
+            content: "";
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, #000 10%, transparent 60%);
+            z-index: 2;
+        }
+
+        .box-content {
+            position: relative;
+            z-index: 5;
+        }
+
+        .box-num {
+            font-family: 'Aptos Bold';
+            font-size: 12px;
+            color: var(--neon-blue);
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .box-title {
+            font-family: 'Aptos Bold';
+            font-size: 32px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .box-desc {
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.6;
+            max-width: 280px;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: 0.5s ease;
+        }
+
+        .trinity-box:hover .box-desc {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* --- 3. Features Section Enhancements --- */
+        .features-fullscreen { background: #000; padding: 2px; }
         .new-row-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -132,271 +135,192 @@
 
         .new-item {
             position: relative; background: #050c1a; overflow: hidden;
-            padding: 40px; cursor: pointer; transition: 0.4s;
-            border: 1px solid transparent;
+            padding: 50px; cursor: pointer; transition: 0.4s;
         }
 
-        .new-item:hover { background: #0a1931; border-color: var(--neon-blue); }
+        .new-item:hover { background: #0a1931; }
+        
+        .icon-box img { width: 60px; height: 60px; filter: invert(1) brightness(2); }
 
-        .icon-box { 
-            margin-bottom: 20px; transition: 0.5s; 
-            filter: grayscale(1) brightness(1.5);
-        }
-        .new-item:hover .icon-box { filter: grayscale(0) drop-shadow(0 0 15px var(--neon-blue)); transform: translateY(-10px); }
-        .icon-box img { width: 50px; height: 50px; object-fit: contain; }
-
-        .new-item h5 { font-family: 'Aptos Bold'; font-size: 22px; color: #fff; margin-bottom: 10px; letter-spacing: 1px; }
-        .new-item p { font-size: 12px; color: var(--neon-blue); text-transform: uppercase; letter-spacing: 2px; }
-
-        /* Hover Overlay */
-        .hover-overlay {
-            position: absolute; inset: 0; background: rgba(10, 25, 49, 0.95);
-            padding: 40px; display: flex; flex-direction: column; justify-content: center;
-            opacity: 0; transition: 0.4s; z-index: 5;
-        }
-        .new-item:hover .hover-overlay { opacity: 1; }
-        .hover-overlay h6 { font-size: 20px; color: var(--neon-blue); margin-bottom: 15px; font-family: 'Aptos Bold'; }
-        .hover-overlay .desc { font-size: 14px; line-height: 1.6; color: #cbd5e1; }
-
-        /* Product Flip Image */
         .flipped-img-overlay {
             position: absolute; inset: 0; background: #fff; z-index: 10;
             display: flex; align-items: center; justify-content: center;
-            transform: translateY(100%); transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(100%); transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
         }
+        .flipped-img-overlay img { width: 80%; object-fit: contain; }
         .new-item.flipped .flipped-img-overlay { transform: translateY(0); }
 
-        /* --- 5. Callout Section (Deep Focus) --- */
-        .callout-fullscreen { background: linear-gradient(180deg, #010409 0%, #050c1a 100%); }
-        .one-app-callout { 
-            display: flex; align-items: center; gap: 60px; max-width: 1200px; padding: 0 5%;
-        }
-        .callout-text h4 { 
-            font-size: clamp(40px, 6vw, 70px); font-family: 'Aptos Bold'; 
-            background: linear-gradient(to right, #fff, var(--neon-blue));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 30px;
-        }
-        .advanced-intro-image img { 
-            width: 100%; border-radius: 20px; 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 20px rgba(96,165,250,0.2); 
+        /* --- 4. Navigation & UI --- */
+        header {
+            width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            position: fixed; top: 0; z-index: 1000;
+            background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
         }
 
-        /* --- 6. Footer (Clean Tech) --- */
-        footer { background: #000; border-top: 1px solid var(--glass-border); padding: 100px 5% 40px; }
-        .footer-content { width: 100%; max-width: 1200px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; }
-        .footer-section h4 { color: var(--neon-blue); font-size: 14px; letter-spacing: 3px; margin-bottom: 25px; }
-        .footer-section p, .footer-section a { color: #64748b; font-size: 14px; text-decoration: none; margin-bottom: 12px; transition: 0.3s; }
-        .footer-section a:hover { color: #fff; }
-        .copyright { margin-top: 80px; text-align: center; font-size: 11px; color: #334155; letter-spacing: 2px; }
+        .logo img { height: 25px; }
+        nav ul { list-style: none; display: flex; gap: 40px; }
+        nav a { 
+            text-decoration: none; color: white; font-size: 11px; 
+            text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; transition: 0.3s; 
+        }
+        nav a:hover { opacity: 1; color: var(--neon-blue); }
 
-        /* --- 7. Mobile Optimization --- */
-        @media (max-width: 768px) {
-            .intro-fullscreen { flex-direction: column; }
-            .main-hero, .side-column { flex: 0 0 auto; width: 100%; height: 50vh; }
-            .new-row-container { grid-template-columns: 1fr; }
-            .new-item { height: 350px; }
-            .one-app-callout { flex-direction: column; text-align: center; }
-            .footer-content { grid-template-columns: 1fr; }
+        section { scroll-snap-align: start; min-height: 100vh; }
+
+        /* --- Mobile --- */
+        @media (max-width: 900px) {
+            .hero-trinity, .new-row-container { grid-template-columns: 1fr; }
+            .trinity-box { height: 33.33vh; }
+            .trinity-box img { width: 50%; }
         }
     </style>
 </head>
 <body>
 
     <header id="mainHeader">
-        <div class="logo">
-            <img src="logo.png" alt="Urmet Logo">
-        </div>
-        <div class="nav-wrapper">
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="about.html">Contact Us</a></li>
-                </ul>
-            </nav>
-        </div>
+        <div class="logo"><img src="logo.png" alt="Urmet Logo"></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Vision</a></li>
+                <li><a href="products.html" style="opacity: 1; color: var(--neon-blue);">Ecosystem</a></li>
+                <li><a href="about.html">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- HERO -->
-    <section class="intro-fullscreen section-target">
-        <div class="grid-box main-hero">
+    <!-- SECTION 1: THE TRINITY (Cloud, App, Reader) -->
+    <section class="hero-trinity">
+        <!-- Part A: The Cloud -->
+        <div class="trinity-box">
+            <img src="middle1.png" alt="Cloud Core">
+            <div class="box-content">
+                <span class="box-num">01 / CORE</span>
+                <h3 class="box-title">Cloud<br>Management</h3>
+                <p class="box-desc">The brain of your building. Real-time monitoring, encrypted data storage, and instant remote authorization from anywhere in the world.</p>
+            </div>
+        </div>
+
+        <!-- Part B: The App -->
+        <div class="trinity-box">
+            <img src="qr_code.png" alt="QR App">
+            <div class="box-content">
+                <span class="box-num">02 / INTERFACE</span>
+                <h3 class="box-title">Dynamic<br>QR App</h3>
+                <p class="box-desc">Eliminate physical keys. High-security QR codes refresh every 60 seconds, ensuring your digital pass is impossible to duplicate.</p>
+            </div>
+        </div>
+
+        <!-- Part C: The Reader -->
+        <div class="trinity-box">
             <img src="intro1.png" alt="Multi-Reader">
-            <div class="text-overlay">
-                <p class="tagline">FUTURE OF ACCESS</p>
-                <h2 class="title">MULTI-READER [V2]</h2>
-                <p class="tagline-desc">
-                    One device. Infinite possibilities.<br>
-                    QR | RFID | MOBILE BLE<br>
-                    Redefining building intelligence.
-                </p>
-            </div>
-        </div>
-        <div class="side-column">
-            <div class="grid-box">
-                <img src="intro2.png" alt="Smart Access">
+            <div class="box-content">
+                <span class="box-num">03 / HARDWARE</span>
+                <h3 class="box-title">Multi-Reader<br>V2</h3>
+                <p class="box-desc">Industrial-grade precision. Supports QR scanning, Bluetooth LE, and RFID. Designed for the toughest architectural environments.</p>
             </div>
         </div>
     </section>
 
-    <!-- APP CALLOUT -->
-    <section class="callout-fullscreen section-target">
-        <div class="one-app-callout">
-            <div class="callout-text">
-                <h4>ONE APP.<br>ZERO FRICTION.</h4>
-                <p>Digital keys, facility booking, and real-time security alerts. Managed in a single encrypted environment designed for modern property leaders.</p>
-            </div>
-            <div class="advanced-intro-image">
-                <img src="middle1.png" alt="App Display">
-            </div>
-        </div>
-    </section>
-
-    <!-- FEATURES -->
-    <section class="features-fullscreen section-target">
+    <!-- SECTION 2: THE ECOSYSTEM FEATURES -->
+    <section class="features-fullscreen">
         <div class="new-row-container">
-            <!-- Box 1 -->
-            <div class="new-item clickable-feature" data-product-img="product1.png">
-                <div class="icon-box"><img src="access.png" alt="Access"></div>
-                <h5>Access Control</h5>
-                <p>Encrypted Entry</p>
+            <!-- Box 1: Invitation -->
+            <div class="new-item clickable-feature">
+                <div class="icon-box"><img src="invitation.png" alt="Invite"></div>
+                <h5>Instant Invite</h5>
+                <p>Guest Pass Management</p>
                 <div class="hover-overlay">
-                    <h6>🔑 Smart QR Engine</h6>
-                    <div class="desc">Encrypted, dynamic QR codes that change every 30 seconds. The ultimate barrier against unauthorized entry.</div>
+                    <h6>Digital Invitations</h6>
+                    <div class="desc">Send time-limited access links directly to visitors. Once they arrive, the cloud logs the entry automatically.</div>
                 </div>
-                <div class="flipped-img-overlay"><img src="product1.png" alt="Hardware"></div>
+                <div class="flipped-img-overlay"><img src="invite_page.png" alt="App Invite Screen"></div>
             </div>
 
-            <!-- Box 2 -->
-            <div class="new-item clickable-feature" data-product-img="product2.png">
-                <div class="icon-box"><img src="invitation.png" alt="Invitation"></div>
-                <h5>Digital Key</h5>
-                <p>Virtual Pass</p>
+            <!-- Box 2: Facility -->
+            <div class="new-item clickable-feature">
+                <div class="icon-box"><img src="facility.png" alt="Facility"></div>
+                <h5>Amenity Hub</h5>
+                <p>Live Resource Booking</p>
                 <div class="hover-overlay">
-                    <h6>✉️ Instant Invitation</h6>
-                    <div class="desc">Generate time-limited guest passes and send them via encrypted links. Complete logs of every arrival.</div>
+                    <h6>Smart Booking</h6>
+                    <div class="desc">Check availability of clubhouses or gyms and book your slot. The door unlocks only during your session.</div>
                 </div>
-                <div class="flipped-img-overlay"><img src="product2.png" alt="Hardware"></div>
+                <div class="flipped-img-overlay"><img src="facility_page.png" alt="Facility Booking"></div>
             </div>
 
-            <!-- Box 3 -->
-            <div class="new-item clickable-feature" data-product-img="product6.png">
-                <div class="icon-box"><img src="visitor.png" alt="Visitor"></div>
-                <h5>Visitor AI</h5>
-                <p>Flow Mgmt</p>
-                <div class="hover-overlay">
-                    <h6>👤 Auto Registration</h6>
-                    <div class="desc">Eliminate the front-desk bottleneck with self-service visitor kiosks and cloud verification.</div>
-                </div>
-                <div class="flipped-img-overlay"><img src="product6.png" alt="Hardware"></div>
-            </div>
-
-            <!-- Box 4 -->
-            <div class="new-item clickable-feature" data-product-img="product3.png">
-                <div class="icon-box"><img src="facility.png" alt="Booking"></div>
-                <h5>Booking</h5>
-                <p>Resource Cloud</p>
-                <div class="hover-overlay">
-                    <h6>🎾 Live Amenities</h6>
-                    <div class="desc">Real-time IoT feedback on clubhouse availability. Book, pay, and unlock facilities instantly.</div>
-                </div>
-                <div class="flipped-img-overlay"><img src="product3.png" alt="Hardware"></div>
-            </div>
-
-            <!-- Box 5 -->
-            <div class="new-item">
-                <div class="icon-box"><img src="notication.png" alt="Notification"></div>
-                <h5>Push Core</h5>
-                <p>Live Sync</p>
-                <div class="hover-overlay">
-                    <h6>🔔 Edge Notifications</h6>
-                    <div class="desc">Instant push notifications for parcel delivery or emergency protocols. Never out of sync.</div>
-                </div>
-            </div>
-
-            <!-- Box 6 -->
+            <!-- Box 3: SOS -->
             <div class="new-item">
                 <div class="icon-box"><img src="panic.png" alt="Panic"></div>
                 <h5>SOS Protocol</h5>
-                <p>Safety First</p>
+                <p>Emergency Response</p>
                 <div class="hover-overlay">
-                    <h6>🏠 Rapid Response</h6>
-                    <div class="desc">Discrete panic triggers that alert on-site security and emergency services with GPS coordinates.</div>
+                    <h6>Panic Trigger</h6>
+                    <div class="desc">One-tap emergency alerts that notify building security with your exact location coordinates.</div>
+                </div>
+            </div>
+
+            <!-- Box 4: Access -->
+            <div class="new-item">
+                <div class="icon-box"><img src="access.png" alt="Access"></div>
+                <h5>Secure Entry</h5>
+                <p>Edge Encryption</p>
+                <div class="hover-overlay">
+                    <h6>Military Grade</h6>
+                    <div class="desc">All communication between the app and the reader is protected by AES-256 encryption standards.</div>
+                </div>
+            </div>
+
+            <!-- Box 5: Notice -->
+            <div class="new-item">
+                <div class="icon-box"><img src="notication.png" alt="Notice"></div>
+                <h5>Push Sync</h5>
+                <p>Building Broadcasts</p>
+                <div class="hover-overlay">
+                    <h6>Real-time Alerts</h6>
+                    <div class="desc">Receive parcel delivery notices or management announcements directly to your smartphone.</div>
+                </div>
+            </div>
+
+            <!-- Box 6: E-Form -->
+            <div class="new-item">
+                <div class="icon-box"><img src="eform.png" alt="Form"></div>
+                <h5>E-Form</h5>
+                <p>Paperless Admin</p>
+                <div class="hover-overlay">
+                    <h6>Digital Office</h6>
+                    <div class="desc">Submit maintenance requests or renovation forms digitally. No more paper, no more waiting.</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="section-target">
-        <div class="footer-content">
-            <div class="footer-section">
-                <img src="logo.png" alt="Logo" style="height: 30px; margin-bottom: 25px; filter: brightness(2);">
-                <p>Units 11-14, 7/F, Phase 1 Chai Wan Industrial City<br>60 Wing Tai Road, Chai Wan, Hong Kong</p>
-            </div>
-            <div class="footer-section">
-                <h4>NETWORK</h4>
-                <a href="about.html">Support</a>
-                <a href="privacy.html">Developer Portal</a>
-                <a href="privacy.html">Privacy</a>
-            </div>
-            <div class="footer-section">
-                <h4>CONNECT</h4>
-                <p>+852 1234 5678</p>
-                <p>info@urmetplus.com</p>
-            </div>
-        </div>
+    <footer>
         <div class="copyright">
-            <p>© 2026 URMET JES LIMITED // CORE SYSTEM v3.4.1</p>
+            <p>© 2026 URMET JES LIMITED // NEXT-GEN ACCESS CONTROL</p>
         </div>
     </footer>
 
     <script>
-        const header = document.getElementById('mainHeader');
-        const sections = document.querySelectorAll('.section-target');
-        let isScrolling = false;
-
-        // Smart Header
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                header.classList.add('hide');
-            } else {
-                header.classList.remove('hide');
-            }
-        });
-
-        // Card Interaction
-        const clickableItems = document.querySelectorAll('.clickable-feature');
-        clickableItems.forEach(item => {
+        // Flip Interaction
+        document.querySelectorAll('.clickable-feature').forEach(item => {
             item.addEventListener('click', () => {
                 item.classList.toggle('flipped');
             });
         });
 
-        // Tech Smooth Scroll
-        window.addEventListener('wheel', (e) => {
-            if (isScrolling) return; 
-            
-            const direction = e.deltaY > 0 ? 1 : -1;
-            let targetIndex = -1;
-            const currentScroll = window.pageYOffset;
-            
-            sections.forEach((section, index) => {
-                if (Math.abs(currentScroll - section.offsetTop) < 20) {
-                    targetIndex = index + direction;
-                }
-            });
-
-            if (targetIndex >= 0 && targetIndex < sections.length) {
-                e.preventDefault();
-                isScrolling = true;
-                window.scrollTo({
-                    top: sections[targetIndex].offsetTop,
-                    behavior: 'smooth'
-                });
-                setTimeout(() => { isScrolling = false; }, 1000); 
+        // Simple Header Scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) {
+                header.style.padding = "10px 5%";
+                header.style.background = "rgba(0,0,0,0.9)";
+            } else {
+                header.style.padding = "20px 5%";
+                header.style.background = "rgba(2, 6, 23, 0.8)";
             }
-        }, { passive: false });
+        });
     </script>
 
 </body>
