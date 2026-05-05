@@ -6,7 +6,7 @@
     <title>Products - URMET PLUS</title>
     
     <style>
-        /* --- 1. 字體與基礎設定 --- */
+        /* --- 1. Fonts & Tech Base --- */
         @font-face {
             font-family: 'Bariol Bold';
             src: url('fonts/Bariol-Bold.woff2') format('woff2');
@@ -23,6 +23,13 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        :root {
+            --neon-blue: #60a5fa;
+            --tech-dark: #020617;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
         html {
             scroll-snap-type: y mandatory; 
             scroll-behavior: smooth;
@@ -30,7 +37,7 @@
         }
 
         body {
-            background: #050c1a;
+            background: var(--tech-dark);
             color: white;
             font-family: 'Bariol Bold', sans-serif;
             overflow-x: hidden;
@@ -38,60 +45,49 @@
             min-height: 100%;
         }
 
-        /* --- 2. Header --- */
+        /* Animated Tech Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(30, 75, 138, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(96, 165, 250, 0.1) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        /* --- 2. Header (Glassmorphism) --- */
         header {
             width: 100%; 
-            padding: 12px 5%; /* Adjusted padding for better mobile fit */
+            padding: 15px 5%;
             display: flex; 
             justify-content: space-between; 
             align-items: center;
             position: fixed; 
             top: 0; 
-            left: 0; 
-            background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(2, 6, 23, 0.7);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        header.hide {
-            transform: translateY(-100%);
-        }
+        header.hide { transform: translateY(-100%); }
 
-        .logo img { height: 32px; width: auto; display: block; } /* Reduced height slightly for mobile */
+        .logo img { height: 30px; filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.5)); }
         
-        /* Modified Navigation Wrapper for Scrolling */
-        .nav-wrapper { 
-            display: flex; 
-            align-items: center; 
-            gap: 15px; 
-            overflow-x: auto; /* Enable horizontal scroll */
-            white-space: nowrap; /* Keep items in one line */
-            -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
-            padding-bottom: 5px;
-            scrollbar-width: none; /* Hide scrollbar Firefox */
-        }
-        
-        .nav-wrapper::-webkit-scrollbar { display: none; } /* Hide scrollbar Chrome/Safari */
-
-        nav ul { 
-            list-style: none; 
-            display: flex; 
-            gap: 20px; 
-        }
-
+        .nav-wrapper { display: flex; align-items: center; gap: 25px; }
+        nav ul { list-style: none; display: flex; gap: 30px; }
         nav a { 
             text-decoration: none; 
             color: white; 
-            font-size: 13px; 
+            font-size: 12px; 
             text-transform: uppercase; 
-            letter-spacing: 1px; 
-            opacity: 0.8; 
-            transition: 0.3s; 
+            letter-spacing: 2px; 
+            opacity: 0.6; 
+            transition: 0.4s; 
         }
-
-        nav a:hover { opacity: 1; color: #60a5fa; }
+        nav a:hover { opacity: 1; color: var(--neon-blue); text-shadow: 0 0 10px var(--neon-blue); }
 
         section, footer {
             scroll-snap-align: start;
@@ -99,483 +95,109 @@
             min-height: 100vh; 
             width: 100%;
             position: relative;
-            overflow: hidden; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* --- 3. Hero Section --- */
-        .intro-fullscreen { 
-            display: flex; 
-            width: 100vw; 
-            height: 100vh; 
-            min-height: 600px; 
-            background-color: #000; 
-        }
-        .grid-box { position: relative; overflow: hidden; height: 100%; }
-        .main-hero { flex: 0 0 65.5%; } 
-        .side-column { flex: 0 0 34.5%; display: flex; flex-direction: column; }
-        .sub-hero { flex: 1; border-left: 1px solid rgba(255,255,255,0.1); }
+        /* --- 3. Hero Section (Cyberpunk Style) --- */
+        .intro-fullscreen { display: flex; background: #000; }
+        .grid-box { position: relative; overflow: hidden; height: 100%; flex: 1; }
+        .main-hero { flex: 0 0 65%; border-right: 1px solid var(--glass-border); }
+        .side-column { flex: 0 0 35%; }
         
         .grid-box img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            display: block; 
-            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); 
+            width: 100%; height: 100%; object-fit: cover; 
+            opacity: 0.8; transition: 1.5s cubic-bezier(0.2, 1, 0.2, 1);
         }
-        .grid-box:hover img { transform: scale(1.08); }
+        .grid-box:hover img { transform: scale(1.05); opacity: 1; }
 
         .text-overlay { 
-            position: absolute; 
-            bottom: 8%; 
-            left: 3%; 
-            color: #000000; 
-            z-index: 2; 
-            max-width: 80%;
+            position: absolute; bottom: 10%; left: 5%; z-index: 10;
+            padding: 20px; background: rgba(0,0,0,0.4); backdrop-filter: blur(5px);
+            border-left: 3px solid var(--neon-blue);
         }
-        .tagline { font-size: 14px; letter-spacing: 3px; margin-bottom: 8px; opacity: 0.9; color: #000000; font-family: 'Aptos Bold', sans-serif; }
-        .title { font-size: clamp(24px, 3.5vw, 48px); font-weight: bold; margin: 0 0 15px 0; line-height: 1.1; color: #000000; font-family: 'Aptos Bold', sans-serif; }
-        .tagline-desc { font-size: 14px; line-height: 1.6; letter-spacing: 1px; color: #000000; opacity: 0.8; }
+        .tagline { color: var(--neon-blue); font-size: 12px; letter-spacing: 5px; margin-bottom: 10px; font-family: 'Aptos Bold'; }
+        .title { font-size: clamp(32px, 5vw, 60px); color: #fff; line-height: 1; font-family: 'Aptos Bold'; text-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        .tagline-desc { font-size: 14px; margin-top: 15px; color: rgba(255,255,255,0.7); line-height: 1.8; }
 
-        /* --- 5. Features Grid Section --- */
-        .features-fullscreen {
-            background: #ffffff;
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
+        /* --- 4. Feature Grid (Futuristic Cards) --- */
+        .features-fullscreen { background: #010409; padding: 2px; }
         .new-row-container {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); 
-            grid-template-rows: repeat(2, 1fr);    
-            width: 100%;
-            height: 100%;
-            gap: 2px; 
-            background: #000; 
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            width: 100%; height: 100%; gap: 2px;
         }
 
         .new-item {
-            position: relative;
-            background: #fff;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 30px;
-            cursor: pointer;
-            transition: background 0.4s ease;
+            position: relative; background: #050c1a; overflow: hidden;
+            padding: 40px; cursor: pointer; transition: 0.4s;
+            border: 1px solid transparent;
         }
 
-        .new-item.main-feature {
-            grid-row: auto; 
-            justify-content: flex-end;
-        }
+        .new-item:hover { background: #0a1931; border-color: var(--neon-blue); }
 
-        .new-item .icon-box {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            display: flex; 
-            align-items: center;
-            justify-content: center;
+        .icon-box { 
+            margin-bottom: 20px; transition: 0.5s; 
+            filter: grayscale(1) brightness(1.5);
         }
+        .new-item:hover .icon-box { filter: grayscale(0) drop-shadow(0 0 15px var(--neon-blue)); transform: translateY(-10px); }
+        .icon-box img { width: 50px; height: 50px; object-fit: contain; }
 
-        .new-item .icon-box img {
-            width: 60%; 
-            height: 60%; 
-            object-fit: contain; 
-            transition: transform 0.6s ease;
-        }
+        .new-item h5 { font-family: 'Aptos Bold'; font-size: 22px; color: #fff; margin-bottom: 10px; letter-spacing: 1px; }
+        .new-item p { font-size: 12px; color: var(--neon-blue); text-transform: uppercase; letter-spacing: 2px; }
 
-        /* Text Styling for Boxes */
-        .new-item h5 {
-            position: relative;
-            z-index: 2;
-            font-family: 'Aptos Bold', sans-serif;
-            font-size: 20px; 
-            color: #000;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 5px;
-            transition: opacity 0.3s ease;
-        }
-
-        .new-item p {
-            position: relative;
-            z-index: 2;
-            font-size: 11px;
-            color: #333;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-
-        .new-item::after {
-            content: '→';
-            position: absolute;
-            bottom: 30px;
-            right: 30px;
-            width: 30px;
-            height: 30px;
-            border: 1px solid #000;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 5; 
-            font-size: 14px;
-            transition: background 0.3s, color 0.3s, border-color 0.3s;
-        }
-
-        /* --- Hover Overlay Logic --- */
+        /* Hover Overlay */
         .hover-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #f0f0f0; 
-            z-index: 3;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            padding: 40px 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: left;
-            pointer-events: none; 
+            position: absolute; inset: 0; background: rgba(10, 25, 49, 0.95);
+            padding: 40px; display: flex; flex-direction: column; justify-content: center;
+            opacity: 0; transition: 0.4s; z-index: 5;
         }
+        .new-item:hover .hover-overlay { opacity: 1; }
+        .hover-overlay h6 { font-size: 20px; color: var(--neon-blue); margin-bottom: 15px; font-family: 'Aptos Bold'; }
+        .hover-overlay .desc { font-size: 14px; line-height: 1.6; color: #cbd5e1; }
 
-        .hover-overlay h6 {
-            font-family: 'Aptos Bold', sans-serif;
-            font-size: 18px;
-            color: #000;
-            margin-bottom: 15px;
-            text-transform: none;
-        }
-
-        .hover-overlay .desc {
-            font-size: 13px;
-            color: #444;
-            line-height: 1.5;
-            text-transform: none;
-            letter-spacing: 0.5px;
-            font-family: 'Bariol Bold', sans-serif;
-        }
-
-        .new-item:hover .hover-overlay {
-            opacity: 1;
-        }
-
-        .new-item:hover h5, .new-item:hover p, .new-item:hover .icon-box {
-            opacity: 0;
-        }
-
-        /* --- Click-to-Flip Image Logic --- */
+        /* Product Flip Image */
         .flipped-img-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #fff;
-            z-index: 4;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.4s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            position: absolute; inset: 0; background: #fff; z-index: 10;
+            display: flex; align-items: center; justify-content: center;
+            transform: translateY(100%); transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .new-item.flipped .flipped-img-overlay { transform: translateY(0); }
+
+        /* --- 5. Callout Section (Deep Focus) --- */
+        .callout-fullscreen { background: linear-gradient(180deg, #010409 0%, #050c1a 100%); }
+        .one-app-callout { 
+            display: flex; align-items: center; gap: 60px; max-width: 1200px; padding: 0 5%;
+        }
+        .callout-text h4 { 
+            font-size: clamp(40px, 6vw, 70px); font-family: 'Aptos Bold'; 
+            background: linear-gradient(to right, #fff, var(--neon-blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+        }
+        .advanced-intro-image img { 
+            width: 100%; border-radius: 20px; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 20px rgba(96,165,250,0.2); 
         }
 
-        .flipped-img-overlay img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-        }
+        /* --- 6. Footer (Clean Tech) --- */
+        footer { background: #000; border-top: 1px solid var(--glass-border); padding: 100px 5% 40px; }
+        .footer-content { width: 100%; max-width: 1200px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; }
+        .footer-section h4 { color: var(--neon-blue); font-size: 14px; letter-spacing: 3px; margin-bottom: 25px; }
+        .footer-section p, .footer-section a { color: #64748b; font-size: 14px; text-decoration: none; margin-bottom: 12px; transition: 0.3s; }
+        .footer-section a:hover { color: #fff; }
+        .copyright { margin-top: 80px; text-align: center; font-size: 11px; color: #334155; letter-spacing: 2px; }
 
-        /* When the box is clicked, add this class via JS */
-        .new-item.flipped .flipped-img-overlay {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .new-item.flipped h5, 
-        .new-item.flipped p, 
-        .new-item.flipped .icon-box, 
-        .new-item.flipped .hover-overlay {
-            opacity: 0 !important;
-        }
-
-        .new-item:hover::after {
-            background: #000;
-            color: #fff;
-            border-color: #000;
-        }
-
-        /* --- 6. One App Callout Section --- */
-        .callout-fullscreen {
-            background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 80px 8%; 
-            border-top: 1px solid rgba(255, 255, 255, 0.4);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-            min-height: 100vh;
-            height: auto;
-        }
-
-        .one-app-callout {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 40px;
-            max-width: 1200px;
-            width: 100%;
-            flex-wrap: wrap; 
-        }
-
-        .callout-text { flex: 1 1 500px; }
-
-        .callout-text h4 {
-            font-size: clamp(32px, 5vw, 48px);
-            color: #ffffff;
-            margin-bottom: 20px;
-            font-family: 'Aptos Bold', sans-serif;
-        }
-
-        .callout-text p {
-            font-size: clamp(16px, 2vw, 20px);
-            line-height: 1.6;
-            color: #ffffff;
-            opacity: 0.9;
-        }
-
-        .advanced-intro-image {
-            flex: 0 1 35%;
-            min-width: 250px; 
-            max-width: 400px; 
-            margin: 0 auto;
-        }
-
-        .advanced-intro-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            display: block;
-        }
-
-        /* --- 7. Why Choose Section --- */
-        .why-choose-section {
-            padding: 100px 8%;
-            background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
-            color: #ffffff;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-height: 100vh;
-            height: auto;
-        }
-
-        .why-choose-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        .why-choose-section h2 {
-            font-size: clamp(28px, 4vw, 38px);
-            color: #ffffff;
-            margin-bottom: 50px;
-            font-family: 'Aptos Bold', sans-serif;
-        }
-
-        .why-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            text-align: left;
-            margin-bottom: 60px;
-        }
-
-        .why-item h3 {
-            font-size: 20px;
-            color: #60a5fa;
-            margin-bottom: 12px;
-            font-family: 'Aptos Bold', sans-serif;
-            display: flex;
-            align-items: center;
-        }
-
-        .why-item h3::before {
-            content: "✓";
-            margin-right: 10px;
-            color: #60a5fa;
-            font-weight: bold;
-        }
-
-        .why-item p {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #ffffff;
-        }
-
-        .why-footer-callout {
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            padding-top: 40px;
-        }
-
-        .why-footer-callout h4 {
-            font-size: 24px;
-            font-family: 'Aptos Bold', sans-serif;
-            margin-bottom: 10px;
-            color: #60a5fa;
-        }
-
-        .why-footer-callout p {
-            font-size: 18px;
-            color: #ffffff;
-            font-weight: bold;
-        }
-
-        /* --- 8. Footer --- */
-        footer { 
-            background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
-            padding: 80px 8% 20px 8%;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            color: white; 
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
-            min-height: 100vh;
-            height: auto;
-        }
-
-        .footer-content { 
-            width: 100%; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            display: flex; 
-            justify-content: space-between; 
-            flex-wrap: wrap; 
-            gap: 40px; 
-            margin-bottom: 60px; 
-        }
-
-        .footer-section h4 { 
-            color: #60a5fa; 
-            margin-bottom: 20px; 
-            font-size: 18px; 
-            text-transform: uppercase; 
-        }
-
-        .footer-section p, 
-        .footer-section a { 
-            color: rgba(255,255,255,0.7); 
-            text-decoration: none; 
-            display: block; 
-            margin-bottom: 10px; 
-            font-size: 15px; 
-        }
-
-        .footer-section a:hover { 
-            color: white; 
-        }
-
-        .copyright { 
-            text-align: center; 
-            color: rgba(255,255,255,0.3); 
-            font-size: 12px; 
-            border-top: 1px solid rgba(255,255,255,0.1); 
-            padding-top: 20px; 
-            width: 100%;
-        }
-
-        /* --- Media Queries --- */
-        @media (max-width: 1024px) {
-            .text-overlay { bottom: 5%; left: 3%; }
-            .one-app-callout { flex-direction: column; text-align: center; justify-content: center; }
-        }
-
+        /* --- 7. Mobile Optimization --- */
         @media (max-width: 768px) {
-            header { padding: 10px 15px; }
-            .logo img { height: 28px; }
-            .nav-wrapper { gap: 10px; }
-            nav ul { gap: 15px; }
-            nav a { font-size: 12px; }
-
-            .intro-fullscreen { flex-direction: column; height: auto; }
-            .main-hero, .side-column { flex: 0 0 auto; width: 100%; height: 60vh; }
-            .sub-hero { height: 40vh; }
-            
-            /* ADJUSTED FOR MOBILE BOX VISIBILITY */
-            .features-fullscreen { height: auto; min-height: 100vh; }
-            .new-row-container { 
-                grid-template-columns: repeat(2, 1fr); /* Shows 2 boxes per row */
-                grid-template-rows: auto; 
-                height: auto;
-            }
-            .new-item.main-feature { grid-row: auto; height: 33vh; }
-            .new-item { height: 33vh; padding: 15px; } 
-
-            .new-item h5 { font-size: 14px; }
-            .new-item p { font-size: 9px; }
-            .new-item::after { bottom: 15px; right: 15px; width: 20px; height: 20px; font-size: 10px; }
-            
-            /* Fixed Callout section for mobile/half-screen */
-            .callout-fullscreen { 
-                padding: 60px 5% 40px 5%; 
-                min-height: 100vh;
-                height: auto;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-            }
-            .one-app-callout { 
-                gap: 20px; 
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-            }
-            .callout-text {
-                flex: 0 0 auto;
-                width: 100%;
-            }
-            .callout-text h4 { margin-bottom: 10px; font-size: 28px; }
-            .callout-text p { font-size: 16px; }
-            .advanced-intro-image { 
-                flex: 0 0 auto; 
-                width: 80%; 
-                max-width: 280px; 
-                margin: 0 auto;
-                display: block;
-            }
-            .advanced-intro-image img {
-                max-height: 40vh;
-                object-fit: contain;
-                width: auto;
-                margin: 0 auto;
-            }
-            
-            .why-choose-section { padding: 60px 5%; }
-        }
-
-        /* Further adjustment for very small screens */
-        @media (max-width: 480px) {
-            .new-row-container { 
-                grid-template-columns: 1fr; /* 1 box per row on very small phones */
-            }
-            .new-item { height: 40vh; }
+            .intro-fullscreen { flex-direction: column; }
+            .main-hero, .side-column { flex: 0 0 auto; width: 100%; height: 50vh; }
+            .new-row-container { grid-template-columns: 1fr; }
+            .new-item { height: 350px; }
+            .one-app-callout { flex-direction: column; text-align: center; }
+            .footer-content { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -596,152 +218,136 @@
         </div>
     </header>
 
+    <!-- HERO -->
     <section class="intro-fullscreen section-target">
         <div class="grid-box main-hero">
-            <img src="intro1.png" alt="New Arrivals">
+            <img src="intro1.png" alt="Multi-Reader">
             <div class="text-overlay">
-                <p class="tagline">URMET PLUS</p>
-                <h2 class="title">MULTI-READER</h2>
+                <p class="tagline">FUTURE OF ACCESS</p>
+                <h2 class="title">MULTI-READER [V2]</h2>
                 <p class="tagline-desc">
-                    Secure every entry with one device:<br>
-                    QR code, card, or mobile.<br>
-                    One reader. All access. Total control.<br>
-                    Seamless access, unified.
+                    One device. Infinite possibilities.<br>
+                    QR | RFID | MOBILE BLE<br>
+                    Redefining building intelligence.
                 </p>
             </div>
         </div>
-
         <div class="side-column">
-            <div class="grid-box sub-hero">
+            <div class="grid-box">
                 <img src="intro2.png" alt="Smart Access">
             </div>
         </div>
     </section>
 
+    <!-- APP CALLOUT -->
     <section class="callout-fullscreen section-target">
         <div class="one-app-callout">
             <div class="callout-text">
-                <h4>One App. Total Control.</h4>
-                <p>Empower your team and delight your residents with a seamless, secure, and efficient management experience.</p>
+                <h4>ONE APP.<br>ZERO FRICTION.</h4>
+                <p>Digital keys, facility booking, and real-time security alerts. Managed in a single encrypted environment designed for modern property leaders.</p>
             </div>
             <div class="advanced-intro-image">
-                <img src="middle1.png" alt="Control Panel Display">
+                <img src="middle1.png" alt="App Display">
             </div>
         </div>
     </section>
 
+    <!-- FEATURES -->
     <section class="features-fullscreen section-target">
         <div class="new-row-container">
-            <div class="new-item main-feature clickable-feature" data-product-img="product1.png">
-                <div class="icon-box"><img src="access.png" alt="Access Control"></div>
+            <!-- Box 1 -->
+            <div class="new-item clickable-feature" data-product-img="product1.png">
+                <div class="icon-box"><img src="access.png" alt="Access"></div>
                 <h5>Access Control</h5>
-                <p>Seamless security integration</p>
+                <p>Encrypted Entry</p>
                 <div class="hover-overlay">
-                    <h6>🔑 QR Code Access Control</h6>
-                    <div class="desc">The End of Lost Keys. Forget fumbling for fobs or physical keys. Securely unlock main entrances, elevators, or restricted zones with a simple scan of your personalized, encrypted QR code. It’s fast, touchless, and incredibly secure.</div>
+                    <h6>🔑 Smart QR Engine</h6>
+                    <div class="desc">Encrypted, dynamic QR codes that change every 30 seconds. The ultimate barrier against unauthorized entry.</div>
                 </div>
-                <div class="flipped-img-overlay"><img src="product1.png" alt="Product 1"></div>
+                <div class="flipped-img-overlay"><img src="product1.png" alt="Hardware"></div>
             </div>
 
+            <!-- Box 2 -->
             <div class="new-item clickable-feature" data-product-img="product2.png">
                 <div class="icon-box"><img src="invitation.png" alt="Invitation"></div>
-                <h5>Invitation</h5>
-                <p>Digital Guest Passes</p>
+                <h5>Digital Key</h5>
+                <p>Virtual Pass</p>
                 <div class="hover-overlay">
-                    <h6>✉️ Digital Invitations</h6>
-                    <div class="desc">Hospitality, Reimagined. Expecting a guest? Send a secure, temporary access link directly to their phone via WhatsApp or SMS. Your guests arrive with a "digital VIP pass" that expires once they leave, keeping your security tight without the hassle of manual buzz-ins.</div>
+                    <h6>✉️ Instant Invitation</h6>
+                    <div class="desc">Generate time-limited guest passes and send them via encrypted links. Complete logs of every arrival.</div>
                 </div>
-                <div class="flipped-img-overlay"><img src="product2.png" alt="Product 2"></div>
+                <div class="flipped-img-overlay"><img src="product2.png" alt="Hardware"></div>
             </div>
-            
+
+            <!-- Box 3 -->
             <div class="new-item clickable-feature" data-product-img="product6.png">
-                <div class="icon-box"><img src="visitor.png" alt="Visitor registration"></div>
-                <h5>Visitor</h5>
-                <p>Lobby Flow Management</p>
+                <div class="icon-box"><img src="visitor.png" alt="Visitor"></div>
+                <h5>Visitor AI</h5>
+                <p>Flow Mgmt</p>
                 <div class="hover-overlay">
-                    <h6>👤 Easy Visitor Registration</h6>
-                    <div class="desc">Goodbye, Paper Logbooks. Register your visitors in seconds. Our streamlined check-in process ensures that building security knows exactly who is coming, providing a professional experience for your guests and peace of mind for you.</div>
+                    <h6>👤 Auto Registration</h6>
+                    <div class="desc">Eliminate the front-desk bottleneck with self-service visitor kiosks and cloud verification.</div>
                 </div>
-                <div class="flipped-img-overlay"><img src="product6.png" alt="Product 6"></div>
+                <div class="flipped-img-overlay"><img src="product6.png" alt="Hardware"></div>
             </div>
 
+            <!-- Box 4 -->
             <div class="new-item clickable-feature" data-product-img="product3.png">
-                <div class="icon-box"><img src="facility.png" alt="Facility Booking"></div>
+                <div class="icon-box"><img src="facility.png" alt="Booking"></div>
                 <h5>Booking</h5>
-                <p>Clubhouse Amenities</p>
+                <p>Resource Cloud</p>
                 <div class="hover-overlay">
-                    <h6>🎾 Facility Booking</h6>
-                    <div class="desc">Your Amenities, Your Schedule. Whether it’s the gym, the tennis court, or the rooftop lounge, check real-time availability and book your spot instantly. No more walking down to the lobby to check a paper calendar—if it's free, it's yours.</div>
+                    <h6>🎾 Live Amenities</h6>
+                    <div class="desc">Real-time IoT feedback on clubhouse availability. Book, pay, and unlock facilities instantly.</div>
                 </div>
-                <div class="flipped-img-overlay"><img src="product3.png" alt="Product 3"></div>
+                <div class="flipped-img-overlay"><img src="product3.png" alt="Hardware"></div>
             </div>
 
+            <!-- Box 5 -->
             <div class="new-item">
                 <div class="icon-box"><img src="notication.png" alt="Notification"></div>
-                <h5>Notification</h5>
-                <p>Real-time updates</p>
+                <h5>Push Core</h5>
+                <p>Live Sync</p>
                 <div class="hover-overlay">
-                    <h6>🔔 Smart Notifications</h6>
-                    <div class="desc">Stay in the Loop. Get instant alerts the moment your package arrives, when your guest checks in, or when there’s an important building announcement. Urmet Plus ensures you’re always the first to know, wherever you are.</div>
+                    <h6>🔔 Edge Notifications</h6>
+                    <div class="desc">Instant push notifications for parcel delivery or emergency protocols. Never out of sync.</div>
                 </div>
             </div>
 
+            <!-- Box 6 -->
             <div class="new-item">
-                <div class="icon-box"><img src="panic.png" alt="Smart Living"></div>
-                <h5>Panic Alarm</h5>
-                <p>One-Touch Activation</p>
+                <div class="icon-box"><img src="panic.png" alt="Panic"></div>
+                <h5>SOS Protocol</h5>
+                <p>Safety First</p>
                 <div class="hover-overlay">
-                    <h6>🏠 Panic Alarm</h6>
-                    <div class="desc">Instant Peace of Mind. Get immediate help the moment you feel unsafe, when an emergency arises, or when you need a discreet way to alert authorities. Urmet Plus ensures that your distress signal is heard and acted upon, wherever you are.</div>
+                    <h6>🏠 Rapid Response</h6>
+                    <div class="desc">Discrete panic triggers that alert on-site security and emergency services with GPS coordinates.</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="why-choose-section section-target">
-        <div class="why-choose-container">
-            <h2>Why Choose URMET PLUS?</h2>
-            
-            <div class="why-grid">
-                <div class="why-item">
-                    <h3>Superior Security</h3>
-                    <p>Protect your property and gain peace of mind with advanced encryption and real-time monitoring.</p>
-                </div>
-                <div class="why-item">
-                    <h3>Next-Gen Technology</h3>
-                    <p>A robust digital framework built for seamless smart home integration and high-speed connectivity.</p>
-                </div>
-                <div class="why-item">
-                    <h3>Premium Resident Experience</h3>
-                    <p>User-friendly interfaces that make luxury living intuitive, effortless, and sophisticated.</p>
-                </div>
-                <div class="why-item">
-                    <h3>Scalable Solutions</h3>
-                    <p>Designed to evolve alongside your building, ensuring you always stay at the forefront of innovation.</p>
-                </div>
-            </div>
-
-            <div class="why-footer-callout">
-                <h4>Efficiency for You. Premium Living for Them.</h4>
-                <p>Upgrade to URMET PLUS and set the new standard for smart living.</p>
-                <p>Contact us today to schedule a demo.</p>
-            </div>
-        </div>
-    </section>
-
+    <!-- FOOTER -->
     <footer class="section-target">
         <div class="footer-content">
             <div class="footer-section">
-                <img src="logo.png" alt="Logo" style="height: 35px; margin-bottom: 20px;">
+                <img src="logo.png" alt="Logo" style="height: 30px; margin-bottom: 25px; filter: brightness(2);">
                 <p>Units 11-14, 7/F, Phase 1 Chai Wan Industrial City<br>60 Wing Tai Road, Chai Wan, Hong Kong</p>
             </div>
             <div class="footer-section">
-                <a href="about.html">Contact Us</a>
-                <a href="privacy.html">Privacy Policy</a>
+                <h4>NETWORK</h4>
+                <a href="about.html">Support</a>
+                <a href="privacy.html">Developer Portal</a>
+                <a href="privacy.html">Privacy</a>
+            </div>
+            <div class="footer-section">
+                <h4>CONNECT</h4>
+                <p>+852 1234 5678</p>
+                <p>info@urmetplus.com</p>
             </div>
         </div>
         <div class="copyright">
-            <p>© 2026 URMET JES LIMITED - ALL RIGHTS RESERVED</p>
+            <p>© 2026 URMET JES LIMITED // CORE SYSTEM v3.4.1</p>
         </div>
     </footer>
 
@@ -750,16 +356,16 @@
         const sections = document.querySelectorAll('.section-target');
         let isScrolling = false;
 
-        // Header Hide/Show Logic
+        // Smart Header
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
+            if (window.scrollY > 100) {
                 header.classList.add('hide');
             } else {
                 header.classList.remove('hide');
             }
         });
 
-        // Click-to-Flip Functionality for Features
+        // Card Interaction
         const clickableItems = document.querySelectorAll('.clickable-feature');
         clickableItems.forEach(item => {
             item.addEventListener('click', () => {
@@ -767,34 +373,28 @@
             });
         });
 
-        // Single Smooth Scroll Logic
+        // Tech Smooth Scroll
         window.addEventListener('wheel', (e) => {
             if (isScrolling) return; 
             
-            e.preventDefault(); 
-            
             const direction = e.deltaY > 0 ? 1 : -1;
             let targetIndex = -1;
-
             const currentScroll = window.pageYOffset;
             
             sections.forEach((section, index) => {
-                const sectionTop = section.offsetTop;
-                if (Math.abs(currentScroll - sectionTop) < 10) {
+                if (Math.abs(currentScroll - section.offsetTop) < 20) {
                     targetIndex = index + direction;
                 }
             });
 
             if (targetIndex >= 0 && targetIndex < sections.length) {
+                e.preventDefault();
                 isScrolling = true;
                 window.scrollTo({
                     top: sections[targetIndex].offsetTop,
                     behavior: 'smooth'
                 });
-
-                setTimeout(() => {
-                    isScrolling = false;
-                }, 800); 
+                setTimeout(() => { isScrolling = false; }, 1000); 
             }
         }, { passive: false });
     </script>
