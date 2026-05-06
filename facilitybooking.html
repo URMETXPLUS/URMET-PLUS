@@ -92,13 +92,210 @@
         /* --- 4. Steps Section --- */
         .steps-wrapper {
             max-width: 1400px; margin: 0 auto; padding: 40px 5% 120px;
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 30px;
+        }
+
+        .step-card {
+            background: #fff; padding: 50px 30px; border: 1px solid var(--glass-border);
+            border-radius: 24px; text-align: center; transition: var(--transition);
+            display: flex; flex-direction: column;
+            height: 100%;
+        }
+
+        .step-card:hover {
+            transform: translateY(-12px); box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary-blue);
+        }
+
+        .step-number {
+            width: 45px; height: 45px; background: var(--text-main); color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 30px; font-weight: bold; font-size: 18px; flex-shrink: 0;
+        }
+
+        /* Fixed: Consistent image container */
+        .img-stack { 
+            display: flex; 
+            gap: 15px; 
+            justify-content: center; 
+            align-items: flex-end; /* Bottom align all images */
+            margin-bottom: 30px; 
+            min-height: 250px; /* Essential for visual balance */
+        }
+
+        .step-card img {
+            width: 100%; 
+            max-width: 170px; 
+            height: auto; 
+            border-radius: 12px;
+            transition: var(--transition); 
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+        }
+
+        .step-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 15px; color: #000; }
+        .step-card p { font-size: 15px; color: var(--text-muted); line-height: 1.7; flex-grow: 1; }
+
+        /* --- 5. Footer --- */
+        footer {
+            padding: 80px 8% 40px; background: #f2f2f7; border-top: 1px solid var(--border);
+            color: var(--text-main);
+        }
+        .footer-grid {
+            display: flex; justify-content: space-between; flex-wrap: wrap;
+            gap: 50px; max-width: 1400px; margin: 0 auto;
+        }
+        .footer-left img { height: 30px; filter: brightness(0.2); }
+        .address-text { color: var(--text-muted); font-size: 14px; margin-top: 20px; line-height: 1.6; }
+        .footer-right { text-align: right; }
+        .footer-right p { font-size: 14px; line-height: 1.6; }
+
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            header { padding: 15px 5%; }
+            nav { display: none; }
+            .page-hero { padding-top: 150px; }
+            .img-stack { min-height: auto; }
+            .footer-grid { flex-direction: column; text-align: left; }
+            .footer-right { text-align: left; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="mainHeader">
+        <div class="logo">
+            <img src="logo.png" alt="URMET PLUS">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li class="nav-item">
+                    <a href="solutions.html" style="opacity: 1; color: var(--primary-blue);">Solutions</a>
+                    <div class="dropdown-box">
+                        <a href="access.html">Dynamic QR Code</a>
+                        <a href="invitation.html">Guest Invitation</a>
+                        <a href="visitor.html">Visitor Registration</a>
+                        <The deployment issues you are encountering on GitHub are likely due to **Non-Breaking Spaces** (hidden characters often copied from chat windows) and the **a href="facilitybooking.html">Facility Booking</a>
+                        <a href="notification.html">Emergency Alerts</a>
+                        <a href="cloudmanagement.html">Cloudgrid layout height** mismatches. 
+
+I have sanitized the code to remove hidden characters and refined the **CSS grid** and **Flexbox** logic to ensure every Management</a>
+                    </div>
+                </li>
+                <li><a href="about.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header> card, heading, and image aligns perfectly on the same baseline.
+
+### Sanitized & Fixed `facilitybooking.html`
+
+```html
+<!DOCTYPE html>
+html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Facility Booking - URMET PLUS</title>
+    
+    <style>
+        /* --- 1. Tech Base & Global Styles --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+
+        :root {
+            --primary-blue: #007aff;
+            --text-main: #1d1d1f;
+            --text-muted: #6e6e73;
+            --glass-border: rgba(0, 0, 0, 0.08);
+            --border: rgba(0, 0, 0, 0.08);
+            --bg-light: #f5f5f7;
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: #ffffff;
+            color: var(--text-main);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.5;
+        }
+
+        /* --- 2. Navigation Header --- */
+        header {
+            width: 100<%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: 0.4s ease;
+        }
+
+        .logo img { height: 35px; filter: brightness(0.2); display: block; }
+
+        nav ul { list-style: none; display: flex; gap: 40px; align-items: center; }
+        .nav-item { position: relative; padding: 10px 0; }
+        nav a {
+            text-decoration: none; color: var(--text-main); font-size: 13px; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 2px; transition: 0.3s ease; opacity: 0.7;
+        }
+        nav a:hover, .nav-item:hover > a { opacity: 1; color: var(--primary-blue); }
+
+        .dropdown-box {
+            position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(15px);
+            background: rgba(255, 255, 255, 0.95); min-width: 220px; border-radius: 8px;
+            padding: 10px; box-shadow: 0 15px 30px``` rgba(0,0,0,0.1); border: 1px solid var(--border);
+            opacity: 0; visibility: hidden; transition: var(--transition); display: grid; gap: 2px;
+        }
+        .nav-item:hover .dropdown-box { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+        .dropdown-box a {
+            display: block; padding: 12px 15px; color: var(--text-main); font-size: 11px;
+            letter-spacing: 1px; border-radius: 4px; opacity: 0.8; text-align: left; text-transform: uppercase;
+        }
+        .dropdown-box a:hover { background: var(--bg-light); color: var(--primary-blue); opacity: 1; padding-left: 20px; }
+
+        /* --- 3. Hero Section --- */
+        .page-hero {
+            padding: 200px 10% 80px;
+            text-align: center;
+            background: radial-gradient(circle at top, #f0f9ff 0%, #ffffff 70%);
+        }
+
+        .tagline {
+            color: var(--primary-blue); 
+            font-weight: 800; letter-spacing: 4px; font-size: 12px;
+            text-transform: uppercase; margin-bottom: 20px; display: block;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(34px, 5vw, 64px); font-weight: 800;
+            text-transform: uppercase; line-height: 1.1; margin-bottom: 20px;
+            color: #000; letter-spacing: -1px;
+        }
+
+        /* --- 4. Steps Section --- */
+        .steps-wrapper {
+            max-width: 1400px; margin: 0 auto; padding: 40px 5% 120px;
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+            gap: 30px;
         }
 
         .step-card {
             background: #fff; padding: 50px 20px; border: 1px solid var(--glass-border);
             border-radius: 24px; text-align: center; transition: var(--transition);
-            display: flex; flex-direction: column;
+            display: flex; flex-direction: column; height: 100%;
         }
 
         .step-card:hover {
@@ -116,22 +313,22 @@
             display: flex; 
             gap: 15px; 
             justify-content: center; 
-            align-items: flex-end; 
+            align-items: flex-end; /* Bottom alignment fix */
             margin-bottom: 30px; 
             min-height: 250px; 
         }
 
         .step-card img {
             width: 100%; 
-            max-width: 180px; 
+            max-width: 170px; 
             height: auto; 
             border-radius: 12px;
             transition: var(--transition); 
             filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
         }
 
-        .step-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 15px; color: #000; }
-        .step-card p { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
+        .step-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 15px; color: #000; }
+        .step-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; flex-grow: 1; }
 
         /* --- 5. Footer --- */
         footer {
@@ -154,6 +351,7 @@
             .page-hero { padding-top: 150px; }
             .footer-grid { flex-direction: column; text-align: left; }
             .footer-right { text-align: left; }
+            .img-stack { min-height: auto; }
         }
     </style>
 </head>
@@ -196,50 +394,50 @@
         <div class="step-card">
             <div class="step-number">1</div>
             <div class="img-stack">
-                <img src="facilitybooking1.png" alt="Step 1">
+                <img src="facilitybooking1.png" alt="App Dashboard">
             </div>
             <h3>Access App</h3>
-            <p>Resident clicks the <strong>Facility</strong> button from the main dashboard.</p>
+            <p>Resident clicks the <strong>Facility</strong> button from the main dashboard to view available amenities.</p>
         </div>
 
         <!-- STEP 2 -->
         <div class="step-card">
             <div class="step-number">2</div>
             <div class="img-stack">
-                <img src="facilitybooking2.png" alt="Step 2">
+                <img src="facilitybooking2.png" alt="Facility List">
             </div>
             <h3>Select Facility</h3>
-            <p>Select the specific facility you want to book from the available list.</p>
+            <p>Browse and select the specific facility you want to book from the available residential list.</p>
         </div>
 
         <!-- STEP 3 -->
         <div class="step-card">
             <div class="step-number">3</div>
             <div class="img-stack">
-                <img src="facilitybooking3.png" alt="Step 3">
+                <img src="facilitybooking3.png" alt="Calendar View">
             </div>
             <h3>Date & Time</h3>
-            <p>Select your preferred date and time, then click the <strong>Book Now</strong> button.</p>
+            <p>Select your preferred date and time slot, then click the <strong>Book Now</strong> button to proceed.</p>
         </div>
 
         <!-- STEP 4 -->
         <div class="step-card">
             <div class="step-number">4</div>
             <div class="img-stack">
-                <img src="facilitybooking4.png" alt="Step 4">
+                <img src="facilitybooking4.png" alt="Confirmation Screen">
             </div>
             <h3>Confirmation</h3>
-            <p>Get the order confirmation and then click the <strong>ACCESS QR code</strong> button.</p>
+            <p>Review your order confirmation and click the <strong>ACCESS QR code</strong> button to finalize.</p>
         </div>
 
         <!-- STEP 5 -->
         <div class="step-card">
             <div class="step-number">5</div>
             <div class="img-stack">
-                <img src="facilitybooking5.png" alt="Step 5">
+                <img src="facilitybooking5.png" alt="Facility Entry QR">
             </div>
             <h3>Access QR</h3>
-            <p>The resident receives the QR code to instantly access the booked facilities.</p>
+            <p>The resident receives the digital QR code to instantly scan and access the booked facilities.</p>
         </div>
     </div>
 
