@@ -1,767 +1,382 @@
 <!DOCTYPE html>
-
 <html lang="zh-Hant">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
     <title>URMET PLUS | Intelligent Access Control</title>
-
     
-
     <style>
-
         /* --- 1. Variables & Base (Light Theme Overhaul) --- */
-
         :root {
-
             --primary-blue: #007aff; /* Deeper blue for better contrast on white */
-
             --accent-cyan: #00bcd4;
-
             --bg-light: #f8f9fa;
-
             --card-bg: #ffffff;
-
             --text-main: #1d1d1f;
-
             --text-muted: #6e6e73;
-
             --glass: rgba(255, 255, 255, 0.7);
-
             --border: rgba(0, 0, 0, 0.08);
-
         }
-
-
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-
-
         html { scroll-behavior: smooth; }
 
-
-
         body {
-
             background-color: var(--bg-light);
-
             /* Light Tech Grid Background */
-
             background-image: 
-
                 linear-gradient(rgba(0, 122, 255, 0.05) 1px, transparent 1px),
-
                 linear-gradient(90deg, rgba(0, 122, 255, 0.05) 1px, transparent 1px);
-
             background-size: 50px 50px;
-
             color: var(--text-main);
-
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-
             overflow-x: hidden;
-
             line-height: 1.6;
-
         }
-
-
 
         /* --- 2. Animations --- */
-
         @keyframes glow {
-
             from { text-shadow: 0 0 10px rgba(0, 122, 255, 0.2); }
-
             to { text-shadow: 0 0 20px rgba(0, 122, 255, 0.4); }
-
         }
-
-
 
         @keyframes float {
-
             0% { transform: translateY(0px); }
-
             50% { transform: translateY(-15px); }
-
             100% { transform: translateY(0px); }
-
         }
-
-
 
         @keyframes slideIn {
-
             from { opacity: 0; transform: translateX(-50px); }
-
             to { opacity: 1; transform: translateX(0); }
-
         }
-
-
 
         /* --- 3. Navigation --- */
-
         header {
-
             width: 100%;
-
             padding: 20px 8%;
-
             display: flex;
-
             justify-content: space-between;
-
             align-items: center;
-
             position: fixed;
-
             top: 0;
-
             z-index: 1000;
-
             backdrop-filter: blur(20px);
-
             border-bottom: 1px solid var(--border);
-
             background: rgba(255, 255, 255, 0.8);
-
         }
-
-
 
         .logo img { 
-
             height: 35px; 
-
             filter: brightness(0.2); /* Make logo visible on light bg */
-
         }
-
-
 
         nav ul { list-style: none; display: flex; gap: 40px; }
 
-
-
         nav a {
-
             text-decoration: none;
-
             color: var(--text-main);
-
             font-size: 13px;
-
             text-transform: uppercase;
-
             letter-spacing: 2px;
-
             transition: 0.3s;
-
             opacity: 0.7;
-
             font-weight: 600;
-
         }
-
-
 
         nav a:hover { opacity: 1; color: var(--primary-blue); }
 
-
-
         /* --- 4. Hero Section --- */
-
         .hero {
-
             min-height: 100vh;
-
             display: flex;
-
             align-items: center;
-
             padding: 120px 8% 60px;
-
             position: relative;
-
         }
-
-
 
         .hero-content {
-
             display: grid;
-
             grid-template-columns: 1.2fr 0.8fr;
-
             gap: 50px;
-
             align-items: center;
-
             max-width: 1400px;
-
             margin: 0 auto;
-
         }
-
-
 
         .tech-tag {
-
             color: var(--primary-blue);
-
             font-weight: 800;
-
             letter-spacing: 5px;
-
             display: block;
-
             margin-bottom: 10px;
-
             animation: glow 2s infinite alternate;
-
         }
-
-
 
         h1 {
-
             font-size: clamp(40px, 5vw, 70px);
-
             line-height: 1.1;
-
             margin-bottom: 25px;
-
             background: linear-gradient(to right, #1d1d1f, var(--primary-blue));
-
             -webkit-background-clip: text;
-
             -webkit-text-fill-color: transparent;
-
         }
-
-
 
         .hero-img-container { position: relative; animation: float 6s ease-in-out infinite; }
 
-
-
         .hero-img-container img {
-
             width: 100%;
-
             filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1));
-
         }
-
-
 
         .cta-btn {
-
             display: inline-block;
-
             margin-top: 30px;
-
             padding: 18px 40px;
-
             background: linear-gradient(45deg, var(--primary-blue), #0055ff);
-
             color: white;
-
             text-decoration: none;
-
             border-radius: 4px;
-
             font-weight: bold;
-
             text-transform: uppercase;
-
             letter-spacing: 1px;
-
             box-shadow: 0 10px 20px rgba(0, 122, 255, 0.2);
-
             transition: 0.3s;
-
         }
-
-
 
         .cta-btn:hover { transform: scale(1.05); box-shadow: 0 15px 30px rgba(0, 122, 255, 0.4); }
 
-
-
         /* --- 5. Delivery Registration Section --- */
-
         .delivery-section {
-
             height: 100vh;
-
             width: 100%;
-
             position: relative;
-
             display: flex;
-
             align-items: center;
-
             overflow: hidden;
-
             background: #fff;
-
         }
-
-
 
         .delivery-bg {
-
             position: absolute;
-
             top: 0; left: 0;
-
             width: 100%; height: 100%;
-
             background: url('deliver3.png') no-repeat center center;
-
             background-size: cover;
-
             filter: brightness(0.9); /* Lighter for light mode */
-
             z-index: 1;
-
         }
 
-
-
-        /* Added Installer Background Class */
-
+        /* Installer Background Class */
         .installer-bg {
-
             position: absolute;
-
             top: 0; left: 0;
-
             width: 100%; height: 100%;
-
-            background: url('installer2.png') no-repeat center center;
-
+            background: url('install2.png') no-repeat center center;
             background-size: cover;
-
             filter: brightness(0.9);
-
             z-index: 1;
-
         }
-
-
 
         .delivery-overlay {
-
             position: absolute;
-
             top: 0; left: 0;
-
             width: 100%; height: 100%;
-
             background: linear-gradient(90deg, #ffffff 30%, rgba(255,255,255,0.2) 100%);
-
             z-index: 2;
-
         }
-
-
 
         .delivery-content {
-
             position: relative;
-
             z-index: 3;
-
             padding: 0 8%;
-
             max-width: 800px;
-
             animation: slideIn 1s ease-out;
-
         }
-
-
 
         .delivery-content h2 {
-
             font-size: clamp(35px, 4vw, 55px);
-
             line-height: 1.2;
-
             margin-bottom: 20px;
-
             color: var(--text-main);
-
             text-transform: uppercase;
-
         }
-
-
 
         .delivery-content p {
-
             font-size: 18px;
-
             color: var(--text-muted);
-
             margin-bottom: 35px;
-
             max-width: 600px;
-
         }
-
-
 
         .fancy-btn {
-
             padding: 15px 45px;
-
             background: transparent;
-
             color: var(--primary-blue);
-
             border: 2px solid var(--primary-blue);
-
             text-decoration: none;
-
             font-weight: bold;
-
             text-transform: uppercase;
-
             letter-spacing: 2px;
-
             border-radius: 50px;
-
             transition: 0.4s;
-
             position: relative;
-
             overflow: hidden;
-
         }
-
-
 
         .fancy-btn:hover {
-
             color: #fff;
-
             background: var(--primary-blue);
-
             box-shadow: 0 0 20px rgba(0, 122, 255, 0.3);
-
         }
-
-
 
         /* --- 6. Procedures Grid --- */
-
         .procedures { padding: 100px 8%; background: #fff; }
-
         
-
         .procedure-grid {
-
             display: grid;
-
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-
             gap: 30px;
-
             margin-top: 50px;
-
         }
-
-
 
         .step-card {
-
             background: var(--card-bg);
-
             border: 1px solid var(--border);
-
             padding: 40px;
-
             border-radius: 15px;
-
             transition: 0.4s;
-
             box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-
         }
-
-
 
         .step-card h3 { color: var(--text-main); }
 
-
-
         .step-card:hover {
-
             border-color: var(--primary-blue);
-
             background: #fff;
-
             transform: translateY(-10px);
-
             box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-
         }
-
-
 
         .step-num {
-
             font-size: 40px;
-
             font-weight: 900;
-
             color: rgba(0, 122, 255, 0.1);
-
             margin-bottom: -20px;
-
             display: block;
-
         }
-
-
 
         /* --- 7. Footer --- */
-
         footer {
-
             padding: 80px 8% 40px;
-
             background: #f2f2f7;
-
             border-top: 1px solid var(--border);
-
             color: var(--text-main);
-
         }
-
-
 
         .footer-grid {
-
             display: flex;
-
             justify-content: space-between;
-
             flex-wrap: wrap;
-
             gap: 50px;
-
             max-width: 1400px;
-
             margin: 0 auto;
-
         }
-
-
 
         .footer-left img { filter: brightness(0.2); }
 
-
-
         .address-text { color: var(--text-muted); font-size: 14px; margin-top: 20px; }
-
-
 
         .footer-right p { color: var(--text-main); }
 
-
-
         /* Mobile Logic */
-
         @media (max-width: 900px) {
-
             .hero-content { grid-template-columns: 1fr; text-align: center; }
-
             .delivery-overlay { background: rgba(255, 255, 255, 0.9); }
-
             .delivery-content { text-align: center; margin: 0 auto; }
-
             header { padding: 15px 5%; }
-
             nav { display: none; }
-
         }
-
     </style>
-
 </head>
-
 <body>
 
-
-
     <header>
-
         <div class="logo">
-
             <img src="logo.png" alt="URMET Logo">
-
         </div>
-
         <nav>
-
             <ul>
-
                 <li><a href="#home">Home</a></li>
-
                 <li><a href="products.html">Products</a></li>
-
                 <li><a href="solutions.html">Solutions</a></li>
-
                 <li><a href="about.html">Contact Us</a></li>
-
             </ul>
-
         </nav>
-
     </header>
 
-
-
     <!-- HERO SECTION -->
-
     <section class="hero" id="home">
-
         <div class="hero-content">
-
             <div class="text-area">
-
                 <span class="tech-tag">QR CODE ACCESS WITH CLOUD</span>
-
                 <h1>ELEVATING RESIDENTIAL SECURITY</h1>
-
                 <p style="font-size: 18px; color: var(--text-muted); max-width: 600px;">
-
                     Smart Access, Reimagined. The URMET PLUS ecosystem integrates high-speed QR decoding with seamless cloud facility management.
-
                 </p>
-
                 <a href="solutions.html" class="cta-btn">Explore Technology</a>
-
             </div>
-
             <div class="hero-img-container">
-
                 <img src="reader.png" alt="URMET Multi-Reader">
-
             </div>
-
         </div>
-
     </section>
-
-
 
     <!-- DELIVERY REGISTRATION SECTION -->
-
     <section class="delivery-section" id="delivery">
-
         <div class="delivery-bg"></div>
-
         <div class="delivery-overlay"></div>
-
         <div class="delivery-content">
-
             <span class="tech-tag">SECURE LOGISTICS</span>
-
             <h2>Advanced Delivery <br> Visitor Verification</h2>
-
             <p>
-
                 Enhance your building's perimeter defense. Our specialized delivery registration protocol ensures every courier is logged, verified, and tracked with millisecond precision via cloud-synced photo IDs.
-
             </p>
-
             <a href="solutions.html" class="fancy-btn">Learn More</a>
-
         </div>
-
     </section>
 
-
-
-    <!-- INSTALLATION SECTION (NEW) -->
-
+    <!-- INSTALLATION SECTION (UPDATED PHOTO) -->
     <section class="delivery-section" id="installation">
-
         <div class="installer-bg"></div>
-
         <div class="delivery-overlay"></div>
-
         <div class="delivery-content">
-
             <span class="tech-tag">ENGINEER FRIENDLY</span>
-
             <h2>Rapid Deployment <br> Multi-Reader Setup</h2>
-
             <p>
-
                 Simplify your infrastructure. Designed for effortless integration, our multi-readers feature standard RJ45 connectivity for plug-and-play installation, reducing on-site labor and technical complexity.
-
             </p>
-
             <a href="products.html" class="fancy-btn">View Technical Specs</a>
-
         </div>
-
     </section>
-
-
-
-  
-
-
 
     <!-- FOOTER -->
-
     <footer>
-
         <div class="footer-grid">
-
             <div class="footer-left">
-
                 <img src="logo.png" alt="Logo" style="height: 30px;">
-
                 <p class="address-text">
-
                     Units 11-14, 7/F, Phase 1 Chai Wan Industrial City<br>
-
                     60 Wing Tai Road, Chai Wan, Hong Kong
-
                 </p>
-
             </div>
-
             <div class="footer-right">
-
                 <p style="letter-spacing: 2px; font-weight: bold;">URMET JES LIMITED</p>
-
                 <p style="opacity: 0.5; font-size: 12px; margin-top: 20px;">© 2026 ALL RIGHTS RESERVED</p>
-
             </div>
-
         </div>
-
     </footer>
 
-
-
 </body>
-
 </html>
