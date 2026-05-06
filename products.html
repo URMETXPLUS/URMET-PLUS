@@ -1,751 +1,410 @@
 <!DOCTYPE html>
-
 <html lang="zh-Hant">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
     <title>Products - URMET PLUS</title>
-
     
-
     <style>
-
-        /* --- 1. Tech Base & Global Styles (Font Synced with index.html) --- */
-
+        /* --- 1. Tech Base & Global Styles (Synced with index.html) --- */
         /* Note: Custom @font-face blocks were removed to match index.html's reliance on system fonts */
-
-
 
         * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
 
-
-
         :root {
-
-            --neon-blue: #60a5fa;
-
+            /* 
+               CRITICAL CHANGE:
+               Updated neon-blue to be intensely bright and defined a text-shadow effect 
+               to match the glowing text in the reference image (image_ae5719.png).
+            */
+            --neon-blue: #00f0ff; /* Bright cyan/blue from image_ae5719.png */
+            
+            /* Define the glow effect as a reusable variable */
+            --neon-glow-text: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #00f0ff, 0 0 20px #00f0ff;
+            
             --tech-dark: #ffffff;
-
             --accent-cyan: #22d3ee;
-
             --glass: rgba(0, 0, 0, 0.03);
-
             --glass-border: rgba(0, 0, 0, 0.1);
-
             /* Synced from index.html variables */
-
             --primary-blue: #007aff;
-
             --text-main: #1d1d1f;
-
             --text-muted: #6e6e73;
-
         }
-
-
 
         html {
-
             scroll-behavior: smooth;
-
             height: 100%;
-
         }
-
-
 
         body {
-
-            background: var(--tech-dark);
-
+            /* Background styles synced from index.html body */
+            background-color: var(--tech-dark);
+            background-image: 
+                linear-gradient(rgba(0, 122, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 122, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            
             color: var(--text-main);
-
             /* Font stack synced from index.html body */
-
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-
             overflow-x: hidden;
-
             -webkit-font-smoothing: antialiased;
-
-            line-height: 1.5;
-
+            /* Line height synced from index.html body */
+            line-height: 1.6;
         }
-
-
 
         /* --- 2. Navigation (Synced font properties with index.html) --- */
-
         header {
-
             width: 100%; 
-
             /* Padding synced from index.html header */
-
             padding: 20px 8%;
-
             display: flex; justify-content: space-between; align-items: center;
-
             position: fixed; top: 0; z-index: 1000;
-
             background: rgba(255, 255, 255, 0.85);
-
             backdrop-filter: blur(20px);
-
             border-bottom: 1px solid var(--glass-border);
-
             transition: 0.4s ease;
-
         }
-
-
 
         .logo img { 
-
             height: 28px; 
-
             filter: invert(1);
-
         }
-
-
 
         nav ul { list-style: none; display: flex; gap: 30px; }
-
         nav a { 
-
             text-decoration: none; color: #000; 
-
             /* Font size, weight, and spacing synced from index.html nav a */
-
             font-size: 13px;
-
             font-weight: 600;
-
             text-transform: uppercase; letter-spacing: 2px; opacity: 0.6; transition: 0.3s; 
-
         }
-
         nav a:hover { opacity: 1; color: var(--neon-blue); }
 
-
-
         /* --- 3. Hero Trinity Section --- */
-
         .hero-trinity {
-
             display: grid;
-
             grid-template-columns: repeat(3, 1fr);
-
             height: 100vh; width: 100%;
-
             background: var(--glass-border); gap: 1px;
-
         }
-
-
 
         .trinity-box {
-
-            position: relative; overflow: hidden; background: #fff;
-
+            position: relative; overflow: hidden; background: transparent; /* Changed to transparent to show body grid */
             display: flex; flex-direction: column; justify-content: flex-end;
-
             padding: 50px; cursor: pointer; transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-
         }
-
-
+        
+        /* Add a white background layer behind the content of the trinity boxes */
+        .trinity-box .box-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            position: relative;
+            z-index: 5;
+        }
 
         .trinity-box img {
-
             position: absolute; top: 45%; left: 50%;
-
             transform: translate(-50%, -50%) scale(1);
-
             width: 75%; height: auto; object-fit: contain;
-
             /* Changes made here to remove the grey look */
-
             opacity: 1; 
-
             filter: brightness(1.1);
-
             transition: 0.8s ease; pointer-events: none;
-
         }
-
-
 
         /* Target the specific "Cloud" image in the first trinity box */
-
         .trinity-box[onclick="location.href='#cloud-detail'"] img {
-
             width: 70%;  /* Small a little */
-
             top: 48%;    /* Down more a very little bit */
-
         }
-
-
 
         .trinity-box:hover img { 
-
             opacity: 1; 
-
             transform: translate(-50%, -55%) scale(1.05); 
-
             filter: brightness(1.2); 
-
         }
-
-
 
         /* Target hover effect for the cloud box specifically to maintain relative positioning */
-
         .trinity-box[onclick="location.href='#cloud-detail'"]:hover img {
-
              transform: translate(-50%, -58%) scale(1.05);
-
         }
-
-
 
         /* Removed the linear-gradient ::before here to stop shadowing the bottom of the image */
-
         .trinity-box::before {
-
             content: ""; position: absolute; inset: 0;
-
             background: transparent; 
-
             z-index: 2;
-
         }
-
-
-
-        .box-content { position: relative; z-index: 5; }
-
-        
 
         .box-num-row { 
-
             display: flex; align-items: center; gap: 15px; margin-bottom: 15px;
-
         }
-
         .box-num { 
-
             /* Replaced Aptos Bold with bold weight of synced stack */
-
             font-weight: bold;
-
             font-size: 10px; color: var(--neon-blue); letter-spacing: 4px; 
-
         }
-
         .box-line { height: 1px; flex-grow: 1; background: var(--glass-border); position: relative; }
-
         .box-line::after { content: ""; position: absolute; right: 0; top: -2px; width: 5px; height: 5px; background: var(--neon-blue); border-radius: 50%; }
 
-
-
         .box-title { 
-
             /* Replaced Aptos Bold with bold weight of synced stack and synced clamp size logic if needed, but keeping absolute size for this specific design */
-
             font-weight: bold;
-
             font-size: 34px; margin-bottom: 15px; text-transform: uppercase; line-height: 1.1; color: #000; 
-
         }
-
         .box-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; max-width: 300px; transform: translateY(20px); opacity: 0; transition: 0.5s ease; }
-
         .trinity-box:hover .box-desc { transform: translateY(0); opacity: 1; }
 
-
-
         /* --- 4. Content Detail Sections (Full Screen) --- */
-
         .detail-section {
-
             padding: 120px 10%; 
-
             min-height: 100vh;
-
             width: 100%;
-
             display: flex; 
-
             align-items: center; 
-
             justify-content: flex-start;
-
             border-bottom: 1px solid var(--glass-border);
-
             position: relative;
-
             background-size: cover;
-
             background-position: center;
-
             background-attachment: fixed;
-
             overflow: hidden;
-
         }
-
-
 
         #cloud-detail { background-image: url('cloud.png'); }
-
         #app-detail { background-image: url('qr_code2.png'); }
-
         #reader-detail { background-image: url('intro1.png'); }
 
-
-
         .detail-section::before {
-
             content: ""; position: absolute; inset: 0;
-
             background: rgba(255, 255, 255, 0.85); 
-
             z-index: 1;
-
         }
-
-
 
         .detail-text { flex: 1; max-width: 600px; position: relative; z-index: 2; }
-
         .detail-text h2 { 
-
             /* Replaced Aptos Bold with bold weight of synced stack */
-
             font-weight: bold;
-
             font-size: 48px; text-transform: uppercase; margin-bottom: 25px; color: var(--neon-blue); 
-
         }
-
+        
+        /* Apply intense glow to specific text elements mentioned */
+        #cloud-detail .detail-text h2,
+        #cloud-detail .btn-solution,
+        #app-detail .detail-text h2,
+        #reader-detail .detail-text h2 {
+            text-shadow: var(--neon-glow-text);
+        }
+        
         .detail-text p { font-size: 18px; color: var(--text-muted); line-height: 1.8; margin-bottom: 30px; }
 
-
-
         .btn-solution {
-
             display: inline-block; padding: 15px 35px; border: 1px solid var(--neon-blue);
-
             color: var(--neon-blue); text-decoration: none; font-size: 12px; letter-spacing: 2px;
-
             text-transform: uppercase; transition: 0.4s;
-
             background: rgba(255, 255, 255, 0.5);
-
+            /* Apply neon glow from reference image */
+            box-shadow: 0 0 10px #00f0ff;
         }
-
         .btn-solution:hover { background: var(--neon-blue); color: #fff; box-shadow: 0 0 20px rgba(96, 165, 250, 0.4); }
 
-
-
         /* --- 5. Datasheet Table Style --- */
-
-        .datasheet { width: 100%; border-collapse: collapse; margin-top: 30px; }
-
-        .datasheet td { padding: 15px 0; border-bottom: 1px solid var(--glass-border); font-size: 14px; color: #000; }
-
+        .datasheet { width: 100%; border-collapse: collapse; margin-top: 30px; background: #fff; padding: 20px; border-radius: 8px; }
+        .datasheet td { padding: 15px; border-bottom: 1px solid var(--glass-border); font-size: 14px; color: #000; }
         .datasheet td:first-child { 
-
             color: var(--neon-blue); 
-
             /* Replaced Aptos Bold with bold weight of synced stack */
-
             font-weight: bold;
-
             width: 180px; text-transform: uppercase; 
-
         }
-
-
 
         /* --- 6. Solutions Grid (Full Screen) --- */
-
         .ecosystem-section {
-
             min-height: 100vh;
-
             display: flex;
-
             flex-direction: column;
-
             width: 100%;
-
         }
-
-
 
         .grid-header { 
-
             text-align: center; 
-
             padding: 100px 0 40px; 
-
             /* Replaced Aptos Bold with bold weight of synced stack */
-
             font-weight: bold;
-
             letter-spacing: 5px; 
-
             opacity: 0.5; 
-
             font-size: 12px; 
-
             color: #000; 
-
-            background: #fff;
-
+            background: transparent; /* Show body grid */
         }
-
         
-
         .new-row-container {
-
             display: grid; 
-
             grid-template-columns: repeat(3, 1fr);
-
             flex-grow: 1; 
-
             width: 100%; 
-
             gap: 1px; 
-
             background: var(--glass-border);
-
         }
-
-
 
         .new-item {
-
             position: relative; background: #fff; 
-
             padding: 40px; cursor: pointer; text-decoration: none; color: #000;
-
             display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; transition: 0.4s;
-
         }
-
         .new-item:hover { background: #f8fafc; }
-
         
-
         .icon-box img { width: 45px; height: 45px; filter: brightness(0); opacity: 0.7; margin-bottom: 20px; }
-
         .new-item h5 { 
-
             /* Replaced Aptos Bold with bold weight of synced stack */
-
             font-weight: bold;
-
             font-size: 20px; margin-bottom: 10px; 
-
         }
-
         .new-item p { font-size: 13px; opacity: 0.6; }
 
-
-
         /* --- 7. Footer (Synced font properties with index.html) --- */
-
         footer { 
-
             background: #fff; 
-
             /* Padding synced from index.html footer */
-
             padding: 80px 8% 40px;
-
             text-align: center; border-top: 1px solid var(--glass-border); 
-
         }
-
         .footer-logo img { filter: invert(1); margin-bottom: 20px; height: 28px; }
-
         .footer-address { 
-
             /* Font size synced from index.html .address-text */
-
             font-size: 14px;
-
             color: var(--text-muted); margin-bottom: 30px; 
-
         }
-
         .copyright { color: #000; opacity: 0.4; font-size: 12px; }
 
-
-
         /* --- Mobile --- */
-
         @media (max-width: 900px) {
-
             header { padding: 15px 5%; }
-
             .hero-trinity { grid-template-columns: 1fr; height: auto; }
-
             .trinity-box { height: 60vh; padding: 30px; }
-
             .detail-section { padding: 100px 5%; text-align: center; justify-content: center; background-attachment: scroll; }
-
             .detail-text { max-width: 100%; }
-
             .detail-text h2 { font-size: 32px; }
-
             .new-row-container { grid-template-columns: 1fr; }
-
             .new-item { padding: 60px 20px; }
-
             .ecosystem-section { height: auto; }
-
             .datasheet td:first-child { width: 120px; font-size: 12px; }
-
             .trinity-box[onclick="location.href='#cloud-detail'"] img {
-
                 width: 75%;  /* Reset size on mobile or adjust as needed */
-
                 top: 45%;    /* Reset position on mobile */
-
             }
-
         }
-
     </style>
-
 </head>
-
 <body>
 
-
-
     <header id="mainHeader">
-
         <div class="logo"><img src="logo.png" alt="URMET PLUS"></div>
-
         <nav>
-
             <ul>
-
                 <li><a href="index.html">Home</a></li>
-
                 <li><a href="products.html" style="opacity: 1; color: var(--neon-blue);">Products</a></li>
-
                 <li><a href="solutions.html">Solutions</a></li>
-
                 <li><a href="about.html">Contact</a></li>
-
             </ul>
-
         </nav>
-
     </header>
 
-
-
     <!-- SECTION 1: THE TRINITY -->
-
     <section class="hero-trinity">
-
         <div class="trinity-box" onclick="location.href='#cloud-detail'">
-
             <img src="cloud.png" alt="Cloud">
-
             <div class="box-content">
-
                 <div class="box-num-row">
-
                     <span class="box-num">01 / CORE</span>
-
                     <div class="box-line"></div>
-
                 </div>
-
                 <h3 class="box-title">Cloud Management</h3>
-
                 <p class="box-desc">The digital brain. Click to see how we secure visitor records and prevent criminal activity.</p>
-
             </div>
-
         </div>
-
-
 
         <div class="trinity-box" onclick="location.href='#app-detail'">
-
             <img src="qr_code2.png" alt="App">
-
             <div class="box-content">
-
                 <div class="box-num-row">
-
                     <span class="box-num">02 / INTERFACE</span>
-
                     <div class="box-line"></div>
-
                 </div>
-
                 <h3 class="box-title">Mobile Application</h3>
-
                 <p class="box-desc">Next-gen mobile entry. Click to explore our multi-functional user ecosystem.</p>
-
             </div>
-
         </div>
-
-
 
         <div class="trinity-box" onclick="location.href='#reader-detail'">
-
             <img src="intro1.png" alt="Reader">
-
             <div class="box-content">
-
                 <div class="box-num-row">
-
                     <span class="box-num">03 / HARDWARE</span>
-
                     <div class="box-line"></div>
-
                 </div>
-
                 <h3 class="box-title">Multi-Reader</h3>
-
                 <p class="box-desc">Precision engineering. Click to view technical datasheet and industrial specs.</p>
-
             </div>
-
         </div>
-
     </section>
-
-
 
     <!-- SECTION 2: CLOUD DETAIL -->
-
     <section id="cloud-detail" class="detail-section">
-
         <div class="detail-text">
-
             <h2>Cloud Security</h2>
-
             <p>Our AWS-powered cloud infrastructure provides a robust management portal. Management officers can easily check and audit visitor logs, detailing precisely what date and time entry was granted, creating a transparent audit trail.</p>
-
             <a href="solutions.html" class="btn-solution">Security Protocols</a>
-
         </div>
-
     </section>
-
-
 
     <!-- SECTION 3: APP DETAIL -->
-
     <section id="app-detail" class="detail-section">
-
         <div class="detail-text">
-
             <h2>URMET+ App</h2>
-
             <p>A single interface for invitations, facility booking, and SOS protocols. Our dynamic QR technology refreshes every 30 seconds, making it impossible to share or screenshot entry codes for unauthorized use.</p>
-
             <a href="solutions.html" class="btn-solution">App Functions</a>
-
         </div>
-
     </section>
-
-
 
     <!-- SECTION 4: READER DATASHEET -->
-
     <section id="reader-detail" class="detail-section">
-
         <div class="detail-text" style="max-width: 700px;">
-
             <h2>Technical Datasheet</h2>
-
             <table class="datasheet">
-
                 <tr><td>Access Mode</td><td>QR Code; ISO 14443A/B Card; App;</td></tr>
-
                 <tr><td>Operating System</td><td>Linux</td></tr>
-
                 <tr><td>Storage</td><td>50,000 Users</td></tr>
-
                 <tr><td>Display Resolution</td><td>320x480 IPS</td></tr>
-
                 <tr><td>Audio</td><td>Built in Speaker</td></tr>
-
                 <tr><td>Interface</td><td>RJ45, RS485</td></tr>
-
                 <tr><td>Access Control</td><td>Relay: NC/NO, COM; SENSOR</td></tr>
-
                 <tr><td>Protection</td><td>IP41</td></tr>
-
                 <tr><td>Power Supply</td><td>9V-15VDC. 3.5 W</td></tr>
-
                 <tr><td>Working Temperature</td><td>-20°C ~ 60°C</td></tr>
-
                 <tr><td>Dimension</td><td>90.00 (L) * 90.27 (W) * 27.40 (D) mm</td></tr>
-
             </table>
-
             <br>
-
             <a href="datasheet.pdf" class="btn-solution">Download PDF Specs</a>
-
         </div>
-
     </section>
-
-
-
 
 
     <footer>
-
         <div class="footer-logo"><img src="logo.png" alt="URMET PLUS"></div>
-
         <div class="footer-address"><strong>URMET JES LIMITED</strong><br>Hong Kong Business Center</div>
-
         <div class="copyright">© 2026 // SECURING SMART LIVING</div>
-
     </footer>
 
-
-
     <script>
-
         window.addEventListener('scroll', () => {
-
             const header = document.getElementById('mainHeader');
-
             header.style.padding = window.scrollY > 80 ? "15px 5%" : "25px 5%";
-
             header.style.background = window.scrollY > 80 ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.85)";
-
         });
-
     </script>
-
 </body>
-
 </html>
