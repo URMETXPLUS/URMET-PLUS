@@ -69,6 +69,7 @@
             top: 0;
             z-index: 1000;
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
             background: rgba(255, 255, 255, 0.8);
         }
@@ -78,7 +79,12 @@
             filter: brightness(0.2); /* Make logo visible on light bg */
         }
 
-        nav ul { list-style: none; display: flex; gap: 40px; }
+        nav ul { list-style: none; display: flex; gap: 40px; align-items: center; }
+
+        .nav-item {
+            position: relative;
+            padding: 10px 0;
+        }
 
         nav a {
             text-decoration: none;
@@ -91,7 +97,51 @@
             font-weight: 600;
         }
 
-        nav a:hover { opacity: 1; color: var(--primary-blue); }
+        nav a:hover, .nav-item:hover > a { opacity: 1; color: var(--primary-blue); }
+
+        /* Dropdown Menu styling */
+        .dropdown-box {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(15px);
+            background: rgba(255, 255, 255, 0.95);
+            min-width: 220px;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: grid;
+            gap: 2px;
+        }
+
+        .nav-item:hover .dropdown-box {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown-box a {
+            display: block;
+            padding: 12px 15px;
+            color: var(--text-main);
+            font-size: 11px;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            opacity: 0.8;
+            text-align: left;
+            text-transform: uppercase;
+        }
+
+        .dropdown-box a:hover {
+            background: #f5f5f7;
+            color: var(--primary-blue);
+            opacity: 1;
+            padding-left: 20px;
+        }
 
         /* --- 4. Hero Section --- */
         .hero {
@@ -358,7 +408,17 @@
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="products.html">Products</a></li>
-                <li><a href="solutions.html">Solutions</a></li>
+                <li class="nav-item">
+                    <a href="solutions.html">Solutions</a>
+                    <div class="dropdown-box">
+                        <a href="access.html">Dynamic QR Code</a>
+                        <a href="invitation.html">Guest Invitation</a>
+                        <a href="visitor.html">Visitor Registration</a>
+                        <a href="facilitybooking.html">Facility Booking</a>
+                        <a href="notification.html">Emergency Alerts</a>
+                        <a href="cloudmanagement.html">Cloud Management</a>
+                    </div>
+                </li>
                 <li><a href="about.html">Contact Us</a></li>
             </ul>
         </nav>
