@@ -164,22 +164,24 @@
             background: #fff;
         }
 
-        /* Basic Background Layer */
+        /* Basic Background Layer - Fixed to ensure both sections cover full screen */
         .delivery-bg, .installer-bg {
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
             background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
             filter: brightness(0.9); /* Lighter for light mode */
             z-index: 1;
         }
 
         .delivery-bg {
-            background: url('deliver3.png') no-repeat center center;
+            background-image: url('deliver3.png');
         }
 
         .installer-bg {
-            background: url('install2.png') no-repeat center center;
+            background-image: url('install2.png');
         }
 
         /* Gradient Overlay Layer */
