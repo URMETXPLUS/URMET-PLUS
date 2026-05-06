@@ -1,6 +1,102 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>URMET PLUS | Intelligent Access Control</title>
+    
+    <style>
+        /* --- 1. Variables & Base (Light Theme Overhaul) --- */
+        :root {
+            --primary-blue: #007aff; /* Deeper blue for better contrast on white */
+            --accent-cyan: #00bcd4;
+            --bg-light: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-main: #1d1d1f;
+            --text-muted: #6e6e73;
+            --glass: rgba(255, 255, 255, 0.7);
+            --border: rgba(0, 0, 0, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-light);
+            /* Light Tech Grid Background */
+            background-image: 
+                linear-gradient(rgba(0, 122, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 122, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            color: var(--text-main);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- 2. Animations --- */
+        @keyframes glow {
+            from { text-shadow: 0 0 10px rgba(0, 122, 255, 0.2); }
+            to { text-shadow: 0 0 20px rgba(0, 122, 255, 0.4); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* --- 3. Navigation --- */
+        header {
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .logo img { 
+            height: 35px; 
+            filter: brightness(0.2); /* Make logo visible on light bg */
+        }
+
+        nav ul { list-style: none; display: flex; gap: 40px; }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            opacity: 0.7;
+            font-weight: 600;
+              }
+
+        nav a:hover { opacity: 1; color: var(--primary-blue); }
+
+        /* --- 4. Hero Section --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 8% 60
+```html
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>URMET PLUS | Intelligent Access Control</title>
@@ -173,7 +269,7 @@
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: url('installer2.png') no-repeat center center;
+            background: url('install2.png') no-repeat center center;
             background-size: cover;
             filter: brightness(0.9);
             z-index: 1;
