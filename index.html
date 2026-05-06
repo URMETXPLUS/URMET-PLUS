@@ -52,6 +52,12 @@
             to { opacity: 1; transform: translateX(0); }
         }
 
+        /* Standard left slide-in for aligned-right content to make it smooth */
+        @keyframes slideInFromRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
         /* --- 3. Navigation --- */
         header {
             width: 100%;
@@ -147,7 +153,7 @@
 
         .cta-btn:hover { transform: scale(1.05); box-shadow: 0 15px 30px rgba(0, 122, 255, 0.4); }
 
-        /* --- 5. Delivery Registration Section --- */
+        /* --- 5. Common Delivery/Installer Section Style --- */
         .delivery-section {
             height: 100vh;
             width: 100%;
@@ -158,41 +164,62 @@
             background: #fff;
         }
 
-        .delivery-bg {
+        /* Basic Background Layer */
+        .delivery-bg, .installer-bg {
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: url('deliver3.png') no-repeat center center;
             background-size: cover;
             filter: brightness(0.9); /* Lighter for light mode */
             z-index: 1;
         }
 
-        /* Installer Background Class */
-        .installer-bg {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: url('install2.png') no-repeat center center;
-            background-size: cover;
-            filter: brightness(0.9);
-            z-index: 1;
+        .delivery-bg {
+            background: url('deliver3.png') no-repeat center center;
         }
 
+        .installer-bg {
+            background: url('install2.png') no-repeat center center;
+        }
+
+        /* Gradient Overlay Layer */
         .delivery-overlay {
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: linear-gradient(90deg, #ffffff 30%, rgba(255,255,255,0.2) 100%);
             z-index: 2;
         }
 
+        /* Standard (Content on Left) Gradient: Fade from White to Transparent (Left to Right) */
+        .delivery-overlay.standard-fade {
+            background: linear-gradient(90deg, #ffffff 30%, rgba(255,255,255,0.2) 100%);
+        }
+
+        /* Mirrored (Content on Right) Gradient: Fade from Transparent to White (Left to Right) */
+        .delivery-overlay.mirrored-fade {
+            background: linear-gradient(-90deg, #ffffff 30%, rgba(255,255,255,0.2) 100%);
+        }
+
+        /* Content Container */
         .delivery-content {
             position: relative;
             z-index: 3;
             padding: 0 8%;
             max-width: 800px;
+            width: 100%; /* Ensure full max-width potential */
+        }
+
+        /* Text alignment based on layout */
+        .text-align-left {
+            text-align: left;
+            margin-right: auto; /* Push content from standard fade direction */
             animation: slideIn 1s ease-out;
+        }
+
+        .text-align-right {
+            text-align: right;
+            margin-left: auto; /* Push content to aligned-right side */
+            animation: slideInFromRight 1s ease-out;
         }
 
         .delivery-content h2 {
@@ -208,6 +235,11 @@
             color: var(--text-muted);
             margin-bottom: 35px;
             max-width: 600px;
+        }
+
+        /* Handle max-width positioning in aligned-right layout */
+        .text-align-right p {
+            margin-left: auto;
         }
 
         .fancy-btn {
@@ -293,8 +325,22 @@
         /* Mobile Logic */
         @media (max-width: 900px) {
             .hero-content { grid-template-columns: 1fr; text-align: center; }
-            .delivery-overlay { background: rgba(255, 255, 255, 0.9); }
-            .delivery-content { text-align: center; margin: 0 auto; }
+            
+            /* Section overrides for unified appearance on mobile */
+            .delivery-overlay { background: rgba(255, 255, 255, 0.9) !important; }
+            
+            /* Text alignment is centered on mobile for better flow */
+            .delivery-content.text-align-left,
+            .delivery-content.text-align-right { 
+                text-align: center; 
+                margin: 0 auto; 
+                animation: slideIn 1s ease-out; /* Use base slide-in */
+            }
+            
+            .delivery-content.text-align-right p {
+                margin-left: 0;
+            }
+            
             header { padding: 15px 5%; }
             nav { display: none; }
         }
@@ -333,11 +379,11 @@
         </div>
     </section>
 
-    <!-- DELIVERY REGISTRATION SECTION -->
+    <!-- DELIVERY REGISTRATION SECTION (CONTENT ON LEFT) -->
     <section class="delivery-section" id="delivery">
         <div class="delivery-bg"></div>
-        <div class="delivery-overlay"></div>
-        <div class="delivery-content">
+        <div class="delivery-overlay standard-fade"></div>
+        <div class="delivery-content text-align-left">
             <span class="tech-tag">SECURE LOGISTICS</span>
             <h2>Advanced Delivery <br> Visitor Verification</h2>
             <p>
@@ -347,11 +393,11 @@
         </div>
     </section>
 
-    <!-- INSTALLATION SECTION (UPDATED PHOTO) -->
+    <!-- INSTALLATION SECTION (CONTENT ON RIGHT, MIRRORED) -->
     <section class="delivery-section" id="installation">
         <div class="installer-bg"></div>
-        <div class="delivery-overlay"></div>
-        <div class="delivery-content">
+        <div class="delivery-overlay mirrored-fade"></div>
+        <div class="delivery-content text-align-right">
             <span class="tech-tag">ENGINEER FRIENDLY</span>
             <h2>Rapid Deployment <br> Multi-Reader Setup</h2>
             <p>
