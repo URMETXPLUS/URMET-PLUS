@@ -144,6 +144,17 @@
         .solution-block:nth-child(even) { direction: rtl; }
         .solution-block:nth-child(even) .content-box { direction: ltr; }
 
+        /* Specific alignment for requested sections */
+        .right-align-content {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .right-align-content .icon-label {
+            justify-content: flex-end;
+        }
+
         .image-container {
             width: 100%;
             display: flex;
@@ -233,13 +244,14 @@
         .copyright { font-size: 12px; opacity: 0.4; letter-spacing: 1px; }
 
         /* --- Responsive --- */
-        /* Changed to 768px so that on "half screen" (Tablets/Laptops) it stays side-by-side */
         @media (max-width: 768px) {
             .solution-block { grid-template-columns: 1fr; gap: 40px; padding: 60px 5%; opacity: 1; transform: none; }
             .solution-block:nth-child(even) { direction: ltr; }
             .solutions-hero { padding-top: 140px; }
             nav ul { gap: 15px; }
             .image-placeholder { max-width: 100%; aspect-ratio: 16/9; }
+            .right-align-content { text-align: left; align-items: flex-start; }
+            .right-align-content .icon-label { justify-content: flex-start; }
         }
     </style>
 </head>
@@ -290,12 +302,12 @@
         </div>
     </section>
 
-    <!-- 02 INVITATION -->
+    <!-- 02 INVITATION (ALIGNED RIGHT) -->
     <section class="solution-block">
         <div class="image-container">
             <div class="image-placeholder"><img src="product2.png" alt="Invitation UI"></div>
         </div>
-        <div class="content-box">
+        <div class="content-box right-align-content">
             <div class="icon-label">
                 <img src="invitation.png" alt="Icon">
                 <h2>Management</h2>
@@ -322,12 +334,12 @@
         </div>
     </section>
 
-    <!-- 04 FACILITY BOOKING -->
+    <!-- 04 FACILITY BOOKING (ALIGNED RIGHT) -->
     <section class="solution-block">
         <div class="image-container">
             <div class="image-placeholder"><img src="product3.png" alt="Booking UI"></div>
         </div>
-        <div class="content-box">
+        <div class="content-box right-align-content">
             <div class="icon-label">
                 <img src="facility.png" alt="Icon">
                 <h2>Lifestyle</h2>
