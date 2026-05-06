@@ -46,6 +46,66 @@
             position: fixed;
             top: 0;
             z-index: 1000;
+            backgroundHere is the complete: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+             code for `products.html`. I have updated the footer to match the layout and styling of `index.html`,-webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: 0.4s ease;
+        }
+
+        .logo img { 
+            height: 35px; 
+            filter: brightness(0.2); 
+            display including the split left/right grid, the business address, and the specific copyright formatting.
+```html
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Products - URMET PLUS</title>
+    
+    <style>
+        /* --- 1. Tech Base & Global Styles --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+
+        :root {
+            --neon-blue: #60a5fa;
+            --tech-dark: #ffffff;
+            --accent-cyan: #22d3ee;
+            --glass: rgba(0, 0, 0, 0.03);
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --primary-blue: #007aff;
+            --text-main: #1d1d1f;
+            --text-muted: #6e6e73;
+            --border: rgba(0, 0, 0, 0.08);
+            --bg-light: #f5f5f7;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            height: 100%;
+        }
+
+        body {
+            background: var(--tech-dark);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.5;
+        }
+
+        /* --- 2. Enhanced Navigation Header --- */
+        header {
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
@@ -228,7 +288,7 @@
             font-size: 48px; 
             text-transform: uppercase; 
             margin-bottom: 25px; 
-            color: #1a73e8; 
+            color: #1a<73e8; 
             letter-spacing: 2px;
         }
         .detail-text p { font-size: 18px; color: var(--text-muted); line-height: 1.8; margin-bottom: 30px; }
@@ -250,30 +310,33 @@
             width: 180px; text-transform: uppercase; 
         }
 
-        /* --- 6. Footer (Matched to Index.html) --- */
-        footer { 
-            padding: 80px 10%; 
-            text-align: center; 
-            border-top: 1px solid var(--border); 
-            background: #fff; 
+        /* --- 6. Sync Footer Styles with index.html --- */
+        footer {
+            padding: 80px 8% 40px;
+            background: #f2f2f7;
+            border-top: 1px solid var(--border);
+            color: var(--text-main);
         }
-        .footer-logo img { 
-            height: 24px; 
-            filter: brightness(0.2); 
-            margin-bottom: 20px; 
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 50px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
-        .footer-address { 
-            font-size: 14px; 
+
+        .footer-left img { filter: brightness(0.2); }
+
+        .address-text { 
             color: var(--text-muted); 
-            line-height: 1.6; 
-            margin-bottom: 20px; 
+            font-size: 14px; 
+            margin-top: 20px;
+            line-height: 1.6;
         }
-        .copyright { 
-            font-size: 12px; 
-            opacity: 0.4; 
-            letter-spacing: 1px; 
-            text-transform: uppercase;
-        }
+
+        .footer-right p { color: var(--text-main); }
 
         /* --- Mobile --- */
         @media (max-width: 900px) {
@@ -283,8 +346,8 @@
             .trinity-box { height: 60vh; padding: 30px; }
             .detail-section { padding: 100px 5%; text-align: center; justify-content: center; background-attachment: scroll; }
             .detail-text { max-width: 100%; }
-            .detail-text h2 { font-size: 32px; }
-            .datasheet td:first-child { width: 120px; font-size: 12px; }
+            .detail-text h2 { font-size: 32<px; }
+            .datasheet td:first-child { width: 120px; font-size: 12px; }<
             .trinity-box[onclick="location.href='#cloud-detail'"] img {
                 width: 75%;  
                 top: 45%;    
@@ -306,7 +369,7 @@
                     <a href="solutions.html">Solutions</a>
                     <div class="dropdown-box">
                         <a href="access.html">Dynamic QR Code</a>
-                        <a href="invitation.html">Guest Invitation</a>
+                        ```a href="invitation.html">Guest Invitation</a>
                         <a href="visitor.html">Visitor Registration</a>
                         <a href="facilitybooking.html">Facility Booking</a>
                         <a href="notification.html">Emergency Alerts</a>
@@ -397,9 +460,19 @@
 
 
     <footer>
-        <div class="footer-logo"><img src="logo.png" alt="URMET PLUS"></div>
-        <div class="footer-address"><strong>URMET JES LIMITED</strong><br>Hong Kong Business Center</div>
-        <div class="copyright">© 2026 // TOTAL SECURITY SOLUTIONS</div>
+        <div class="footer-grid">
+            <div class="footer-left">
+                <img src="logo.png" alt="Logo" style="height: 30px;">
+                <p class="address-text">
+                    Units 11-14, 7/F, Phase 1 Chai Wan Industrial City<br>
+                    60 Wing Tai Road, Chai Wan, Hong Kong
+                </p>
+            </div>
+            <div class="footer-right">
+                <p style="letter-spacing: 2px; font-weight: bold;">URMET JES LIMITED</p>
+                <p style="opacity: 0.5; font-size: 12px; margin-top: 20px;">© 2026 ALL RIGHTS RESERVED</p>
+            </div>
+        </div>
     </footer>
 
     <script>
