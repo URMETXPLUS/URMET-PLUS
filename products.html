@@ -40,6 +40,7 @@
             font-family: 'Bariol Bold', sans-serif;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            line-height: 1.5; /* Added a default line height */
         }
 
         /* --- 2. Navigation --- */
@@ -89,10 +90,21 @@
             transition: 0.8s ease; pointer-events: none;
         }
 
+        /* Target the specific "Cloud" image in the first trinity box */
+        .trinity-box[onclick="location.href='#cloud-detail'"] img {
+            width: 70%;  /* Small a little */
+            top: 48%;    /* Down more a very little bit */
+        }
+
         .trinity-box:hover img { 
             opacity: 1; 
             transform: translate(-50%, -55%) scale(1.05); 
             filter: brightness(1.2); 
+        }
+
+        /* Target hover effect for the cloud box specifically to maintain relative positioning */
+        .trinity-box[onclick="location.href='#cloud-detail'"]:hover img {
+             transform: translate(-50%, -58%) scale(1.05);
         }
 
         /* Removed the linear-gradient ::before here to stop shadowing the bottom of the image */
@@ -215,6 +227,10 @@
             .new-item { padding: 60px 20px; }
             .ecosystem-section { height: auto; }
             .datasheet td:first-child { width: 120px; font-size: 12px; }
+            .trinity-box[onclick="location.href='#cloud-detail'"] img {
+                width: 75%;  /* Reset size on mobile or adjust as needed */
+                top: 45%;    /* Reset position on mobile */
+            }
         }
     </style>
 </head>
@@ -275,7 +291,7 @@
     <section id="cloud-detail" class="detail-section">
         <div class="detail-text">
             <h2>Cloud Security</h2>
-            <p>Our AWS-powered cloud infrastructure ensures every visitor record is encrypted and timestamped. By utilizing real-time monitoring, we prevent unauthorized duplication of access logs, providing a transparent audit trail that deters criminal behavior.</p>
+            <p>Our AWS-powered cloud infrastructure provides a robust management portal. Management officers can easily check and audit visitor logs, detailing precisely what date and time entry was granted, creating a transparent audit trail.</p>
             <a href="solutions.html" class="btn-solution">Security Protocols</a>
         </div>
     </section>
