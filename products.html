@@ -6,9 +6,7 @@
     <title>Products - URMET PLUS</title>
     
     <style>
-        /* --- 1. Tech Base & Global Styles (Font Synced with index.html) --- */
-        /* Note: Custom @font-face blocks were removed to match index.html's reliance on system fonts */
-
+        /* --- 1. Tech Base & Global Styles --- */
         * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
 
         :root {
@@ -17,10 +15,11 @@
             --accent-cyan: #22d3ee;
             --glass: rgba(0, 0, 0, 0.03);
             --glass-border: rgba(0, 0, 0, 0.1);
-            /* Synced from index.html variables */
             --primary-blue: #007aff;
             --text-main: #1d1d1f;
             --text-muted: #6e6e73;
+            --border: rgba(0, 0, 0, 0.08);
+            --bg-light: #f5f5f7;
         }
 
         html {
@@ -31,40 +30,106 @@
         body {
             background: var(--tech-dark);
             color: var(--text-main);
-            /* Font stack synced from index.html body */
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             line-height: 1.5;
         }
 
-        /* --- 2. Navigation (Synced font properties with index.html) --- */
+        /* --- 2. Enhanced Navigation Header --- */
         header {
-            width: 100%; 
-            /* Padding synced from index.html header */
+            width: 100%;
             padding: 20px 8%;
-            display: flex; justify-content: space-between; align-items: center;
-            position: fixed; top: 0; z-index: 1000;
-            background: rgba(255, 255, 255, 0.85);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
             transition: 0.4s ease;
         }
 
         .logo img { 
-            height: 28px; 
-            filter: invert(1);
+            height: 35px; 
+            filter: brightness(0.2); 
+            display: block;
         }
 
-        nav ul { list-style: none; display: flex; gap: 30px; }
-        nav a { 
-            text-decoration: none; color: #000; 
-            /* Font size, weight, and spacing synced from index.html nav a */
+        nav ul { 
+            list-style: none; 
+            display: flex; 
+            gap: 40px; 
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+            padding: 10px 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
             font-size: 13px;
             font-weight: 600;
-            text-transform: uppercase; letter-spacing: 2px; opacity: 0.6; transition: 0.3s; 
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s ease;
+            opacity: 0.7;
         }
-        nav a:hover { opacity: 1; color: var(--neon-blue); }
+
+        nav a:hover, .nav-item:hover > a { 
+            opacity: 1; 
+            color: var(--primary-blue); 
+        }
+
+        /* Dropdown Menu styling */
+        .dropdown-box {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(15px);
+            background: rgba(255, 255, 255, 0.95);
+            min-width: 220px;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: grid;
+            gap: 2px;
+        }
+
+        .nav-item:hover .dropdown-box {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown-box a {
+            display: block;
+            padding: 12px 15px;
+            color: var(--text-main);
+            font-size: 11px;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            opacity: 0.8;
+            text-align: left;
+            text-transform: uppercase;
+        }
+
+        .dropdown-box a:hover {
+            background: var(--bg-light);
+            color: var(--primary-blue);
+            opacity: 1;
+            padding-left: 20px;
+        }
 
         /* --- 3. Hero Trinity Section --- */
         .hero-trinity {
@@ -72,6 +137,7 @@
             grid-template-columns: repeat(3, 1fr);
             height: 100vh; width: 100%;
             background: var(--glass-border); gap: 1px;
+            margin-top: 0; /* Header is fixed */
         }
 
         .trinity-box {
@@ -84,16 +150,14 @@
             position: absolute; top: 45%; left: 50%;
             transform: translate(-50%, -50%) scale(1);
             width: 75%; height: auto; object-fit: contain;
-            /* Changes made here to remove the grey look */
             opacity: 1; 
             filter: brightness(1.1);
             transition: 0.8s ease; pointer-events: none;
         }
 
-        /* Target the specific "Cloud" image in the first trinity box */
         .trinity-box[onclick="location.href='#cloud-detail'"] img {
-            width: 70%;  /* Small a little */
-            top: 48%;    /* Down more a very little bit */
+            width: 70%;  
+            top: 48%;    
         }
 
         .trinity-box:hover img { 
@@ -102,12 +166,10 @@
             filter: brightness(1.2); 
         }
 
-        /* Target hover effect for the cloud box specifically to maintain relative positioning */
         .trinity-box[onclick="location.href='#cloud-detail'"]:hover img {
              transform: translate(-50%, -58%) scale(1.05);
         }
 
-        /* Removed the linear-gradient ::before here to stop shadowing the bottom of the image */
         .trinity-box::before {
             content: ""; position: absolute; inset: 0;
             background: transparent; 
@@ -120,7 +182,6 @@
             display: flex; align-items: center; gap: 15px; margin-bottom: 15px;
         }
         .box-num { 
-            /* Replaced Aptos Bold with bold weight of synced stack */
             font-weight: bold;
             font-size: 10px; color: var(--neon-blue); letter-spacing: 4px; 
         }
@@ -128,14 +189,13 @@
         .box-line::after { content: ""; position: absolute; right: 0; top: -2px; width: 5px; height: 5px; background: var(--neon-blue); border-radius: 50%; }
 
         .box-title { 
-            /* Replaced Aptos Bold with bold weight of synced stack and synced clamp size logic if needed, but keeping absolute size for this specific design */
             font-weight: bold;
             font-size: 34px; margin-bottom: 15px; text-transform: uppercase; line-height: 1.1; color: #000; 
         }
         .box-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; max-width: 300px; transform: translateY(20px); opacity: 0; transition: 0.5s ease; }
         .trinity-box:hover .box-desc { transform: translateY(0); opacity: 1; }
 
-        /* --- 4. Content Detail Sections (Full Screen) --- */
+        /* --- 4. Content Detail Sections --- */
         .detail-section {
             padding: 120px 10%; 
             min-height: 100vh;
@@ -168,7 +228,7 @@
             font-size: 48px; 
             text-transform: uppercase; 
             margin-bottom: 25px; 
-            color: #1a73e8; /* Vibrant blue matching the photo */
+            color: #1a73e8; 
             letter-spacing: 2px;
         }
         .detail-text p { font-size: 18px; color: var(--text-muted); line-height: 1.8; margin-bottom: 30px; }
@@ -186,65 +246,18 @@
         .datasheet td { padding: 15px 0; border-bottom: 1px solid var(--glass-border); font-size: 14px; color: #000; }
         .datasheet td:first-child { 
             color: var(--neon-blue); 
-            /* Replaced Aptos Bold with bold weight of synced stack */
             font-weight: bold;
             width: 180px; text-transform: uppercase; 
         }
 
-        /* --- 6. Solutions Grid (Full Screen) --- */
-        .ecosystem-section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-        }
-
-        .grid-header { 
-            text-align: center; 
-            padding: 100px 0 40px; 
-            /* Replaced Aptos Bold with bold weight of synced stack */
-            font-weight: bold;
-            letter-spacing: 5px; 
-            opacity: 0.5; 
-            font-size: 12px; 
-            color: #000; 
-            background: #fff;
-        }
-        
-        .new-row-container {
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr);
-            flex-grow: 1; 
-            width: 100%; 
-            gap: 1px; 
-            background: var(--glass-border);
-        }
-
-        .new-item {
-            position: relative; background: #fff; 
-            padding: 40px; cursor: pointer; text-decoration: none; color: #000;
-            display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; transition: 0.4s;
-        }
-        .new-item:hover { background: #f8fafc; }
-        
-        .icon-box img { width: 45px; height: 45px; filter: brightness(0); opacity: 0.7; margin-bottom: 20px; }
-        .new-item h5 { 
-            /* Replaced Aptos Bold with bold weight of synced stack */
-            font-weight: bold;
-            font-size: 20px; margin-bottom: 10px; 
-        }
-        .new-item p { font-size: 13px; opacity: 0.6; }
-
-        /* --- 7. Footer (Synced font properties with index.html) --- */
+        /* --- 6. Footer --- */
         footer { 
             background: #fff; 
-            /* Padding synced from index.html footer */
             padding: 80px 8% 40px;
             text-align: center; border-top: 1px solid var(--glass-border); 
         }
-        .footer-logo img { filter: invert(1); margin-bottom: 20px; height: 28px; }
+        .footer-logo img { filter: brightness(0.2); margin-bottom: 20px; height: 35px; }
         .footer-address { 
-            /* Font size synced from index.html .address-text */
             font-size: 14px;
             color: var(--text-muted); margin-bottom: 30px; 
         }
@@ -253,18 +266,16 @@
         /* --- Mobile --- */
         @media (max-width: 900px) {
             header { padding: 15px 5%; }
+            nav { display: none; }
             .hero-trinity { grid-template-columns: 1fr; height: auto; }
             .trinity-box { height: 60vh; padding: 30px; }
             .detail-section { padding: 100px 5%; text-align: center; justify-content: center; background-attachment: scroll; }
             .detail-text { max-width: 100%; }
             .detail-text h2 { font-size: 32px; }
-            .new-row-container { grid-template-columns: 1fr; }
-            .new-item { padding: 60px 20px; }
-            .ecosystem-section { height: auto; }
             .datasheet td:first-child { width: 120px; font-size: 12px; }
             .trinity-box[onclick="location.href='#cloud-detail'"] img {
-                width: 75%;  /* Reset size on mobile or adjust as needed */
-                top: 45%;    /* Reset position on mobile */
+                width: 75%;  
+                top: 45%;    
             }
         }
     </style>
@@ -272,12 +283,24 @@
 <body>
 
     <header id="mainHeader">
-        <div class="logo"><img src="logo.png" alt="URMET PLUS"></div>
+        <div class="logo">
+            <img src="logo.png" alt="URMET PLUS">
+        </div>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="products.html" style="opacity: 1; color: var(--neon-blue);">Products</a></li>
-                <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="products.html" style="opacity: 1; color: var(--primary-blue);">Products</a></li>
+                <li class="nav-item">
+                    <a href="solutions.html">Solutions</a>
+                    <div class="dropdown-box">
+                        <a href="access.html">Dynamic QR Code</a>
+                        <a href="invitation.html">Guest Invitation</a>
+                        <a href="visitor.html">Visitor Registration</a>
+                        <a href="facilitybooking.html">Facility Booking</a>
+                        <a href="notification.html">Emergency Alerts</a>
+                        <a href="cloudmanagement.html">Cloud Management</a>
+                    </div>
+                </li>
                 <li><a href="about.html">Contact</a></li>
             </ul>
         </nav>
@@ -370,8 +393,13 @@
     <script>
         window.addEventListener('scroll', () => {
             const header = document.getElementById('mainHeader');
-            header.style.padding = window.scrollY > 80 ? "15px 5%" : "25px 5%";
-            header.style.background = window.scrollY > 80 ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.85)";
+            if (window.scrollY > 80) {
+                header.style.padding = "15px 8%";
+                header.style.background = "rgba(255,255,255,0.95)";
+            } else {
+                header.style.padding = "20px 8%";
+                header.style.background = "rgba(255,255,255,0.8)";
+            }
         });
     </script>
 </body>
