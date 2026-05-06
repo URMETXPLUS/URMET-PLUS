@@ -6,13 +6,22 @@
     <title>Products - URMET PLUS</title>
     
     <style>
-        /* --- 1. Tech Base & Global Styles (Font Synced with index.html) --- */
+        /* --- 1. Tech Base & Global Styles (Synced with index.html) --- */
         /* Note: Custom @font-face blocks were removed to match index.html's reliance on system fonts */
 
         * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
 
         :root {
-            --neon-blue: #60a5fa;
+            /* 
+               CRITICAL CHANGE:
+               Updated neon-blue to be intensely bright and defined a text-shadow effect 
+               to match the glowing text in the reference image (image_ae5719.png).
+            */
+            --neon-blue: #00f0ff; /* Bright cyan/blue from image_ae5719.png */
+            
+            /* Define the glow effect as a reusable variable */
+            --neon-glow-text: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #00f0ff, 0 0 20px #00f0ff;
+            
             --tech-dark: #ffffff;
             --accent-cyan: #22d3ee;
             --glass: rgba(0, 0, 0, 0.03);
@@ -167,6 +176,15 @@
             font-weight: bold;
             font-size: 48px; text-transform: uppercase; margin-bottom: 25px; color: var(--neon-blue); 
         }
+        
+        /* Apply intense glow to specific text elements mentioned */
+        #cloud-detail .detail-text h2,
+        #cloud-detail .btn-solution,
+        #app-detail .detail-text h2,
+        #reader-detail .detail-text h2 {
+            text-shadow: var(--neon-glow-text);
+        }
+        
         .detail-text p { font-size: 18px; color: var(--text-muted); line-height: 1.8; margin-bottom: 30px; }
 
         .btn-solution {
@@ -174,6 +192,8 @@
             color: var(--neon-blue); text-decoration: none; font-size: 12px; letter-spacing: 2px;
             text-transform: uppercase; transition: 0.4s;
             background: rgba(255, 255, 255, 0.5);
+            /* Apply neon glow from reference image */
+            box-shadow: 0 0 10px #00f0ff;
         }
         .btn-solution:hover { background: var(--neon-blue); color: #fff; box-shadow: 0 0 20px rgba(96, 165, 250, 0.4); }
 
