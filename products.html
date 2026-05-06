@@ -127,21 +127,11 @@
         .box-line { height: 1px; flex-grow: 1; background: var(--glass-border); position: relative; }
         .box-line::after { content: ""; position: absolute; right: 0; top: -2px; width: 5px; height: 5px; background: var(--neon-blue); border-radius: 50%; }
 
-        /* UPDATED STYLE TO MATCH SECOND PICTURE */
         .box-title { 
-            font-family: 'Segoe UI Bold', 'Arial Black', sans-serif;
-            font-weight: 800;
-            font-size: 38px; 
-            margin-bottom: 15px; 
-            text-transform: uppercase; 
-            line-height: 0.95; 
-            letter-spacing: -1.5px;
-            /* Gradient Effect from Picture 2 */
-            background: linear-gradient(to right, #1a202c 0%, #1a202c 30%, #1e4ea1 80%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            /* Replaced Aptos Bold with bold weight of synced stack and synced clamp size logic if needed, but keeping absolute size for this specific design */
+            font-weight: bold;
+            font-size: 34px; margin-bottom: 15px; text-transform: uppercase; line-height: 1.1; color: #000; 
         }
-
         .box-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; max-width: 300px; transform: translateY(20px); opacity: 0; transition: 0.5s ease; }
         .trinity-box:hover .box-desc { transform: translateY(0); opacity: 1; }
 
@@ -173,9 +163,13 @@
 
         .detail-text { flex: 1; max-width: 600px; position: relative; z-index: 2; }
         .detail-text h2 { 
-            /* Replaced Aptos Bold with bold weight of synced stack */
-            font-weight: bold;
-            font-size: 48px; text-transform: uppercase; margin-bottom: 25px; color: var(--neon-blue); 
+            font-family: 'Segoe UI Bold', 'Arial Black', sans-serif;
+            font-weight: 900;
+            font-size: 48px; 
+            text-transform: uppercase; 
+            margin-bottom: 25px; 
+            color: #1a73e8; /* Vibrant blue matching the photo */
+            letter-spacing: 2px;
         }
         .detail-text p { font-size: 18px; color: var(--text-muted); line-height: 1.8; margin-bottom: 30px; }
 
