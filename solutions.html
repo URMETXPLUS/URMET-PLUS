@@ -123,11 +123,11 @@
             width: 60px; height: 4px; background: var(--neon-blue); margin: 0 auto 30px;
         }
 
-        /* --- 4. Main Content Blocks (Enhanced with Animation Classes) --- */
+        /* --- 4. Main Content Blocks --- */
         .solution-block {
             padding: 100px 10%;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.2fr 1fr;
             gap: 80px;
             align-items: center;
             border-bottom: 1px solid var(--glass-border);
@@ -146,42 +146,24 @@
 
         .image-container {
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
         }
 
         .image-placeholder {
             width: 100%;
-            aspect-ratio: 16/9;
+            aspect-ratio: 16/10;
             background: #f1f5f9;
-            border-radius: 4px;
+            border-radius: 12px;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-        }
-
-        /* Shimmer effect */
-        .image-placeholder::after {
-            content: "";
-            position: absolute;
-            top: 0; left: -100%;
-            width: 50%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: 0.8s;
-        }
-
-        .image-placeholder:hover::after {
-            left: 150%;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.08);
         }
 
         .image-placeholder img {
-            width: 100%; height: 100%; object-fit: contain;
+            width: 100%; height: 100%; object-fit: cover;
             transition: 0.6s ease;
-            padding: 20px;
         }
         
-        .image-placeholder:hover img { transform: scale(1.03); }
+        .image-placeholder:hover img { transform: scale(1.05); }
 
         .icon-label {
             display: flex;
@@ -213,24 +195,44 @@
         .content-box p {
             font-size: 16px;
             color: #64748b;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             max-width: 450px;
+        }
+
+        /* --- Button Style --- */
+        .learn-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 14px 28px;
+            background: var(--deep-navy);
+            color: #fff;
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: 0.3s;
+            margin-top: 20px;
+        }
+
+        .learn-more:hover {
+            background: var(--neon-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(96, 165, 250, 0.3);
         }
 
         /* --- 5. Step-by-Step UI --- */
         .steps-container {
             display: flex; flex-direction: column; gap: 20px;
+            margin-bottom: 30px;
         }
 
         .step-item {
             display: flex; gap: 20px; align-items: flex-start;
-            padding: 15px;
+            padding: 10px;
             border-radius: 8px;
             transition: 0.3s;
-        }
-
-        .step-item:hover {
-            background: #f8fafc;
         }
 
         .step-num {
@@ -242,12 +244,6 @@
             display: flex; align-items: center; justify-content: center;
             border-radius: 50%;
             flex-shrink: 0;
-            transition: 0.3s;
-        }
-
-        .step-item:hover .step-num {
-            background: var(--neon-blue);
-            color: white;
         }
 
         .step-text b { display: block; color: #000; font-size: 15px; }
@@ -264,8 +260,6 @@
             .solution-block:nth-child(even) { direction: ltr; }
             .solutions-hero { padding-top: 140px; }
             nav ul { gap: 15px; }
-            .dropdown-box { left: auto; right: 0; transform: translateY(10px); }
-            .nav-item:hover .dropdown-box { transform: translateY(0); }
         }
     </style>
 </head>
@@ -303,7 +297,6 @@
     <!-- 01 QR CODE ACCESS -->
     <section class="solution-block">
         <div class="image-container">
-            <div class="image-placeholder"><img src="intro1.png" alt="Hardware"></div>
             <div class="image-placeholder"><img src="qr_code.png" alt="QR App Interface"></div>
         </div>
         <div class="content-box">
@@ -317,17 +310,14 @@
             <div class="steps-container">
                 <div class="step-item">
                     <div class="step-num">1</div>
-                    <div class="step-text"><b>Open URMET+ App</b><span>Biometric authentication ensures the user is legitimate.</span></div>
+                    <div class="step-text"><b>Open URMET+ App</b><span>Biometric authentication ensures user legitimacy.</span></div>
                 </div>
                 <div class="step-item">
                     <div class="step-num">2</div>
-                    <div class="step-text"><b>Generate Live Code</b><span>The system generates a unique AES-256 encrypted QR code valid for 30s.</span></div>
-                </div>
-                <div class="step-item">
-                    <div class="step-num">3</div>
                     <div class="step-text"><b>Scan & Enter</b><span>Hold the phone to the Multi-Reader V2 for instant verification.</span></div>
                 </div>
             </div>
+            <a href="qr.html" class="learn-more">Dynamic QR Code &rarr;</a>
         </div>
     </section>
 
@@ -335,7 +325,6 @@
     <section class="solution-block">
         <div class="image-container">
             <div class="image-placeholder"><img src="invitation.png" alt="Invitation UI"></div>
-            <div class="image-placeholder" style="background:#e2e8f0; display:flex; align-items:center; justify-content:center; color:#94a3b8;">[Photo: Resident sharing link]</div>
         </div>
         <div class="content-box">
             <div class="icon-label">
@@ -348,17 +337,14 @@
             <div class="steps-container">
                 <div class="step-item">
                     <div class="step-num">1</div>
-                    <div class="step-text"><b>Select Guest Type</b><span>Choose between One-time, Frequent, or Delivery personnel access.</span></div>
-                </div>
-                <div class="step-item">
-                    <div class="step-num">2</div>
                     <div class="step-text"><b>Set Schedule</b><span>Define specific entry dates and time windows.</span></div>
                 </div>
                 <div class="step-item">
-                    <div class="step-num">3</div>
-                    <div class="step-text"><b>Instant Sharing</b><span>Send the secure link via WhatsApp or SMS directly to your guest.</span></div>
+                    <div class="step-num">2</div>
+                    <div class="step-text"><b>Instant Sharing</b><span>Send the secure link via WhatsApp or SMS.</span></div>
                 </div>
             </div>
+            <a href="invitation.html" class="learn-more">Guest Invitation &rarr;</a>
         </div>
     </section>
 
@@ -366,7 +352,6 @@
     <section class="solution-block">
         <div class="image-container">
             <div class="image-placeholder"><img src="visitor.png" alt="Visitor Log"></div>
-            <div class="image-placeholder"><img src="middle1.png" alt="Cloud Logs"></div>
         </div>
         <div class="content-box">
             <div class="icon-label">
@@ -379,17 +364,14 @@
             <div class="steps-container">
                 <div class="step-item">
                     <div class="step-num">1</div>
-                    <div class="step-text"><b>Automated Check-in</b><span>Guests scan their invite; the system logs time and gate location.</span></div>
+                    <div class="step-text"><b>Automated Check-in</b><span>Logs time and gate location automatically.</span></div>
                 </div>
                 <div class="step-item">
                     <div class="step-num">2</div>
-                    <div class="step-text"><b>Resident Notification</b><span>The host receives an instant notification that the guest has arrived.</span></div>
-                </div>
-                <div class="step-item">
-                    <div class="step-num">3</div>
-                    <div class="step-text"><b>Real-time Audit</b><span>Building management can view live occupancy and historical flow.</span></div>
+                    <div class="step-text"><b>Resident Notification</b><span>Receive instant alerts when guests arrive.</span></div>
                 </div>
             </div>
+            <a href="visitor.html" class="learn-more">Visitor Registration &rarr;</a>
         </div>
     </section>
 
@@ -397,7 +379,6 @@
     <section class="solution-block">
         <div class="image-container">
             <div class="image-placeholder"><img src="facility.png" alt="Booking UI"></div>
-            <div class="image-placeholder" style="background:#e2e8f0; display:flex; align-items:center; justify-content:center; color:#94a3b8;">[Photo: Clubhouse Amenity]</div>
         </div>
         <div class="content-box">
             <div class="icon-label">
@@ -410,24 +391,20 @@
             <div class="steps-container">
                 <div class="step-item">
                     <div class="step-num">1</div>
-                    <div class="step-text"><b>Browse Facilities</b><span>View live availability for Gym, BBQ, or Function Rooms.</span></div>
+                    <div class="step-text"><b>Browse & Reserve</b><span>View live availability for Clubhouse amenities.</span></div>
                 </div>
                 <div class="step-item">
                     <div class="step-num">2</div>
-                    <div class="step-text"><b>Reserve & Pay</b><span>Confirm slots and handle any associated fees through the app.</span></div>
-                </div>
-                <div class="step-item">
-                    <div class="step-num">3</div>
-                    <div class="step-text"><b>Access Activation</b><span>QR code automatically gains rights during your booked slot.</span></div>
+                    <div class="step-text"><b>Access Activation</b><span>QR code gains rights during your booked slot.</span></div>
                 </div>
             </div>
+            <a href="facility.html" class="learn-more">Facility Booking &rarr;</a>
         </div>
     </section>
 
     <!-- 05 NOTIFICATIONS & PANIC -->
     <section class="solution-block">
         <div class="image-container">
-            <div class="image-placeholder"><img src="notication.png" alt="Push UI"></div>
             <div class="image-placeholder"><img src="panic.png" alt="SOS UI"></div>
         </div>
         <div class="content-box">
@@ -441,17 +418,14 @@
             <div class="steps-container">
                 <div class="step-item">
                     <div class="step-num">1</div>
-                    <div class="step-text"><b>Building Notices</b><span>Receive alerts for maintenance, water suspension, or parcels.</span></div>
-                </div>
-                <div class="step-item">
-                    <div class="step-num">2</div>
                     <div class="step-text"><b>Panic Trigger</b><span>Long-press the SOS button to alert the control room.</span></div>
                 </div>
                 <div class="step-item">
-                    <div class="step-num">3</div>
-                    <div class="step-text"><b>GPS Localization</b><span>Security receives your precise location for immediate response.</span></div>
+                    <div class="step-num">2</div>
+                    <div class="step-text"><b>GPS Localization</b><span>Security receives precise location for immediate response.</span></div>
                 </div>
             </div>
+            <a href="notification.html" class="learn-more">Emergency Alerts &rarr;</a>
         </div>
     </section>
 
@@ -462,11 +436,7 @@
     </footer>
 
     <script>
-        // Scroll Reveal Logic
-        const observerOptions = {
-            threshold: 0.15
-        };
-
+        const observerOptions = { threshold: 0.15 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
