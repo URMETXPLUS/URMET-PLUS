@@ -94,14 +94,14 @@
 
         /* --- 4. Steps Section --- */
         .steps-wrapper {
-            max-width: 1300px; margin: 0 auto; padding: 40px 8% 120px;
+            max-width: 1400px; margin: 0 auto; padding: 40px 5% 120px;
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
         }
 
         .step-card {
-            background: #fff; padding: 50px 30px; border: 1px solid var(--glass-border);
+            background: #fff; padding: 50px 20px; border: 1px solid var(--glass-border);
             border-radius: 24px; text-align: center; transition: var(--transition);
-            position: relative; overflow: hidden;
+            display: flex; flex-direction: column;
         }
 
         .step-card:hover {
@@ -112,18 +112,33 @@
         .step-number {
             width: 45px; height: 45px; background: var(--text-main); color: white;
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 30px; font-weight: bold; font-size: 18px;
+            margin: 0 auto 30px; font-weight: bold; font-size: 18px; flex-shrink: 0;
         }
 
-        .img-stack { display: flex; gap: 10px; justify-content: center; margin-bottom: 30px; }
-        .step-card img {
-            width: 100%; max-width: 160px; height: auto; border-radius: 12px;
-            transition: var(--transition); filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+        /* Fixed: Improved Image Alignment Container */
+        .img-container { 
+            display: flex; 
+            gap: 15px; 
+            justify-content: center; 
+            align-items: flex-end; /* Aligns all images to the bottom baseline */
+            margin-bottom: 30px; 
+            min-height: 240px; /* Forces consistent space regardless of 1 or 2 images */
         }
-        .img-stack img { max-width: 110px; } 
+
+        .step-card img {
+            width: 100%; 
+            max-width: 180px; 
+            height: auto; 
+            border-radius: 12px;
+            transition: var(--transition); 
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+        }
+
+        /* Adjusts size when two images are side-by-side */
+        .img-container.dual img { max-width: 130px; } 
 
         .step-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 15px; color: #000; }
-        .step-card p { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
+        .step-card p { font-size: 15px; color: var(--text-muted); line-height: 1.7; flex-grow: 1; }
 
         /* --- 5. Footer --- */
         footer {
@@ -140,10 +155,14 @@
         .footer-right p { font-size: 14px; line-height: 1.6; }
 
         /* --- Mobile Responsive --- */
+        @media (max-width: 1000px) {
+            .steps-wrapper { grid-template-columns: 1fr; gap: 40px; }
+            .img-container { min-height: auto; }
+        }
+
         @media (max-width: 900px) {
             header { padding: 15px 5%; }
             nav { display: none; }
-            .steps-wrapper { grid-template-columns: 1fr; gap: 40px; }
             .page-hero { padding-top: 150px; }
             .footer-grid { flex-direction: column; text-align: left; }
             .footer-right { text-align: left; }
@@ -188,7 +207,7 @@
         <!-- STEP 1 -->
         <div class="step-card">
             <div class="step-number">1</div>
-            <div class="img-stack">
+            <div class="img-container dual">
                 <img src="visitor1.png" alt="Scan QR Code">
                 <img src="visitor2.png" alt="Visitor Register">
             </div>
@@ -199,7 +218,9 @@
         <!-- STEP 2 -->
         <div class="step-card">
             <div class="step-number">2</div>
-            <img src="visitor3.png" alt="SMS OTP Verification">
+            <div class="img-container">
+                <img src="visitor3.png" alt="SMS OTP Verification">
+            </div>
             <h3>SMS Verification</h3>
             <p>For enhanced security, a <strong>One Time Password (OTP)</strong> is sent via SMS to the visitor's phone for immediate identity verification.</p>
         </div>
@@ -207,7 +228,9 @@
         <!-- STEP 3 -->
         <div class="step-card">
             <div class="step-number">3</div>
-            <img src="visitor4.png" alt="Gate Open">
+            <div class="img-container">
+                <img src="visitor4.png" alt="Gate Open">
+            </div>
             <h3>Secure Entry</h3>
             <p>Once verified, the visitor receives an access code. Present it to the <strong>Multi-Reader</strong> and the gate will open automatically.</p>
         </div>
