@@ -7,37 +7,6 @@
     
     <style>
         /* --- 1. Tech Base & Global Styles --- */
-        * { margin: 0; padding: 0To ensure the images in Step 1 align perfectly with the other steps and maintain a consistent bottom alignment across; box-sizing: border-box; outline: none; }
-
-        :root {
-            --neon-blue: #60a5fa;
-            -- the grid, I have adjusted the `.img-stack` and `.step-card` logic. I used `display: flex` withaccess-green: #10b981; 
-            --tech-dark: #ffffff;
-            --glass-border: rgba(0, 0, 0, 0.08);
-            --primary-blue: #007aff;
-            --text-main: #1d1d1 `align-items: flex-end` so that even with dual images, the baselinef;
-            --text-muted: #6e6e73;
-            --border: rgba(0, 0, 0, 0.08);
-            --bg-light: #f5f5f7;
-            --transition: all 0.5s cubic-bezier(0.16 remains uniform with the single images in Steps, 1, 0.3, 1);
-        }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            background: var(-- 2 and 3.
-
-Here is the complete, sanitized code:
-```html
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Visitor Registration - URMET PLUS</title>
-    
-    <style>
-        /* --- 1. Tech Base & Global Styles --- */
         * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
 
         :root {
@@ -125,15 +94,14 @@ Here is the complete, sanitized code:
 
         /* --- 4. Steps Section --- */
         .steps-wrapper {
-            max-width: 1400px; margin: 0 auto; padding: 40px 5% 120px;
+            max-width: 1300px; margin: 0 auto; padding: 40px 8% 120px;
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
         }
 
         .step-card {
-            background: #fff; padding: 50px 20px; border: 1px solid var(--glass-border);
+            background: #fff; padding: 50px 30px; border: 1px solid var(--glass-border);
             border-radius: 24px; text-align: center; transition: var(--transition);
             position: relative; overflow: hidden;
-            display: flex; flex-direction: column;
         }
 
         .step-card:hover {
@@ -144,33 +112,17 @@ Here is the complete, sanitized code:
         .step-number {
             width: 45px; height: 45px; background: var(--text-main); color: white;
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 30px; font-weight: bold; font-size: 18px; flex-shrink: 0;
+            margin: 0 auto 30px; font-weight: bold; font-size: 18px;
         }
 
-        /* Image Containers and Alignment */
-        .img-stack { 
-            display: flex; 
-            gap: 15px<; 
-            justify-content: center; 
-            align-items: flex-end; /* Ensures bottoms are aligned */
-            margin-bottom: 30px; 
-            min-height: 250px; /* Forces consistent height for images */
-        }
-
+        .img-stack { display: flex; gap: 10px; justify-content: center; margin-bottom: 30px; }
         .step-card img {
-            width: 100%; 
-            max-width: 180px; /* Size kept consistent for single photos */
-            height: auto; 
-            border-radius: 12px;
-            transition: var(--transition); 
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+            width: 100%; max-width: 160px; height: auto; border-radius: 12px;
+            transition: var(--transition); filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
         }
+        .img-stack img { max-width: 110px; } 
 
-        .img-stack img { 
-            max-width: 130px; /* Slightly wider for the double stack to fill the wider block */
-        } 
-
-        .step-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 15px; color: #0<00; }
+        .step-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 15px; color: #000; }
         .step-card p { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
 
         /* --- 5. Footer --- */
@@ -188,14 +140,10 @@ Here is the complete, sanitized code:
         .footer-right p { font-size: 14px; line-height: 1.6; }
 
         /* --- Mobile Responsive --- */
-        @media (max-width: 1000px) {
-            .steps-wrapper { grid-template-columns: 1fr; gap: 40px; }
-            .img-stack { min-height: auto; }
-        ```}
-
         @media (max-width: 900px) {
             header { padding: 15px 5%; }
             nav { display: none; }
+            .steps-wrapper { grid-template-columns: 1fr; gap: 40px; }
             .page-hero { padding-top: 150px; }
             .footer-grid { flex-direction: column; text-align: left; }
             .footer-right { text-align: left; }
@@ -251,9 +199,7 @@ Here is the complete, sanitized code:
         <!-- STEP 2 -->
         <div class="step-card">
             <div class="step-number">2</div>
-            <div class="img-stack">
-                <img src="visitor3.png" alt="SMS OTP Verification">
-            </div>
+            <img src="visitor3.png" alt="SMS OTP Verification">
             <h3>SMS Verification</h3>
             <p>For enhanced security, a <strong>One Time Password (OTP)</strong> is sent via SMS to the visitor's phone for immediate identity verification.</p>
         </div>
@@ -261,9 +207,7 @@ Here is the complete, sanitized code:
         <!-- STEP 3 -->
         <div class="step-card">
             <div class="step-number">3</div>
-            <div class="img-stack">
-                <img src="visitor4.png" alt="Gate Open">
-            </div>
+            <img src="visitor4.png" alt="Gate Open">
             <h3>Secure Entry</h3>
             <p>Once verified, the visitor receives an access code. Present it to the <strong>Multi-Reader</strong> and the gate will open automatically.</p>
         </div>
