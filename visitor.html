@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Visitor Registration - URMET PLUS</title>
+    
+    <style>
+        /* --- 1. Tech Base & Global Styles --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+
+        :root {
+            --neon-blue: #60a5fa;
+            --access-green: #10b981; 
+            --tech-dark: #ffffff;
+            --glass-border: rgba(0, 0, 0, 0.08);
+            --primary-blue: #007aff;
+            --text-main: #1d1d1f;
+            --text-muted: #6e6e73;
+            --border: rgba(0, 0, 0, 0.08);
+            --bg-light: #f5f5f7;
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--tech-dark);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.5;
+        }
+
+        /* --- 2. Enhanced Navigation Header --- */
+        header {
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: 0.4s ease;
+        }
+
+        .logo img { height: 35px; filter: brightness(0.2); display: block; }
+
+        nav ul { list-style: none; display: flex; gap: 40px; align-items: center; }
+        .nav-item { position: relative; padding: 10px 0; }
+        nav a {
+            text-decoration: none; color: var(--text-main); font-size: 13px; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 2px; transition: 0.3s ease; opacity: 0.7;
+        }
+        nav a:hover, .nav-item:hover > a { opacity: 1; color: var(--primary-blue); }
+
+        .dropdown-box {
+            position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(15px);
+            background: rgba(255, 255, 255, 0.95); min-width: 220px; border-radius: 8px;
+            padding: 10px; box-shadow: 0 15px 30px rgba(0,0,0,0.1); border: 1px solid var(--border);
+            opacity: 0; visibility: hidden; transition: var(--transition); display: grid; gap: 2px;
+        }
+        .nav-item:hover .dropdown-box { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+        .dropdown-box a {
+            display: block; padding: 12px 15px; color: var(--text-main); font-size: 11px;
+            letter-spacing: 1px; border-radius: 4px; opacity: 0.8; text-align: left; text-transform: uppercase;
+        }
+        .dropdown-box a:hover { background: var(--bg-light); color: var(--primary-blue); opacity: 1; padding-left: 20px; }
+
+        /* --- 3. Hero Section --- */
+        .page-hero {
+            padding: 200px 10% 80px;
+            text-align: center;
+            background: radial-gradient(circle at top, #f0f9ff 0%, #ffffff 70%);
+        }
+
+        .tagline {
+            color: #ef4444; /* Alert/Action Red-Orange */
+            font-weight: 800; letter-spacing: 4px; font-size: 12px;
+            text-transform: uppercase; margin-bottom: 20px; display: block;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(34px, 5vw, 64px); font-weight: 800;
+            text-transform: uppercase; line-height: 1.1; margin-bottom: 20px;
+            color: #000; letter-spacing: -1px;
+        }
+
+        /* --- 4. Steps Section --- */
+        .steps-wrapper {
+            max-width: 1300px; margin: 0 auto; padding: 40px 8% 120px;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
+        }
+
+        .step-card {
+            background: #fff; padding: 50px 30px; border: 1px solid var(--glass-border);
+            border-radius: 24px; text-align: center; transition: var(--transition);
+            position: relative; overflow: hidden;
+        }
+
+        .step-card:hover {
+            transform: translateY(-12px); box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary-blue);
+        }
+
+        .step-number {
+            width: 45px; height: 45px; background: var(--text-main); color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 30px; font-weight: bold; font-size: 18px;
+        }
+
+        /* Image Containers */
+        .img-stack { display: flex; gap: 10px; justify-content: center; margin-bottom: 30px; }
+        .step-card img {
+            width: 100%; max-width: 160px; height: auto; border-radius: 12px;
+            transition: var(--transition); filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+        }
+        .img-stack img { max-width: 110px; } /* Smaller images for the dual-image step */
+
+        .step-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 15px; color: #000; }
+        .step-card p { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
+
+        /* --- 5. Footer --- */
+        footer {
+            padding: 80px 8% 40px; background: #f2f2f7; border-top: 1px solid var(--border);
+            color: var(--text-main);
+        }
+        .footer-grid {
+            display: flex; justify-content: space-between; flex-wrap: wrap;
+            gap: 50px; max-width: 1400px; margin: 0 auto;
+        }
+        .footer-left img { height: 30px; filter: brightness(0.2); }
+        .address-text { color: var(--text-muted); font-size: 14px; margin-top: 20px; line-height: 1.6; }
+        .footer-right { text-align: right; }
+        .footer-right p { font-size: 14px; line-height: 1.6; }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 900px) {
+            header { padding: 15px 5%; }
+            nav { display: none; }
+            .steps-wrapper { grid-template-columns: 1fr; gap: 40px; }
+            .page-hero { padding-top: 150px; }
+            .footer-grid { flex-direction: column; text-align: left; }
+            .footer-right { text-align: left; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="mainHeader">
+        <div class="logo">
+            <img src="logo.png" alt="URMET PLUS">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li class="nav-item">
+                    <a href="solutions.html" style="opacity: 1; color: var(--primary-blue);">Solutions</a>
+                    <div class="dropdown-box">
+                        <a href="access.html">Dynamic QR Code</a>
+                        <a href="invitation.html">Guest Invitation</a>
+                        <a href="visitor.html">Visitor Registration</a>
+                        <a href="facilitybooking.html">Facility Booking</a>
+                        <a href="notification.html">Emergency Alerts</a>
+                        <a href="cloudmanagement.html">Cloud Management</a>
+                    </div>
+                </li>
+                <li><a href="about.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-hero">
+        <span class="tagline">Walk-in & Delivery Access</span>
+        <h1>Instant Online Registration</h1>
+        <p style="max-width: 700px; margin: 20px auto 0; color: var(--text-muted); font-size: 18px;">
+            Enabling food deliverers, couriers, and walk-in visitors to register securely in seconds without physical contact or paperwork.
+        </p>
+    </section>
+
+    <div class="steps-wrapper">
+        <!-- STEP 1 -->
+        <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="img-stack">
+                <img src="visitor1.png" alt="Scan QR Code">
+                <img src="visitor2.png" alt="Visitor Register">
+            </div>
+            <h3>Online Registration</h3>
+            <p>Visitors or delivery staff scan the QR code posted at the entrance to open the digital registration form on their mobile device.</p>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="step-card">
+            <div class="step-number">2</div>
+            <img src="visitor3.png" alt="SMS OTP Verification">
+            <h3>SMS Verification</h3>
+            <p>For enhanced security, a <strong>One Time Password (OTP)</strong> is sent via SMS to the visitor's phone for immediate identity verification.</p>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="step-card">
+            <div class="step-number">3</div>
+            <img src="visitor4.png" alt="Gate Open">
+            <h3>Secure Entry</h3>
+            <p>Once verified, the visitor receives an access code. Present it to the <strong>Multi-Reader</strong> and the gate will open automatically.</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-left">
+                <img src="logo.png" alt="Logo">
+                <p class="address-text">
+                    Units 11-14, 7/F, Phase 1 Chai Wan Industrial City<br>
+                    60 Wing Tai Road, Chai Wan, Hong Kong
+                </p>
+            </div>
+            <div class="footer-right">
+                <p style="letter-spacing: 2px; font-weight: bold; text-transform: uppercase;">Urmet Jes Limited</p>
+                <p style="opacity: 0.5; font-size: 12px; margin-top: 20px; text-transform: uppercase;">© 2026 ALL RIGHTS RESERVED</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 80) {
+                header.style.padding = "15px 8%";
+                header.style.background = "rgba(255,255,255,0.95)";
+            } else {
+                header.style.padding = "20px 8%";
+                header.style.background = "rgba(255,255,255,0.8)";
+            }
+        });
+    </script>
+</body>
+</html>
