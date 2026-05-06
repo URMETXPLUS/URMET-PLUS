@@ -38,20 +38,13 @@
         }
 
         body {
-            /* Background styles synced from index.html body */
-            background-color: var(--tech-dark);
-            background-image: 
-                linear-gradient(rgba(0, 122, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 122, 255, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-            
+            background: var(--tech-dark);
             color: var(--text-main);
             /* Font stack synced from index.html body */
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            /* Line height synced from index.html body */
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
         /* --- 2. Navigation (Synced font properties with index.html) --- */
@@ -91,18 +84,9 @@
         }
 
         .trinity-box {
-            position: relative; overflow: hidden; background: transparent; /* Changed to transparent to show body grid */
+            position: relative; overflow: hidden; background: #fff;
             display: flex; flex-direction: column; justify-content: flex-end;
             padding: 50px; cursor: pointer; transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        
-        /* Add a white background layer behind the content of the trinity boxes */
-        .trinity-box .box-content {
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            position: relative;
-            z-index: 5;
         }
 
         .trinity-box img {
@@ -139,6 +123,8 @@
             z-index: 2;
         }
 
+        .box-content { position: relative; z-index: 5; }
+        
         .box-num-row { 
             display: flex; align-items: center; gap: 15px; margin-bottom: 15px;
         }
@@ -212,8 +198,8 @@
         .btn-solution:hover { background: var(--neon-blue); color: #fff; box-shadow: 0 0 20px rgba(96, 165, 250, 0.4); }
 
         /* --- 5. Datasheet Table Style --- */
-        .datasheet { width: 100%; border-collapse: collapse; margin-top: 30px; background: #fff; padding: 20px; border-radius: 8px; }
-        .datasheet td { padding: 15px; border-bottom: 1px solid var(--glass-border); font-size: 14px; color: #000; }
+        .datasheet { width: 100%; border-collapse: collapse; margin-top: 30px; }
+        .datasheet td { padding: 15px 0; border-bottom: 1px solid var(--glass-border); font-size: 14px; color: #000; }
         .datasheet td:first-child { 
             color: var(--neon-blue); 
             /* Replaced Aptos Bold with bold weight of synced stack */
@@ -238,7 +224,7 @@
             opacity: 0.5; 
             font-size: 12px; 
             color: #000; 
-            background: transparent; /* Show body grid */
+            background: #fff;
         }
         
         .new-row-container {
