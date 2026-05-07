@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>URMET PLUS | Intelligent Access Control</title>
 
-    
     <style>
         /* --- 1. Variables & Base (Light Theme Overhaul) --- */
         :root {
-            --primary-blue: #007aff; /* Deeper blue for better contrast on white */
+            --primary-blue: #007aff;
             --accent-cyan: #00bcd4;
             --bg-light: #f8f9fa;
             --card-bg: #ffffff;
@@ -25,7 +24,6 @@
 
         body {
             background-color: var(--bg-light);
-            /* Light Tech Grid Background */
             background-image: 
                 linear-gradient(rgba(0, 122, 255, 0.05) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 122, 255, 0.05) 1px, transparent 1px);
@@ -34,6 +32,26 @@
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             overflow-x: hidden;
             line-height: 1.6;
+        }
+
+        /* --- Splash Screen Styles --- */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease;
+        }
+
+        #splash-screen img {
+            width: 80px; /* Small logo size */
+            height: auto;
         }
 
         /* --- 2. Animations --- */
@@ -53,7 +71,6 @@
             to { opacity: 1; transform: translateX(0); }
         }
 
-        /* Standard left slide-in for aligned-right content to make it smooth */
         @keyframes slideInFromRight {
             from { opacity: 0; transform: translateX(50px); }
             to { opacity: 1; transform: translateX(0); }
@@ -77,7 +94,7 @@
 
         .logo img { 
             height: 35px; 
-            filter: brightness(0.2); /* Make logo visible on light bg */
+            filter: brightness(0.2); 
         }
 
         nav ul { list-style: none; display: flex; gap: 40px; align-items: center; }
@@ -100,7 +117,6 @@
 
         nav a:hover, .nav-item:hover > a { opacity: 1; color: var(--primary-blue); }
 
-        /* Dropdown Menu styling */
         .dropdown-box {
             position: absolute;
             top: 100%;
@@ -215,7 +231,6 @@
             background: #fff;
         }
 
-        /* Basic Background Layer - Fixed to ensure both sections cover full screen */
         .delivery-bg, .installer-bg {
             position: absolute;
             top: 0; left: 0;
@@ -223,19 +238,13 @@
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
-            filter: brightness(0.9); /* Lighter for light mode */
+            filter: brightness(0.9);
             z-index: 1;
         }
 
-        .delivery-bg {
-            background-image: url('deliver4.png');
-        }
+        .delivery-bg { background-image: url('deliver4.png'); }
+        .installer-bg { background-image: url('install2.png'); }
 
-        .installer-bg {
-            background-image: url('install2.png');
-        }
-
-        /* Gradient Overlay Layer */
         .delivery-overlay {
             position: absolute;
             top: 0; left: 0;
@@ -243,35 +252,31 @@
             z-index: 2;
         }
 
-        /* Standard (Content on Left) Gradient: Fade from White to Transparent (Left to Right) */
         .delivery-overlay.standard-fade {
             background: linear-gradient(90deg, #ffffff 30%, rgba(255,255,255,0.2) 100%);
         }
 
-        /* Mirrored (Content on Right) Gradient: Fade from Transparent to White (Left to Right) */
         .delivery-overlay.mirrored-fade {
             background: linear-gradient(-90deg, #ffffff 30%, rgba(255,255,255,0.2) 100%);
         }
 
-        /* Content Container */
         .delivery-content {
             position: relative;
             z-index: 3;
             padding: 0 8%;
             max-width: 800px;
-            width: 100%; /* Ensure full max-width potential */
+            width: 100%;
         }
 
-        /* Text alignment based on layout */
         .text-align-left {
             text-align: left;
-            margin-right: auto; /* Push content from standard fade direction */
+            margin-right: auto;
             animation: slideIn 1s ease-out;
         }
 
         .text-align-right {
             text-align: right;
-            margin-left: auto; /* Push content to aligned-right side */
+            margin-left: auto;
             animation: slideInFromRight 1s ease-out;
         }
 
@@ -290,10 +295,7 @@
             max-width: 600px;
         }
 
-        /* Handle max-width positioning in aligned-right layout */
-        .text-align-right p {
-            margin-left: auto;
-        }
+        .text-align-right p { margin-left: auto; }
 
         .fancy-btn {
             padding: 15px 45px;
@@ -316,43 +318,6 @@
             box-shadow: 0 0 20px rgba(0, 122, 255, 0.3);
         }
 
-        /* --- 6. Procedures Grid --- */
-        .procedures { padding: 100px 8%; background: #fff; }
-        
-        .procedure-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .step-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 40px;
-            border-radius: 15px;
-            transition: 0.4s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-        }
-
-        .step-card h3 { color: var(--text-main); }
-
-        .step-card:hover {
-            border-color: var(--primary-blue);
-            background: #fff;
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-        }
-
-        .step-num {
-            font-size: 40px;
-            font-weight: 900;
-            color: rgba(0, 122, 255, 0.1);
-            margin-bottom: -20px;
-            display: block;
-        }
-
-        /* --- 7. Footer --- */
         footer {
             padding: 80px 8% 40px;
             background: #f2f2f7;
@@ -370,36 +335,29 @@
         }
 
         .footer-left img { filter: brightness(0.2); }
-
         .address-text { color: var(--text-muted); font-size: 14px; margin-top: 20px; }
-
         .footer-right p { color: var(--text-main); }
 
-        /* Mobile Logic */
         @media (max-width: 900px) {
             .hero-content { grid-template-columns: 1fr; text-align: center; }
-            
-            /* Section overrides for unified appearance on mobile */
             .delivery-overlay { background: rgba(255, 255, 255, 0.9) !important; }
-            
-            /* Text alignment is centered on mobile for better flow */
             .delivery-content.text-align-left,
             .delivery-content.text-align-right { 
                 text-align: center; 
                 margin: 0 auto; 
-                animation: slideIn 1s ease-out; /* Use base slide-in */
+                animation: slideIn 1s ease-out;
             }
-            
-            .delivery-content.text-align-right p {
-                margin-left: 0;
-            }
-            
+            .delivery-content.text-align-right p { margin-left: 0; }
             header { padding: 15px 5%; }
             nav { display: none; }
         }
     </style>
 </head>
 <body>
+
+    <div id="splash-screen">
+        <img src="middle1.png" alt="Loading Logo">
+    </div>
 
     <header>
         <div class="logo">
@@ -425,7 +383,6 @@
         </nav>
     </header>
 
-    <!-- HERO SECTION -->
     <section class="hero" id="home">
         <div class="hero-content">
             <div class="text-area">
@@ -442,7 +399,6 @@
         </div>
     </section>
 
-    <!-- DELIVERY REGISTRATION SECTION (CONTENT ON LEFT) -->
     <section class="delivery-section" id="delivery">
         <div class="delivery-bg"></div>
         <div class="delivery-overlay standard-fade"></div>
@@ -450,13 +406,12 @@
             <span class="tech-tag">SECURE LOGISTICS</span>
             <h2>Advanced Delivery <br> Visitor Verification</h2>
             <p>
-                Enhance your building's perimeter defense. Our specialized delivery registration protocol ensures every courier is logged, verified, and tracked with millisecond precision via cloud-synced photo IDs.
+                Strengthen your building's security with our specialized delivery registration protocol. Couriers can now authenticate their identity directly through their mobile phones, ensuring a seamless and verified entry process for every delivery.
             </p>
             <a href="solutions.html" class="fancy-btn">Learn More</a>
         </div>
     </section>
 
-    <!-- INSTALLATION SECTION (CONTENT ON RIGHT, MIRRORED) -->
     <section class="delivery-section" id="installation">
         <div class="installer-bg"></div>
         <div class="delivery-overlay mirrored-fade"></div>
@@ -470,7 +425,6 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
             <div class="footer-left">
@@ -486,6 +440,29 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const splash = document.getElementById('splash-screen');
+            
+            // Check if splash has been shown in this session
+            if (!sessionStorage.getItem('splashShown')) {
+                // Show for 2.5 seconds
+                setTimeout(() => {
+                    splash.style.opacity = '0';
+                    setTimeout(() => {
+                        splash.style.display = 'none';
+                    }, 800); // Wait for transition to finish
+                }, 2500);
+                
+                // Mark as shown for this session
+                sessionStorage.setItem('splashShown', 'true');
+            } else {
+                // Already shown, hide immediately
+                splash.style.display = 'none';
+            }
+        });
+    </script>
 
 </body>
 </html>
