@@ -46,13 +46,14 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            opacity: 0; /* Modified: Start hidden for fade-in */
-            transition: opacity 1s ease; /* Modified: Smooth transition for both in and out */
+            transition: opacity 1.2s ease; /* Transition for the whole screen fade-out */
         }
 
         #splash-screen img {
             width: 80px; /* Small logo size */
             height: auto;
+            opacity: 0; /* Modified: Start hidden for fade-in effect */
+            transition: opacity 1.5s ease; /* Transition for the logo fade-in */
         }
 
         /* --- 2. Animations --- */
@@ -357,7 +358,7 @@
 <body>
 
     <div id="splash-screen">
-        <img src="middle1.png" alt="Loading Logo">
+        <img src="middle1.png" alt="Loading Logo" id="splash-logo">
     </div>
 
     <header>
@@ -445,22 +446,23 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const splash = document.getElementById('splash-screen');
+            const logo = document.getElementById('splash-logo');
             
             // Check if splash has been shown in this session
             if (!sessionStorage.getItem('splashShown')) {
                 
-                // 1. Fade in the splash screen
+                // 1. Fade the logo in over the black background
                 setTimeout(() => {
-                    splash.style.opacity = '1';
-                }, 100); // Tiny delay to ensure browser registers the 0 opacity first
+                    logo.style.opacity = '1';
+                }, 500); 
 
-                // 2. Wait a moment (staying visible), then fade out
+                // 2. Wait for 3.5 seconds, then fade out the whole screen (black bg + logo)
                 setTimeout(() => {
                     splash.style.opacity = '0';
                     setTimeout(() => {
                         splash.style.display = 'none';
-                    }, 1000); // Wait for transition to finish
-                }, 3000); // Total visible time + fade-in time
+                    }, 1200); // Wait for transition to finish
+                }, 4000); 
                 
                 // Mark as shown for this session
                 sessionStorage.setItem('splashShown', 'true');
