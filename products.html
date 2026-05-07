@@ -250,30 +250,35 @@
             width: 180px; text-transform: uppercase; 
         }
 
-        /* --- 6. Footer (Matched to Index.html) --- */
-        footer { 
-            padding: 80px 10%; 
-            text-align: center; 
-            border-top: 1px solid var(--border); 
-            background: #fff; 
+        /* --- 6. Refined Footer (Matched to Brand) --- */
+        footer {
+            padding: 80px 8% 40px;
+            background: #f2f2f7;
+            border-top: 1px solid var(--border);
+            color: var(--text-main);
+            text-align: left; /* Reset from previous center style */
         }
-        .footer-logo img { 
-            height: 24px; 
-            filter: brightness(0.2); 
-            margin-bottom: 20px; 
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 50px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
-        .footer-address { 
-            font-size: 14px; 
+
+        .footer-left img { height: 30px; filter: brightness(0.2); }
+
+        .address-text { 
             color: var(--text-muted); 
-            line-height: 1.6; 
-            margin-bottom: 20px; 
+            font-size: 14px; 
+            margin-top: 20px;
+            line-height: 1.6;
         }
-        .copyright { 
-            font-size: 12px; 
-            opacity: 0.4; 
-            letter-spacing: 1px; 
-            text-transform: uppercase;
-        }
+
+        .footer-right { text-align: right; }
+        .footer-right p { font-size: 14px; line-height: 1.6; }
 
         /* --- Mobile --- */
         @media (max-width: 900px) {
@@ -289,6 +294,8 @@
                 width: 75%;  
                 top: 45%;    
             }
+            .footer-grid { flex-direction: column; text-align: left; }
+            .footer-right { text-align: left; }
         }
     </style>
 </head>
@@ -309,7 +316,7 @@
                         <a href="invitation.html">Guest Invitation</a>
                         <a href="visitor.html">Visitor Registration</a>
                         <a href="facilitybooking.html">Facility Booking</a>
-                        <a href="notification.html">Emergency Alerts</a>
+                        <a href="notification.html">Notification</a>
                         <a href="cloudmanagement.html">Cloud Management</a>
                     </div>
                 </li>
@@ -361,7 +368,7 @@
     <section id="cloud-detail" class="detail-section">
         <div class="detail-text">
             <h2>Cloud Security</h2>
-            <p>Our AWS-powered cloud infrastructure provides a robust management portal. Management officers can easily check and audit visitor logs, detailing precisely what date and time entry was granted, creating a transparent audit trail.</p>
+            <p>Our cloud-based management portal offers a centralized and secure environment for oversight. Property administrators can effortlessly monitor and audit visitor activity with high-precision logs. These records detail the exact date and time of every granted entry, ensuring a fully transparent and reliable audit trail for your facility.</p>
             <a href="solutions.html" class="btn-solution">Security Protocols</a>
         </div>
     </section>
@@ -397,9 +404,19 @@
 
 
     <footer>
-        <div class="footer-logo"><img src="logo.png" alt="URMET PLUS"></div>
-        <div class="footer-address"><strong>URMET JES LIMITED</strong><br>Hong Kong Business Center</div>
-        <div class="copyright">© 2026 // TOTAL SECURITY SOLUTIONS</div>
+        <div class="footer-grid">
+            <div class="footer-left">
+                <img src="logo.png" alt="URMET PLUS">
+                <p class="address-text">
+                    Units 11-14, 7/F, Phase 1 Chai Wan Industrial City<br>
+                    60 Wing Tai Road, Chai Wan, Hong Kong
+                </p>
+            </div>
+            <div class="footer-right">
+                <p style="letter-spacing: 2px; font-weight: bold; text-transform: uppercase;">Urmet Jes Limited</p>
+                <p style="opacity: 0.5; font-size: 12px; margin-top: 20px; text-transform: uppercase;">© 2026 ALL RIGHTS RESERVED</p>
+            </div>
+        </div>
     </footer>
 
     <script>
