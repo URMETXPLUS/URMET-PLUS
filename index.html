@@ -46,7 +46,8 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 0.8s ease;
+            opacity: 0; /* Modified: Start hidden for fade-in */
+            transition: opacity 1s ease; /* Modified: Smooth transition for both in and out */
         }
 
         #splash-screen img {
@@ -447,13 +448,19 @@
             
             // Check if splash has been shown in this session
             if (!sessionStorage.getItem('splashShown')) {
-                // Show for 2.5 seconds
+                
+                // 1. Fade in the splash screen
+                setTimeout(() => {
+                    splash.style.opacity = '1';
+                }, 100); // Tiny delay to ensure browser registers the 0 opacity first
+
+                // 2. Wait a moment (staying visible), then fade out
                 setTimeout(() => {
                     splash.style.opacity = '0';
                     setTimeout(() => {
                         splash.style.display = 'none';
-                    }, 800); // Wait for transition to finish
-                }, 2500);
+                    }, 1000); // Wait for transition to finish
+                }, 3000); // Total visible time + fade-in time
                 
                 // Mark as shown for this session
                 sessionStorage.setItem('splashShown', 'true');
