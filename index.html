@@ -330,7 +330,7 @@
 
         .footer-grid {
             display: grid;
-            grid-template-columns: 2fr 1.5fr;
+            grid-template-columns: 1fr 1fr;
             gap: 60px;
             max-width: 1400px;
             margin: 0 auto;
@@ -343,6 +343,33 @@
             font-size: 14px; 
             margin-top: 15px; 
             max-width: 300px;
+        }
+
+        .footer-right {
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            border-left: 1px solid var(--border);
+            padding-left: 60px;
+        }
+
+        .company-name {
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--text-main);
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .company-name::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--primary-blue);
         }
 
         .footer-bottom {
@@ -387,6 +414,13 @@
             nav { display: none; }
             .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
             .footer-left .address-text { margin: 15px auto; }
+            .footer-right { 
+                border-left: none; 
+                padding-left: 0; 
+                justify-content: center;
+                align-items: center;
+            }
+            .company-name::after { left: 50%; transform: translateX(-50%); }
             .footer-bottom { flex-direction: column; text-align: center; }
             .legal-info { justify-content: center; }
         }
@@ -475,7 +509,7 @@
             </div>
             
             <div class="footer-column footer-right">
-                <p style="letter-spacing: 1px; font-weight: bold; font-size: 14px;">URMET JES LIMITED</p>
+                <p class="company-name">URMET JES LIMITED</p>
             </div>
         </div>
 
