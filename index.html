@@ -46,14 +46,14 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 1.2s ease; /* Transition for the whole screen fade-out */
+            transition: opacity 1.2s ease;
         }
 
         #splash-screen img {
-            width: 80px; /* Small logo size */
+            width: 80px;
             height: auto;
-            opacity: 0; /* Modified: Start hidden for fade-in effect */
-            transition: opacity 1.5s ease; /* Transition for the logo fade-in */
+            opacity: 0;
+            transition: opacity 1.5s ease;
         }
 
         /* --- 2. Animations --- */
@@ -320,6 +320,7 @@
             box-shadow: 0 0 20px rgba(0, 122, 255, 0.3);
         }
 
+        /* --- 6. Professional Footer --- */
         footer {
             padding: 80px 8% 40px;
             background: #f2f2f7;
@@ -328,17 +329,68 @@
         }
 
         .footer-grid {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 50px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr;
+            gap: 60px;
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        .footer-left img { filter: brightness(0.2); }
-        .address-text { color: var(--text-muted); font-size: 14px; margin-top: 20px; }
-        .footer-right p { color: var(--text-main); }
+        .footer-column h4 {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .footer-left img { filter: brightness(0.2); margin-bottom: 10px; }
+        
+        .address-text { 
+            color: var(--text-muted); 
+            font-size: 14px; 
+            margin-top: 15px; 
+            max-width: 300px;
+        }
+
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .footer-links a:hover { color: var(--primary-blue); padding-left: 5px; }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 60px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .legal-info { display: flex; gap: 30px; }
+        .legal-info a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 12px;
+            transition: 0.3s;
+        }
+        .legal-info a:hover { color: var(--primary-blue); }
+
+        .copyright-text {
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
 
         @media (max-width: 900px) {
             .hero-content { grid-template-columns: 1fr; text-align: center; }
@@ -352,6 +404,10 @@
             .delivery-content.text-align-right p { margin-left: 0; }
             header { padding: 15px 5%; }
             nav { display: none; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+            .footer-left .address-text { margin: 15px auto; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .legal-info { justify-content: center; }
         }
     </style>
 </head>
@@ -429,16 +485,36 @@
 
     <footer>
         <div class="footer-grid">
-            <div class="footer-left">
+            <div class="footer-column footer-left">
                 <img src="logo.png" alt="Logo" style="height: 30px;">
                 <p class="address-text">
                     Units 11-14, 7/F, Phase 1 Chai Wan Industrial City<br>
                     60 Wing Tai Road, Chai Wan, Hong Kong
                 </p>
             </div>
-            <div class="footer-right">
-                <p style="letter-spacing: 2px; font-weight: bold;">URMET JES LIMITED</p>
-                <p style="opacity: 0.5; font-size: 12px; margin-top: 20px;">© 2026 ALL RIGHTS RESERVED</p>
+            
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="solutions.html">Solutions</a></li>
+                    <li><a href="about.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column footer-right">
+                <h4>Corporate</h4>
+                <p style="letter-spacing: 1px; font-weight: bold; font-size: 14px;">URMET JES LIMITED</p>
+                <p class="address-text" style="font-size: 13px;">Providing innovative ELV solutions and cloud-based access management across Hong Kong.</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright-text">© 2026 URMET PLUS. ALL RIGHTS RESERVED.</p>
+            <div class="legal-info">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
             </div>
         </div>
     </footer>
@@ -448,27 +524,20 @@
             const splash = document.getElementById('splash-screen');
             const logo = document.getElementById('splash-logo');
             
-            // Check if splash has been shown in this session
             if (!sessionStorage.getItem('splashShown')) {
-                
-                // 1. Fade the logo in (takes 1.5s as per CSS)
                 setTimeout(() => {
                     logo.style.opacity = '1';
                 }, 100); 
 
-                // 2. Start fading out everything after logo has been visible for 3 seconds
-                // (Fade-in starts at 0.1s + 1.5s duration + 3s visible time = 4.6s)
                 setTimeout(() => {
                     splash.style.opacity = '0';
                     setTimeout(() => {
                         splash.style.display = 'none';
-                    }, 1200); // Duration matches CSS transition
+                    }, 1200); 
                 }, 4600); 
                 
-                // Mark as shown for this session
                 sessionStorage.setItem('splashShown', 'true');
             } else {
-                // Already shown, hide immediately
                 splash.style.display = 'none';
             }
         });
