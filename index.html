@@ -451,18 +451,19 @@
             // Check if splash has been shown in this session
             if (!sessionStorage.getItem('splashShown')) {
                 
-                // 1. Fade the logo in over the black background
+                // 1. Fade the logo in (takes 1.5s as per CSS)
                 setTimeout(() => {
                     logo.style.opacity = '1';
-                }, 500); 
+                }, 100); 
 
-                // 2. Wait for 3.5 seconds, then fade out the whole screen (black bg + logo)
+                // 2. Start fading out everything after logo has been visible for 3 seconds
+                // (Fade-in starts at 0.1s + 1.5s duration + 3s visible time = 4.6s)
                 setTimeout(() => {
                     splash.style.opacity = '0';
                     setTimeout(() => {
                         splash.style.display = 'none';
-                    }, 1200); // Wait for transition to finish
-                }, 4000); 
+                    }, 1200); // Duration matches CSS transition
+                }, 4600); 
                 
                 // Mark as shown for this session
                 sessionStorage.setItem('splashShown', 'true');
