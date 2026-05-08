@@ -259,12 +259,13 @@
             box-shadow: 0 10px 20px rgba(0, 122, 255, 0.3);
         }
 
-        /* --- 6. Updated Footer (Synced with index/products) --- */
+        /* --- 6. Refined Footer (Matched to Brand) --- */
         footer {
             padding: 80px 8% 40px;
             background: #f2f2f7;
             border-top: 1px solid var(--glass-border);
             color: var(--text-main);
+            text-align: left;
         }
 
         .footer-grid {
@@ -274,13 +275,9 @@
             gap: 50px;
             max-width: 1400px;
             margin: 0 auto;
-            text-align: left; /* Reset alignment for grid */
         }
 
-        .footer-left img { 
-            height: 30px;
-            filter: brightness(0.2); 
-        }
+        .footer-left img { height: 30px; filter: brightness(0.2); }
 
         .address-text { 
             color: var(--text-muted); 
@@ -289,9 +286,10 @@
             line-height: 1.6;
         }
 
-        .footer-right p { 
-            color: var(--text-main); 
-        }
+        .footer-right { text-align: right; }
+        .footer-right p { font-size: 14px; line-height: 1.2; }
+        .footer-right a { color: inherit; text-decoration: none; transition: 0.3s; }
+        .footer-right a:hover { color: var(--neon-blue); opacity: 1; }
 
         /* --- Responsive --- */
         @media (max-width: 900px) {
@@ -303,7 +301,8 @@
             .image-placeholder { max-width: 100%; aspect-ratio: 16/9; }
             .right-align-content { text-align: left; align-items: flex-start; }
             .right-align-content .icon-label { justify-content: flex-start; }
-            .footer-grid { flex-direction: column; gap: 30px; }
+            .footer-grid { flex-direction: column; text-align: left; }
+            .footer-right { text-align: left; }
         }
     </style>
 </head>
@@ -423,7 +422,7 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-left">
-                <img src="logo.png" alt="Logo">
+                <img src="logo.png" alt="URMET PLUS">
                 <p class="address-text">
                     Units 11-14, 7/F, Phase 1 Chai Wan Industrial City<br>
                     60 Wing Tai Road, Chai Wan, Hong Kong
@@ -431,8 +430,10 @@
             </div>
             <div class="footer-right">
                 <p style="letter-spacing: 2px; font-weight: bold; text-transform: uppercase;">Urmet Jes Limited</p>
-                <p style="opacity: 0.5; font-size: 12px; margin-top: 20px; text-transform: uppercase;">© 2026 ALL RIGHTS RESERVED</p>
-               <p style="opacity: 0.5; font-size: 12px; text-transform: uppercase; margin-top: 5px;"><a href="privacy.html">Privacy Policy</a></p>
+                <div style="margin-top: 20px;">
+                    <p style="opacity: 0.5; font-size: 12px; text-transform: uppercase;">© 2026 ALL RIGHTS RESERVED</p>
+                    <p style="opacity: 0.5; font-size: 12px; text-transform: uppercase; margin-top: 5px;"><a href="privacy.html">Privacy Policy</a></p>
+                </div>
             </div>
         </div>
     </footer>
