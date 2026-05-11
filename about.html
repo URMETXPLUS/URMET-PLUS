@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Contact Us - URMET PLUS</title>
     <style>
-        /* --- 1. Tech Base & Global Styles --- */
+        /* --- 1. Tech Base & Global Styles (Synced with index) --- */
         @font-face {
             font-family: 'Bariol Bold';
             src: url('fonts/Bariol-Bold.woff2') format('woff2');
@@ -22,9 +22,14 @@
 
         :root {
             --neon-blue: #60a5fa;
-            --access-green: #10b981; 
-            --tech-dark: #ffffff;
-            --glass-border: rgba(0, 0, 0, 0.08);
+            --tech-dark: #050c1a; /* Deep black/blue from index footer */
+            --accent-cyan: #22d3ee;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --text-dark: #000000;
+            --text-light: #ffffff;
+            
+            /* Facility Booking sync variables */
             --primary-blue: #007aff;
             --text-main: #1d1d1f;
             --text-muted: #6e6e73;
@@ -40,14 +45,14 @@
 
         body {
             background-color: #ffffff;
-            color: var(--text-main);
+            color: var(--text-dark);
             font-family: 'Bariol Bold', sans-serif;
             -webkit-font-smoothing: antialiased;
-            line-height: 1.5;
+            line-height: 1.8;
             overflow-x: hidden;
         }
 
-        /* --- 2. Enhanced Navigation Header (Synced with facilitybooking.html) --- */
+        /* --- 2. Navigation (Synced with facilitybooking.html) --- */
         header {
             width: 100%;
             padding: 20px 8%;
@@ -66,17 +71,13 @@
 
         .logo img { 
             height: 35px; 
+            width: auto;
             filter: brightness(0.2); 
             display: block;
         }
 
-        nav ul { 
-            list-style: none; 
-            display: flex; 
-            gap: 40px; 
-            align-items: center;
-        }
-
+        nav ul { list-style: none; display: flex; gap: 40px; align-items: center; }
+        
         .nav-item { position: relative; padding: 10px 0; }
 
         nav a {
@@ -95,6 +96,7 @@
             color: var(--primary-blue); 
         }
 
+        /* Dropdown Styles from Facility Booking */
         .dropdown-box {
             position: absolute;
             top: 100%;
@@ -138,6 +140,54 @@
             padding-left: 20px;
         }
 
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 2001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-dark);
+            transition: 0.3s;
+        }
+
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 60% 40%, #1e4b8a 0%, #0a1931 50%, #050c1a 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.5s;
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-overlay ul { list-style: none; text-align: center; }
+        .mobile-overlay ul li { margin: 25px 0; }
+        .mobile-overlay ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-family: 'Aptos Bold', sans-serif;
+        }
+
         /* --- 3. Page Wrapper & Hero Section --- */
         .about-wrapper {
             background: #ffffff;
@@ -152,7 +202,7 @@
 
         h1 { 
             font-family: 'Aptos Bold', sans-serif;
-            color: #000; 
+            color: var(--text-dark); 
             font-size: clamp(36px, 6vw, 64px); 
             text-transform: uppercase;
             margin-bottom: 15px; 
@@ -161,14 +211,13 @@
         }
 
         .subtitle { 
-            color: var(--access-green); 
+            color: var(--neon-blue); 
             font-family: 'Aptos Bold', sans-serif;
             margin-bottom: 0; 
             font-size: 12px; 
             text-transform: uppercase; 
             letter-spacing: 5px; 
             opacity: 0.7;
-            font-weight: 800;
         }
 
         .content-container {
@@ -177,7 +226,7 @@
             padding: 0 5% 120px 5%;
         }
 
-        /* --- 4. Contact & Map Section --- */
+        /* --- 4. Contact & Map Section (Clean Professional Style) --- */
         .contact-section {
             background: #ffffff;
             border-radius: 8px;
@@ -201,7 +250,7 @@
             font-family: 'Aptos Bold', sans-serif;
             font-size: 34px;
             text-transform: uppercase;
-            color: #000;
+            color: var(--text-dark);
             margin-bottom: 40px;
             letter-spacing: 1px;
         }
@@ -214,14 +263,14 @@
         }
         
         .info-item:hover {
-            border-left: 2px solid var(--primary-blue);
+            border-left: 2px solid var(--neon-blue);
             background: rgba(0,0,0,0.01);
         }
 
         .info-item strong {
             display: block;
             font-family: 'Aptos Bold', sans-serif;
-            color: var(--primary-blue);
+            color: var(--neon-blue);
             text-transform: uppercase;
             font-size: 11px;
             letter-spacing: 3px;
@@ -229,7 +278,7 @@
         }
 
         .info-item p {
-            color: var(--text-muted);
+            color: rgba(0,0,0,0.7);
             font-size: 15px;
             line-height: 1.6;
         }
@@ -250,7 +299,7 @@
             transition: 0.5s;
         }
 
-        /* --- 5. Footer (Matched Exactly to facilitybooking.html) --- */
+        /* --- 5. Footer (Synced with facilitybooking.html) --- */
         footer {
             padding: 80px 8% 40px;
             background: #f2f2f7;
@@ -275,10 +324,11 @@
             font-size: 14px; 
             margin-top: 20px;
             line-height: 1.6;
+            font-family: sans-serif;
         }
 
         .footer-right { text-align: right; }
-        .footer-right p { font-size: 14px; line-height: 1.2; }
+        .footer-right p { font-size: 14px; line-height: 1.2; font-family: sans-serif; }
         .footer-right a { color: inherit; text-decoration: none; transition: 0.3s; }
         .footer-right a:hover { color: var(--primary-blue); opacity: 1; }
 
@@ -292,7 +342,7 @@
         @media (max-width: 900px) {
             header { padding: 15px 5%; }
             nav { display: none; }
-            .about-wrapper { padding-top: 80px; }
+            .hamburger { display: flex; }
             .footer-grid { flex-direction: column; text-align: left; }
             .footer-right { text-align: left; }
         }
@@ -322,7 +372,20 @@
                 <li><a href="about.html" style="opacity: 1; color: var(--primary-blue);">Contact Us</a></li>
             </ul>
         </nav>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </header>
+
+    <div class="mobile-overlay" id="mobileOverlay">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html">Contact Us</a></li>
+        </ul>
+    </div>
 
     <div class="about-wrapper">
         <div class="hero-banner">
@@ -352,7 +415,7 @@
 
                 <div class="map-container">
                     <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3692.645517192735!2d114.2389659!3d22.2535565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3404018ca27072c1%3A0xe54e601550937a09!2sChai%20Wan%20Industrial%20City%20Phase%201!5e0!3m2!1sen!2shk!4v1715421500000!5m2!1sen!2shk" 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.003189914109!2d114.23824657599026!3d22.258957844391216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x340401c90a63b157%3A0xf47d83f23b577b1d!2z5p-054Gj5bel5qWt5Z-O56ys5LiA5pyf!5e0!3m2!1szh-TW!2shk!4v1714567890123!5m2!1szh-TW!2shk" 
                         allowfullscreen="" 
                         loading="lazy" 
                         referrerpolicy="no-referrer-when-downgrade">
@@ -383,16 +446,49 @@
     </footer>
 
     <script>
+        const header = document.getElementById('mainHeader');
+        const hamburger = document.getElementById('hamburger');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        
         window.addEventListener('scroll', () => {
-            const header = document.getElementById('mainHeader');
             if (window.scrollY > 80) {
                 header.style.padding = "15px 8%";
                 header.style.background = "rgba(255,255,255,0.95)";
+                header.style.boxShadow = "0 10px 30px rgba(0,0,0,0.05)";
             } else {
                 header.style.padding = "20px 8%";
                 header.style.background = "rgba(255,255,255,0.8)";
+                header.style.boxShadow = "none";
             }
         });
+
+        hamburger.addEventListener('click', () => {
+            mobileOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : 'auto';
+            const spans = hamburger.querySelectorAll('span');
+            if(mobileOverlay.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+
+        const mobileLinks = mobileOverlay.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                const spans = hamburger.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            });
+        });
     </script>
+
 </body>
 </html>
