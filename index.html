@@ -513,13 +513,13 @@
                     logo.style.opacity = '1';
                 }, 100); 
 
-                // Wait 2 seconds, then start fade out
+                // Wait 2.5 seconds, then start fade out
                 setTimeout(() => {
                     splash.style.opacity = '0';
                     setTimeout(() => {
                         splash.style.display = 'none';
                     }, 1200); // Wait for transition to finish
-                }, 2000); 
+                }, 2500); 
                 
                 sessionStorage.setItem('splashShown', 'true');
             } else {
