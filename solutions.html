@@ -41,7 +41,7 @@
             line-height: 1.6;
         }
 
-        /* --- 2. Navigation & Dropdown (Synced with about.html) --- */
+        /* --- 2. Navigation & Dropdown (EXACTLY MATCHED TO ABOUT.HTML) --- */
         header {
             width: 100%;
             padding: 20px 8%;
@@ -51,16 +51,17 @@
             position: fixed;
             top: 0;
             z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--glass-border);
-            background: rgba(255, 255, 255, 0.8);
             transition: 0.4s ease;
         }
 
         .logo img { 
             height: 35px; 
             filter: brightness(0.2); 
+            display: block;
         }
 
         nav ul { list-style: none; display: flex; gap: 40px; align-items: center; }
@@ -74,16 +75,15 @@
             text-decoration: none;
             color: var(--text-main);
             font-size: 13px;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 2px;
-            transition: 0.3s;
+            transition: 0.3s ease;
             opacity: 0.7;
-            font-weight: 600;
         }
 
         nav a:hover, .nav-item:hover > a { opacity: 1; color: var(--neon-blue); }
 
-        /* Dropdown Menu styling */
         .dropdown-box {
             position: absolute;
             top: 100%;
@@ -440,7 +440,7 @@
     </footer>
 
     <script>
-        // Header scroll behavior
+        // Synchronized scroll behavior from about.html
         window.addEventListener('scroll', () => {
             const header = document.getElementById('mainHeader');
             if (window.scrollY > 80) {
@@ -452,7 +452,6 @@
             }
         });
 
-        // Intersection Observer for animations
         const observerOptions = { threshold: 0.15 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
