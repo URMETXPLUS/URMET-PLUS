@@ -320,7 +320,7 @@
             box-shadow: 0 0 20px rgba(0, 122, 255, 0.3);
         }
 
-        /* --- 6. Professional Footer (Updated to Match Products) --- */
+        /* --- 6. Professional Footer (Updated to Match Solutions) --- */
         footer {
             padding: 80px 8% 40px;
             background: #f2f2f7;
@@ -362,33 +362,22 @@
             min-width: 300px;
         }
 
-        .footer-company-name {
+        .footer-right p {
             letter-spacing: 2px;
             font-weight: bold;
             text-transform: uppercase;
             font-size: 14px;
-            margin-bottom: 20px;
         }
 
-        .footer-legal-links {
-            margin-top: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .footer-legal-links p, .footer-legal-links a {
-            opacity: 0.5;
-            font-size: 12px;
-            text-transform: uppercase;
-            text-decoration: none;
+        .footer-right a {
             color: inherit;
+            text-decoration: none;
             transition: 0.3s;
         }
 
-        .footer-legal-links a:hover {
-            opacity: 1;
+        .footer-right a:hover {
             color: var(--primary-blue);
+            opacity: 1 !important;
         }
 
         @media (max-width: 900px) {
@@ -407,7 +396,7 @@
             .footer-grid { flex-direction: column; text-align: center; gap: 40px; }
             .footer-left, .footer-right { text-align: center; width: 100%; }
             .footer-left .address-text { margin: 0 auto; }
-            .footer-right { margin-top: 20px; }
+            .footer-right { margin-top: 20px; text-align: center; }
         }
     </style>
 </head>
@@ -493,10 +482,10 @@
                 </p>
             </div>
             <div class="footer-right">
-                <p class="footer-company-name">Urmet Jes Limited</p>
-                <div class="footer-legal-links">
-                    <p>© 2026 ALL RIGHTS RESERVED</p>
-                    <a href="privacy.html">Privacy Policy</a>
+                <p>Urmet Jes Limited</p>
+                <div style="margin-top: 20px;">
+                    <p style="opacity: 0.5; font-size: 12px; text-transform: uppercase;">© 2026 ALL RIGHTS RESERVED</p>
+                    <p style="opacity: 0.5; font-size: 12px; text-transform: uppercase; margin-top: 5px;"><a href="privacy.html">Privacy Policy</a></p>
                 </div>
             </div>
         </div>
