@@ -44,7 +44,7 @@
         /* --- 2. Navigation & Dropdown (EXACTLY MATCHED TO ABOUT.HTML) --- */
         header {
             width: 100%;
-            padding: 25px 8%; /* Matched exact height padding */
+            padding: 20px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -55,14 +55,13 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--glass-border);
-            transition: padding 0.4s ease, background 0.4s ease;
+            transition: 0.4s ease;
         }
 
         .logo img { 
             height: 35px; 
             filter: brightness(0.2); 
             display: block;
-            transition: height 0.4s ease;
         }
 
         nav ul { list-style: none; display: flex; gap: 40px; align-items: center; }
@@ -81,7 +80,6 @@
             letter-spacing: 2px;
             transition: 0.3s ease;
             opacity: 0.7;
-            line-height: 1; /* Ensures consistent vertical centering */
         }
 
         nav a:hover, .nav-item:hover > a { opacity: 1; color: var(--neon-blue); }
@@ -296,7 +294,7 @@
 
         /* --- Responsive --- */
         @media (max-width: 900px) {
-            header { padding: 15px 5% !important; }
+            header { padding: 15px 5%; }
             nav { display: none; }
             .solution-block { grid-template-columns: 1fr; gap: 40px; padding: 60px 5%; opacity: 1; transform: none; }
             .solution-block:nth-child(even) { direction: ltr; }
@@ -313,7 +311,7 @@
 
     <header id="mainHeader">
         <div class="logo">
-            <img src="logo.png" alt="URMET Logo" id="headerLogo">
+            <img src="logo.png" alt="URMET Logo">
         </div>
         <nav>
             <ul>
@@ -442,22 +440,18 @@
     </footer>
 
     <script>
-        // Exact scroll behavior from about.html
+        // Synchronized scroll behavior from about.html
         window.addEventListener('scroll', () => {
             const header = document.getElementById('mainHeader');
-            const logo = document.getElementById('headerLogo');
             if (window.scrollY > 80) {
                 header.style.padding = "15px 8%";
                 header.style.background = "rgba(255,255,255,0.95)";
-                if(logo) logo.style.height = "30px";
             } else {
-                header.style.padding = "25px 8%";
+                header.style.padding = "20px 8%";
                 header.style.background = "rgba(255,255,255,0.8)";
-                if(logo) logo.style.height = "35px";
             }
         });
 
-        // Content Reveal logic
         const observerOptions = { threshold: 0.15 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
