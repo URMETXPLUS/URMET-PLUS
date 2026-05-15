@@ -6,6 +6,17 @@
     <title>Contact Us - URMET PLUS</title>
     
     <style>
+        /* --- 0. Online Font Loading (Bariol Regular) --- */
+        @font-face {
+            font-family: "Bariol Regular";
+            src: url("https://db.onlinewebfonts.com/t/bde64ed1422104421598829868974f43.eot");
+            src: url("https://db.onlinewebfonts.com/t/bde64ed1422104421598829868974f43.eot?#iefix") format("embedded-opentype"),
+                 url("https://db.onlinewebfonts.com/t/bde64ed1422104421598829868974f43.woff2") format("woff2"),
+                 url("https://db.onlinewebfonts.com/t/bde64ed1422104421598829868974f43.woff") format("woff"),
+                 url("https://db.onlinewebfonts.com/t/bde64ed1422104421598829868974f43.ttf") format("truetype"),
+                 url("https://db.onlinewebfonts.com/t/bde64ed1422104421598829868974f43.svg#Bariol Regular") format("svg");
+        }
+
         /* --- 1. Tech Base & Global Styles (Synced with Products) --- */
         * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
 
@@ -30,7 +41,7 @@
         body {
             background: var(--tech-dark);
             color: var(--text-main);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: "Bariol Regular", 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             line-height: 1.5;
@@ -346,7 +357,6 @@
                         loading="lazy" 
                         referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
-
                 </div>
             </div>
         </div>
