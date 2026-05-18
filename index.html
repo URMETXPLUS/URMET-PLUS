@@ -18,6 +18,17 @@
             --border: rgba(0, 0, 0, 0.08);
         }
 
+        /* --- Font Face Declaration for Bariol Regular --- */
+        @font-face {
+            font-family: "Bariol Regular";
+            src: url("https://db.onlinewebfonts.com/t/bde64ed1422104421598829868974f43.eot");
+            src: url("https://db.onlinewebfonts.com/t/bde64ed1422104421598829868974f43.eot?#iefix") format("embedded-opentype"),
+            url("https://db.onlinewebfonts.com/t/bde64ed1422104421598829868974f43.woff2") format("woff2"),
+            url("https://db.onlinewebfonts.com/t/bde64ed1422104421598829868974f43.woff") format("woff"),
+            url("https://db.onlinewebfonts.com/t/bde64ed1422104421598829868974f43.ttf") format("truetype"),
+            url("https://db.onlinewebfonts.com/t/bde64ed1422104421598829868974f43.svg#Bariol Regular") format("svg");
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         html { scroll-behavior: smooth; }
@@ -29,7 +40,7 @@
                 linear-gradient(90deg, rgba(0, 122, 255, 0.05) 1px, transparent 1px);
             background-size: 50px 50px;
             color: var(--text-main);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: "Bariol Regular", 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             overflow-x: hidden;
             line-height: 1.6;
         }
@@ -95,7 +106,7 @@
         }
 
         .logo img { 
-            height: 35px; 
+            height: 55px; 
             filter: brightness(0.2); 
         }
 
