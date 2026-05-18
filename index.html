@@ -67,6 +67,29 @@
             transition: opacity 1.5s ease;
         }
 
+        /* --- Floating Sticky Button Style --- */
+        .sticky-btn {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 999;
+            width: 50px;
+            height: 50px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: default;
+        }
+
+        .sticky-btn img {
+            width: 24px;
+            height: auto;
+        }
+
         /* --- 2. Animations --- */
         @keyframes glow {
             from { text-shadow: 0 0 10px rgba(0, 122, 255, 0.2); }
@@ -106,7 +129,7 @@
         }
 
         .logo img { 
-            height: 55px; 
+            height: 40px; 
             filter: brightness(0.2); 
         }
 
@@ -201,7 +224,7 @@
         }
 
         h1 {
-            font-size: clamp(40px, 5vw, 70px);
+            font-size: clamp(32px, 4vw, 54px);
             line-height: 1.1;
             margin-bottom: 25px;
             background: linear-gradient(to right, #1d1d1f, var(--primary-blue));
@@ -255,7 +278,7 @@
             z-index: 1;
         }
 
-        .delivery-bg { background-image: url('deliver4.png'); }
+        .delivery-bg { background-image: url('deliver5.png'); }
         .installer-bg { background-image: url('install2.png'); }
 
         .delivery-overlay {
@@ -428,6 +451,10 @@
         <img src="middle1.png" alt="Loading Logo" id="splash-logo">
     </div>
 
+    <div class="sticky-btn">
+        <img src="middle1.png" alt="Sticky Icon">
+    </div>
+
     <header>
         <div class="logo">
             <img src="logo.png" alt="URMET Logo">
@@ -497,7 +524,7 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-left">
-                <img src="logo.png" alt="URMET PLUS">
+                <img src="URMETHK.jpg" alt="URMET PLUS">
                 <p class="address-text">
                     Units 11-14, 7/F, Phase 1 Chai Wan Industrial City<br>
                     60 Wing Tai Road, Chai Wan, Hong Kong
